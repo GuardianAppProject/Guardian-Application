@@ -1,2 +1,2 @@
 Guardian Android Application
-Version 1
+version 1
