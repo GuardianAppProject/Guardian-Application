@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+
+    <color name="appThemeColor">#8BD544</color>
+    <color name="inputBoxColor">#e4f5d3</color>
+    <color name="buttonColor">#7563ff</color>
+    <color name="appTheme2Color">#2ACBFF</color>
+    <color name="appTheme3Color">#BCC6D4</color>
+    
+</resources>

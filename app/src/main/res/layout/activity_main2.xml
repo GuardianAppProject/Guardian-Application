@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Main"
+    android:background="@color/appTheme3Color"
+    android:orientation="vertical">
+
+    <!--    <com.mapbox.mapboxsdk.maps.MapView-->
+    <!--        android:id="@+id/mapV"-->
+    <!--        android:layout_width="200dp"-->
+    <!--        android:layout_height="200dp"-->
+    <!--        android:layout_gravity="center"-->
+    <!--        android:layout_marginLeft="100dp"/>-->
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:alpha="1">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#7E7E7E"
+            android:alpha="0.5"/>
+
+        <Button
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="12.5dp"
+            android:layout_marginStart="6dp"
+            android:background="@drawable/menu_icon"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_marginLeft="6dp" />
+
+        <FrameLayout
+            android:layout_width="175dp"
+            android:layout_height="50dp"
+            android:layout_gravity="right"
+            android:layout_marginEnd="18dp"
+            android:layout_marginRight="18dp">
+
+            <ImageView
+                android:layout_width="175dp"
+                android:layout_height="50dp"
+                android:background="#FFFFFF"
+                android:alpha="0.2"
+                android:elevation="2dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="درصد رانندگی سالم"
+                android:textColor="#191919"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                android:textSize="18sp"
+                android:alpha="1" />
+
+        </FrameLayout>
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="175dp"
+        android:layout_height="250dp"
+        android:layout_gravity="right"
+        android:layout_marginEnd="18dp"
+        android:layout_marginRight="18dp">
+
+        <ImageView
+            android:layout_width="175dp"
+            android:layout_height="250dp"
+            android:src="@drawable/rectangle_box"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:orientation="horizontal"
+                android:layout_weight="1">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.4"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.4"/>
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.2"/>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:orientation="horizontal"
+                android:layout_weight="1">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.4"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.4"/>
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.2"/>
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:orientation="horizontal"
+                android:layout_weight="1">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.4"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.4"/>
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.2"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center">
+
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:src="@drawable/circle_gradient_green"
+                android:layout_gravity="bottom|center"
+                android:layout_marginBottom="10dp" />
+
+            <TextView
+                android:id="@+id/menu_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:lines="1"
+                android:text="64%"
+                android:layout_marginBottom="10dp"
+                android:textStyle="bold"
+                android:textSize="40sp"
+                android:fontFamily="@font/product_sans_bold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="safe"
+                android:layout_gravity="center"
+                android:layout_marginTop="24dp"
+                android:textColor="#000000"/>
+
+        </FrameLayout>
+
+    </FrameLayout>
+
+
+
+
+
+</LinearLayout>

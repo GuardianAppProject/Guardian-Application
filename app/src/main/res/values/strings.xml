@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Guardian_v1</string>
+    <string name="signInText"><![CDATA[تا به حال از گاردین استفاده نکرده ام، <i></b/>ثبت نام<b><i>]]></string>
+</resources>

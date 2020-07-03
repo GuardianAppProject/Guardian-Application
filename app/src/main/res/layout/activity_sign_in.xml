@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignIn"
+    android:layout_weight="1"
+    android:background="@color/appThemeColor"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.22"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/logo_SignIn"
+            android:layout_width="93dp"
+            android:layout_height="93dp"
+            android:src="@drawable/logo_white"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp" />
+        <!--            android:visibility="gone"-->
+
+
+        <!--        <pl.droidsonroids.gif.GifImageView-->
+        <!--            android:id="@+id/logoGif"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="match_parent"-->
+        <!--            android:src="@drawable/logo_bounce"-->
+        <!--            android:background="@color/appThemeColor" />-->
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.78"
+        android:gravity="center">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="15dp"
+            android:orientation="vertical"
+            android:background="#c3e99e">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:src="@drawable/signup" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="نام کاربری"
+                android:textSize="15sp"
+                android:gravity="center"
+                android:layout_marginTop="40dp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/edit_text_background"
+                android:layout_marginRight="35dp"
+                android:layout_marginLeft="35dp"
+                android:textAlignment="center"/>
+
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="رمز عبور"
+                android:textSize="15sp"
+                android:gravity="center"
+                android:layout_marginTop="8dp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/edit_text_background"
+                android:layout_marginRight="35dp"
+                android:layout_marginLeft="35dp"
+                android:textAlignment="center"/>
+
+
+            <Button
+                android:id="@+id/SignInButt"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginTop="34dp"
+                android:layout_marginLeft="35dp"
+                android:layout_marginRight="35dp"
+                android:background="@drawable/button_background"
+                android:text="ثبت نام"
+                android:textColor="@color/inputBoxColor"
+                android:textSize="17sp"/>
+            <Button
+                android:id="@+id/signInUp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="#c3e99e"
+                android:text="قبلا از گاردین استفاده کرده ام، ورود"
+                style="?android:attr/borderlessButtonStyle"
+                android:textColor="#606060"/>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
