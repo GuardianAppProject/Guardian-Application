@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <group android:id="@+id/group2">
+        <item
+            android:id="@+id/nav_first_fragment"
+            android:icon="@drawable/profile"
+            android:title="حساب کاربری من"/>
+        <item
+            android:id="@+id/nav_second_fragment"
+            android:icon="@drawable/team"
+            android:title="گروه های من" />
+        <item
+            android:id="@+id/nav_third_fragment"
+            android:icon="@drawable/settings"
+            android:title="تنظیمات" />
+    </group>
+<!--        <item android:title="">  &lt;!&ndash; android:title="Title 1" &ndash;&gt;-->
+        <group android:id="@+id/group1">
+
+                        <item android:id="@+id/nav_item_six"
+                            android:icon="@drawable/support"
+                            android:title="پشتیبانی" />
+                        <item android:id="@+id/nav_item_seven"
+                            android:icon="@drawable/info"
+                            android:title="درباره ی گاردین" />
+
+        </group>
+<!--        </item>-->
+
+</menu>
