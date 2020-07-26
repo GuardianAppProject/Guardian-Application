@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Guardian_v1</string>
     <string name="signInText"><![CDATA[تا به حال از گاردین استفاده نکرده ام، <i></b/>ثبت نام<b><i>]]></string>
+
+    <string name="access_token" translatable="false">pk.eyJ1Ijoic2luYWVsYWhpbWFuZXNoIiwiYSI6ImNrN3RkeDh4ZTBxbnkzbnB1Y2FnZmE1cG8ifQ.eHBYvKOXzAWjR08kYCGVHw</string>
+    <string name="user_location_permission_explanation">This app needs location permissions to show its functionality.</string>
+    <string name="user_location_permission_not_granted">You didn\'t grant location permissions.</string>
 </resources>

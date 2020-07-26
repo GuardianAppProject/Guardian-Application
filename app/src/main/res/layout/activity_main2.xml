@@ -8,13 +8,43 @@
     tools:context=".Main"
     android:id="@+id/drawer_layout">
 
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
+
+
+
+        <com.mapbox.services.android.navigation.ui.v5.instruction.InstructionView
+            android:id="@+id/instructionView"
+            android:layout_width="1dp"
+
+            android:layout_height="wrap_content"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <com.mapbox.mapboxsdk.maps.MapView
+                android:id="@+id/mapView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                app:mapbox_cameraTargetLat="41.9005"
+                app:mapbox_cameraTargetLng="-87.7789"
+                app:mapbox_cameraZoom="10"
+                app:mapbox_uiAttribution="false" />
 
    <LinearLayout
        android:layout_width="match_parent"
        android:layout_height="match_parent"
-       android:background="@color/appTheme3Color"
        android:orientation="vertical">
+
+
+
        <FrameLayout
            android:layout_width="match_parent"
            android:layout_height="50dp"
@@ -23,7 +53,7 @@
                android:layout_width="match_parent"
                android:layout_height="50dp"
                android:background="#7E7E7E"
-               android:alpha="0.5"/>
+               android:alpha="0.98"/>
 
            <!-- This LinearLayout represents the contents of the screen  -->
            <LinearLayout
@@ -61,8 +91,8 @@
                android:layout_width="175dp"
                android:layout_height="50dp"
                android:layout_gravity="right"
-               android:layout_marginEnd="18dp"
-               android:layout_marginRight="18dp">
+               android:layout_marginEnd="6dp"
+               android:layout_marginRight="6dp">
 
                <ImageView
                    android:layout_width="175dp"
@@ -89,8 +119,8 @@
            android:layout_width="175dp"
            android:layout_height="250dp"
            android:layout_gravity="right"
-           android:layout_marginEnd="18dp"
-           android:layout_marginRight="18dp">
+           android:layout_marginEnd="5dp"
+           android:layout_marginRight="5dp">
 
            <ImageView
                android:layout_width="175dp"
@@ -207,7 +237,152 @@
 
        </FrameLayout>
 
+
+
    </LinearLayout>
+
+        </FrameLayout>
+
+
+
+
+
+
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:layout_marginRight="55dp"
+        android:layout_marginLeft="55dp"
+        android:layout_alignParentBottom="true" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="58dp"
+                android:background="@drawable/rectangle_gradient_green"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="0.2"
+                    android:gravity="center">
+
+                    <FrameLayout
+                        android:layout_width="24dp"
+                        android:layout_height="24dp">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/circle_road_background" />
+
+                        <Button
+                            android:id="@+id/roadButt"
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:layout_gravity="center"
+                            android:background="@drawable/road_icon2" />
+
+                    </FrameLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.6"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/primaryTxt"
+                        android:layout_width="match_parent"
+                        android:layout_height="23dp"
+                        android:layout_marginTop="11dp"
+                        android:gravity="center_horizontal|top"
+                        android:textColor="#ffffff"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/secondaryTxt"
+                        android:layout_width="match_parent"
+                        android:layout_height="25dp"
+                        android:gravity="center_horizontal|top"
+                        android:paddingTop="4dp"
+                        android:textColor="#ffffff"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="0.2"
+                    android:gravity="center">
+
+                    <Button
+                        android:id="@+id/stopButt"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:background="@drawable/circle_cropped" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:background="@drawable/rectangle_gradient_white"
+                android:orientation="horizontal"
+                android:paddingLeft="58dp"
+                android:paddingRight="50dp">
+
+                <TextView
+                    android:id="@+id/durationRem"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.3"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:textColor="#000000"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/arrivalTime"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="15dp"
+                    android:layout_weight="0.24"
+                    android:gravity="start|bottom"
+                    android:textColor="#282828"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/distanceRem"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_weight="0.36"
+                    android:gravity="start|bottom"
+                    android:paddingTop="8dp"
+                    android:textColor="#686868"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+    </RelativeLayout>
 
 
     <!-- The navigation drawer that comes from the left -->
