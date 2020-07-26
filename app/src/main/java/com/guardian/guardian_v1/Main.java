@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
 
-import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.view.MenuItem;
 import android.view.View;
@@ -40,7 +39,6 @@ import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
 import com.mapbox.mapboxsdk.maps.Style;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import com.google.android.material.navigation.NavigationView;
@@ -75,11 +73,9 @@ public class Main extends AppCompatActivity implements OnMapReadyCallback,
         OffRouteListener, ProgressChangeListener, MilestoneEventListener, TextToSpeech.OnInitListener {
 
 
-    //    @BindView(R.id.mapView)
+    // Map
     MapView mapView;
-    //    @BindView(android.R.id.content)
     View contentLayout;
-    //    @BindView(R.id.instructionView)
     InstructionView instructionView;
 
     private Point ORIGIN = Point.fromLngLat(-0.358764, 39.494876);
@@ -95,7 +91,6 @@ public class Main extends AppCompatActivity implements OnMapReadyCallback,
     private boolean tracking;
     private boolean wasInTunnel = false;
 
-
     TextView distanceRem;
     TextView durationRem;
     TextView arrivalTime;
@@ -103,9 +98,8 @@ public class Main extends AppCompatActivity implements OnMapReadyCallback,
     TextView secondaryTxt;
     Button stopButton;
 
-
+    // Menu
     private DrawerLayout mDrawer;
-    //    private Toolbar toolbar;
     private NavigationView nvDrawer;
 
     // Make sure to be using androidx.appcompat.app.ActionBarDrawerToggle version.
@@ -124,8 +118,6 @@ public class Main extends AppCompatActivity implements OnMapReadyCallback,
         contentLayout = (View) findViewById(android.R.id.content);
         instructionView = (InstructionView) findViewById(R.id.instructionView);
 
-
-
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
 
@@ -133,8 +125,6 @@ public class Main extends AppCompatActivity implements OnMapReadyCallback,
         navigation = new MapboxNavigation(getApplicationContext(), getResources().getString(R.string.access_token), options);
         navigation.addNavigationEventListener(this);
         navigation.addMilestoneEventListener(this);
-
-//        addNavigationForHistory(navigation);
 
         primaryTxt = (TextView) findViewById(R.id.primaryTxt);
         distanceRem = (TextView) findViewById(R.id.distanceRem);
@@ -162,23 +152,7 @@ public class Main extends AppCompatActivity implements OnMapReadyCallback,
 
         stopButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-//                new AlertDialog.Builder(Main2Activity.this)
-//                        .setTitle("لغو مسیریابی")
-//                        .setMessage("آیا مطمئن هستید می خواهید مسیریابی را لغو کنید؟")
-//
-//                        // Specifying a listener allows you to take an action before dismissing the dialog.
-//                        // The dialog is automatically dismissed when a dialog button is clicked.
-//                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-//                            public void onClick(DialogInterface dialog, int which) {
-//                                // Continue with delete operation
-//                                startActivity(new Intent(Main2Activity.this,MainActivity.class));
-//                            }
-//                        })
-//
-//                        // A null listener allows the button to dismiss the dialog and take no further action.
-//                        .setNegativeButton(android.R.string.no, null)
-//                        .setIcon(R.drawable.menu_icon)
-//                        .show();
+
                 ViewDialog alert = new ViewDialog();
                 alert.showDialog(Main.this, "آیا مطمئن هستید می خواهید مسیریابی را لغو کنید؟", Main.this);
             }
@@ -200,10 +174,6 @@ public class Main extends AppCompatActivity implements OnMapReadyCallback,
                 openDrawer();
             }
         });
-
-
-
-
 
     }
 
@@ -575,7 +545,7 @@ public class Main extends AppCompatActivity implements OnMapReadyCallback,
 
     @Override
     public void onInit(int status) {
-       
+
         if(status==TextToSpeech.SUCCESS)
         {
 //            Toast.makeText(getApplicationContext(), "engine installed",Toast.LENGTH_SHORT).show();
