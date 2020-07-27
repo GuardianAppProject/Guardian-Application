@@ -209,9 +209,9 @@ public class Main extends AppCompatActivity implements OnMapReadyCallback,
 //        Fragment fragment = null;
 //        Class fragmentClass;
         switch(menuItem.getItemId()) {
-//            case R.id.nav_first_fragment:
-////                fragmentClass = FirstFragment.class;
-//                Intent i = new Intent(MainActivity.this, MenuAccount.class);
+//            case R.id.account:
+//                fragmentClass = FirstFragment.class;
+//                Intent i = new Intent(Main.this, MenuAccount.class);
 //                startActivity(i);
 //                finish();
 //                break;
@@ -324,17 +324,17 @@ public class Main extends AppCompatActivity implements OnMapReadyCallback,
 
     @Override
     public boolean onMapClick(@NonNull LatLng point) {
-        if (!running || mapboxMap == null || lastLocation == null) {
-            return false;
-        }
-
-        mapboxMap.addMarker(new MarkerOptions().position(point));
-        mapboxMap.removeOnMapClickListener(this);
-
-        DESTINATION = Point.fromLngLat(point.getLongitude(), point.getLatitude());
-        resetLocationEngine(DESTINATION);
-
-        tracking = false;
+//        if (!running || mapboxMap == null || lastLocation == null) {
+//            return false;
+//        }
+//
+//        mapboxMap.addMarker(new MarkerOptions().position(point));
+//        mapboxMap.removeOnMapClickListener(this);
+//
+//        DESTINATION = Point.fromLngLat(point.getLongitude(), point.getLatitude());
+//        resetLocationEngine(DESTINATION);
+//
+//        tracking = false;
         return false;
     }
 

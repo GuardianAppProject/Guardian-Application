@@ -50,7 +50,7 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/appThemeColor"
+        android:background="#B6F485"
         android:gravity="center_horizontal"
         android:paddingTop="12dp"
         android:text="لطفا مقصد سفر خود را انتخاب کنید."

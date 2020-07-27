@@ -30,13 +30,13 @@
             android:layout_height="match_parent">
             <com.mapbox.mapboxsdk.maps.MapView
                 android:id="@+id/mapView"
+                android:layout_marginTop="48dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-
                 app:mapbox_cameraTargetLat="41.9005"
                 app:mapbox_cameraTargetLng="-87.7789"
                 app:mapbox_cameraZoom="10"
-                app:mapbox_uiAttribution="false" />
+               />
 
    <LinearLayout
        android:layout_width="match_parent"
@@ -53,7 +53,7 @@
                android:layout_width="match_parent"
                android:layout_height="50dp"
                android:background="#7E7E7E"
-               android:alpha="0.98"/>
+               android:alpha="0.92"/>
 
            <!-- This LinearLayout represents the contents of the screen  -->
            <LinearLayout
@@ -349,7 +349,7 @@
                     android:id="@+id/durationRem"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.3"
+                    android:layout_weight="0.4"
                     android:gravity="center_horizontal|center_vertical"
                     android:textColor="#000000"
                     android:textSize="22sp"
@@ -360,6 +360,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginBottom="15dp"
+                    android:layout_marginLeft="5dp"
                     android:layout_weight="0.24"
                     android:gravity="start|bottom"
                     android:textColor="#282828"
