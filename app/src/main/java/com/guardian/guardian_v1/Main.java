@@ -209,20 +209,21 @@ public class Main extends AppCompatActivity implements OnMapReadyCallback,
 //        Fragment fragment = null;
 //        Class fragmentClass;
         switch(menuItem.getItemId()) {
-//            case R.id.account:
-//                fragmentClass = FirstFragment.class;
-//                Intent i = new Intent(Main.this, MenuAccount.class);
-//                startActivity(i);
-//                finish();
-//                break;
-//            case R.id.nav_second_fragment:
-////                fragmentClass = SecondFragment.class;
-//                break;
-//            case R.id.nav_third_fragment:
-////                fragmentClass = ThirdFragment.class;
-//                break;
-//            default:
-//                fragmentClass = FirstFragment.class;
+            case R.id.account:
+                Intent i = new Intent(Main.this, MyAccount.class);
+                startActivity(i);
+                finish();
+                break;
+            case R.id.support:
+                Intent i2 = new Intent(Main.this, Support.class);
+                startActivity(i2);
+                finish();
+                break;
+            case R.id.info:
+                Intent i3 = new Intent(Main.this, Info.class);
+                startActivity(i3);
+                finish();
+                break;
         }
 
 //        try {

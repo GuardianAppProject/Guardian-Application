@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Support"
+    android:background="@color/appThemeColor"
+    android:layout_weight="1"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.3"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="93dp"
+            android:layout_height="93dp"
+            android:src="@drawable/logo_white"
+            android:layout_gravity="center"
+            android:layout_marginTop="60dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.78"
+        android:background="#c3e99e"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:background="#F5F5F5">
+
+            <ImageButton
+                android:background="@drawable/back"
+                android:layout_height="20dp"
+                android:layout_width="16dp"
+                android:layout_marginTop="8dp"
+                android:padding="10dp"
+                android:layout_marginLeft="10dp"
+                android:id="@+id/backButton">
+
+            </ImageButton>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="0.8"
+                android:layout_height="wrap_content"
+                android:text="پشتیبانی"
+                android:textAlignment="center"
+                android:padding="6dp"
+                android:textSize="16dp"
+                android:layout_marginRight="20dp"
+                android:gravity="center_horizontal" >
+
+            </TextView>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="وبسایت"
+            android:textSize="15sp"
+            android:gravity="center"
+            android:layout_marginTop="48dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="7dp"
+            android:background="@drawable/edit_text_background"
+            android:layout_marginRight="70dp"
+            android:layout_marginLeft="70dp"
+            android:textAlignment="center"
+            android:gravity="center_horizontal"
+            android:paddingTop="8dp"
+            android:textSize="18sp"
+            android:autoLink="web"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/website"/>
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ایمیل"
+            android:textSize="15sp"
+            android:gravity="center"
+            android:layout_marginTop="48dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="7dp"
+            android:background="@drawable/edit_text_background"
+            android:layout_marginRight="70dp"
+            android:layout_marginLeft="70dp"
+            android:textAlignment="center"
+            android:gravity="center_horizontal"
+            android:paddingTop="8dp"
+            android:textSize="18sp"
+            android:autoLink="email"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/email"/>
+
+
+
+    </LinearLayout>
+
+</LinearLayout>
