@@ -33,14 +33,37 @@ public class SignIn extends AppCompatActivity {
                 /*Intent i = new Intent(SignIn.this, SignUp.class);
                 startActivity(i);
                 finish();*/
+                System.out.println("============================================================");
                 onSignInClick(v);
             }
         });
     }
 
     protected void onSignInClick(View v){
-        Intent i = new Intent(SignIn.this, SignUp.class);
-        startActivity(i);
-        finish();
+        String username = "username az koja begiram?";
+        String password = "va password";
+        LoginWorker loginWorker = new LoginWorker(this);
+        loginWorker.execute("login",username,password);
+        System.out.println("============================================================");
+        try {
+            wait(100);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        if(isLoginResultValid()) {
+            Intent i = new Intent(SignIn.this, SignUp.class);
+            startActivity(i);
+            finish();
+        }
+    }
+
+    private static String loginResult;
+
+    protected static void setLoginResult(String result){
+        loginResult  = result;
+    }
+
+    private boolean isLoginResultValid(){
+        return loginResult.startsWith("Success");
     }
 }
