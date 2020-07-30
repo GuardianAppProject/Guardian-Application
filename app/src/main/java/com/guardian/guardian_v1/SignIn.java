@@ -30,10 +30,17 @@ public class SignIn extends AppCompatActivity {
         signIn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Code here executes on main thread after user presses button
-                Intent i = new Intent(SignIn.this, SignUp.class);
+                /*Intent i = new Intent(SignIn.this, SignUp.class);
                 startActivity(i);
-                finish();
+                finish();*/
+                onSignInClick(v);
             }
         });
+    }
+
+    protected void onSignInClick(View v){
+        Intent i = new Intent(SignIn.this, SignUp.class);
+        startActivity(i);
+        finish();
     }
 }
