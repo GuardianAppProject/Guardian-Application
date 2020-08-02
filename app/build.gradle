@@ -10,6 +10,7 @@ android {
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -46,6 +47,10 @@ dependencies {
     implementation 'com.mapbox.mapboxsdk:mapbox-android-plugin-locationlayer:0.5.0'
     implementation 'com.mapbox.mapboxsdk:mapbox-android-plugin-localization-v7:0.8.0'
     implementation 'com.mapbox.mapboxsdk:mapbox-android-plugin-places-v9:0.10.0'
+
+    //Morteza
+    implementation 'com.google.android.gms:play-services:12.0.1'
+    implementation 'com.android.support:multidex:1.0.3'
 
     implementation 'com.mapbox.mapboxsdk:mapbox-android-navigation:0.42.6'  //0.42.5
     implementation('com.mapbox.mapboxsdk:mapbox-android-navigation-ui:0.42.6') {
