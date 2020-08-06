@@ -65,6 +65,7 @@ public class SelectNavigation extends AppCompatActivity implements OnMapReadyCal
     private NavigationMapRoute navigationMapRoute;
     // variables needed to initialize navigation
     private Button button;
+    private Button speed;
 
     Point destinationPoint2;
     Point originPoint2;
@@ -84,6 +85,7 @@ public class SelectNavigation extends AppCompatActivity implements OnMapReadyCal
         mapView = findViewById(R.id.mapView);
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
+
     }
 
     @Override
@@ -116,6 +118,8 @@ public class SelectNavigation extends AppCompatActivity implements OnMapReadyCal
 
                 mapboxMap.addOnMapClickListener(SelectNavigation.this);
                 button = findViewById(R.id.startButton);
+
+
                 button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

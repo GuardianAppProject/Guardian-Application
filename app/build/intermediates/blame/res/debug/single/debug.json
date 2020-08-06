@@ -272,6 +272,10 @@
         "source": "G:\\Guardian\\GuardianApp_V1\\app\\src\\main\\res\\drawable-mdpi\\cancel_button_background.xml"
     },
     {
+        "merged": "G:\\Guardian\\GuardianApp_V1\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_main_speedometer.xml.flat",
+        "source": "G:\\Guardian\\GuardianApp_V1\\app\\src\\main\\res\\layout\\activity_main_speedometer.xml"
+    },
+    {
         "merged": "G:\\Guardian\\GuardianApp_V1\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_seat_belt.xml.flat",
         "source": "G:\\Guardian\\GuardianApp_V1\\app\\src\\main\\res\\layout\\activity_seat_belt.xml"
     }

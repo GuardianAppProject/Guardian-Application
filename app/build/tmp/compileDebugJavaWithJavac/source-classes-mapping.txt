@@ -1,20 +1,39 @@
-com/guardian/guardian_v1/LoginWorker.java
- com.guardian.guardian_v1.LoginWorker
-Speedometer2/MainActivitySpeedometer.java
- Speedometer2.MainActivitySpeedometer
- Speedometer2.MainActivitySpeedometer$1
- Speedometer2.MainActivitySpeedometer$2
- Speedometer2.MainActivitySpeedometer$3
- Speedometer2.MainActivitySpeedometer$4
- Speedometer2.MainActivitySpeedometer$5
- Speedometer2.MainActivitySpeedometer$6
-com/guardian/guardian_v1/SeatBelt.java
- com.guardian.guardian_v1.SeatBelt
- com.guardian.guardian_v1.SeatBelt$1
+com/guardian/guardian_v1/Main.java
+ com.guardian.guardian_v1.Main
+ com.guardian.guardian_v1.Main$1
+ com.guardian.guardian_v1.Main$2
+ com.guardian.guardian_v1.Main$3
+ com.guardian.guardian_v1.Main$4
+ com.guardian.guardian_v1.Main$5
+ com.guardian.guardian_v1.Main$RerouteActivityLocationCallback
+com/guardian/guardian_v1/DriveStatusCalculator.java
+ com.guardian.guardian_v1.DriveStatusCalculator
 com/guardian/guardian_v1/MainActivity.java
  com.guardian.guardian_v1.MainActivity
  com.guardian.guardian_v1.MainActivity$1
  com.guardian.guardian_v1.MainActivity$1$1
+com/guardian/guardian_v1/RegisterWorker.java
+ com.guardian.guardian_v1.RegisterWorker
+com/guardian/guardian_v1/BuildConfig.java
+ com.guardian.guardian_v1.BuildConfig
+com/guardian/guardian_v1/MyAccount.java
+ com.guardian.guardian_v1.MyAccount
+ com.guardian.guardian_v1.MyAccount$1
+com/guardian/guardian_v1/ViewDialog.java
+ com.guardian.guardian_v1.ViewDialog
+ com.guardian.guardian_v1.ViewDialog$1
+ com.guardian.guardian_v1.ViewDialog$2
+com/guardian/guardian_v1/Info.java
+ com.guardian.guardian_v1.Info
+ com.guardian.guardian_v1.Info$1
+com/guardian/guardian_v1/Support.java
+ com.guardian.guardian_v1.Support
+ com.guardian.guardian_v1.Support$1
+com/guardian/guardian_v1/LoginWorker.java
+ com.guardian.guardian_v1.LoginWorker
+com/guardian/guardian_v1/SeatBelt.java
+ com.guardian.guardian_v1.SeatBelt
+ com.guardian.guardian_v1.SeatBelt$1
 com/guardian/guardian_v1/SelectNavigation.java
  com.guardian.guardian_v1.SelectNavigation
  com.guardian.guardian_v1.SelectNavigation$1
@@ -25,37 +44,19 @@ com/guardian/guardian_v1/SignUp.java
  com.guardian.guardian_v1.SignUp
  com.guardian.guardian_v1.SignUp$1
  com.guardian.guardian_v1.SignUp$2
-com/guardian/guardian_v1/ViewDialog.java
- com.guardian.guardian_v1.ViewDialog
- com.guardian.guardian_v1.ViewDialog$1
- com.guardian.guardian_v1.ViewDialog$2
-com/guardian/guardian_v1/MyAccount.java
- com.guardian.guardian_v1.MyAccount
- com.guardian.guardian_v1.MyAccount$1
-com/guardian/guardian_v1/Support.java
- com.guardian.guardian_v1.Support
- com.guardian.guardian_v1.Support$1
-com/guardian/guardian_v1/RegisterWorker.java
- com.guardian.guardian_v1.RegisterWorker
-com/guardian/guardian_v1/BuildConfig.java
- com.guardian.guardian_v1.BuildConfig
+com/guardian/guardian_v1/MainActivitySpeedometer.java
+ com.guardian.guardian_v1.MainActivitySpeedometer
+ com.guardian.guardian_v1.MainActivitySpeedometer$1
+ com.guardian.guardian_v1.MainActivitySpeedometer$2
+ com.guardian.guardian_v1.MainActivitySpeedometer$3
+ com.guardian.guardian_v1.MainActivitySpeedometer$4
+ com.guardian.guardian_v1.MainActivitySpeedometer$5
+ com.guardian.guardian_v1.MainActivitySpeedometer$6
 com/guardian/guardian_v1/SignIn.java
  com.guardian.guardian_v1.SignIn
  com.guardian.guardian_v1.SignIn$1
  com.guardian.guardian_v1.SignIn$2
-com/guardian/guardian_v1/Info.java
- com.guardian.guardian_v1.Info
- com.guardian.guardian_v1.Info$1
-com/guardian/guardian_v1/DriveStatusCalculator.java
- com.guardian.guardian_v1.DriveStatusCalculator
-com/guardian/guardian_v1/Main.java
- com.guardian.guardian_v1.Main
- com.guardian.guardian_v1.Main$1
- com.guardian.guardian_v1.Main$2
- com.guardian.guardian_v1.Main$3
- com.guardian.guardian_v1.Main$4
- com.guardian.guardian_v1.Main$5
- com.guardian.guardian_v1.Main$RerouteActivityLocationCallback
-Speedometer2/LocationService.java
- Speedometer2.LocationService
- Speedometer2.LocationService$LocalBinder
+ com.guardian.guardian_v1.SignIn$3
+com/guardian/guardian_v1/LocationService.java
+ com.guardian.guardian_v1.LocationService
+ com.guardian.guardian_v1.LocationService$LocalBinder

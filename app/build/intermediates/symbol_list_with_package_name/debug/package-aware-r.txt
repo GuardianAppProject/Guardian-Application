@@ -2570,6 +2570,7 @@ id direct
 id disableHome
 id distanceRem
 id distanceRemainingText
+id distancetext
 id divider
 id donate_with
 id donate_with_google
@@ -2800,6 +2801,7 @@ id parent
 id parentPanel
 id parent_matrix
 id password_toggle
+id pause
 id peekHeight
 id percent
 id pin
@@ -2895,6 +2897,8 @@ id soundFab
 id soundLayout
 id soundText
 id spacer
+id speed
+id speedtext
 id split_action_bar
 id spread
 id spread_inside
@@ -2904,13 +2908,16 @@ id src_over
 id standard
 id start
 id startButton
+id startStopTime
 id start_text
 id status_bar_latest_event_content
 id status_text
 id stepDistanceText
 id stepPrimaryText
 id stepSecondaryText
+id stop
 id stopButt
+id stoptext
 id stretch
 id strict_sandbox
 id subManeuverView
@@ -2962,6 +2969,7 @@ id textinput_suffix_text
 id thing_proto
 id time
 id timeRemainingText
+id timetext
 id title
 id titleDividerNoCustom
 id title_template
@@ -3070,6 +3078,7 @@ layout abc_tooltip
 layout activity_info
 layout activity_main
 layout activity_main2
+layout activity_main_speedometer
 layout activity_my_account
 layout activity_navigation
 layout activity_seat_belt
