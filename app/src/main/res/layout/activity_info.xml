@@ -50,7 +50,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="0.8"
                 android:layout_height="wrap_content"
-                android:text="درباره ی گاردیَن"
+                android:text="@string/activity_info_title"
                 android:textAlignment="center"
                 android:padding="6dp"
                 android:textSize="16dp"
@@ -64,7 +64,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="گاردیَن چیست؟"
+            android:text="@string/activity_info_subtitle"
             android:textSize="15sp"
             android:gravity="center"
             android:layout_marginTop="25dp" />
@@ -83,7 +83,7 @@
             android:lines="14"
             android:padding="20dp"
             android:textSize="16sp"
-            android:text="@string/guardianinfo"/>
+            android:text="@string/activity_info_description"/>
 
 
     </LinearLayout>

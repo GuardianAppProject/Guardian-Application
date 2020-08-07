@@ -50,7 +50,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="0.8"
                 android:layout_height="wrap_content"
-                android:text="حساب کاربری من"
+                android:text="@string/activity_account_title"
                 android:textAlignment="center"
                 android:padding="6dp"
                 android:textSize="16dp"
@@ -64,7 +64,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="نام کاربری"
+            android:text="@string/activity_account_subtitle1"
             android:textSize="15sp"
             android:gravity="center"
             android:layout_marginTop="48dp" />
@@ -86,7 +86,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="رمز عبور"
+            android:text="@string/activity_account_subtitle2"
             android:textSize="15sp"
             android:gravity="center"
             android:layout_marginTop="10dp" />
@@ -108,7 +108,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="شماره تلفن همراه"
+            android:text="@string/activity_account_subtitle3"
             android:textSize="15sp"
             android:gravity="center"
             android:layout_marginTop="10dp" />
@@ -134,7 +134,7 @@
             android:layout_marginLeft="60dp"
             android:layout_marginRight="60dp"
             android:background="@drawable/button_background"
-            android:text="ویرایش اطلاعات"
+            android:text="@string/activity_account_editDataButton"
             android:textColor="@color/inputBoxColor"
             android:textSize="18sp"/>
 

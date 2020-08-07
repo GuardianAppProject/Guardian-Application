@@ -34,7 +34,7 @@ public class SignIn extends AppCompatActivity {
                 startActivity(i);
                 finish();*/
                 System.out.println("============================================================");
-                onSignInClick(v);
+//                onSignInClick(v);
             }
         });
     }
