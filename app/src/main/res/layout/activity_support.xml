@@ -50,7 +50,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="0.8"
                 android:layout_height="wrap_content"
-                android:text="پشتیبانی"
+                android:text="@string/activity_support_title"
                 android:textAlignment="center"
                 android:padding="6dp"
                 android:textSize="16dp"
@@ -64,7 +64,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="وبسایت"
+            android:text="@string/activity_support_subtitle1"
             android:textSize="15sp"
             android:gravity="center"
             android:layout_marginTop="48dp" />
@@ -89,7 +89,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="ایمیل"
+            android:text="@string/activity_support_subtitle2"
             android:textSize="15sp"
             android:gravity="center"
             android:layout_marginTop="48dp" />

@@ -62,7 +62,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="نام کاربری"
+                android:text="@string/signUp_subtitle1"
                 android:textSize="15sp"
                 android:gravity="center"
                 android:layout_marginTop="40dp" />
@@ -74,14 +74,15 @@
                 android:background="@drawable/edit_text_background"
                 android:layout_marginRight="35dp"
                 android:layout_marginLeft="35dp"
-                android:textAlignment="center"/>
+                android:textAlignment="center"
+                android:gravity="center_horizontal" />
 
 
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="رمز عبور"
+                android:text="@string/signUp_subtitle2"
                 android:textSize="15sp"
                 android:gravity="center"
                 android:layout_marginTop="8dp" />
@@ -93,14 +94,15 @@
                 android:background="@drawable/edit_text_background"
                 android:layout_marginRight="35dp"
                 android:layout_marginLeft="35dp"
-                android:textAlignment="center"/>
+                android:textAlignment="center"
+                android:gravity="center_horizontal" />
 
 
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="شماره تلفن همراه"
+                android:text="@string/singUp_subtitle3"
                 android:textSize="15sp"
                 android:gravity="center"
                 android:layout_marginTop="8dp" />
@@ -112,7 +114,8 @@
                 android:background="@drawable/edit_text_background"
                 android:layout_marginRight="35dp"
                 android:layout_marginLeft="35dp"
-                android:textAlignment="center"/>
+                android:textAlignment="center"
+                android:gravity="center_horizontal" />
 
 
             <Button
@@ -123,7 +126,7 @@
                 android:layout_marginLeft="35dp"
                 android:layout_marginRight="35dp"
                 android:background="@drawable/button_background"
-                android:text="ثبت نام"
+                android:text="@string/signUp_button"
                 android:textColor="@color/inputBoxColor"
                 android:textSize="17sp"/>
             <Button
@@ -132,7 +135,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:background="#c3e99e"
-                android:text="قبلا از گاردین استفاده کرده ام، ورود"
+                android:text="@string/signUp_secondButton"
                 style="?android:attr/borderlessButtonStyle"
                 android:textColor="#606060"/>
 

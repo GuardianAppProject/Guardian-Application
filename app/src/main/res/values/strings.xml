@@ -27,4 +27,16 @@
     <string name="activity_selectNav_description">لطفا مقصد سفر خود را انتخاب کنید.</string>
     <string name="usernameText">نام کاربری</string>
     <string name="main_percentDescription">درصد رانندگی سالم</string>
+    <string name="signIn_subtitle1">نام کاربری</string>
+    <string name="signIn_subtitle2">رمز عبور</string>
+    <string name="signIn_button">ورود</string>
+    <string name="signIn_secondButton">هنوز ثبت نام نکرده ام، ثبت نام</string>
+    <string name="signUp_subtitle1">نام کاربری</string>
+    <string name="signUp_subtitle2">رمز عبور</string>
+    <string name="singUp_subtitle3">شماره تلفن همراه</string>
+    <string name="signUp_button">ثبت نام</string>
+    <string name="signUp_secondButton">قبلا از گاردین استفاده کرده ام، ورود</string>
+    <string name="activity_support_title">پشتیبانی</string>
+    <string name="activity_support_subtitle1">وبسایت</string>
+    <string name="activity_support_subtitle2">ایمیل</string>
 </resources>
