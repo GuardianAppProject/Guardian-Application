@@ -79,7 +79,7 @@ public class SelectNavigation extends AppCompatActivity implements OnMapReadyCal
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Mapbox.getInstance(this, "pk.eyJ1Ijoic2luYWVsYWhpbWFuZXNoIiwiYSI6ImNrN3RkeDh4ZTBxbnkzbnB1Y2FnZmE1cG8ifQ.eHBYvKOXzAWjR08kYCGVHw");
+        Mapbox.getInstance(this, getString(R.string.access_token));
         setContentView(R.layout.activity_select_navigation);
         mapView = findViewById(R.id.mapView);
         mapView.onCreate(savedInstanceState);

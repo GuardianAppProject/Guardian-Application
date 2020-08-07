@@ -121,7 +121,7 @@ public class Main extends AppCompatActivity implements OnMapReadyCallback,
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
 
-        MapboxNavigationOptions options = MapboxNavigationOptions.builder().isDebugLoggingEnabled(true).build();
+        MapboxNavigationOptions options = MapboxNavigationOptions.builder().isDebugLoggingEnabled(false).build();
         navigation = new MapboxNavigation(getApplicationContext(), getResources().getString(R.string.access_token), options);
         navigation.addNavigationEventListener(this);
         navigation.addMilestoneEventListener(this);

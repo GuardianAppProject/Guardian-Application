@@ -334,7 +334,7 @@
                     android:layout_height="52dp"
                     android:background="@drawable/rectangle_gradient_white"
                     android:orientation="horizontal"
-                    android:paddingLeft="58dp"
+                    android:paddingLeft="50dp"
                     android:paddingRight="50dp">
 
                     <TextView
@@ -357,7 +357,7 @@
                         android:layout_weight="0.24"
                         android:gravity="start|bottom"
                         android:textColor="#282828"
-                        android:textSize="10sp"
+                        android:textSize="11sp"
                         android:fontFamily="@font/iran_sans"/>
 
                     <TextView
@@ -370,7 +370,7 @@
                         android:gravity="start|bottom"
                         android:paddingTop="8dp"
                         android:textColor="#686868"
-                        android:textSize="10sp"
+                        android:textSize="11sp"
                         android:fontFamily="@font/iran_sans"/>
                 </LinearLayout>
 
