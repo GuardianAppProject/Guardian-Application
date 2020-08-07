@@ -48,7 +48,7 @@
         attv:animateTextTypeWithoutMistakes="گاردیَن"
         android:layout_gravity="center"
         android:layout_marginBottom="40dp"
-        android:textSize="36sp"
+        android:textSize="37sp"
         android:textColor="#F8FFF8"
         android:fontFamily="@font/adobe_arabic_regular"/>
 

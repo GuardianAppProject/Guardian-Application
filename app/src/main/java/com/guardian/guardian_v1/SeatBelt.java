@@ -42,7 +42,7 @@ public class SeatBelt extends AppCompatActivity {
 
             @Override
             public void onTick(long millisUntilFinished) {
-                timer.setText(millisUntilFinished / 1000 + "s");
+                timer.setText(millisUntilFinished / 1000 + " s");
                 //here you can have your logic to set text to edittext
 
 

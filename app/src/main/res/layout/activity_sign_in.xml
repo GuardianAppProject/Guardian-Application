@@ -62,9 +62,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/signIn_subtitle1"
-                android:textSize="15sp"
+                android:textSize="14sp"
                 android:gravity="center"
-                android:layout_marginTop="40dp" />
+                android:layout_marginTop="40dp"
+                android:fontFamily="@font/iran_sans"/>
 
             <EditText
                 android:layout_width="match_parent"
@@ -74,6 +75,7 @@
                 android:layout_marginRight="35dp"
                 android:layout_marginLeft="35dp"
                 android:textAlignment="center"
+                android:fontFamily="@font/iran_sans"
                 android:gravity="center_horizontal" />
 
 
@@ -82,8 +84,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/signIn_subtitle2"
-                android:textSize="15sp"
+                android:textSize="14sp"
                 android:gravity="center"
+                android:fontFamily="@font/iran_sans"
                 android:layout_marginTop="8dp" />
 
             <EditText
@@ -107,7 +110,8 @@
                 android:background="@drawable/button_background"
                 android:text="@string/signIn_button"
                 android:textColor="@color/inputBoxColor"
-                android:textSize="17sp" />
+                android:fontFamily="@font/iran_sans"
+                android:textSize="16sp" />
             <Button
                 android:id="@+id/signInUp"
                 android:layout_width="wrap_content"
@@ -116,6 +120,9 @@
                 android:background="#c3e99e"
                 android:text="@string/signIn_secondButton"
                 style="?android:attr/borderlessButtonStyle"
+                android:fontFamily="@font/iran_sans"
+                android:textSize="14sp"
+                android:layout_marginTop="5dp"
                 android:textColor="#606060"/>
 
 

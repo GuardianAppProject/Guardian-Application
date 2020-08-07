@@ -25,10 +25,11 @@ android:theme="@style/ThemeOverlay.AppCompat.Dark">
     android:paddingTop="16dp"
     android:text="گاردیَن"
     android:textAlignment="viewStart"
-    android:textSize="24sp"
+    android:textSize="22sp"
     android:textStyle="bold"
     android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-    android:gravity="start" />
+    android:gravity="start"
+    android:fontFamily="@font/ebtekar"/>
 </LinearLayout>
 
 

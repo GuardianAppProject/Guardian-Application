@@ -5,7 +5,7 @@
         <item
             android:id="@+id/account"
             android:icon="@drawable/profile"
-            android:title="حساب کاربری من"/>
+            android:title="حساب کاربری من" />
         <item
             android:id="@+id/group"
             android:icon="@drawable/team"

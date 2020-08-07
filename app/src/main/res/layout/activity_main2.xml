@@ -101,7 +101,8 @@
                             android:textColor="#191919"
                             android:textStyle="bold"
                             android:layout_gravity="center"
-                            android:textSize="18sp"
+                            android:textSize="17sp"
+                            android:fontFamily="@font/iran_sans"
                             android:alpha="1" />
 
                     </FrameLayout>
@@ -297,8 +298,9 @@
                             android:layout_marginTop="11dp"
                             android:gravity="center_horizontal|top"
                             android:textColor="#ffffff"
-                            android:textSize="20sp"
-                            android:textStyle="bold" />
+                            android:textSize="17sp"
+                            android:textStyle="bold"
+                            android:fontFamily="@font/iran_sans"/>
 
                         <TextView
                             android:id="@+id/secondaryTxt"
@@ -307,7 +309,8 @@
                             android:gravity="center_horizontal|top"
                             android:paddingTop="4dp"
                             android:textColor="#ffffff"
-                            android:textSize="12sp" />
+                            android:textSize="10sp"
+                            android:fontFamily="@font/iran_sans"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -341,8 +344,9 @@
                         android:layout_weight="0.4"
                         android:gravity="center_horizontal|center_vertical"
                         android:textColor="#000000"
-                        android:textSize="22sp"
-                        android:textStyle="bold" />
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/iran_sans"/>
 
                     <TextView
                         android:id="@+id/arrivalTime"
@@ -353,7 +357,8 @@
                         android:layout_weight="0.24"
                         android:gravity="start|bottom"
                         android:textColor="#282828"
-                        android:textSize="13sp" />
+                        android:textSize="10sp"
+                        android:fontFamily="@font/iran_sans"/>
 
                     <TextView
                         android:id="@+id/distanceRem"
@@ -365,7 +370,8 @@
                         android:gravity="start|bottom"
                         android:paddingTop="8dp"
                         android:textColor="#686868"
-                        android:textSize="13sp" />
+                        android:textSize="10sp"
+                        android:fontFamily="@font/iran_sans"/>
                 </LinearLayout>
 
             </LinearLayout>
