@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import static java.lang.Thread.sleep;
+
 public class SignIn extends AppCompatActivity {
 
     @Override
@@ -14,27 +16,28 @@ public class SignIn extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
 
-        Button signUp = (Button) findViewById(R.id.SignInButt);
-
-        signUp.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                // Code here executes on main thread after user presses button
-                Intent i = new Intent(SignIn.this, SeatBelt.class);
-                startActivity(i);
-                finish();
-            }
-        });
-
-        Button signIn = (Button) findViewById(R.id.signInUp);
+        Button signIn = (Button) findViewById(R.id.SignInButt);
 
         signIn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Code here executes on main thread after user presses button
-                /*Intent i = new Intent(SignIn.this, SignUp.class);
+                onSignInClick(v);
+                //if(!isLoginResultValid()) return;
+                //Intent i = new Intent(SignIn.this, SeatBelt.class);
+                //startActivity(i);
+                //finish();
+            }
+        });
+
+        Button signUp = (Button) findViewById(R.id.signInUp);
+
+        signUp.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Code here executes on main thread after user presses button
+                Intent i = new Intent(SignIn.this, SignUp.class);
                 startActivity(i);
-                finish();*/
-                System.out.println("============================================================");
-//                onSignInClick(v);
+                finish();
+
             }
         });
     }
@@ -46,14 +49,9 @@ public class SignIn extends AppCompatActivity {
         loginWorker.execute("login",username,password);
         System.out.println("============================================================");
         try {
-            wait(100);
+            sleep(100);
         }catch (Exception e){
             e.printStackTrace();
-        }
-        if(isLoginResultValid()) {
-            Intent i = new Intent(SignIn.this, SignUp.class);
-            startActivity(i);
-            finish();
         }
     }
 
@@ -64,6 +62,6 @@ public class SignIn extends AppCompatActivity {
     }
 
     private boolean isLoginResultValid(){
-        return loginResult.startsWith("Success");
+        return loginResult.contains("login complete");
     }
 }

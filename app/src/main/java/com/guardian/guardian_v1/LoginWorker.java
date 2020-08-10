@@ -61,7 +61,6 @@ public class LoginWorker extends AsyncTask<String,Void,String> {
                 bufferedReader.close();
                 inputStream.close();
                 httpURLConnection.disconnect();
-                System.out.println("============================================================");
                 System.err.println(result);
                 return result;
             } catch (MalformedURLException e) {
