@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:2:1-46:12
-INJECTED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:2:1-46:12
-INJECTED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:2:1-46:12
-INJECTED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:2:1-46:12
+ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:2:1-48:12
+INJECTED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:2:1-48:12
+INJECTED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:2:1-48:12
+INJECTED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:2:1-48:12
 MERGED from [androidx.multidex:multidex:2.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\adce7faaeda46fe3356b55afbba09883\multidex-2.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [com.krsticdragan:autotypetextview:1.1] C:\Users\User\.gradle\caches\transforms-2\files-2.1\0e3c7be6522205a45269343ff9bf029b\jetified-autotypetextview-1.1\AndroidManifest.xml:2:1-17:12
 MERGED from [com.mapbox.mapboxsdk:mapbox-android-plugin-places-v9:0.10.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\482e3bdaa95797cfd311893e133f5f71\jetified-mapbox-android-plugin-places-v9-0.10.0\AndroidManifest.xml:2:1-20:12
@@ -21,6 +21,7 @@ MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] C:\Users\User\.gr
 MERGED from [pl.droidsonroids.gif:android-gif-drawable:1.2.3] C:\Users\User\.gradle\caches\transforms-2\files-2.1\0175a78953a1f18395217d7b2c8ba1d9\jetified-android-gif-drawable-1.2.3\AndroidManifest.xml:2:1-11:12
 MERGED from [com.mapbox.mapboxsdk:mapbox-android-plugin-locationlayer:0.5.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\797a2b358d185655594bd918c319ddb8\jetified-mapbox-android-plugin-locationlayer-0.5.0\AndroidManifest.xml:2:1-10:12
 MERGED from [com.mapbox.mapboxsdk:mapbox-android-sdk:9.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\2b25a38ef5bf60d7c37146ac74d94d62\jetified-mapbox-android-sdk-9.0.0\AndroidManifest.xml:2:1-21:12
+MERGED from [com.google.maps.android:android-maps-utils:2.0.3] C:\Users\User\.gradle\caches\transforms-2\files-2.1\5f4cbc51c19eb7cf419b33068b2ebea9\jetified-android-maps-utils-2.0.3\AndroidManifest.xml:2:1-17:12
 MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\15f6e30dcacf7d54246ab673cedbea15\cardview-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [com.google.android.gms:play-services-ads:12.0.1] C:\Users\User\.gradle\caches\transforms-2\files-2.1\a043e160a8298450784f08421ef3acc4\jetified-play-services-ads-12.0.1\AndroidManifest.xml:17:1-25:12
 MERGED from [com.google.android.gms:play-services-ads-lite:12.0.1] C:\Users\User\.gradle\caches\transforms-2\files-2.1\408aa3a08d6ffe0bc9c940cc95913912\jetified-play-services-ads-lite-12.0.1\AndroidManifest.xml:17:1-36:12
@@ -173,25 +174,25 @@ MERGED from [com.google.android.gms:play-services-vision-common-license:12.0.1] 
 MERGED from [com.google.android.gms:play-services-vision-license:12.0.1] C:\Users\User\.gradle\caches\transforms-2\files-2.1\efae1347fd452d621c8e7ef49a22b102\jetified-play-services-vision-license-12.0.1\AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.android.gms:play-services-wallet-license:12.0.1] C:\Users\User\.gradle\caches\transforms-2\files-2.1\7e34c5f8d8db8331cfb3503d86ad418f\jetified-play-services-wallet-license-12.0.1\AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.android.gms:play-services-wearable-license:12.0.1] C:\Users\User\.gradle\caches\transforms-2\files-2.1\dc410d802351603b44a8cafb9561bfe1\jetified-play-services-wearable-license-12.0.1\AndroidManifest.xml:17:1-24:12
-INJECTED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:2:1-46:12
-INJECTED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:2:1-46:12
-INJECTED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:2:1-46:12
+INJECTED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:2:1-48:12
+INJECTED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:2:1-48:12
+INJECTED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:2:1-48:12
 	package
 		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:3:5-39
 		INJECTED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml
 		INJECTED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml
-		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:2:1-46:12
+		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:2:1-48:12
 		INJECTED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml
 	android:versionCode
 		INJECTED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml
-		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:2:1-46:12
+		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:2:1-48:12
 		INJECTED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:2:11-69
 application
-ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:5:5-34:19
+ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:5:5-35:19
 MERGED from [com.krsticdragan:autotypetextview:1.1] C:\Users\User\.gradle\caches\transforms-2\files-2.1\0e3c7be6522205a45269343ff9bf029b\jetified-autotypetextview-1.1\AndroidManifest.xml:11:5-15:19
 MERGED from [com.krsticdragan:autotypetextview:1.1] C:\Users\User\.gradle\caches\transforms-2\files-2.1\0e3c7be6522205a45269343ff9bf029b\jetified-autotypetextview-1.1\AndroidManifest.xml:11:5-15:19
 MERGED from [com.mapbox.mapboxsdk:mapbox-android-plugin-places-v9:0.10.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\482e3bdaa95797cfd311893e133f5f71\jetified-mapbox-android-plugin-places-v9-0.10.0\AndroidManifest.xml:9:5-18:19
@@ -210,6 +211,8 @@ MERGED from [com.google.android.gms:play-services-cast:12.0.1] C:\Users\User\.gr
 MERGED from [com.google.android.gms:play-services-cast:12.0.1] C:\Users\User\.gradle\caches\transforms-2\files-2.1\4598a3b8befd0ed4ba093a94ca99ed17\jetified-play-services-cast-12.0.1\AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] C:\Users\User\.gradle\caches\transforms-2\files-2.1\a7d1bc695cdf37f8dd3cee306201635a\constraintlayout-1.1.3\AndroidManifest.xml:9:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] C:\Users\User\.gradle\caches\transforms-2\files-2.1\a7d1bc695cdf37f8dd3cee306201635a\constraintlayout-1.1.3\AndroidManifest.xml:9:5-20
+MERGED from [com.google.maps.android:android-maps-utils:2.0.3] C:\Users\User\.gradle\caches\transforms-2\files-2.1\5f4cbc51c19eb7cf419b33068b2ebea9\jetified-android-maps-utils-2.0.3\AndroidManifest.xml:11:5-15:19
+MERGED from [com.google.maps.android:android-maps-utils:2.0.3] C:\Users\User\.gradle\caches\transforms-2\files-2.1\5f4cbc51c19eb7cf419b33068b2ebea9\jetified-android-maps-utils-2.0.3\AndroidManifest.xml:11:5-15:19
 MERGED from [com.google.android.gms:play-services-ads-lite:12.0.1] C:\Users\User\.gradle\caches\transforms-2\files-2.1\408aa3a08d6ffe0bc9c940cc95913912\jetified-play-services-ads-lite-12.0.1\AndroidManifest.xml:26:5-34:19
 MERGED from [com.google.android.gms:play-services-ads-lite:12.0.1] C:\Users\User\.gradle\caches\transforms-2\files-2.1\408aa3a08d6ffe0bc9c940cc95913912\jetified-play-services-ads-lite-12.0.1\AndroidManifest.xml:26:5-34:19
 MERGED from [com.google.android.gms:play-services-analytics:12.0.1] C:\Users\User\.gradle\caches\transforms-2\files-2.1\81d0b9e7f5e3fb858932e6628f911c03\jetified-play-services-analytics-12.0.1\AndroidManifest.xml:29:5-45:19
@@ -420,76 +423,78 @@ MERGED from [com.google.android.gms:play-services-wearable-license:12.0.1] C:\Us
 		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:6:9-35
 	android:theme
 		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:11:9-40
+activity#com.guardian.guardian_v1.GettingLocation
+ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:12:9-62
+	android:name
+		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:12:19-50
 activity#com.guardian.guardian_v1.MainActivitySpeedometer
-ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:12:9-70
+ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:13:9-61
 	android:name
-		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:12:19-58
+		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:13:19-58
 activity#com.guardian.guardian_v1.Info
-ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:13:9-42
+ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:14:9-42
 	android:name
-		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:13:19-39
+		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:14:19-39
 activity#com.guardian.guardian_v1.Support
-ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:14:9-45
+ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:15:9-45
 	android:name
-		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:14:19-42
+		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:15:19-42
 activity#com.guardian.guardian_v1.MyAccount
-ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:15:9-47
+ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:16:9-47
 	android:name
-		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:15:19-44
+		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:16:19-44
 activity#com.guardian.guardian_v1.SelectNavigation
-ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:16:9-54
+ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:17:9-54
 	android:name
-		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:16:19-51
+		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:17:19-51
 activity#com.guardian.guardian_v1.SignIn
-ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:17:9-44
+ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:18:9-44
 	android:name
-		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:17:19-41
+		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:18:19-41
 activity#com.guardian.guardian_v1.SeatBelt
-ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:18:9-46
+ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:19:9-46
 	android:name
-		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:18:19-43
+		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:19:19-43
 activity#com.guardian.guardian_v1.Main
-ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:19:9-42
+ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:20:9-42
 	android:name
-		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:19:19-39
+		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:20:19-39
 activity#com.guardian.guardian_v1.SignUp
-ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:20:9-44
+ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:21:9-44
 	android:name
-		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:20:19-41
+		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:21:19-41
 activity#com.guardian.guardian_v1.MainActivity
-ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:21:9-27:20
+ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:22:9-28:20
 	android:name
-		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:21:19-47
+		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:22:19-47
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:22:13-26:29
+ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:23:13-27:29
 action#android.intent.action.MAIN
-ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:23:17-69
+ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:24:17-69
 	android:name
-		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:23:25-66
+		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:24:25-66
 category#android.intent.category.LAUNCHER
-ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:25:17-77
+ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:26:17-77
 	android:name
-		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:25:27-74
+		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:26:27-74
 meta-data#com.google.android.gms.version
-ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:29:9-31:69
+ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:30:9-32:69
+MERGED from [com.google.maps.android:android-maps-utils:2.0.3] C:\Users\User\.gradle\caches\transforms-2\files-2.1\5f4cbc51c19eb7cf419b33068b2ebea9\jetified-android-maps-utils-2.0.3\AndroidManifest.xml:12:9-14:69
+MERGED from [com.google.maps.android:android-maps-utils:2.0.3] C:\Users\User\.gradle\caches\transforms-2\files-2.1\5f4cbc51c19eb7cf419b33068b2ebea9\jetified-android-maps-utils-2.0.3\AndroidManifest.xml:12:9-14:69
 MERGED from [com.google.android.gms:play-services-basement:12.0.1] C:\Users\User\.gradle\caches\transforms-2\files-2.1\11621d0f18ec72cd31f1dc6c23aec177\jetified-play-services-basement-12.0.1\AndroidManifest.xml:23:9-25:69
 MERGED from [com.google.android.gms:play-services-basement:12.0.1] C:\Users\User\.gradle\caches\transforms-2\files-2.1\11621d0f18ec72cd31f1dc6c23aec177\jetified-play-services-basement-12.0.1\AndroidManifest.xml:23:9-25:69
 	android:value
-		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:31:13-66
+		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:32:13-66
 	android:name
-		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:30:13-58
+		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:31:13-58
 service#com.guardian.guardian_v1.LocationService
-ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:33:9-52
+ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:34:9-52
 	android:name
-		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:33:18-49
+		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:34:18-49
 uses-feature#android.hardware.location.gps
-ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:36:5-66
+ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:37:5-66
 	android:name
-		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:36:19-63
-uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
-ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:37:5-81
-	android:name
-		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:37:22-78
+		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:37:19-63
 uses-permission#com.google.android.providers.gsf.permission.READ_GSERVICES
 ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:38:5-98
 	android:name
@@ -541,7 +546,7 @@ MERGED from [com.mapbox.mapboxsdk:mapbox-android-core:1.4.1] C:\Users\User\.grad
 	android:name
 		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:42:22-76
 uses-permission#android.permission.INTERNET
-ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:44:5-67
+ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:43:5-67
 MERGED from [com.mapbox.mapboxsdk:mapbox-android-sdk:9.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\2b25a38ef5bf60d7c37146ac74d94d62\jetified-mapbox-android-sdk-9.0.0\AndroidManifest.xml:16:5-67
 MERGED from [com.mapbox.mapboxsdk:mapbox-android-sdk:9.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\2b25a38ef5bf60d7c37146ac74d94d62\jetified-mapbox-android-sdk-9.0.0\AndroidManifest.xml:16:5-67
 MERGED from [com.google.android.gms:play-services-ads-lite:12.0.1] C:\Users\User\.gradle\caches\transforms-2\files-2.1\408aa3a08d6ffe0bc9c940cc95913912\jetified-play-services-ads-lite-12.0.1\AndroidManifest.xml:23:5-67
@@ -571,7 +576,11 @@ MERGED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\User\.gradle\cach
 MERGED from [com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.1] C:\Users\User\.gradle\caches\transforms-2\files-2.1\93247e3717d5206c517702249e2984e9\jetified-mapbox-android-telemetry-4.7.1\AndroidManifest.xml:15:5-67
 MERGED from [com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.1] C:\Users\User\.gradle\caches\transforms-2\files-2.1\93247e3717d5206c517702249e2984e9\jetified-mapbox-android-telemetry-4.7.1\AndroidManifest.xml:15:5-67
 	android:name
-		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:44:22-64
+		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:43:22-64
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:46:5-81
+	android:name
+		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:46:22-78
 uses-sdk
 INJECTED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml
@@ -610,6 +619,8 @@ MERGED from [com.mapbox.mapboxsdk:mapbox-android-plugin-locationlayer:0.5.0] C:\
 MERGED from [com.mapbox.mapboxsdk:mapbox-android-plugin-locationlayer:0.5.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\797a2b358d185655594bd918c319ddb8\jetified-mapbox-android-plugin-locationlayer-0.5.0\AndroidManifest.xml:6:5-8:41
 MERGED from [com.mapbox.mapboxsdk:mapbox-android-sdk:9.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\2b25a38ef5bf60d7c37146ac74d94d62\jetified-mapbox-android-sdk-9.0.0\AndroidManifest.xml:5:5-7:41
 MERGED from [com.mapbox.mapboxsdk:mapbox-android-sdk:9.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\2b25a38ef5bf60d7c37146ac74d94d62\jetified-mapbox-android-sdk-9.0.0\AndroidManifest.xml:5:5-7:41
+MERGED from [com.google.maps.android:android-maps-utils:2.0.3] C:\Users\User\.gradle\caches\transforms-2\files-2.1\5f4cbc51c19eb7cf419b33068b2ebea9\jetified-android-maps-utils-2.0.3\AndroidManifest.xml:7:5-9:41
+MERGED from [com.google.maps.android:android-maps-utils:2.0.3] C:\Users\User\.gradle\caches\transforms-2\files-2.1\5f4cbc51c19eb7cf419b33068b2ebea9\jetified-android-maps-utils-2.0.3\AndroidManifest.xml:7:5-9:41
 MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\15f6e30dcacf7d54246ab673cedbea15\cardview-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\15f6e30dcacf7d54246ab673cedbea15\cardview-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-ads:12.0.1] C:\Users\User\.gradle\caches\transforms-2\files-2.1\a043e160a8298450784f08421ef3acc4\jetified-play-services-ads-12.0.1\AndroidManifest.xml:21:5-23:52

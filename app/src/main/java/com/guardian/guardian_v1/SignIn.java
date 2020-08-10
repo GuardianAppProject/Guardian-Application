@@ -15,15 +15,6 @@ public class SignIn extends AppCompatActivity {
         setContentView(R.layout.activity_sign_in);
 
         Button signUp = (Button) findViewById(R.id.SignInButt);
-        Button speed;
-        speed = findViewById(R.id.speed);
-        speed.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(SignIn.this, MainActivitySpeedometer.class);
-                startActivity(intent);
-            }
-        });
 
         signUp.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

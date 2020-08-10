@@ -51,6 +51,7 @@ dependencies {
     //Morteza
     implementation 'com.google.android.gms:play-services:12.0.1'
     implementation 'com.android.support:multidex:1.0.3'
+    implementation 'com.google.maps.android:android-maps-utils:2.0.3'
 
     implementation 'com.mapbox.mapboxsdk:mapbox-android-navigation:0.42.6'  //0.42.5
     implementation('com.mapbox.mapboxsdk:mapbox-android-navigation-ui:0.42.6') {

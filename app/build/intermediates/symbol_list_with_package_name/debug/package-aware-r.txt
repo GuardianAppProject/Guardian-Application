@@ -1863,6 +1863,8 @@ drawable abc_textfield_search_default_mtrl_alpha
 drawable abc_textfield_search_material
 drawable abc_vector_test
 drawable alert_progress_drawable
+drawable amu_bubble_mask
+drawable amu_bubble_shadow
 drawable avd_hide_password
 drawable avd_show_password
 drawable back
@@ -2472,6 +2474,7 @@ id alertTitle
 id alertView
 id all
 id always
+id amu_text
 id android_pay
 id android_pay_dark
 id android_pay_light
@@ -2897,7 +2900,6 @@ id soundFab
 id soundLayout
 id soundText
 id spacer
-id speed
 id speedtext
 id split_action_bar
 id spread
@@ -3001,7 +3003,9 @@ id visible
 id volume_item_container
 id wayNameView
 id waynameText
+id webview
 id wide
+id window
 id withText
 id withinBounds
 id wrap
@@ -3087,6 +3091,9 @@ layout activity_sign_in
 layout activity_sign_up
 layout activity_support
 layout alert_view_layout
+layout amu_info_window
+layout amu_text_bubble
+layout amu_webview
 layout cast_expanded_controller_activity
 layout cast_help_text
 layout cast_intro_overlay
@@ -4223,6 +4230,9 @@ style Widget_MaterialComponents_Tooltip
 style Widget_MediaRouter_Light_MediaRouteButton
 style Widget_MediaRouter_MediaRouteButton
 style Widget_Support_CoordinatorLayout
+style amu_Bubble_TextAppearance_Dark
+style amu_Bubble_TextAppearance_Light
+style amu_ClusterIcon_TextAppearance
 style mapbox_LocationComponent
 style mapbox_LocationLayer
 style mapbox_plugins_translucent
