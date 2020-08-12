@@ -25,7 +25,7 @@ public class RegisterWorker extends AsyncTask<String,Void,String> {
     @Override
     protected String doInBackground(String... strings) {
         String type = strings[0];
-        String register_url = "" ;
+        String register_url = "http://www.guardianapp.ir/register747380.php" ;
         if(type.equals("register")){
             try {
                 String username = strings[1];
