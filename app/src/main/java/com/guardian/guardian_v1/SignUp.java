@@ -6,6 +6,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+
+import static java.lang.Thread.sleep;
 
 public class SignUp extends AppCompatActivity {
 
@@ -22,6 +25,16 @@ public class SignUp extends AppCompatActivity {
         signUp.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Code here executes on main thread after user presses button
+                //inja bayad bebinim register mishe ya na
+                registerResult = "asd";
+                onSignUpClick(v);
+                try {
+                    sleep(150);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                if(!isRegisterResultValid()) return;
+
                 Intent i = new Intent(SignUp.this, SeatBelt.class);
                 startActivity(i);
                 finish();
@@ -59,6 +72,34 @@ public class SignUp extends AppCompatActivity {
 
 
 
+    }
+
+    protected void onSignUpClick(View v){
+        EditText enteredUN = (EditText) findViewById(R.id.username);
+        EditText enteredPW = (EditText) findViewById(R.id.password);
+        EditText enteredNum = (EditText) findViewById(R.id.phoneNum);
+
+        String username = enteredUN.getText().toString();
+        String password = enteredPW.getText().toString();
+        String phone = enteredNum.getText().toString();
+
+        RegisterWorker registerWorker = new RegisterWorker(this);
+        registerWorker.execute("register",username,password,phone);
+        try {
+            sleep(300);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    private static String registerResult = "asd";
+
+    protected static void setRegisterResult(String result){
+        registerResult  = result;
+    }
+
+    private boolean isRegisterResultValid(){
+        return registerResult.contains("register complete");
     }
 
 }

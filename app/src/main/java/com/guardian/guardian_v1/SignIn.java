@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 import static java.lang.Thread.sleep;
 
@@ -21,11 +22,17 @@ public class SignIn extends AppCompatActivity {
         signIn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Code here executes on main thread after user presses button
+                loginResult = "asd";
                 onSignInClick(v);
-                //if(!isLoginResultValid()) return;
-                //Intent i = new Intent(SignIn.this, SeatBelt.class);
-                //startActivity(i);
-                //finish();
+                try {
+                    sleep(150);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                if(!isLoginResultValid()) return;
+                Intent i = new Intent(SignIn.this, SeatBelt.class);
+                startActivity(i);
+                finish();
             }
         });
 
@@ -43,19 +50,20 @@ public class SignIn extends AppCompatActivity {
     }
 
     protected void onSignInClick(View v){
-        String username = "username az koja begiram?";
-        String password = "va password";
+        EditText enteredUN = (EditText) findViewById(R.id.username);
+        EditText enteredPW = (EditText) findViewById(R.id.password);
+        String username = enteredUN.getText().toString();
+        String password = enteredPW.getText().toString();
         LoginWorker loginWorker = new LoginWorker(this);
         loginWorker.execute("login",username,password);
-        System.out.println("============================================================");
         try {
-            sleep(100);
+            sleep(300);
         }catch (Exception e){
             e.printStackTrace();
         }
     }
 
-    private static String loginResult;
+    private static String loginResult = "asd";
 
     protected static void setLoginResult(String result){
         loginResult  = result;

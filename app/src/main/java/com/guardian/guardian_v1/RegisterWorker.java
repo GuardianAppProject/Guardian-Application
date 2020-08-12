@@ -26,10 +26,11 @@ public class RegisterWorker extends AsyncTask<String,Void,String> {
     protected String doInBackground(String... strings) {
         String type = strings[0];
         String register_url = "" ;
-        if(type.equals("login")){//<== type bayad beshe register , kollan class bayad 1 string ziadtar begire
+        if(type.equals("register")){
             try {
                 String username = strings[1];
                 String password = strings[2];
+                String phoneNum = strings[3];
 
                 URL url = new URL(register_url);
                 HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
@@ -40,7 +41,8 @@ public class RegisterWorker extends AsyncTask<String,Void,String> {
                 OutputStream outputStream = httpURLConnection.getOutputStream();
                 BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream,"UTF-8"));
                 //khate zir bayad edit beshe ke etelaate ziadtar ro post kone baraye register kardan
-                String post_data = URLEncoder.encode("username","UTF-8")+"="+URLEncoder.encode(username,"UTF-8")+"&"+URLEncoder.encode("password","UTF-8")+"="+URLEncoder.encode(password,"UTF-8");
+                String post_data = URLEncoder.encode("username","UTF-8")+"="+URLEncoder.encode(username,"UTF-8")+"&"+URLEncoder.encode("password","UTF-8")+"="+URLEncoder.encode(password,"UTF-8")
+                        +"&"+URLEncoder.encode("number","UTF-8")+"="+URLEncoder.encode(phoneNum,"UTF-8");
 
                 bufferedWriter.write(post_data);
                 bufferedWriter.flush();
@@ -57,9 +59,12 @@ public class RegisterWorker extends AsyncTask<String,Void,String> {
                     result += line;
                 }
 
+                System.err.println("===========//================");
                 bufferedReader.close();
                 inputStream.close();
                 httpURLConnection.disconnect();
+                SignUp.setRegisterResult(result);
+                System.err.println(result);
 
                 return result;
             } catch (MalformedURLException e) {

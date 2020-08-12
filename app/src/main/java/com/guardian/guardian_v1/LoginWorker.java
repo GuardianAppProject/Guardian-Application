@@ -58,9 +58,11 @@ public class LoginWorker extends AsyncTask<String,Void,String> {
                     result += line;
                 }
 
+                System.err.println("===========//================");
                 bufferedReader.close();
                 inputStream.close();
                 httpURLConnection.disconnect();
+                SignIn.setLoginResult(result);
                 System.err.println(result);
                 return result;
             } catch (MalformedURLException e) {
@@ -81,7 +83,6 @@ public class LoginWorker extends AsyncTask<String,Void,String> {
     protected void onPostExecute(String result) {
         toast = Toast.makeText(context,result,Toast.LENGTH_LONG);
         toast.show();
-        SignIn.setLoginResult(result);
     }
 
     @Override

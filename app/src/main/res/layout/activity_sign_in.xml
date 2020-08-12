@@ -68,15 +68,16 @@
                 android:fontFamily="@font/iran_sans"/>
 
             <EditText
+                android:id="@+id/username"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/edit_text_background"
-                android:layout_marginRight="35dp"
                 android:layout_marginLeft="35dp"
-                android:textAlignment="center"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="35dp"
+                android:background="@drawable/edit_text_background"
                 android:fontFamily="@font/iran_sans"
-                android:gravity="center_horizontal" />
+                android:gravity="center_horizontal"
+                android:textAlignment="center" />
 
 
 
@@ -90,14 +91,15 @@
                 android:layout_marginTop="8dp" />
 
             <EditText
+                android:id="@+id/password"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/edit_text_background"
-                android:layout_marginRight="35dp"
                 android:layout_marginLeft="35dp"
-                android:textAlignment="center"
-                android:gravity="center_horizontal" />
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="35dp"
+                android:background="@drawable/edit_text_background"
+                android:gravity="center_horizontal"
+                android:textAlignment="center" />
 
 
             <Button
