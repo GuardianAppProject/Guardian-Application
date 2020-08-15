@@ -2882,6 +2882,7 @@ id selected
 id selectionDetails
 id settings
 id shadow
+id shake
 id sheetShadow
 id shortcut
 id showCustom
@@ -2997,6 +2998,7 @@ id up
 id url
 id useLogo
 id user_location_button
+id vibrationText
 id view
 id view_offset_helper
 id visible
@@ -3010,6 +3012,9 @@ id withText
 id withinBounds
 id wrap
 id wrap_content
+id xTextView
+id yTextView
+id zTextView
 id zero_corner_chip
 integer abc_config_activityDefaultDur
 integer abc_config_activityShortDur
@@ -3087,6 +3092,7 @@ layout activity_my_account
 layout activity_navigation
 layout activity_seat_belt
 layout activity_select_navigation
+layout activity_shakometer
 layout activity_sign_in
 layout activity_sign_up
 layout activity_support

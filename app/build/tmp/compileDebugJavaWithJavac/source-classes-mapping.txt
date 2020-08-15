@@ -29,6 +29,14 @@ com/guardian/guardian_v1/MainActivitySpeedometer.java
  com.guardian.guardian_v1.MainActivitySpeedometer$4
  com.guardian.guardian_v1.MainActivitySpeedometer$5
  com.guardian.guardian_v1.MainActivitySpeedometer$6
+com/guardian/guardian_v1/Main.java
+ com.guardian.guardian_v1.Main
+ com.guardian.guardian_v1.Main$1
+ com.guardian.guardian_v1.Main$2
+ com.guardian.guardian_v1.Main$3
+ com.guardian.guardian_v1.Main$4
+ com.guardian.guardian_v1.Main$5
+ com.guardian.guardian_v1.Main$RerouteActivityLocationCallback
 com/guardian/guardian_v1/ViewDialog.java
  com.guardian.guardian_v1.ViewDialog
  com.guardian.guardian_v1.ViewDialog$1
@@ -43,23 +51,18 @@ com/guardian/guardian_v1/RegisterWorker.java
  com.guardian.guardian_v1.RegisterWorker
 com/guardian/guardian_v1/BuildConfig.java
  com.guardian.guardian_v1.BuildConfig
-com/guardian/guardian_v1/SignIn.java
- com.guardian.guardian_v1.SignIn
- com.guardian.guardian_v1.SignIn$1
- com.guardian.guardian_v1.SignIn$2
+com/guardian/guardian_v1/LocationService.java
+ com.guardian.guardian_v1.LocationService
+ com.guardian.guardian_v1.LocationService$LocalBinder
 com/guardian/guardian_v1/Info.java
  com.guardian.guardian_v1.Info
  com.guardian.guardian_v1.Info$1
 com/guardian/guardian_v1/DriveStatusCalculator.java
  com.guardian.guardian_v1.DriveStatusCalculator
-com/guardian/guardian_v1/Main.java
- com.guardian.guardian_v1.Main
- com.guardian.guardian_v1.Main$1
- com.guardian.guardian_v1.Main$2
- com.guardian.guardian_v1.Main$3
- com.guardian.guardian_v1.Main$4
- com.guardian.guardian_v1.Main$5
- com.guardian.guardian_v1.Main$RerouteActivityLocationCallback
-com/guardian/guardian_v1/LocationService.java
- com.guardian.guardian_v1.LocationService
- com.guardian.guardian_v1.LocationService$LocalBinder
+com/guardian/guardian_v1/SignIn.java
+ com.guardian.guardian_v1.SignIn
+ com.guardian.guardian_v1.SignIn$1
+ com.guardian.guardian_v1.SignIn$2
+ com.guardian.guardian_v1.SignIn$3
+com/guardian/guardian_v1/Shakometer.java
+ com.guardian.guardian_v1.Shakometer

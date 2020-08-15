@@ -192,7 +192,7 @@ INJECTED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:2:1-48
 	xmlns:android
 		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:2:11-69
 application
-ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:5:5-35:19
+ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:5:5-36:19
 MERGED from [com.krsticdragan:autotypetextview:1.1] C:\Users\User\.gradle\caches\transforms-2\files-2.1\0e3c7be6522205a45269343ff9bf029b\jetified-autotypetextview-1.1\AndroidManifest.xml:11:5-15:19
 MERGED from [com.krsticdragan:autotypetextview:1.1] C:\Users\User\.gradle\caches\transforms-2\files-2.1\0e3c7be6522205a45269343ff9bf029b\jetified-autotypetextview-1.1\AndroidManifest.xml:11:5-15:19
 MERGED from [com.mapbox.mapboxsdk:mapbox-android-plugin-places-v9:0.10.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\482e3bdaa95797cfd311893e133f5f71\jetified-mapbox-android-plugin-places-v9-0.10.0\AndroidManifest.xml:9:5-18:19
@@ -423,82 +423,82 @@ MERGED from [com.google.android.gms:play-services-wearable-license:12.0.1] C:\Us
 		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:6:9-35
 	android:theme
 		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:11:9-40
+activity#com.guardian.guardian_v1.Shakometer
+ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:12:9-57
+	android:name
+		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:12:19-45
 activity#com.guardian.guardian_v1.GettingLocation
-ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:12:9-62
+ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:13:9-53
 	android:name
-		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:12:19-50
+		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:13:19-50
 activity#com.guardian.guardian_v1.MainActivitySpeedometer
-ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:13:9-61
+ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:14:9-61
 	android:name
-		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:13:19-58
+		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:14:19-58
 activity#com.guardian.guardian_v1.Info
-ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:14:9-42
+ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:15:9-42
 	android:name
-		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:14:19-39
+		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:15:19-39
 activity#com.guardian.guardian_v1.Support
-ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:15:9-45
+ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:16:9-45
 	android:name
-		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:15:19-42
+		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:16:19-42
 activity#com.guardian.guardian_v1.MyAccount
-ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:16:9-47
+ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:17:9-47
 	android:name
-		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:16:19-44
+		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:17:19-44
 activity#com.guardian.guardian_v1.SelectNavigation
-ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:17:9-54
+ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:18:9-54
 	android:name
-		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:17:19-51
+		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:18:19-51
 activity#com.guardian.guardian_v1.SignIn
-ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:18:9-44
+ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:19:9-44
 	android:name
-		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:18:19-41
+		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:19:19-41
 activity#com.guardian.guardian_v1.SeatBelt
-ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:19:9-46
+ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:20:9-46
 	android:name
-		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:19:19-43
+		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:20:19-43
 activity#com.guardian.guardian_v1.Main
-ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:20:9-42
+ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:21:9-42
 	android:name
-		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:20:19-39
+		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:21:19-39
 activity#com.guardian.guardian_v1.SignUp
-ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:21:9-44
+ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:22:9-44
 	android:name
-		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:21:19-41
+		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:22:19-41
 activity#com.guardian.guardian_v1.MainActivity
-ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:22:9-28:20
+ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:23:9-29:20
 	android:name
-		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:22:19-47
+		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:23:19-47
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:23:13-27:29
+ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:24:13-28:29
 action#android.intent.action.MAIN
-ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:24:17-69
+ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:25:17-69
 	android:name
-		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:24:25-66
+		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:25:25-66
 category#android.intent.category.LAUNCHER
-ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:26:17-77
+ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:27:17-77
 	android:name
-		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:26:27-74
+		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:27:27-74
 meta-data#com.google.android.gms.version
-ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:30:9-32:69
+ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:31:9-33:69
 MERGED from [com.google.maps.android:android-maps-utils:2.0.3] C:\Users\User\.gradle\caches\transforms-2\files-2.1\5f4cbc51c19eb7cf419b33068b2ebea9\jetified-android-maps-utils-2.0.3\AndroidManifest.xml:12:9-14:69
 MERGED from [com.google.maps.android:android-maps-utils:2.0.3] C:\Users\User\.gradle\caches\transforms-2\files-2.1\5f4cbc51c19eb7cf419b33068b2ebea9\jetified-android-maps-utils-2.0.3\AndroidManifest.xml:12:9-14:69
 MERGED from [com.google.android.gms:play-services-basement:12.0.1] C:\Users\User\.gradle\caches\transforms-2\files-2.1\11621d0f18ec72cd31f1dc6c23aec177\jetified-play-services-basement-12.0.1\AndroidManifest.xml:23:9-25:69
 MERGED from [com.google.android.gms:play-services-basement:12.0.1] C:\Users\User\.gradle\caches\transforms-2\files-2.1\11621d0f18ec72cd31f1dc6c23aec177\jetified-play-services-basement-12.0.1\AndroidManifest.xml:23:9-25:69
 	android:value
-		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:32:13-66
+		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:33:13-66
 	android:name
-		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:31:13-58
+		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:32:13-58
 service#com.guardian.guardian_v1.LocationService
-ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:34:9-52
+ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:35:9-52
 	android:name
-		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:34:18-49
+		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:35:18-49
 uses-feature#android.hardware.location.gps
-ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:37:5-66
+ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:38:5-66
 	android:name
-		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:37:19-63
-uses-permission#com.google.android.providers.gsf.permission.READ_GSERVICES
-ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:38:5-98
-	android:name
-		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:38:22-95
+		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:38:19-63
 uses-permission#android.permission.ACCESS_COARSE_LOCATION
 ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:39:5-81
 MERGED from [com.mapbox.mapboxsdk:mapbox-android-navigation:0.42.6] C:\Users\User\.gradle\caches\transforms-2\files-2.1\dacad7e7eed22929b4482ba3d3f7c968\jetified-mapbox-android-navigation-0.42.6\AndroidManifest.xml:9:5-81
@@ -578,9 +578,13 @@ MERGED from [com.mapbox.mapboxsdk:mapbox-android-telemetry:4.7.1] C:\Users\User\
 	android:name
 		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:43:22-64
 uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
-ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:46:5-81
+ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:44:5-81
 	android:name
-		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:46:22-78
+		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:44:22-78
+uses-permission#com.google.android.providers.gsf.permission.READ_GSERVICES
+ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:46:5-98
+	android:name
+		ADDED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml:46:22-95
 uses-sdk
 INJECTED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from G:\Guardian\GuardianApp_V1\app\src\main\AndroidManifest.xml
