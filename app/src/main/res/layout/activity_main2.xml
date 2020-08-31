@@ -334,8 +334,8 @@
                     android:layout_height="52dp"
                     android:background="@drawable/rectangle_gradient_white"
                     android:orientation="horizontal"
-                    android:paddingLeft="50dp"
-                    android:paddingRight="50dp">
+                    android:paddingLeft="25dp"
+                    android:paddingRight="25dp">
 
                     <TextView
                         android:id="@+id/durationRem"

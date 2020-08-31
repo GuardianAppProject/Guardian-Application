@@ -146,10 +146,6 @@ public class Main extends AppCompatActivity implements OnMapReadyCallback,
             }
         };
 
-
-
-
-
         stopButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
