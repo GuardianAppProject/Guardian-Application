@@ -20,7 +20,7 @@
             android:layout_width="60dp"
             android:layout_height="45dp"
             android:src="@drawable/tour"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center" />
 
     </FrameLayout>
 
