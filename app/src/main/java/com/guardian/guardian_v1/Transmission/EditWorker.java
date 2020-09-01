@@ -1,8 +1,10 @@
-package com.guardian.guardian_v1;
+package com.guardian.guardian_v1.Transmission;
 
 import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.Toast;
+
+import com.guardian.guardian_v1.SignIn;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -16,33 +18,33 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 
-public class RegisterWorker extends AsyncTask<String,Void,String> {
+public class EditWorker extends AsyncTask<String,Void,String> {
     Context context;
     private Toast toast;
-    public RegisterWorker(Context ctx){
+
+    public EditWorker(Context ctx) {
         context = ctx;
     }
+
     @Override
     protected String doInBackground(String... strings) {
         String type = strings[0];
-        String register_url = "http://www.guardianapp.ir/register747380.php" ;
-        if(type.equals("register")){
+        String login_url = "http://www.guardianapp.ir/login555555.php";
+        if (type.equals("login")) {
             try {
                 String username = strings[1];
                 String password = strings[2];
-                String phoneNum = strings[3];
 
-                URL url = new URL(register_url);
-                HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
+                URL url = new URL(login_url);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                 httpURLConnection.setRequestMethod("POST");
                 httpURLConnection.setDoOutput(true);
                 httpURLConnection.setDoInput(true);
 
                 OutputStream outputStream = httpURLConnection.getOutputStream();
-                BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream,"UTF-8"));
-                //khate zir bayad edit beshe ke etelaate ziadtar ro post kone baraye register kardan
-                String post_data = URLEncoder.encode("username","UTF-8")+"="+URLEncoder.encode(username,"UTF-8")+"&"+URLEncoder.encode("password","UTF-8")+"="+URLEncoder.encode(password,"UTF-8")
-                        +"&"+URLEncoder.encode("number","UTF-8")+"="+URLEncoder.encode(phoneNum,"UTF-8");
+                BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
+
+                String post_data = URLEncoder.encode("username", "UTF-8") + "=" + URLEncoder.encode(username, "UTF-8") + "&" + URLEncoder.encode("password", "UTF-8") + "=" + URLEncoder.encode(password, "UTF-8");
 
                 bufferedWriter.write(post_data);
                 bufferedWriter.flush();
@@ -50,22 +52,20 @@ public class RegisterWorker extends AsyncTask<String,Void,String> {
                 outputStream.close();
 
                 InputStream inputStream = httpURLConnection.getInputStream();
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream,"iso-8859-1"));
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
 
-                String result="";
-                String line="";
+                String result = "";
+                String line = "";
 
-                while((line = bufferedReader.readLine()) != null){
+                while ((line = bufferedReader.readLine()) != null) {
                     result += line;
                 }
 
-                System.err.println("===========//================");
                 bufferedReader.close();
                 inputStream.close();
                 httpURLConnection.disconnect();
-                SignUp.setRegisterResult(result);
+                SignIn.setLoginResult(result);
                 System.err.println(result);
-
                 return result;
             } catch (MalformedURLException e) {
                 e.printStackTrace();
@@ -83,11 +83,8 @@ public class RegisterWorker extends AsyncTask<String,Void,String> {
 
     @Override
     protected void onPostExecute(String result) {
-        toast = Toast.makeText(context,result,Toast.LENGTH_LONG);
+        toast = Toast.makeText(context, result, Toast.LENGTH_LONG);
         toast.show();
-        if(result.startsWith("Success")){
-            //bayad baade register e moafagh login  e moafagh ham dashte bashim
-        }
     }
 
     @Override
