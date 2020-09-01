@@ -2,6 +2,8 @@ package com.guardian.guardian_v1;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -9,10 +11,12 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.android.material.navigation.NavigationView;
 import com.mapbox.android.core.permissions.PermissionsListener;
 import com.mapbox.android.core.permissions.PermissionsManager;
 import com.mapbox.api.directions.v5.models.DirectionsResponse;
@@ -76,6 +80,10 @@ public class SelectNavigation extends AppCompatActivity implements OnMapReadyCal
     private String symbolIconId = "symbolIconId";
     private static final int REQUEST_CODE_AUTOCOMPLETE = 1;
 
+    // Menu
+    private DrawerLayout mDrawer;
+    private NavigationView nvDrawer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,7 +92,112 @@ public class SelectNavigation extends AppCompatActivity implements OnMapReadyCal
         mapView = findViewById(R.id.mapView);
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
+
+
+        mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout2);
+
+        // ...From section above...
+        // Find our drawer view
+        nvDrawer = (NavigationView) findViewById(R.id.nvView2);
+        // Setup drawer view
+        setupDrawerContent(nvDrawer);
+
+        Button button = (Button) findViewById(R.id.menuButton2);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openDrawer();
+            }
+        });
     }
+
+
+
+    public void openDrawer(){
+        mDrawer.openDrawer(GravityCompat.START);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // The action bar home/up action should open or close the drawer.
+        if (item.getItemId() == android.R.id.home) {
+            mDrawer.openDrawer(GravityCompat.START);
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+
+    private void setupDrawerContent(NavigationView navigationView) {
+        navigationView.setNavigationItemSelectedListener(
+                new NavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(MenuItem menuItem) {
+                        selectDrawerItem(menuItem);
+                        return true;
+                    }
+                });
+    }
+
+    public void selectDrawerItem(MenuItem menuItem) {
+        // Create a new fragment and specify the fragment to show based on nav item clicked
+//        Fragment fragment = null;
+//        Class fragmentClass;
+        switch(menuItem.getItemId()) {
+            case R.id.account:
+                Intent i = new Intent(SelectNavigation.this, MyAccount.class);
+                startActivity(i);
+                finish();
+                break;
+            case R.id.support:
+                Intent i2 = new Intent(SelectNavigation.this, Support.class);
+                startActivity(i2);
+                finish();
+                break;
+            case R.id.info:
+                Intent i3 = new Intent(SelectNavigation.this, Info.class);
+                startActivity(i3);
+                finish();
+                break;
+            case R.id.settings:
+                Intent i4 = new Intent(SelectNavigation.this, Setting.class);
+                startActivity(i4);
+                finish();
+                break;
+        }
+
+//        try {
+//            fragment = (Fragment) fragmentClass.newInstance();
+//            FragmentManager fragmentManager = getSupportFragmentManager();
+//            fragmentManager.beginTransaction().replace(R.id.flContent,fragment ).commit();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+
+        // Insert the fragment by replacing any existing fragment
+//        FragmentManager fragmentManager = getSupportFragmentManager();
+//        fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
+
+
+        // Highlight the selected item has been done by NavigationView
+//        menuItem.setChecked(true);
+
+        // Set action bar title
+//        setTitle(menuItem.getTitle());
+        // Close the navigation drawer
+        mDrawer.closeDrawers();
+
+    }
+
+
+
+
+
+
+
+
 
     @Override
     public void onMapReady(@NonNull final MapboxMap mapboxMap) {
