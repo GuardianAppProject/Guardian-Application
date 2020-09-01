@@ -1,13 +1,9 @@
 package com.guardian.guardian_v1;
 
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
-
 import android.speech.tts.TextToSpeech;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,6 +11,13 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+
+import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.mapbox.android.core.location.LocationEngineCallback;
 import com.mapbox.android.core.location.LocationEngineResult;
@@ -37,12 +40,6 @@ import com.mapbox.mapboxsdk.maps.MapView;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
 import com.mapbox.mapboxsdk.maps.Style;
-
-import androidx.annotation.NonNull;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import com.google.android.material.navigation.NavigationView;
-import com.mapbox.mapboxsdk.plugins.localization.MapLocale;
 import com.mapbox.services.android.navigation.ui.v5.instruction.InstructionLoader;
 import com.mapbox.services.android.navigation.ui.v5.instruction.InstructionView;
 import com.mapbox.services.android.navigation.v5.instruction.Instruction;
@@ -57,8 +54,6 @@ import com.mapbox.services.android.navigation.v5.navigation.NavigationRoute;
 import com.mapbox.services.android.navigation.v5.offroute.OffRouteListener;
 import com.mapbox.services.android.navigation.v5.routeprogress.ProgressChangeListener;
 import com.mapbox.services.android.navigation.v5.routeprogress.RouteProgress;
-
-import org.intellij.lang.annotations.Language;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
