@@ -42,6 +42,7 @@ import androidx.annotation.NonNull;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import com.google.android.material.navigation.NavigationView;
+import com.mapbox.mapboxsdk.plugins.localization.MapLocale;
 import com.mapbox.services.android.navigation.ui.v5.instruction.InstructionLoader;
 import com.mapbox.services.android.navigation.ui.v5.instruction.InstructionView;
 import com.mapbox.services.android.navigation.v5.instruction.Instruction;
@@ -56,6 +57,8 @@ import com.mapbox.services.android.navigation.v5.navigation.NavigationRoute;
 import com.mapbox.services.android.navigation.v5.offroute.OffRouteListener;
 import com.mapbox.services.android.navigation.v5.routeprogress.ProgressChangeListener;
 import com.mapbox.services.android.navigation.v5.routeprogress.RouteProgress;
+
+import org.intellij.lang.annotations.Language;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -97,6 +100,8 @@ public class Main extends AppCompatActivity implements OnMapReadyCallback,
     TextView primaryTxt;
     TextView secondaryTxt;
     Button stopButton;
+
+    public static String routeStyle = Style.DARK;
 
     // Menu
     private DrawerLayout mDrawer;
@@ -220,6 +225,11 @@ public class Main extends AppCompatActivity implements OnMapReadyCallback,
                 startActivity(i3);
                 finish();
                 break;
+            case R.id.settings:
+                Intent i4 = new Intent(Main.this, Setting.class);
+                startActivity(i4);
+                finish();
+                break;
         }
 
 //        try {
@@ -308,7 +318,7 @@ public class Main extends AppCompatActivity implements OnMapReadyCallback,
     public void onMapReady(@NonNull MapboxMap mapboxMap) {
         this.mapboxMap = mapboxMap;
         this.mapboxMap.addOnMapClickListener(this);
-        mapboxMap.setStyle(Style.DARK, style -> {
+        mapboxMap.setStyle(routeStyle, style -> {
             LocationComponent locationComponent = mapboxMap.getLocationComponent();
             locationComponent.activateLocationComponent(this, style);
             locationComponent.setLocationComponentEnabled(true);

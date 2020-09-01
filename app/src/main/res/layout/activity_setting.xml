@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Setting"
+    android:background="@color/appThemeColor"
+    android:layout_weight="1"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.27"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="93dp"
+            android:layout_height="93dp"
+            android:src="@drawable/logo_white"
+            android:layout_gravity="center"
+            android:layout_marginTop="60dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.78"
+        android:background="#c3e99e"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:background="#F5F5F5">
+
+            <ImageButton
+                android:background="@drawable/back"
+                android:layout_height="20dp"
+                android:layout_width="16dp"
+                android:layout_marginTop="8dp"
+                android:padding="10dp"
+                android:layout_marginLeft="10dp"
+                android:id="@+id/backButton">
+
+            </ImageButton>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="0.8"
+                android:layout_height="wrap_content"
+                android:text="@string/activity_setting_title"
+                android:textAlignment="center"
+                android:padding="6dp"
+                android:textSize="16dp"
+                android:layout_marginRight="20dp"
+                android:fontFamily="@font/ebtekar"
+                android:gravity="center_horizontal" >
+
+            </TextView>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:orientation="vertical"
+            android:padding="20dp"
+            android:layout_gravity="center">
+
+            <TextView
+                android:layout_marginTop="80dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dark_mode_switch_text"
+                android:fontFamily="@font/iran_sans"
+                android:textSize="18sp"
+                android:layout_gravity="center"/>
+
+
+            <Switch
+                android:id="@+id/mapStyleSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="55dp"
+                android:switchMinWidth="63dp"
+                android:minHeight="40dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="7dp"
+                android:checked="true"
+                android:theme="@style/SwitchTheme"
+                android:textOff="@string/off_text"
+                android:textOn="@string/on_text"/>
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+</LinearLayout>

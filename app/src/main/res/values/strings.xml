@@ -39,4 +39,8 @@
     <string name="activity_support_title">پشتیبانی</string>
     <string name="activity_support_subtitle1">وبسایت</string>
     <string name="activity_support_subtitle2">ایمیل</string>
+    <string name="activity_setting_title">تنظیمات</string>
+    <string name="dark_mode_switch_text">حالت تاریک نقشه در مسیریابی</string>
+    <string name="off_text">خاموش</string>
+    <string name="on_text">روشن</string>
 </resources>

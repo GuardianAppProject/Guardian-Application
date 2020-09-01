@@ -12,7 +12,8 @@
         android:roundIcon="@drawable/blue"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Info"></activity>
+        <activity android:name=".Setting"></activity>
+        <activity android:name=".Info" />
         <activity android:name=".Support" />
         <activity android:name=".MyAccount" />
         <activity android:name=".SelectNavigation" />
