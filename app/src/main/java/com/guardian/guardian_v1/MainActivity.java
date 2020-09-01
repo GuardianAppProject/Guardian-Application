@@ -10,10 +10,13 @@ import android.os.Handler;
 import android.util.DisplayMetrics;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
@@ -25,7 +28,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        readFile();
+
+//        Toast.makeText(this, readFile(), Toast.LENGTH_SHORT).show();
+        String mapStyle = readFile().toString();
+        if(mapStyle!=null){
+            Main.routeStyle = mapStyle;
+        }
 
 //        new Handler().postDelayed(new Runnable() {
 //            @Override
@@ -76,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                 }, TIME_OUT);
-                startActivity(new Intent(MainActivity.this, SignUp.class));
+                startActivity(new Intent(MainActivity.this, SeatBelt.class));
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
 
@@ -84,25 +92,25 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
-    public void readFile() {
+    public StringBuilder readFile() {
+        StringBuilder stringBuffer = new StringBuilder("");
         try {
             FileInputStream fileInputStream = openFileInput("settings.txt");
             InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
 
             BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-            StringBuffer stringBuffer = new StringBuffer();
+            stringBuffer = new StringBuilder();
 
             String lines;
             while ((lines = bufferedReader.readLine()) != null) {
                 stringBuffer.append(lines);
             }
-            Main.routeStyle = lines;
+//            Main.routeStyle = lines;
         } catch (FileNotFoundException exp) {
             exp.printStackTrace();
         } catch (IOException exp) {
             exp.printStackTrace();
         }
+        return stringBuffer;
     }
-
 }
