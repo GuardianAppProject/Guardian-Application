@@ -4,13 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
+
+import com.guardian.guardian_v1.Transmission.RegisterWorker;
 
 import static java.lang.Thread.sleep;
 
@@ -125,7 +125,7 @@ public class SignUp extends AppCompatActivity {
 
     private static String registerResult = "asd";
 
-    protected static void setRegisterResult(String result){
+    public static void setRegisterResult(String result){
         registerResult  = result;
     }
 

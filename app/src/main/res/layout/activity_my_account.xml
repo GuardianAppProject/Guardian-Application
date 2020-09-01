@@ -62,28 +62,6 @@
 
         </LinearLayout>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/activity_account_subtitle1"
-            android:textSize="15sp"
-            android:gravity="center"
-            android:fontFamily="@font/iran_sans"
-            android:layout_marginTop="48dp" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="33dp"
-            android:layout_marginTop="7dp"
-            android:background="@drawable/edit_text_background"
-            android:layout_marginRight="70dp"
-            android:layout_marginLeft="70dp"
-            android:textAlignment="center"
-            android:gravity="center_horizontal"
-            android:paddingTop="5dp"
-            android:hint="username"/>
-
-
 
         <TextView
             android:layout_width="match_parent"
@@ -105,29 +83,6 @@
             android:gravity="center_horizontal"
             android:paddingTop="5dp"
             android:hint="password"/>
-
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/activity_account_subtitle3"
-            android:textSize="15sp"
-            android:gravity="center"
-            android:fontFamily="@font/iran_sans"
-            android:layout_marginTop="10dp" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="33dp"
-            android:layout_marginTop="7dp"
-            android:background="@drawable/edit_text_background"
-            android:layout_marginRight="70dp"
-            android:layout_marginLeft="70dp"
-            android:textAlignment="center"
-            android:gravity="center_horizontal"
-            android:paddingTop="5dp"
-            android:hint="phone number"/>
 
 
         <Button

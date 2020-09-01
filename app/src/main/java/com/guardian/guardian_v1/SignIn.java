@@ -9,7 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
+
+import com.guardian.guardian_v1.Transmission.LoginWorker;
 
 import static java.lang.Thread.sleep;
 
@@ -96,7 +97,7 @@ public class SignIn extends AppCompatActivity {
 
     private static String loginResult = "asd";
 
-    protected static void setLoginResult(String result){
+    public static void setLoginResult(String result){
         loginResult  = result;
     }
 
