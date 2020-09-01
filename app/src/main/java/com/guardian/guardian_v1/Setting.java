@@ -12,6 +12,14 @@ import android.widget.Switch;
 
 import com.mapbox.mapboxsdk.maps.Style;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 public class Setting extends AppCompatActivity {
 
     @Override
@@ -20,12 +28,21 @@ public class Setting extends AppCompatActivity {
         setContentView(R.layout.activity_setting);
 
         Switch mapStyleSwitch = findViewById(R.id.mapStyleSwitch);
+        if(Main.routeStyle.equals(Style.DARK)){
+            mapStyleSwitch.setChecked(true);
+        } else {
+            mapStyleSwitch.setChecked(false);
+        }
+
+
         mapStyleSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked) {
                     Main.routeStyle = Style.DARK;
+                    writeFile(Style.DARK);
                 } else {
                     Main.routeStyle = Style.LIGHT;
+                    writeFile(Style.LIGHT);
                 }
             }
         });
@@ -40,5 +57,23 @@ public class Setting extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+
+    public void writeFile(String textToSave) {
+        File dir = new File(this.getFilesDir(), "settings.txt");
+        if(!dir.exists()){
+            dir.mkdir();
+        }
+
+        try {
+            FileOutputStream fileOutputStream = openFileOutput("settings.txt", MODE_PRIVATE);
+            fileOutputStream.write(textToSave.getBytes());
+            fileOutputStream.close();
+        } catch (FileNotFoundException exp) {
+            exp.printStackTrace();
+        } catch (IOException exp) {
+            exp.printStackTrace();
+        }
     }
 }

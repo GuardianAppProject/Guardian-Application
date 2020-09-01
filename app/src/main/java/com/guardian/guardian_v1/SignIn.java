@@ -7,17 +7,44 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 
 import static java.lang.Thread.sleep;
 
 public class SignIn extends AppCompatActivity {
+
+    LinearLayout signInProgress;
+    private boolean hidePassword = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
 
+        EditText edittext = (EditText)findViewById(R.id.password);
+        edittext.setTransformationMethod(new AsteriskPasswordTransformationMethod());
+
+        ImageButton showPasswordBtn =  findViewById(R.id.passwordLock);
+        showPasswordBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if(hidePassword) {
+                    edittext.setTransformationMethod(new DoNothingTransformation());
+                    showPasswordBtn.setBackgroundResource(R.drawable.padlock1);
+                    hidePassword = false;
+                } else {
+                    edittext.setTransformationMethod(new AsteriskPasswordTransformationMethod());
+                    showPasswordBtn.setBackgroundResource(R.drawable.padlock2);
+                    hidePassword = true;
+                }
+
+            }
+        });
+
+
         Button signIn = (Button) findViewById(R.id.SignInButt);
+        signInProgress = findViewById(R.id.signInProgress);
 
         signIn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -25,7 +52,9 @@ public class SignIn extends AppCompatActivity {
                 loginResult = "asd";
                 onSignInClick(v);
                 try {
+                    signInProgress.setVisibility(View.VISIBLE);
                     sleep(150);
+                    signInProgress.setVisibility(View.INVISIBLE);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -57,7 +86,9 @@ public class SignIn extends AppCompatActivity {
         LoginWorker loginWorker = new LoginWorker(this);
         loginWorker.execute("login",username,password);
         try {
+            signInProgress.setVisibility(View.VISIBLE);
             sleep(300);
+            signInProgress.setVisibility(View.INVISIBLE);
         }catch (Exception e){
             e.printStackTrace();
         }

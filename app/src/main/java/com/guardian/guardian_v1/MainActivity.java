@@ -11,6 +11,12 @@ import android.util.DisplayMetrics;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.ImageView;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 public class MainActivity extends AppCompatActivity {
 
     private static int TIME_OUT = 2500; //Time to launch the another activity
@@ -18,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+//        readFile();
 
 //        new Handler().postDelayed(new Runnable() {
 //            @Override
@@ -68,12 +76,33 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                 }, TIME_OUT);
-                startActivity(new Intent(MainActivity.this, SeatBelt.class));
+                startActivity(new Intent(MainActivity.this, SignUp.class));
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
 
         }.start();
 
+    }
+
+
+    public void readFile() {
+        try {
+            FileInputStream fileInputStream = openFileInput("settings.txt");
+            InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
+
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+            StringBuffer stringBuffer = new StringBuffer();
+
+            String lines;
+            while ((lines = bufferedReader.readLine()) != null) {
+                stringBuffer.append(lines);
+            }
+            Main.routeStyle = lines;
+        } catch (FileNotFoundException exp) {
+            exp.printStackTrace();
+        } catch (IOException exp) {
+            exp.printStackTrace();
+        }
     }
 
 }
