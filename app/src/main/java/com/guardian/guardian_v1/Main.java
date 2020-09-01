@@ -40,6 +40,8 @@ import com.mapbox.mapboxsdk.maps.MapView;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
 import com.mapbox.mapboxsdk.maps.Style;
+import com.mapbox.services.android.navigation.ui.v5.NavigationLauncher;
+import com.mapbox.services.android.navigation.ui.v5.NavigationViewOptions;
 import com.mapbox.services.android.navigation.ui.v5.instruction.InstructionLoader;
 import com.mapbox.services.android.navigation.ui.v5.instruction.InstructionView;
 import com.mapbox.services.android.navigation.v5.instruction.Instruction;
@@ -85,7 +87,7 @@ public class Main extends AppCompatActivity implements OnMapReadyCallback,
     private ReplayRouteLocationEngine mockLocationEngine;
     private MapboxNavigation navigation;
     private MapboxMap mapboxMap;
-    private boolean running;
+    private boolean running = false;
     private boolean tracking;
     private boolean wasInTunnel = false;
 
@@ -170,7 +172,6 @@ public class Main extends AppCompatActivity implements OnMapReadyCallback,
                 openDrawer();
             }
         });
-
     }
 
     public void openDrawer(){
@@ -387,7 +388,6 @@ public class Main extends AppCompatActivity implements OnMapReadyCallback,
                 distanceRem.setText(calculateDistance(routeProgress.distanceRemaining()));
                 durationRem.setText(calculateDuration(routeProgress.durationRemaining()));
                 arrivalTime.setText(calculateArrivalTime(routeProgress.durationRemaining()));
-
             }
 
 //            public void onProgressChange(Location location, RouteStepProgress routeStepProgress) {
@@ -631,8 +631,7 @@ public class Main extends AppCompatActivity implements OnMapReadyCallback,
 
 //    @Override
 //    public void onMilestoneEvent(RouteProgress routeProgress, String instruction, Milestone milestone) {
-////        exampleInstructionPlayer.play(instruction);
-//
+//        exampleInstructionPlayer.play(instruction);
 //    }
 
 
