@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                 }, TIME_OUT);
-                startActivity(new Intent(MainActivity.this, SeatBelt.class));
+                startActivity(new Intent(MainActivity.this, SignUp.class));
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
 
