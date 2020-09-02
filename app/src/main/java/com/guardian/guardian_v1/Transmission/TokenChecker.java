@@ -18,22 +18,21 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 
-public class EditWorker extends AsyncTask<String,Void,String> {
+public class TokenChecker extends AsyncTask<String,Void,String> {
     Context context;
     private Toast toast;
 
-    public EditWorker(Context ctx) {
+    public TokenChecker(Context ctx) {
         context = ctx;
     }
 
     @Override
     protected String doInBackground(String... strings) {
         String type = strings[0];
-        String login_url = "http://www.guardianapp.ir/edit_user_pass.php";
-        if (type.equals("edit")) {
+        String login_url = "http://www.guardianapp.ir/check_token_validity.php";
+        if (type.equals("check")) {
             try {
                 String token = strings[1];
-                String password = strings[2];
 
                 URL url = new URL(login_url);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
@@ -44,7 +43,7 @@ public class EditWorker extends AsyncTask<String,Void,String> {
                 OutputStream outputStream = httpURLConnection.getOutputStream();
                 BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
 
-                String post_data = URLEncoder.encode("token", "UTF-8") + "=" + URLEncoder.encode(token, "UTF-8") + "&" + URLEncoder.encode("password", "UTF-8") + "=" + URLEncoder.encode(password, "UTF-8");
+                String post_data = URLEncoder.encode("token", "UTF-8") + "=" + URLEncoder.encode(token, "UTF-8") ;
 
                 bufferedWriter.write(post_data);
                 bufferedWriter.flush();
