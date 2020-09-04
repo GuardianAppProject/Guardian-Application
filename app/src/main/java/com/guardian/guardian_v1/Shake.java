@@ -87,4 +87,16 @@ public class Shake extends AppCompatActivity implements SensorEventListener {
             sensorManager.unregisterListener(this);
         }
     }
+
+    public float getX() {
+        return xDifference;
+    }
+
+    public float getY() {
+        return yDifference;
+    }
+
+    public float getZ() {
+        return zDifference;
+    }
 }
