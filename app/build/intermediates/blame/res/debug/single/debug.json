@@ -1,0 +1,306 @@
+[
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\drawable_padlock2.png.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\src\\main\\res\\drawable\\padlock2.png"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_rectangle_gradient_white.xml.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\src\\main\\res\\drawable-mdpi\\rectangle_gradient_white.xml"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ok_button_background.xml.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\src\\main\\res\\drawable-mdpi\\ok_button_background.xml"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_select_navigation.xml.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\src\\main\\res\\layout\\activity_select_navigation.xml"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\anim_fade_out.xml.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\src\\main\\res\\anim\\fade_out.xml"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_ic_launcher_background.png.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\build\\generated\\res\\pngs\\debug\\drawable-ldpi\\ic_launcher_background.png"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_cancel_button_background.xml.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\src\\main\\res\\drawable-mdpi\\cancel_button_background.xml"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi_ic_launcher_round.png.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_support.xml.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\src\\main\\res\\layout\\activity_support.xml"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher_round.xml"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\drawable_edit_text_background.xml.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\src\\main\\res\\drawable\\edit_text_background.xml"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_profile.png.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\src\\main\\res\\drawable-xxhdpi\\profile.png"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_tour.png.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\src\\main\\res\\drawable-mdpi\\tour.png"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\font_adobe_arabic_bold.ttf.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\src\\main\\res\\font\\adobe_arabic_bold.ttf"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_circle_road_background.xml.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\src\\main\\res\\drawable-mdpi\\circle_road_background.xml"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\drawable_logo_animated.gif.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\src\\main\\res\\drawable\\logo_animated.gif"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher.xml"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi_ic_launcher.png.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_main.xml.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\src\\main\\res\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_road_icon2.png.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\src\\main\\res\\drawable-mdpi\\road_icon2.png"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\font_iran_sans.ttf.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\src\\main\\res\\font\\iran_sans.ttf"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_info.png.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\src\\main\\res\\drawable-xxhdpi\\info.png"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_info.xml.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\src\\main\\res\\layout\\activity_info.xml"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_launcher_background.png.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\build\\generated\\res\\pngs\\debug\\drawable-hdpi\\ic_launcher_background.png"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\font_adobe_arabic_regular.ttf.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\src\\main\\res\\font\\adobe_arabic_regular.ttf"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\drawable_rectangle_box.xml.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\src\\main\\res\\drawable\\rectangle_box.xml"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\anim_left_to_right.xml.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\src\\main\\res\\anim\\left_to_right.xml"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_team.png.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\src\\main\\res\\drawable-xxhdpi\\team.png"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi_ic_launcher_round.png.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_launcher_background.png.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\build\\generated\\res\\pngs\\debug\\drawable-xhdpi\\ic_launcher_background.png"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\font_sadgan_medium.ttf.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\src\\main\\res\\font\\sadgan_medium.ttf"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi_ic_launcher.png.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\drawable_circle_gradient_red.xml.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\src\\main\\res\\drawable\\circle_gradient_red.xml"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_ic_launcher_background.xml.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\build\\generated\\res\\pngs\\debug\\drawable-anydpi-v21\\ic_launcher_background.xml"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\layout_nav_header.xml.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\src\\main\\res\\layout\\nav_header.xml"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi_ic_launcher_round.png.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\layout_toolbar.xml.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\src\\main\\res\\layout\\toolbar.xml"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\font_ebtekar.ttf.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\src\\main\\res\\font\\ebtekar.ttf"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\anim_bounce.xml.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\src\\main\\res\\anim\\bounce.xml"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\drawable_signin.png.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\src\\main\\res\\drawable\\signin.png"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\menu_drawer_view.xml.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\src\\main\\res\\menu\\drawer_view.xml"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_ic_launcher_round.png.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\font_product_sans_bold.ttf.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\src\\main\\res\\font\\product_sans_bold.ttf"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_circle_cropped.png.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\src\\main\\res\\drawable-mdpi\\circle_cropped.png"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\drawable_menu_icon.png.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\src\\main\\res\\drawable\\menu_icon.png"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\drawable_button_background.xml.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\src\\main\\res\\drawable\\button_background.xml"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_rectangle_gradient_green.xml.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\src\\main\\res\\drawable-mdpi\\rectangle_gradient_green.xml"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\drawable_circle_gradient_green.xml.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\src\\main\\res\\drawable\\circle_gradient_green.xml"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi_ic_launcher_background.png.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxxhdpi\\ic_launcher_background.png"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\drawable_progress_bar.xml.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\src\\main\\res\\drawable\\progress_bar.xml"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_main2.xml.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\src\\main\\res\\layout\\activity_main2.xml"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\layout-v21_dialog.xml.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\src\\main\\res\\layout-v21\\dialog.xml"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_launcher_background.png.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxhdpi\\ic_launcher_background.png"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_launcher_background.png.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\build\\generated\\res\\pngs\\debug\\drawable-mdpi\\ic_launcher_background.png"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_support.png.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\src\\main\\res\\drawable-xxhdpi\\support.png"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\drawable_padlock1.png.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\src\\main\\res\\drawable\\padlock1.png"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_ic_launcher_round.png.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_sign_in.xml.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\src\\main\\res\\layout\\activity_sign_in.xml"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\drawable_back.png.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\src\\main\\res\\drawable\\back.png"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_settings.png.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\src\\main\\res\\drawable-xxhdpi\\settings.png"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\anim_fade_in.xml.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\src\\main\\res\\anim\\fade_in.xml"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\drawable_signup.png.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\src\\main\\res\\drawable\\signup.png"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\anim_right_to_left.xml.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\src\\main\\res\\anim\\right_to_left.xml"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\drawable_logo_white.png.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\src\\main\\res\\drawable\\logo_white.png"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\drawable_logo_bounce.gif.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\src\\main\\res\\drawable\\logo_bounce.gif"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_ic_launcher_foreground.xml.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\src\\main\\res\\drawable-v24\\ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_my_account.xml.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\src\\main\\res\\layout\\activity_my_account.xml"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_dialog_background.xml.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\src\\main\\res\\drawable-mdpi\\dialog_background.xml"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\drawable_seatbelt.png.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\src\\main\\res\\drawable\\seatbelt.png"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_seat_belt.xml.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\src\\main\\res\\layout\\activity_seat_belt.xml"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\drawable_blue.png.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\src\\main\\res\\drawable\\blue.png"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_setting.xml.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\src\\main\\res\\layout\\activity_setting.xml"
+    },
+    {
+        "merged": "G:\\new guardian\\Guardian-Application\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_sign_up.xml.flat",
+        "source": "G:\\new guardian\\Guardian-Application\\app\\src\\main\\res\\layout\\activity_sign_up.xml"
+    }
+]
