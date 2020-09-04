@@ -133,7 +133,6 @@
                             android:orientation="horizontal"
                             android:layout_weight="1"
                             android:paddingTop="0dp"
-                            android:paddingLeft="15dp"
                             android:paddingRight="6dp">
 
 <!--                            <ImageView-->
@@ -148,7 +147,20 @@
                             <TextView
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                android:layout_weight="0.12"
+                                android:layout_weight="0.2"
+                                android:textAlignment="center"
+                                android:text="105"
+                                android:fontFamily="@font/iran_sans"
+                                android:textSize="13sp"
+                                android:gravity="center_horizontal"
+                                android:textColor="#000000"
+                                android:alpha="0.94"
+                                android:paddingLeft="12dp"/>
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.22"
                                 android:textAlignment="center"
                                 android:text="km/h"
                                 android:fontFamily="@font/iran_sans"
@@ -158,17 +170,7 @@
                                 android:alpha="0.82"
                                 android:textColor="#000000"/>
 
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="0.3"
-                                android:textAlignment="center"
-                                android:text="105"
-                                android:fontFamily="@font/iran_sans"
-                                android:textSize="13sp"
-                                android:gravity="center_horizontal"
-                                android:textColor="#000000"
-                                android:alpha="0.94"/>
+
 
                             <TextView
                                 android:layout_width="0dp"
