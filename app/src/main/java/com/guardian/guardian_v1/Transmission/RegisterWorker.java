@@ -61,7 +61,6 @@ public class RegisterWorker extends AsyncTask<String,Void,String> {
                     result += line;
                 }
 
-                System.err.println("===========//================");
                 bufferedReader.close();
                 inputStream.close();
                 httpURLConnection.disconnect();

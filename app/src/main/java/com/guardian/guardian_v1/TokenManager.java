@@ -1,12 +1,19 @@
 package com.guardian.guardian_v1;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.util.Scanner;
 
-public class TokenManager {
+public class TokenManager extends AppCompatActivity {
     private static TokenManager tokenManager;
     public static TokenManager getInstance(){
         if (tokenManager == null){
@@ -15,7 +22,7 @@ public class TokenManager {
         return tokenManager;
     }
 
-    public void saveToken(String token){
+    /*public void saveToken(String token){
         String name = "guardian_token.json";
         File file = new File( name);
         try{
@@ -26,9 +33,11 @@ public class TokenManager {
         catch(IOException exception){
             exception.printStackTrace();
         }
-    }
+    }*/
 
-    public String getToken(){
+
+
+    /*public String getToken(){
         File file = new File("guardian_token.json");
         if (!file.exists()) {
             return null;
@@ -40,7 +49,9 @@ public class TokenManager {
             e.printStackTrace();
         }
         return "";
-    }
+    }*/
+
+
 
     public boolean hasValidToken(){
         return false;
