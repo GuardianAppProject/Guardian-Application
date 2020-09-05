@@ -12,6 +12,11 @@ import android.widget.LinearLayout;
 
 import com.guardian.guardian_v1.Transmission.LoginWorker;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 import static java.lang.Thread.sleep;
 
 public class SignIn extends AppCompatActivity {
@@ -60,7 +65,7 @@ public class SignIn extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 if(!isLoginResultValid()) return;
-                TokenManager.getInstance().saveToken(loginResult.substring(25));
+                saveToken(loginResult.substring(25));
                 Intent i = new Intent(SignIn.this, SeatBelt.class);
                 startActivity(i);
                 finish();
@@ -78,6 +83,23 @@ public class SignIn extends AppCompatActivity {
 
             }
         });
+    }
+
+    public void saveToken(String textToSave) {
+        File dir = new File(this.getFilesDir(), "guardian_token.txt");
+        if(!dir.exists()){
+            dir.mkdir();
+        }
+
+        try {
+            FileOutputStream fileOutputStream = openFileOutput("guardian_token.txt", MODE_PRIVATE);
+            fileOutputStream.write(textToSave.getBytes());
+            fileOutputStream.close();
+        } catch (FileNotFoundException exp) {
+            exp.printStackTrace();
+        } catch (IOException exp) {
+            exp.printStackTrace();
+        }
     }
 
     protected void onSignInClick(View v){

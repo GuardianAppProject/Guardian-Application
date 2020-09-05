@@ -35,22 +35,7 @@ public class TokenManager extends AppCompatActivity {
         }
     }*/
 
-    public void saveToken(String textToSave) {
-        File dir = new File(this.getFilesDir(), "guardian_token.txt");
-        if(!dir.exists()){
-            dir.mkdir();
-        }
 
-        try {
-            FileOutputStream fileOutputStream = openFileOutput("guardian_token.txt", MODE_PRIVATE);
-            fileOutputStream.write(textToSave.getBytes());
-            fileOutputStream.close();
-        } catch (FileNotFoundException exp) {
-            exp.printStackTrace();
-        } catch (IOException exp) {
-            exp.printStackTrace();
-        }
-    }
 
     /*public String getToken(){
         File file = new File("guardian_token.json");
@@ -66,26 +51,7 @@ public class TokenManager extends AppCompatActivity {
         return "";
     }*/
 
-    public String getToken() {
-        StringBuilder stringBuffer = new StringBuilder("");
-        try {
-            FileInputStream fileInputStream = openFileInput("guardian_token.txt");
-            InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
 
-            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-            stringBuffer = new StringBuilder();
-
-            String lines;
-            while ((lines = bufferedReader.readLine()) != null) {
-                stringBuffer.append(lines);
-            }
-        } catch (FileNotFoundException exp) {
-            exp.printStackTrace();
-        } catch (IOException exp) {
-            exp.printStackTrace();
-        }
-        return stringBuffer.toString();
-    }
 
     public boolean hasValidToken(){
         return false;
