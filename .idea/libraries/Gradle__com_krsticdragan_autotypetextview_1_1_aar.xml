@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: com.krsticdragan:autotypetextview:1.1@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/88a2ab4b9455efb30f72610a9cbf72a5/jetified-autotypetextview-1.1/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/88a2ab4b9455efb30f72610a9cbf72a5/jetified-autotypetextview-1.1/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/88a2ab4b9455efb30f72610a9cbf72a5/jetified-autotypetextview-1.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e5f35a2f463e83b11dfa5e6937b81477/jetified-autotypetextview-1.1/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e5f35a2f463e83b11dfa5e6937b81477/jetified-autotypetextview-1.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e5f35a2f463e83b11dfa5e6937b81477/jetified-autotypetextview-1.1/res" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.krsticdragan/autotypetextview/1.1/e201b6f7428d8a718a98cfe5c2453965469ca88f/autotypetextview-1.1-javadoc.jar!/" />
