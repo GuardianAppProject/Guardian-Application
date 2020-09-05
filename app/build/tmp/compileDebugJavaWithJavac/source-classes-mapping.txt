@@ -60,9 +60,6 @@ com/guardian/guardian_v1/Speedometer.java
  com.guardian.guardian_v1.Speedometer$1
  com.guardian.guardian_v1.Speedometer$2
  com.guardian.guardian_v1.Speedometer$3
- com.guardian.guardian_v1.Speedometer$4
- com.guardian.guardian_v1.Speedometer$5
- com.guardian.guardian_v1.Speedometer$6
 com/guardian/guardian_v1/ViewDialog.java
  com.guardian.guardian_v1.ViewDialog
  com.guardian.guardian_v1.ViewDialog$1
