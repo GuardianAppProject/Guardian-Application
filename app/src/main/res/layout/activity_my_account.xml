@@ -73,16 +73,17 @@
             android:layout_marginTop="10dp" />
 
         <EditText
+            android:id="@+id/newPassword"
             android:layout_width="match_parent"
             android:layout_height="33dp"
-            android:layout_marginTop="7dp"
-            android:background="@drawable/edit_text_background"
-            android:layout_marginRight="70dp"
             android:layout_marginLeft="70dp"
-            android:textAlignment="center"
+            android:layout_marginTop="7dp"
+            android:layout_marginRight="70dp"
+            android:background="@drawable/edit_text_background"
             android:gravity="center_horizontal"
+            android:hint="password"
             android:paddingTop="5dp"
-            android:hint="password"/>
+            android:textAlignment="center" />
 
 
         <Button

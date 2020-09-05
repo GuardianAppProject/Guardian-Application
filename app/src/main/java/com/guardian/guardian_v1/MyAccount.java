@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.guardian.guardian_v1.Transmission.EditWorker;
@@ -30,11 +31,12 @@ public class MyAccount extends AppCompatActivity {
         });
         Context thisCtx = this;
         Button editButton = (Button) findViewById(R.id.editButton);
+        EditText editText = (EditText)findViewById(R.id.newPassword);
         editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 EditWorker editWorker = new EditWorker(thisCtx);
-                editWorker.execute("edit",TokenManager.getInstance().getToken(),"pw");
+                editWorker.execute("edit",TokenManager.getInstance().getToken(),editText.getText().toString());
             }
         });
     }
