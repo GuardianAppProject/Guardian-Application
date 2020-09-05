@@ -220,7 +220,4 @@ public class LocationService extends Service implements
         return stopTime;
     }
 
-    public double GetSpeed() {
-        return speed;
-    }
 }

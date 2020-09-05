@@ -25,7 +25,8 @@ import android.os.Bundle;
 
 public class RoadInformation extends AppCompatActivity {
 
-    public static final String URL_FORMAT = "http://api.tomtom.com/traffic/map/4/tile/incidents/5/4/8.pbf?key=8GF1ZAsuFhzezxeharQurYGxedjTmGiQ";
+    public static final String URL_FORMAT = "https://api.tomtom.com/traffic/services/4/incidentDetails/s3/6841263.950712,511972.674418,6886056.049288,582676.925582/10/" +
+            "1335294634919/json?key=8GF1ZAsuFhzezxeharQurYGxedjTmGiQ&language=en&originalPosition=true&geometries=original";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +34,10 @@ public class RoadInformation extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         requestData(0, 10, 20, 30);
-        
+
+
+
+
     }
 
     private void requestData(double minlog, double minlat, double maxlog, double maxlat) {
