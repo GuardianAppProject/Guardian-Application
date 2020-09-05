@@ -29,10 +29,10 @@ public class EditWorker extends AsyncTask<String,Void,String> {
     @Override
     protected String doInBackground(String... strings) {
         String type = strings[0];
-        String login_url = "http://www.guardianapp.ir/login555555.php";
-        if (type.equals("login")) {
+        String login_url = "http://www.guardianapp.ir/edit_user_pass.php";
+        if (type.equals("edit")) {
             try {
-                String username = strings[1];
+                String token = strings[1];
                 String password = strings[2];
 
                 URL url = new URL(login_url);
@@ -44,7 +44,7 @@ public class EditWorker extends AsyncTask<String,Void,String> {
                 OutputStream outputStream = httpURLConnection.getOutputStream();
                 BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
 
-                String post_data = URLEncoder.encode("username", "UTF-8") + "=" + URLEncoder.encode(username, "UTF-8") + "&" + URLEncoder.encode("password", "UTF-8") + "=" + URLEncoder.encode(password, "UTF-8");
+                String post_data = URLEncoder.encode("token", "UTF-8") + "=" + URLEncoder.encode(token, "UTF-8") + "&" + URLEncoder.encode("password", "UTF-8") + "=" + URLEncoder.encode(password, "UTF-8");
 
                 bufferedWriter.write(post_data);
                 bufferedWriter.flush();

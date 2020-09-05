@@ -60,6 +60,7 @@ public class SignIn extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 if(!isLoginResultValid()) return;
+                TokenManager.getInstance().saveToken(loginResult.substring(25));
                 Intent i = new Intent(SignIn.this, SeatBelt.class);
                 startActivity(i);
                 finish();
