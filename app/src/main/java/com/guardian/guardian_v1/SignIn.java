@@ -89,7 +89,7 @@ public class SignIn extends AppCompatActivity {
         loginWorker.execute("login",username,password);
         try {
             signInProgress.setVisibility(View.VISIBLE);
-            sleep(300);
+            sleep(500);
             signInProgress.setVisibility(View.INVISIBLE);
         }catch (Exception e){
             e.printStackTrace();

@@ -116,7 +116,7 @@ public class SignUp extends AppCompatActivity {
         registerWorker.execute("register",username,password,phone);
         try {
             signUpProgress.setVisibility(View.VISIBLE);
-            sleep(300);
+            sleep(500);
             signUpProgress.setVisibility(View.INVISIBLE);
         }catch (Exception e){
             e.printStackTrace();
