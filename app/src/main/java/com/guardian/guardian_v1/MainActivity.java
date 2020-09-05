@@ -92,47 +92,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void write(String toWrite) {
-        // add-write text into file
-        try {
-            FileOutputStream fileout=openFileOutput("mytextfile.txt", MODE_PRIVATE);
-            OutputStreamWriter outputWriter=new OutputStreamWriter(fileout);
-            outputWriter.write(toWrite);
-            outputWriter.close();
-
-            //display file saved message
-            Toast.makeText(getBaseContext(), "File saved successfully!",
-                    Toast.LENGTH_SHORT).show();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public String read(){
-        //reading text from file
-        String string = "";
-        try {
-            FileInputStream fileIn=openFileInput("mytextfile.txt");
-            InputStreamReader InputRead= new InputStreamReader(fileIn);
-
-            char[] inputBuffer= new char[10000];
-
-            int charRead;
-
-            while ((charRead=InputRead.read(inputBuffer))>0) {
-                // char to string conversion
-                String readstring=String.copyValueOf(inputBuffer,0,charRead);
-                string +=readstring;
-            }
-            InputRead.close();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return string;
-    }
-
     public StringBuilder readFile() {
         StringBuilder stringBuffer = new StringBuilder("");
         try {
