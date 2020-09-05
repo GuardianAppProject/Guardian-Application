@@ -26,7 +26,6 @@ public class Speedometer extends AppCompatActivity {
     LocationService myService;
     static boolean status;
     LocationManager locationManager;
-    Button start, pause, stop;
     static long startTime, endTime;
     static ProgressDialog locate;
     static int p = 0;
@@ -99,10 +98,6 @@ public class Speedometer extends AppCompatActivity {
             requestPermissions(new String[] {Manifest.permission.ACCESS_FINE_LOCATION} , 1000);
         }
 
-        start.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
                 //The method below checks if Location is enabled on device or not. If not, then an alert dialog box appears with option
                 //to enable gps.
                 checkGps();
@@ -122,48 +117,7 @@ public class Speedometer extends AppCompatActivity {
                 locate.setCancelable(false);
                 locate.setMessage("Getting Location...");
                 locate.show();
-                start.setVisibility(View.GONE);
-                pause.setVisibility(View.VISIBLE);
-                pause.setText("Pause");
-                stop.setVisibility(View.VISIBLE);
 
-            }
-        });
-
-        pause.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (pause.getText().toString().equalsIgnoreCase("pause")) {
-                    pause.setText("Resume");
-                    p = 1;
-
-                } else if (pause.getText().toString().equalsIgnoreCase("Resume")) {
-                    checkGps();
-                    locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-                    if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-                        //Toast.makeText(this, "GPS is Enabled in your devide", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                    pause.setText("Pause");
-                    p = 0;
-
-                }
-            }
-        });
-
-
-        stop.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (status == true)
-                    unbindService();
-                start.setVisibility(View.VISIBLE);
-                pause.setText("Pause");
-                pause.setVisibility(View.GONE);
-                stop.setVisibility(View.GONE);
-                p = 0;
-            }
-        });
     }
 
 
