@@ -81,7 +81,7 @@
 
 
                     <FrameLayout
-                        android:layout_width="168dp"
+                        android:layout_width="164dp"
                         android:layout_height="41dp"
                         android:layout_gravity="right"
                         android:layout_marginEnd="8dp"
@@ -110,7 +110,7 @@
                 </FrameLayout>
 
                 <FrameLayout
-                    android:layout_width="168dp"
+                    android:layout_width="164dp"
                     android:layout_height="227dp"
                     android:layout_gravity="right"
                     android:layout_marginEnd="8dp"
@@ -199,7 +199,7 @@
                             android:orientation="horizontal"
                             android:layout_weight="1"
                             android:paddingTop="0dp"
-                            android:paddingLeft="17dp"
+                            android:paddingLeft="14dp"
                             android:paddingRight="7dp">
 
 <!--                            <ImageView-->
