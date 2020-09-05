@@ -51,4 +51,7 @@ dependencies {
     implementation('com.mapbox.mapboxsdk:mapbox-android-navigation-ui:0.42.6') {
         transitive = true
     }
+
+    implementation 'com.google.android.gms:play-services-location:11.8.0'
+    implementation 'com.google.code.gson:gson:2.8.1'
 }
