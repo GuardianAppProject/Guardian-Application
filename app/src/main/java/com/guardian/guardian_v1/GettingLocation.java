@@ -188,15 +188,4 @@ public class GettingLocation extends AppCompatActivity {
 
     }
 
-    public double GetLastLatitude() {
-        return gettingLatitude;
-    }
-
-    public double GetLastLongtitude() {
-        return gettingLongtitude;
-    }
-
-    public String NearestCity () {
-        return cities[cityIndex];
-    }
 }
