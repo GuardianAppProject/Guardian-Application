@@ -61,11 +61,6 @@ public class Setting extends AppCompatActivity {
 
 
     public void writeFile(String textToSave) {
-        File dir = new File(this.getFilesDir(), "settings.txt");
-        if(!dir.exists()){
-            dir.mkdir();
-        }
-
         try {
             FileOutputStream fileOutputStream = openFileOutput("settings.txt", MODE_PRIVATE);
             fileOutputStream.write(textToSave.getBytes());
