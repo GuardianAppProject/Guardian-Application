@@ -9,13 +9,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.guardian.guardian_v1.Transmission.LoginWorker;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 
 import static java.lang.Thread.sleep;
 
@@ -65,7 +69,9 @@ public class SignIn extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 if(!isLoginResultValid()) return;
-                saveToken(loginResult.substring(25));
+//                saveToken(loginResult.substring(25));
+                write(loginResult.substring(25));
+                Toast.makeText(SignIn.this, "hal shod" + loginResult.substring(25), Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(SignIn.this, SeatBelt.class);
                 startActivity(i);
                 finish();
@@ -83,6 +89,47 @@ public class SignIn extends AppCompatActivity {
 
             }
         });
+    }
+
+    public void write(String toWrite) {
+        // add-write text into file
+        try {
+            FileOutputStream fileout=openFileOutput("tokenFile.txt", MODE_PRIVATE);
+            OutputStreamWriter outputWriter=new OutputStreamWriter(fileout);
+            outputWriter.write(toWrite);
+            outputWriter.close();
+
+            //display file saved message
+            Toast.makeText(getBaseContext(), "File saved successfully!",
+                    Toast.LENGTH_SHORT).show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public String read(){
+        //reading text from file
+        String string = "";
+        try {
+            FileInputStream fileIn=openFileInput("tokenFile.txt");
+            InputStreamReader InputRead= new InputStreamReader(fileIn);
+
+            char[] inputBuffer= new char[10000];
+
+            int charRead;
+
+            while ((charRead=InputRead.read(inputBuffer))>0) {
+                // char to string conversion
+                String readstring=String.copyValueOf(inputBuffer,0,charRead);
+                string +=readstring;
+            }
+            InputRead.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return string;
     }
 
     public void saveToken(String textToSave) {

@@ -29,6 +29,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        String string = read();
+        if(string.length()>=1){
+
+        } else {
+            Toast.makeText(this, "not", Toast.LENGTH_SHORT).show();
+        }
+
 //        Toast.makeText(this, readFile(), Toast.LENGTH_SHORT).show();
         String mapStyle = readFile().toString();
         if(mapStyle!=null){
@@ -112,5 +119,30 @@ public class MainActivity extends AppCompatActivity {
             exp.printStackTrace();
         }
         return stringBuffer;
+    }
+
+
+    public String read(){
+        //reading text from file
+        String string = "";
+        try {
+            FileInputStream fileIn=openFileInput("tokenFile.txt");
+            InputStreamReader InputRead= new InputStreamReader(fileIn);
+
+            char[] inputBuffer= new char[10000];
+
+            int charRead;
+
+            while ((charRead=InputRead.read(inputBuffer))>0) {
+                // char to string conversion
+                String readstring=String.copyValueOf(inputBuffer,0,charRead);
+                string +=readstring;
+            }
+            InputRead.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return string;
     }
 }
