@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,6 +13,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.guardian.guardian_v1.Transmission.EditWorker;
+import com.guardian.guardian_v1.Transmission.LogoutWorker;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -45,6 +47,16 @@ public class MyAccount extends AppCompatActivity {
                 onClickEdit();
             }
         });
+
+        Button logoutButton = (Button) findViewById(R.id.logoutButton);
+        logoutButton.setOnClickListener( new View.OnClickListener() {
+            public void onClick(View v) {
+                onClickLogout();
+                Intent i = new Intent(MyAccount.this, SignUp.class);
+                startActivity(i);
+                finish();
+            }
+        });
     }
 
     public String getToken() {
@@ -69,6 +81,11 @@ public class MyAccount extends AppCompatActivity {
         }
         return string;
 
+    }
+
+    private void onClickLogout(){
+        LogoutWorker logoutWorker = new LogoutWorker(this);
+        logoutWorker.execute(getToken());
     }
 
     private void onClickEdit(){

@@ -19,20 +19,20 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 
-public class TokenChecker extends AsyncTask<String,Void,String> {
+public class LogoutWorker extends AsyncTask<String,Void,String> {
     Context context;
     private Toast toast;
     private static String ans="asd";
 
-    public TokenChecker(Context ctx) {
+    public LogoutWorker(Context ctx) {
         context = ctx;
     }
 
     @Override
     protected String doInBackground(String... strings) {
         String type = strings[0];
-        String login_url = "http://www.guardianapp.ir/check_token_validity.php";
-        if (type.equals("check")) {
+        String login_url = "http://www.guardianapp.ir/logout_444.php";
+        if (type.equals("logout")) {
             try {
                 String token = strings[1];
 
@@ -94,15 +94,4 @@ public class TokenChecker extends AsyncTask<String,Void,String> {
         super.onProgressUpdate(values);
     }
 
-    public static void beginCheck(String token,Context ctx){
-        TokenChecker checker = new TokenChecker(ctx);
-        checker.execute("check",token);
-        Toast toast;
-        toast = Toast.makeText(ctx, token, Toast.LENGTH_LONG);
-        //toast.show();
-    }
-
-    public static boolean tokenIsValid(){
-        return ans.startsWith("Connected - True");
-    }
 }
