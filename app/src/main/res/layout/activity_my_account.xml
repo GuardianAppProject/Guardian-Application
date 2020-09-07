@@ -62,6 +62,24 @@
 
         </LinearLayout>
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/activity_account_subtitle1"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:fontFamily="@font/iran_sans"
+            android:layout_marginTop="35dp"
+            android:textColor="#B4000000"/>
+
+        <View
+            android:layout_height="0.7dp"
+            android:layout_width="150dp"
+            android:background="#7E7E7E"
+            android:layout_gravity="center"
+            android:layout_marginRight="45dp"
+            android:layout_marginLeft="45dp"
+            android:layout_marginTop="4dp"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -70,7 +88,7 @@
             android:textSize="15sp"
             android:gravity="center"
             android:fontFamily="@font/iran_sans"
-            android:layout_marginTop="45dp" />
+            android:layout_marginTop="32dp" />
 
         <EditText
             android:id="@+id/newPassword"
@@ -89,8 +107,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/wait_text"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="15dp"
             android:id="@+id/messageTextAccount"
             android:textAlignment="center"
             android:layout_gravity="center"

@@ -17,8 +17,8 @@
     <string name="activity_info_subtitle">گاردیَن چیست؟</string>
 
     <string name="activity_account_title">حساب کاربری من</string>
-    <string name="activity_account_subtitle1">نام کاربری</string>
-    <string name="activity_account_subtitle2">رمز عبور</string>
+    <string name="activity_account_subtitle1">تغییر رمز عبور</string>
+    <string name="activity_account_subtitle2">رمز عبور جدید را وارد نمایید.</string>
     <string name="activity_account_subtitle3">شماره تلفن همراه</string>
     <string name="activity_account_editDataButton">ویرایش اطلاعات</string>
 
