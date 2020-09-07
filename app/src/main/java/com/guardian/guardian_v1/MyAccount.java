@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.guardian.guardian_v1.Transmission.EditWorker;
 
@@ -37,36 +38,43 @@ public class MyAccount extends AppCompatActivity {
         });
         Context thisCtx = this;
         Button editButton = (Button) findViewById(R.id.editButton);
-        EditText editText = (EditText)findViewById(R.id.newPassword);
+
         editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditWorker editWorker = new EditWorker(thisCtx);
-                editWorker.execute("edit",getToken(),editText.getText().toString());
+                onClickEdit();
             }
         });
     }
 
     public String getToken() {
-        StringBuilder stringBuffer = new StringBuilder("");
+        String string = "";
         try {
-            FileInputStream fileInputStream = openFileInput("guardian_token.txt");
-            InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
+            FileInputStream fileIn=openFileInput("tokenFile.txt");
+            InputStreamReader InputRead= new InputStreamReader(fileIn);
 
-            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+            char[] inputBuffer= new char[10000];
 
-            String lines;
-            while ((lines = bufferedReader.readLine()) != null) {
-                stringBuffer.append(lines);
+            int charRead;
+
+            while ((charRead=InputRead.read(inputBuffer))>0) {
+                // char to string conversion
+                String readstring=String.copyValueOf(inputBuffer,0,charRead);
+                string +=readstring;
             }
-        } catch (FileNotFoundException exp) {
-            System.out.println("==========||==========");
-            exp.printStackTrace();
-        } catch (IOException exp) {
-            System.out.println("==========||==========22222222");
-            exp.printStackTrace();
-        }
-        return stringBuffer.toString();
+            InputRead.close();
 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return string;
+
+    }
+
+    private void onClickEdit(){
+        EditText editText = (EditText)findViewById(R.id.newPassword);
+        EditWorker editWorker = new EditWorker(this);
+        editWorker.execute("edit",getToken(),editText.getText().toString());
+        Toast.makeText(this,getToken() + "   " + editText.getText().toString(),Toast.LENGTH_LONG).show();
     }
 }

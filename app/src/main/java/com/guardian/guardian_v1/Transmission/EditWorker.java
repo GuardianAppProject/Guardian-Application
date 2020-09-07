@@ -32,7 +32,7 @@ public class EditWorker extends AsyncTask<String,Void,String> {
     @Override
     protected String doInBackground(String... strings) {
         String type = strings[0];
-        String login_url = "http://www.guardianapp.ir/edit_user_pass.php";
+        String login_url = "http://www.guardianapp.ir/edit_898989.php";
         if (type.equals("edit")) {
             try {
                 String token = strings[1];
