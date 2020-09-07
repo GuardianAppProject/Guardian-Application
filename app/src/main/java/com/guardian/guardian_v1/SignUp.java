@@ -63,7 +63,7 @@ public class SignUp extends AppCompatActivity {
                 onSignUpClick(v);
                 try {
                     signUpProgress.setVisibility(View.VISIBLE);
-                    sleep(150);
+                    sleep(250);
                     signUpProgress.setVisibility(View.INVISIBLE);
                 } catch (InterruptedException e) {
                     e.printStackTrace();

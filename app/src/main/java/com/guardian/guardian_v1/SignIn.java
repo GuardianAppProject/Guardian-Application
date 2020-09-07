@@ -63,7 +63,7 @@ public class SignIn extends AppCompatActivity {
                 onSignInClick(v);
                 try {
                     signInProgress.setVisibility(View.VISIBLE);
-                    sleep(150);
+                    sleep(250);
                     signInProgress.setVisibility(View.INVISIBLE);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
