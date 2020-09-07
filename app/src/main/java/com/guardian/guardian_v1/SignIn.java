@@ -70,8 +70,8 @@ public class SignIn extends AppCompatActivity {
                 }
                 if(!isLoginResultValid()) return;
 //                saveToken(loginResult.substring(25));
-                write(loginResult.substring(25));
-                Toast.makeText(SignIn.this, "hal shod" + loginResult.substring(25), Toast.LENGTH_SHORT).show();
+                write(loginResult.substring(37));
+                Toast.makeText(SignIn.this, loginResult.substring(37), Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(SignIn.this, SeatBelt.class);
                 startActivity(i);
                 finish();

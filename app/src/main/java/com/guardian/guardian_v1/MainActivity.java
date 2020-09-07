@@ -12,6 +12,8 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.guardian.guardian_v1.Transmission.TokenChecker;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -28,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        TokenChecker.beginCheck(read(),this);
+
 
         String string = read();
         if(string.length()>=1){
@@ -50,6 +54,8 @@ public class MainActivity extends AppCompatActivity {
 //                finish();
 //            }
 //        }, TIME_OUT);
+
+
 
 
 
@@ -91,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                 }, TIME_OUT);
+
                 startActivity(new Intent(MainActivity.this, SignUp.class));
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
