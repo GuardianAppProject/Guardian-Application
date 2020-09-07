@@ -1,9 +1,12 @@
 package com.guardian.guardian_v1.Transmission;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.guardian.guardian_v1.R;
 import com.guardian.guardian_v1.SignIn;
 
 import java.io.BufferedReader;
@@ -85,6 +88,21 @@ public class EditWorker extends AsyncTask<String,Void,String> {
     protected void onPostExecute(String result) {
         toast = Toast.makeText(context, result, Toast.LENGTH_LONG);
         toast.show();
+
+        TextView messageText = ((Activity)context).findViewById(R.id.messageTextAccount);
+        if(result.contains("OK")) {
+            messageText.setText("رمز عبور با موفقیت تغییر کرد.");
+            messageText.setTextColor(context.getResources().getColor(R.color.colorPositiveError));
+        } else if(result.contains("invalid characters were detected")) {
+            messageText.setText("لطفا از کاراکتر های غیر مجاز مثل '*' و 'فاصله' استفاده نکنید.");
+            messageText.setTextColor(context.getResources().getColor(R.color.colorNegativeError));
+        } else if(result.contains("Invalid Token")) {
+            messageText.setText("خطا در تغییر رمز عبور!");
+            messageText.setTextColor(context.getResources().getColor(R.color.colorNegativeError));
+        } else {
+            messageText.setText("سرور پاسخگو نمی باشد؛ لطفا چند دقیقه دیگر تلاش کنید.");
+            messageText.setTextColor(context.getResources().getColor(R.color.colorNegativeError));
+        }
     }
 
     @Override

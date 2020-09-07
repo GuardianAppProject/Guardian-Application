@@ -70,7 +70,7 @@
             android:textSize="15sp"
             android:gravity="center"
             android:fontFamily="@font/iran_sans"
-            android:layout_marginTop="10dp" />
+            android:layout_marginTop="45dp" />
 
         <EditText
             android:id="@+id/newPassword"
@@ -86,11 +86,25 @@
             android:textAlignment="center" />
 
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/wait_text"
+            android:layout_marginTop="32dp"
+            android:id="@+id/messageTextAccount"
+            android:textAlignment="center"
+            android:layout_gravity="center"
+            android:textColor="#25BD25"
+            android:textSize="12sp"
+            android:paddingRight="6dp"
+            android:paddingLeft="6dp"
+            android:fontFamily="@font/iran_sans"/>
+
         <Button
             android:id="@+id/editButton"
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:layout_marginTop="34dp"
+            android:layout_marginTop="10dp"
             android:layout_marginLeft="60dp"
             android:layout_marginRight="60dp"
             android:background="@drawable/button_background"

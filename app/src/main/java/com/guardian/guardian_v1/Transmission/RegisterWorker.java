@@ -1,9 +1,12 @@
 package com.guardian.guardian_v1.Transmission;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.guardian.guardian_v1.R;
 import com.guardian.guardian_v1.SignUp;
 
 import java.io.BufferedReader;
@@ -88,6 +91,27 @@ public class RegisterWorker extends AsyncTask<String,Void,String> {
         toast.show();
         if(result.startsWith("Success")){
             //bayad baade register e moafagh login  e moafagh ham dashte bashim
+        }
+
+        TextView messageText = ((Activity)context).findViewById(R.id.messageTextSignUp);
+        if(result.contains("register complete")) {
+            messageText.setText("لطفا چند لحظه منتظر بمانید.");
+            messageText.setTextColor(context.getResources().getColor(R.color.colorPositiveError));
+        } else if(result.contains("invalid characters were detected")) {
+            messageText.setText("لطفا از کاراکتر های غیر مجاز مثل '*' و 'فاصله' استفاده نکنید.");
+            messageText.setTextColor(context.getResources().getColor(R.color.colorNegativeError));
+        } else if(result.contains("username is invalid")) {
+            messageText.setText("شماره تلفن همراه وارد شده صحیح نمی باشد.");
+            messageText.setTextColor(context.getResources().getColor(R.color.colorNegativeError));
+        } else if(result.contains("passwords must be at least")) {
+            messageText.setText("رمز عبور باید حداقل ۸ کاراکتر و شامل عدد و حروف انگلیسی باشد.");
+            messageText.setTextColor(context.getResources().getColor(R.color.colorNegativeError));
+        } else if(result.contains("number is in use")) {
+            messageText.setText("شماره تلفن همراه وارد شده تکراری می باشد.");
+            messageText.setTextColor(context.getResources().getColor(R.color.colorNegativeError));
+        } else {
+            messageText.setText("سرور پاسخگو نمی باشد؛ لطفا چند دقیقه دیگر تلاش کنید.");
+            messageText.setTextColor(context.getResources().getColor(R.color.colorNegativeError));
         }
     }
 
