@@ -44,4 +44,5 @@
     <string name="off_text">خاموش</string>
     <string name="on_text">روشن</string>
     <string name="wait_text">لطفا چند لحظه منتظر بمانید.</string>
+    <string name="activity_account_subtitle0">اطلاعات حساب کاربری</string>
 </resources>

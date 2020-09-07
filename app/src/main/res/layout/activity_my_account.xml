@@ -65,11 +65,156 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="@string/activity_account_subtitle0"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:fontFamily="@font/iran_sans"
+            android:layout_marginTop="15dp"
+            android:textColor="#B4000000"/>
+
+        <View
+            android:layout_height="0.7dp"
+            android:layout_width="150dp"
+            android:background="#7E7E7E"
+            android:layout_gravity="center"
+            android:layout_marginRight="45dp"
+            android:layout_marginLeft="45dp"
+            android:layout_marginTop="4dp"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="right"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/username_accountField"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="22dp"
+                android:layout_marginRight="22dp"
+                android:fontFamily="@font/iran_sans"
+                android:gravity="right"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/text5"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                android:paddingRight="72dp"/>
+
+            <TextView
+                android:id="@+id/text5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="15dp"
+                android:layout_marginRight="15dp"
+                android:fontFamily="@font/iran_sans"
+                android:gravity="right"
+                android:text="نام کاربری:"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="right"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/password_accountField"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="22dp"
+                android:layout_marginRight="22dp"
+                android:fontFamily="@font/iran_sans"
+                android:gravity="right"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/text6"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                android:paddingRight="86dp"/>
+
+            <TextView
+                android:id="@+id/text6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="15dp"
+                android:layout_marginRight="15dp"
+                android:fontFamily="@font/iran_sans"
+                android:gravity="right"
+                android:text="رمز عبور:"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="right"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/phoneNum_accountField"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="22dp"
+                android:layout_marginRight="22dp"
+                android:fontFamily="@font/iran_sans"
+                android:gravity="right"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/text7"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                android:paddingRight="30dp"/>
+
+            <TextView
+                android:id="@+id/text7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="15dp"
+                android:layout_marginRight="15dp"
+                android:fontFamily="@font/iran_sans"
+                android:gravity="right"
+                android:text="شماره تلفن همراه:"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <Button
+            android:id="@+id/logoutButton"
+            android:layout_width="210dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:background="@color/colorNegativeError"
+            android:alpha="0.65"
+            android:text="خروج از حساب کاربری"
+            android:textColor="@color/inputBoxColor"
+            android:fontFamily="@font/iran_sans"
+            android:textSize="16sp"/>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="@string/activity_account_subtitle1"
             android:textSize="18sp"
             android:gravity="center"
             android:fontFamily="@font/iran_sans"
-            android:layout_marginTop="35dp"
+            android:layout_marginTop="25dp"
             android:textColor="#B4000000"/>
 
         <View
@@ -88,7 +233,7 @@
             android:textSize="15sp"
             android:gravity="center"
             android:fontFamily="@font/iran_sans"
-            android:layout_marginTop="32dp" />
+            android:layout_marginTop="20dp" />
 
         <EditText
             android:id="@+id/newPassword"
@@ -107,7 +252,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="8dp"
             android:id="@+id/messageTextAccount"
             android:textAlignment="center"
             android:layout_gravity="center"
@@ -121,7 +266,7 @@
             android:id="@+id/editButton"
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:layout_marginLeft="60dp"
             android:layout_marginRight="60dp"
             android:background="@drawable/button_background"
