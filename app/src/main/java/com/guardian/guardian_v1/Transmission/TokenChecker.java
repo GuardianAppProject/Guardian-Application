@@ -1,6 +1,7 @@
 package com.guardian.guardian_v1.Transmission;
 
 import android.content.Context;
+import android.media.session.MediaSession;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
@@ -21,6 +22,7 @@ import java.net.URLEncoder;
 public class TokenChecker extends AsyncTask<String,Void,String> {
     Context context;
     private Toast toast;
+    private static String ans="asd";
 
     public TokenChecker(Context ctx) {
         context = ctx;
@@ -65,6 +67,7 @@ public class TokenChecker extends AsyncTask<String,Void,String> {
                 httpURLConnection.disconnect();
                 SignIn.setLoginResult(result);
                 System.err.println(result);
+                ans = result;
                 return result;
             } catch (MalformedURLException e) {
                 e.printStackTrace();
@@ -89,5 +92,17 @@ public class TokenChecker extends AsyncTask<String,Void,String> {
     @Override
     protected void onProgressUpdate(Void... values) {
         super.onProgressUpdate(values);
+    }
+
+    public static void beginCheck(String token,Context ctx){
+        TokenChecker checker = new TokenChecker(ctx);
+        checker.execute("check",token);
+        Toast toast;
+        toast = Toast.makeText(ctx, token, Toast.LENGTH_LONG);
+        //toast.show();
+    }
+
+    public static boolean tokenIsValid(){
+        return ans.contains("rue");
     }
 }

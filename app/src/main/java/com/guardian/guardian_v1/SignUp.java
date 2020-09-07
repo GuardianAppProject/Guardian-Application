@@ -11,6 +11,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 import com.guardian.guardian_v1.Transmission.RegisterWorker;
+import com.guardian.guardian_v1.Transmission.TokenChecker;
 
 import static java.lang.Thread.sleep;
 
@@ -24,6 +25,11 @@ public class SignUp extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        if(TokenChecker.tokenIsValid()){
+            Intent i = new Intent(SignUp.this, SeatBelt.class);
+            startActivity(i);
+            finish();
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
