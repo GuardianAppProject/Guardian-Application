@@ -144,7 +144,7 @@ public class LocationService extends Service implements
             if (speed >= 0.0) {
                 Log.d("speed", "Current speed: " + new DecimalFormat("#.##").format(speed) + " km/hr");
 
-                if (speed <= 7.0 ) {
+                if (speed <= 9.0 ) {
 
                     if (first) {
                         firstTime = System.currentTimeMillis();
@@ -165,7 +165,7 @@ public class LocationService extends Service implements
                     }
                 }
 
-                if (speed <= 7.0 && (endingTime - firstTime) >= 5) {
+                if (speed <= 9.0 && (endingTime - firstTime) >= 5) {
                     Log.d("stop text", "you have been stopped");
                     firstSpeedTime = true;
                 }
@@ -211,8 +211,8 @@ public class LocationService extends Service implements
             return 0;
         }
         else {
-            deltav = speedArray.get(9) - speedArray.get(0);
-            deltat = timeSaving.get(9) - timeSaving.get(0);
+            deltav = speedArray.get(4) - speedArray.get(0);
+            deltat = timeSaving.get(4) - timeSaving.get(0);
             acceleration = deltav / deltat;
             return acceleration;
         }
