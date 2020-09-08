@@ -48,5 +48,29 @@ public class StatusCalculator {
         sleep_factor *= sleepCoefficient;
         return sleep_factor;
     }
-    
+
+    private double speedCalculator(double userSpeed, double speedLimit) {
+        double speed_factor = 0;
+
+        double speedCoefficient = 1;
+        if(speedLimit <= 30) {
+            speedCoefficient = 1.05;
+        } else if(speedLimit <= 50) {
+            speedCoefficient = 1.1;
+        } else if(speedLimit <= 60) {
+            speedCoefficient = 1.2;
+        } else if(speedLimit <= 80) {
+            speedCoefficient = 1.3;
+        } else if(speedLimit <= 100) {
+            speedCoefficient = 1.4;
+        } else if(speedLimit <= 110) {
+            speedCoefficient = 1.5;
+        } else  {
+            speedCoefficient = 1.85;
+        }
+
+
+
+        return speed_factor;
+    }
 }
