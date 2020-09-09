@@ -85,8 +85,8 @@ public class TokenChecker extends AsyncTask<String,Void,String> {
 
     @Override
     protected void onPostExecute(String result) {
-        toast = Toast.makeText(context, result, Toast.LENGTH_LONG);
-        toast.show();
+        //toast = Toast.makeText(context, result, Toast.LENGTH_LONG);
+        //toast.show();
     }
 
     @Override
@@ -97,12 +97,21 @@ public class TokenChecker extends AsyncTask<String,Void,String> {
     public static void beginCheck(String token,Context ctx){
         TokenChecker checker = new TokenChecker(ctx);
         checker.execute("check",token);
-        Toast toast;
-        toast = Toast.makeText(ctx, token, Toast.LENGTH_LONG);
-        //toast.show();
     }
 
     public static boolean tokenIsValid(){
         return ans.startsWith("Connected - True");
+    }
+
+    public static String getUsername(){
+        if(tokenIsValid())
+            return ans.substring(16).split(" ")[1];
+        return "asd";
+    }
+
+    public static String getPhoneNum(){
+        if(tokenIsValid())
+            return ans.substring(16).split(" ")[0];
+        return "asd";
     }
 }
