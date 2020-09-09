@@ -10,10 +10,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.guardian.guardian_v1.Transmission.EditWorker;
 import com.guardian.guardian_v1.Transmission.LogoutWorker;
+import com.guardian.guardian_v1.Transmission.TokenChecker;
+
+import org.w3c.dom.Text;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -27,6 +31,7 @@ public class MyAccount extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_account);
+        updatePrivateData();
 
         ImageButton backButton = (ImageButton) findViewById(R.id.backButton);
         backButton.setOnClickListener(new View.OnClickListener() {
@@ -93,5 +98,15 @@ public class MyAccount extends AppCompatActivity {
         EditWorker editWorker = new EditWorker(this);
         editWorker.execute("edit",getToken(),editText.getText().toString());
         Toast.makeText(this,getToken() + "   " + editText.getText().toString(),Toast.LENGTH_LONG).show();
+    }
+
+    private void updatePrivateData(){
+        TextView username = (TextView) findViewById(R.id.username_accountField);
+        TextView phoneNum = (TextView) findViewById(R.id.phoneNum_accountField);
+        TextView userPass = (TextView) findViewById(R.id.password_accountField);
+
+        username.setText(TokenChecker.getUsername());
+        phoneNum.setText(TokenChecker.getPhoneNum());
+        userPass.setText(TokenChecker.getUserPass());
     }
 }

@@ -85,8 +85,8 @@ public class LogoutWorker extends AsyncTask<String,Void,String> {
 
     @Override
     protected void onPostExecute(String result) {
-        toast = Toast.makeText(context, result, Toast.LENGTH_LONG);
-        toast.show();
+        //toast = Toast.makeText(context, result, Toast.LENGTH_LONG);
+        //toast.show();
     }
 
     @Override

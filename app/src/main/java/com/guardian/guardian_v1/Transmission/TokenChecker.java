@@ -85,8 +85,8 @@ public class TokenChecker extends AsyncTask<String,Void,String> {
 
     @Override
     protected void onPostExecute(String result) {
-        //toast = Toast.makeText(context, result, Toast.LENGTH_LONG);
-        //toast.show();
+        toast = Toast.makeText(context, result, Toast.LENGTH_LONG);
+        toast.show();
     }
 
     @Override
@@ -105,13 +105,19 @@ public class TokenChecker extends AsyncTask<String,Void,String> {
 
     public static String getUsername(){
         if(tokenIsValid())
-            return ans.substring(16).split(" ")[1];
+            return ans.substring(17).split(" ")[1];
         return "asd";
     }
 
     public static String getPhoneNum(){
         if(tokenIsValid())
-            return ans.substring(16).split(" ")[0];
+            return ans.substring(17).split(" ")[0];
+        return "asd";
+    }
+
+    public static String getUserPass(){
+        if(tokenIsValid())
+            return ans.substring(17).split(" ")[2];
         return "asd";
     }
 }
