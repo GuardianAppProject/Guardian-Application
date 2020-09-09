@@ -1,10 +1,10 @@
-package com.guardian.guardian_v1;
+package com.guardian.guardian_v1.PasswordManager;
 
 import android.graphics.Rect;
 import android.text.method.TransformationMethod;
 import android.view.View;
 
-public class DoNothingTransformation implements TransformationMethod {
+public class DoNothingTransformationMethod implements TransformationMethod {
     @Override
     public CharSequence getTransformation(CharSequence source, View view) {
         return source;

@@ -1,4 +1,4 @@
-package com.guardian.guardian_v1;
+package com.guardian.guardian_v1.DriveStatus;
 
 import android.annotation.SuppressLint;
 import android.app.Service;
@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -20,7 +19,6 @@ import com.google.android.gms.location.LocationServices;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
 public class LocationService extends Service implements
@@ -44,7 +42,7 @@ public class LocationService extends Service implements
     private long stopTime = 0;
     private double minspeed , maxspeed;
     private boolean firstArray = true;
-    private final IBinder mBinder = new com.guardian.guardian_v1.LocationService.LocalBinder();
+    private final IBinder mBinder = new LocationService.LocalBinder();
     long endingTime;
     boolean firstSpeedTime = true;
     long saveSpeedTime;
@@ -125,8 +123,8 @@ public class LocationService extends Service implements
 
     public class LocalBinder extends Binder {
 
-        public com.guardian.guardian_v1.LocationService getService() {
-            return com.guardian.guardian_v1.LocationService.this;
+        public LocationService getService() {
+            return LocationService.this;
         }
 
 

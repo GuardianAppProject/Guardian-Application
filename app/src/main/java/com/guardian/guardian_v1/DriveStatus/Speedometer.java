@@ -1,4 +1,4 @@
-package com.guardian.guardian_v1;
+package com.guardian.guardian_v1.DriveStatus;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,10 +15,6 @@ import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 public class Speedometer extends AppCompatActivity {
 

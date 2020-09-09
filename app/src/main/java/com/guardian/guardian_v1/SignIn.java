@@ -11,6 +11,8 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.guardian.guardian_v1.PasswordManager.AsteriskPasswordTransformationMethod;
+import com.guardian.guardian_v1.PasswordManager.DoNothingTransformationMethod;
 import com.guardian.guardian_v1.Transmission.LoginWorker;
 
 import java.io.File;
@@ -40,7 +42,7 @@ public class SignIn extends AppCompatActivity {
         showPasswordBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if(hidePassword) {
-                    edittext.setTransformationMethod(new DoNothingTransformation());
+                    edittext.setTransformationMethod(new DoNothingTransformationMethod());
                     showPasswordBtn.setBackgroundResource(R.drawable.padlock1);
                     hidePassword = false;
                 } else {

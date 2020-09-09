@@ -1,4 +1,4 @@
-package com.guardian.guardian_v1;
+package com.guardian.guardian_v1.DriveStatus;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -54,7 +54,7 @@ public class Weather {
     }
 
 
-    enum WeatherType {
+    public enum WeatherType {
         Thunderstorm,
         Drizzle,
         Rain,

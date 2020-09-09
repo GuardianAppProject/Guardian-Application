@@ -1,5 +1,9 @@
 package com.guardian.guardian_v1;
 
+
+import com.guardian.guardian_v1.DriveStatus.Shake;
+import com.guardian.guardian_v1.DriveStatus.Weather;
+
 public class StatusCalculator {
 
     private double sleepCalculator(double userSleep, double userAwake) {

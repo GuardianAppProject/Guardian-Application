@@ -1,4 +1,4 @@
-package com.guardian.guardian_v1;
+package com.guardian.guardian_v1.PasswordManager;
 
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
