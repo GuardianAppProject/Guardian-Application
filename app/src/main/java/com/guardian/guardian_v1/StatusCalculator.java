@@ -217,4 +217,12 @@ public class StatusCalculator {
 
         return acceleration_factor;
     }
+
+    private double vibrationCalculator(double userVibration) {
+
+        double vibration_factor = 0;
+
+
+        return vibration_factor;
+    }
 }
