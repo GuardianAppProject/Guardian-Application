@@ -218,10 +218,20 @@ public class StatusCalculator {
         return acceleration_factor;
     }
 
-    private double vibrationCalculator(double userVibration) {
+    private double vibrationCalculator(Shake.ShakeSituation userVibration) {
 
         double vibration_factor = 0;
-
+        if(userVibration== Shake.ShakeSituation.noShake) {
+            vibration_factor = 100;
+        } else if(userVibration== Shake.ShakeSituation.lowShake) {
+            vibration_factor = 80;
+        } else if(userVibration== Shake.ShakeSituation.mediumShake) {
+            vibration_factor = 60;
+        } else if(userVibration== Shake.ShakeSituation.highShake) {
+            vibration_factor = 45;
+        } else if(userVibration== Shake.ShakeSituation.veryHighShake) {
+            vibration_factor = 30;
+        }
 
         return vibration_factor;
     }

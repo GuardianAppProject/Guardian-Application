@@ -9,7 +9,6 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.TextView;
 
 public class Shake extends AppCompatActivity implements SensorEventListener {
 
@@ -18,7 +17,7 @@ public class Shake extends AppCompatActivity implements SensorEventListener {
     private boolean isAccelometerSensorAvailible, several = false;
     private float currentX, currentY, currentZ, lastX, lastY, lastZ, xDifference, yDifference, zDifference;
     private float shakeThrehold = 5f;
-    public enum shakeSituation { noShake, lowShake, mediumShake, highShake, veryHighShake}
+    public enum ShakeSituation {noShake, lowShake, mediumShake, highShake, veryHighShake}
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,25 +54,25 @@ public class Shake extends AppCompatActivity implements SensorEventListener {
             if((xDifference > 7f && yDifference > 7f)
                     || (xDifference > 7f && zDifference > 7f)
                     || (yDifference > 7f && zDifference > 7f)) {
-                Log.d("shake situation", shakeSituation.veryHighShake.toString());
+                Log.d("shake situation", ShakeSituation.veryHighShake.toString());
             }
             else if ((xDifference > 6f && yDifference > 6f)
                     || (xDifference > 6f && zDifference > 6f)
                     || (yDifference > 6f && zDifference > 6f)) {
-                Log.d("shake situation", shakeSituation.highShake.toString());
+                Log.d("shake situation", ShakeSituation.highShake.toString());
             }
             else if ((xDifference > 5f && yDifference > 5f)
                     || (xDifference > 5f && zDifference > 5f)
                     || (yDifference > 5f && zDifference > 5f)) {
-                Log.d("shake situation", shakeSituation.mediumShake.toString());
+                Log.d("shake situation", ShakeSituation.mediumShake.toString());
             }
             else if ((xDifference > 4f && yDifference > 4f)
                     || (xDifference > 4f && zDifference > 4f)
                     || (yDifference > 4f && zDifference > 4f)) {
-                Log.d("shake situation", shakeSituation.lowShake.toString());
+                Log.d("shake situation", ShakeSituation.lowShake.toString());
             }
             else {
-                Log.d("shake situation", shakeSituation.noShake.toString());
+                Log.d("shake situation", ShakeSituation.noShake.toString());
             }
         }
 
