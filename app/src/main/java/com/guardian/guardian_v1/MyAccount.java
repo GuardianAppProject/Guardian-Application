@@ -52,7 +52,7 @@ public class MyAccount extends AppCompatActivity {
         logoutButton.setOnClickListener( new View.OnClickListener() {
             public void onClick(View v) {
                 onClickLogout();
-                Intent i = new Intent(MyAccount.this, SignUp.class);
+                Intent i = new Intent(MyAccount.this, MainActivity.class);
                 startActivity(i);
                 finish();
             }
@@ -85,7 +85,7 @@ public class MyAccount extends AppCompatActivity {
 
     private void onClickLogout(){
         LogoutWorker logoutWorker = new LogoutWorker(this);
-        logoutWorker.execute(getToken());
+        logoutWorker.execute("logout",getToken());
     }
 
     private void onClickEdit(){
