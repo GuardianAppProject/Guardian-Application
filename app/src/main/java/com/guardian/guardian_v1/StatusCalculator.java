@@ -135,4 +135,86 @@ public class StatusCalculator {
         }
         return speed_factor;
     }
+
+    private double accelerationCalculator(double userAcceleration, Weather.WeatherType weatherType) {
+
+        double standardAcceleration = 7.5;
+
+        if(weatherType==Weather.WeatherType.Thunderstorm) {
+            standardAcceleration -= 1.45;
+        } else if(weatherType==Weather.WeatherType.Drizzle) {
+            standardAcceleration -= 0.3;
+        } else if(weatherType==Weather.WeatherType.Rain) {
+            standardAcceleration -= 1;
+        } else if(weatherType==Weather.WeatherType.Snow) {
+            standardAcceleration -= 2.2;
+        } else if(weatherType==Weather.WeatherType.Clear) {
+            //
+        } else if(weatherType==Weather.WeatherType.Clouds) {
+            //
+        } else if(weatherType==Weather.WeatherType.Mist) {
+            standardAcceleration -= 0.5;
+        } else if(weatherType==Weather.WeatherType.Smoke) {
+            standardAcceleration -= 0.9;
+        } else if(weatherType==Weather.WeatherType.Haze) {
+            standardAcceleration -= 0.3;
+        } else if(weatherType==Weather.WeatherType.Dust) {
+            standardAcceleration -= 0.6;
+        } else if(weatherType==Weather.WeatherType.Fog) {
+            standardAcceleration -= 0.2;
+        } else if(weatherType==Weather.WeatherType.Sand) {
+            standardAcceleration -= 0.4;
+        } else if(weatherType==Weather.WeatherType.Ash) {
+            standardAcceleration -= 0.25;
+        } else if(weatherType==Weather.WeatherType.Squall) {
+            standardAcceleration -= 1;
+        } else if(weatherType==Weather.WeatherType.Tornado) {
+            standardAcceleration -= 1;
+        }
+
+        double accelerationCoefficient = 0.8;
+        if(userAcceleration < 0) {
+            accelerationCoefficient = 1.3;
+        } else {
+            //
+        }
+
+        double acceleration_factor = 0;
+
+        if(Math.abs(userAcceleration) < (standardAcceleration - 1.8)) {
+            acceleration_factor = 100;
+        } else if(Math.abs(userAcceleration) < (standardAcceleration - 1.2)) {
+            acceleration_factor = 95;
+        } else if(Math.abs(userAcceleration) < (standardAcceleration - 0.6)) {
+            acceleration_factor = 90;
+        } else if(Math.abs(userAcceleration) < (standardAcceleration)) {
+            acceleration_factor = 85;
+        } else if(Math.abs(userAcceleration) < (standardAcceleration + 1)) {
+            double a = (Math.abs(userAcceleration) - standardAcceleration) * accelerationCoefficient * 6;
+            acceleration_factor = 85 - a;
+        } else if(Math.abs(userAcceleration) < (standardAcceleration + 2)) {
+            double a = (Math.abs(userAcceleration) - standardAcceleration) * accelerationCoefficient * 7;
+            acceleration_factor = 85 - a;
+        } else if(Math.abs(userAcceleration) < (standardAcceleration + 4)) {
+            double a = (Math.abs(userAcceleration) - standardAcceleration) * accelerationCoefficient * 8;
+            acceleration_factor = 85 - a;
+        } else if(Math.abs(userAcceleration) < (standardAcceleration + 6)) {
+            double a = (Math.abs(userAcceleration) - standardAcceleration) * accelerationCoefficient * 8.1;
+            acceleration_factor = 85 - a;
+        } else if(Math.abs(userAcceleration) < (standardAcceleration + 8)) {
+            double a = (Math.abs(userAcceleration) - standardAcceleration) * accelerationCoefficient * 9;
+            acceleration_factor = 85 - a;
+        } else if(Math.abs(userAcceleration) < (standardAcceleration + 10)) {
+            double a = (Math.abs(userAcceleration) - standardAcceleration) * accelerationCoefficient * 10;
+            acceleration_factor = 85 - a;
+        } else {
+            acceleration_factor = 0;
+        }
+
+        if(acceleration_factor <= 0) {
+            acceleration_factor = 0;
+        }
+
+        return acceleration_factor;
+    }
 }
