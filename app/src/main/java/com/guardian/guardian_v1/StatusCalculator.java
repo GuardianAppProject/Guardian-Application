@@ -24,7 +24,7 @@ public class StatusCalculator {
 
         double sleepCoefficient = 1;
         if(userAwake < 360) {
-            sleepCoefficient = 1;
+            //
         } else if(userAwake < 420) {
             sleepCoefficient = 0.9;
         }else if(userAwake < 480) {
@@ -49,7 +49,40 @@ public class StatusCalculator {
         return sleep_factor;
     }
 
-    private double speedCalculator(double userSpeed, double speedLimit) {
+    private double speedCalculator(double userSpeed, double speedLimit, Weather.WeatherType weatherType) {
+
+        if(weatherType==Weather.WeatherType.Thunderstorm) {
+            speedLimit -= 10;
+        } else if(weatherType==Weather.WeatherType.Drizzle) {
+            speedLimit -= 4;
+        } else if(weatherType==Weather.WeatherType.Rain) {
+            speedLimit -= 7;
+        } else if(weatherType==Weather.WeatherType.Snow) {
+            speedLimit -= 18;
+        } else if(weatherType==Weather.WeatherType.Clear) {
+            //
+        } else if(weatherType==Weather.WeatherType.Clouds) {
+            //
+        } else if(weatherType==Weather.WeatherType.Mist) {
+            speedLimit -= 12;
+        } else if(weatherType==Weather.WeatherType.Smoke) {
+            speedLimit -= 13;
+        } else if(weatherType==Weather.WeatherType.Haze) {
+            speedLimit -= 4;
+        } else if(weatherType==Weather.WeatherType.Dust) {
+            speedLimit -= 10;
+        } else if(weatherType==Weather.WeatherType.Fog) {
+            speedLimit -= 6;
+        } else if(weatherType==Weather.WeatherType.Sand) {
+            speedLimit -= 8;
+        } else if(weatherType==Weather.WeatherType.Ash) {
+            speedLimit -= 5;
+        } else if(weatherType==Weather.WeatherType.Squall) {
+            speedLimit -= 14;
+        } else if(weatherType==Weather.WeatherType.Tornado) {
+            speedLimit -= 7;
+        }
+
         double speed_factor = 0;
 
         double speedCoefficient = 1;
@@ -69,8 +102,37 @@ public class StatusCalculator {
             speedCoefficient = 1.85;
         }
 
+        if((userSpeed - speedLimit) < -10) {
+            speed_factor = 100;
+        } else if((userSpeed - speedLimit) < -5) {
+            speed_factor = 92;
+        } else if((userSpeed - speedLimit) <= 0) {
+            speed_factor = 82;
+        } else if((userSpeed - speedLimit) < 5) {
+            double s = speedCoefficient * (userSpeed - speedLimit);
+            speed_factor = 82 - s;
+        } else if((userSpeed - speedLimit) < 10) {
+            double s = speedCoefficient * (userSpeed - speedLimit) * 1.3;
+            speed_factor = 82 - s;
+        } else if((userSpeed - speedLimit) < 20) {
+            double s = speedCoefficient * (userSpeed - speedLimit) * 1.8;
+            speed_factor = 82 - s;
+        } else if((userSpeed - speedLimit) < 30) {
+            double s = speedCoefficient * (userSpeed - speedLimit) * 2.5;
+            speed_factor = 82 - s;
+        }
 
+        if(speed_factor <= 0) {
+            speed_factor = 0;
+        }
 
+        if(speedLimit >= 110 && userSpeed >= 15) {
+            if(userSpeed <= 30) {
+                speed_factor = 70;
+            } else if(userSpeed <= 40) {
+                speed_factor = 77;
+            }
+        }
         return speed_factor;
     }
 }
