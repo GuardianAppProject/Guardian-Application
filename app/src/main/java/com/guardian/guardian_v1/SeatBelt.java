@@ -11,6 +11,11 @@ import android.os.VibrationEffect;
 import android.os.Vibrator;
 import android.widget.TextView;
 
+import com.guardian.guardian_v1.Transmission.TokenChecker;
+
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
+
 public class SeatBelt extends AppCompatActivity {
 
     private static int TIME_OUT = 3000; //Time to launch the another activity
@@ -19,6 +24,7 @@ public class SeatBelt extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seat_belt);
+        TokenChecker.beginCheck(read(),this);
 
 
 
@@ -66,5 +72,29 @@ public class SeatBelt extends AppCompatActivity {
         }.start();
 
 
+    }
+
+    public String read(){
+        //reading text from file
+        String string = "";
+        try {
+            FileInputStream fileIn=openFileInput("tokenFile.txt");
+            InputStreamReader InputRead= new InputStreamReader(fileIn);
+
+            char[] inputBuffer= new char[10000];
+
+            int charRead;
+
+            while ((charRead=InputRead.read(inputBuffer))>0) {
+                // char to string conversion
+                String readstring=String.copyValueOf(inputBuffer,0,charRead);
+                string +=readstring;
+            }
+            InputRead.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return string;
     }
 }
