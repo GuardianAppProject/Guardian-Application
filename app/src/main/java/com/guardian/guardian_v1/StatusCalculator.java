@@ -239,4 +239,121 @@ public class StatusCalculator {
 
         return vibration_factor;
     }
+
+    private double timeCalculator(double userTimeHOUR, double userTimeMINUTE, String sunrise, String sunset) {
+
+        double userTime = (userTimeHOUR * 60) + userTimeMINUTE;
+        double time_factor = 0;
+
+        if(userTime <= 60) {           // 0  -  1
+
+        } else if(userTime <= 120) {   // 1  -  2
+
+        } else if(userTime <= 180) {   // 2  -  3
+
+        } else if(userTime <= 240) {   // 3  -  4
+
+        } else if(userTime <= 300) {   // 4  -  5
+
+        } else if(userTime <= 360) {   // 5  -  6
+
+        } else if(userTime <= 420) {   // 6  -  7
+
+        } else if(userTime <= 480) {   // 7  -  8
+
+        } else if(userTime <= 540) {   // 8  -  9
+
+        } else if(userTime <= 600) {   // 9  -  10
+
+        } else if(userTime <= 660) {   // 10  -  11
+
+        } else if(userTime <= 720) {   // 11  -  12
+
+        }else if(userTime <= 780) {    // 12  -  13
+
+        } else if(userTime <= 840) {   // 13  -  14
+
+        } else if(userTime <= 900) {   // 14  -  15
+
+        } else if(userTime <= 960) {   // 15  -  16
+
+        } else if(userTime <= 1020) {  // 16  -  17
+
+        } else if(userTime <= 1080) {  // 17  -  18
+
+        } else if(userTime <= 1140) {  // 18  -  19
+
+        } else if(userTime <= 1200) {  // 19  -  20
+
+        } else if(userTime <= 1260) {  // 20  -  21
+
+        } else if(userTime <= 1320) {  // 21  -  22
+
+        } else if(userTime <= 1380) {  // 22  -  23
+
+        } else if(userTime <= 1440) {  // 23  -  24
+
+        }
+
+
+        return time_factor;
+    }
+
+    public double nearCitiesCalculator(double userWithNearCityDistance) {
+
+        double nearCities_factor = 0;
+
+        if(userWithNearCityDistance <= 5) {
+            nearCities_factor = 30;
+        } else if(userWithNearCityDistance <= 10) {
+            nearCities_factor = 25 - (( 5 - (userWithNearCityDistance - 5)));
+        } else if(userWithNearCityDistance <= 30) {
+            nearCities_factor = 50 - (( 20 - (userWithNearCityDistance - 10)) * 1.25);
+        } else if(userWithNearCityDistance <= 40) {
+            nearCities_factor = 55 - (( 10 - (userWithNearCityDistance - 40)) * 0.5);
+        } else if(userWithNearCityDistance <= 50) {
+            nearCities_factor = 60;
+        } else if(userWithNearCityDistance <= 55) {
+            nearCities_factor = 70;
+        } else if(userWithNearCityDistance <= 60) {
+            nearCities_factor = 85;
+        } else {
+            nearCities_factor = 100;
+        }
+
+        return nearCities_factor;
+    }
+
+    public double monthCalculator(int userMonth) {
+
+        double month_factor = 0;
+
+        if(userMonth == 1) {
+            month_factor = 55;
+        } else if(userMonth == 2) {
+            month_factor = 80;
+        } else if(userMonth == 3) {
+            month_factor = 90;
+        } else if(userMonth == 4) {
+            month_factor = 60;
+        } else if(userMonth == 5) {
+            month_factor = 65;
+        } else if(userMonth == 6) {
+            month_factor = 50;
+        } else if(userMonth == 7) {
+            month_factor = 90;
+        } else if(userMonth == 8) {
+            month_factor = 65;
+        } else if(userMonth == 9) {
+            month_factor = 85;
+        } else if(userMonth == 10) {
+            month_factor = 85;
+        } else if(userMonth == 11) {
+            month_factor = 80;
+        } else if(userMonth == 12) {
+            month_factor = 70;
+        }
+
+        return month_factor;
+    }
 }
