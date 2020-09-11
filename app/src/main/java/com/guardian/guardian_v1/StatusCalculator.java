@@ -4,9 +4,11 @@ package com.guardian.guardian_v1;
 import com.guardian.guardian_v1.DriveStatus.Shake;
 import com.guardian.guardian_v1.DriveStatus.Weather;
 
+import java.io.IOException;
+
 public class StatusCalculator {
 
-    private double sleepCalculator(double userSleep, double userAwake) {
+    public double sleepCalculator(double userSleep, double userAwake) {
         double sleep_factor = 0;
         if(userSleep < 180){
             sleep_factor = 0;
@@ -53,7 +55,7 @@ public class StatusCalculator {
         return sleep_factor;
     }
 
-    private double speedCalculator(double userSpeed, double speedLimit, Weather.WeatherType weatherType) {
+    public double speedCalculator(double userSpeed, double speedLimit, Weather.WeatherType weatherType) {
 
         if(weatherType==Weather.WeatherType.Thunderstorm) {
             speedLimit -= 10;
@@ -140,7 +142,7 @@ public class StatusCalculator {
         return speed_factor;
     }
 
-    private double accelerationCalculator(double userAcceleration, Weather.WeatherType weatherType) {
+    public double accelerationCalculator(double userAcceleration, Weather.WeatherType weatherType) {
 
         double standardAcceleration = 7.5;
 
@@ -222,7 +224,7 @@ public class StatusCalculator {
         return acceleration_factor;
     }
 
-    private double vibrationCalculator(Shake.ShakeSituation userVibration) {
+    public double vibrationCalculator(Shake.ShakeSituation userVibration) {
 
         double vibration_factor = 0;
         if(userVibration== Shake.ShakeSituation.noShake) {
@@ -240,61 +242,60 @@ public class StatusCalculator {
         return vibration_factor;
     }
 
-    private double timeCalculator(double userTimeHOUR, double userTimeMINUTE, String sunrise, String sunset) {
+    public double timeCalculator(double userTimeHOUR, double userTimeMINUTE, String sunrise, String sunset) {
 
         double userTime = (userTimeHOUR * 60) + userTimeMINUTE;
         double time_factor = 0;
 
         if(userTime <= 60) {           // 0  -  1
-
+            time_factor = 45;
         } else if(userTime <= 120) {   // 1  -  2
-
+            time_factor = 42;
         } else if(userTime <= 180) {   // 2  -  3
-
+            time_factor = 40;
         } else if(userTime <= 240) {   // 3  -  4
-
+            time_factor = 42;
         } else if(userTime <= 300) {   // 4  -  5
-
+            time_factor = 70;
         } else if(userTime <= 360) {   // 5  -  6
-
+            time_factor = 85;
         } else if(userTime <= 420) {   // 6  -  7
-
+            time_factor = 90;
         } else if(userTime <= 480) {   // 7  -  8
-
+            time_factor = 90;
         } else if(userTime <= 540) {   // 8  -  9
-
+            time_factor = 100;
         } else if(userTime <= 600) {   // 9  -  10
-
+            time_factor = 95;
         } else if(userTime <= 660) {   // 10  -  11
-
+            time_factor = 88;
         } else if(userTime <= 720) {   // 11  -  12
-
+            time_factor = 75;
         }else if(userTime <= 780) {    // 12  -  13
-
+            time_factor = 50;
         } else if(userTime <= 840) {   // 13  -  14
-
+            time_factor = 35;
         } else if(userTime <= 900) {   // 14  -  15
-
+            time_factor = 30;
         } else if(userTime <= 960) {   // 15  -  16
-
+            time_factor = 30;
         } else if(userTime <= 1020) {  // 16  -  17
-
+            time_factor = 45;
         } else if(userTime <= 1080) {  // 17  -  18
-
+            time_factor = 50;
         } else if(userTime <= 1140) {  // 18  -  19
-
+            time_factor = 55;
         } else if(userTime <= 1200) {  // 19  -  20
-
+            time_factor = 55;
         } else if(userTime <= 1260) {  // 20  -  21
-
+            time_factor = 70;
         } else if(userTime <= 1320) {  // 21  -  22
-
+            time_factor = 85;
         } else if(userTime <= 1380) {  // 22  -  23
-
+            time_factor = 80;
         } else if(userTime <= 1440) {  // 23  -  24
-
+            time_factor = 75;
         }
-
 
         return time_factor;
     }
@@ -355,5 +356,211 @@ public class StatusCalculator {
         }
 
         return month_factor;
+    }
+
+    public double weatherCalculator(double userTemperature, double userWindSpeed, Weather.WeatherType weatherType) {
+
+        double weather_factor = 0;
+        if(weatherType==Weather.WeatherType.Thunderstorm) {
+            weather_factor = 60;
+        } else if(weatherType==Weather.WeatherType.Drizzle) {
+            weather_factor = 88;
+        } else if(weatherType==Weather.WeatherType.Rain) {
+            weather_factor = 78;
+        } else if(weatherType==Weather.WeatherType.Snow) {
+            weather_factor = 50;
+        } else if(weatherType==Weather.WeatherType.Clear) {
+            weather_factor = 96;
+        } else if(weatherType==Weather.WeatherType.Clouds) {
+            weather_factor = 100;
+        } else if(weatherType==Weather.WeatherType.Mist) {
+            weather_factor = 70;
+        } else if(weatherType==Weather.WeatherType.Smoke) {
+            weather_factor = 60;
+        } else if(weatherType==Weather.WeatherType.Haze) {
+            weather_factor = 80;
+        } else if(weatherType==Weather.WeatherType.Dust) {
+            weather_factor = 75;
+        } else if(weatherType==Weather.WeatherType.Fog) {
+            weather_factor = 82;
+        } else if(weatherType==Weather.WeatherType.Sand) {
+            weather_factor = 75;
+        } else if(weatherType==Weather.WeatherType.Ash) {
+            weather_factor = 80;
+        } else if(weatherType==Weather.WeatherType.Squall) {
+            weather_factor = 58;
+        } else if(weatherType==Weather.WeatherType.Tornado) {
+            weather_factor = 58;
+        }
+
+        if(userTemperature < -20) {
+            weather_factor -= 25;
+        } else if(userTemperature < -10) {
+            weather_factor -= 10;
+        } else if(userTemperature < 0) {
+            weather_factor -= 5;
+        } else if(userTemperature < 10) {
+            weather_factor -= 2;
+        } else if(userTemperature < 25) {
+            //
+        } else if(userTemperature < 30) {
+            weather_factor -= 4;
+        } else if(userTemperature < 40) {
+            weather_factor -= 8;
+        } else if(userTemperature < 50) {
+            weather_factor -= 18;
+        } else if(userTemperature < 60) {
+            weather_factor -= 25;
+        } else {
+            weather_factor -= 34;
+        }
+
+        return weather_factor;
+    }
+
+    public double withoutStopDrivingCalculator(double userWithoutStopDriving, double userTotalDriving, double userTotalRest, double userTimeHOUR, double userTimeMINUTE) {
+
+
+        double userTime = (userTimeHOUR * 60) + userTimeMINUTE;
+
+        double standardRestTime = 0;
+        if(userTime <= 60) {           // 0  -  1
+            standardRestTime = 140;
+        } else if(userTime <= 120) {   // 1  -  2
+            standardRestTime = 130;
+        } else if(userTime <= 180) {   // 2  -  3
+            standardRestTime = 120;
+        } else if(userTime <= 240) {   // 3  -  4
+            standardRestTime = 100;
+        } else if(userTime <= 300) {   // 4  -  5
+            standardRestTime = 105;
+        } else if(userTime <= 360) {   // 5  -  6
+            standardRestTime = 130;
+        } else if(userTime <= 420) {   // 6  -  7
+            standardRestTime = 150;
+        } else if(userTime <= 480) {   // 7  -  8
+            standardRestTime = 150;
+        } else if(userTime <= 540) {   // 8  -  9
+            standardRestTime = 150;
+        } else if(userTime <= 600) {   // 9  -  10
+            standardRestTime = 150;
+        } else if(userTime <= 660) {   // 10  -  11
+            standardRestTime = 150;
+        } else if(userTime <= 720) {   // 11  -  12
+            standardRestTime = 150;
+        }else if(userTime <= 780) {    // 12  -  13
+            standardRestTime = 145;
+        } else if(userTime <= 840) {   // 13  -  14
+            standardRestTime = 110;
+        } else if(userTime <= 900) {   // 14  -  15
+            standardRestTime = 110;
+        } else if(userTime <= 960) {   // 15  -  16
+            standardRestTime = 110;
+        } else if(userTime <= 1020) {  // 16  -  17
+            standardRestTime = 95;
+        } else if(userTime <= 1080) {  // 17  -  18
+            standardRestTime = 95;
+        } else if(userTime <= 1140) {  // 18  -  19
+            standardRestTime = 100;
+        } else if(userTime <= 1200) {  // 19  -  20
+            standardRestTime = 100;
+        } else if(userTime <= 1260) {  // 20  -  21
+            standardRestTime = 130;
+        } else if(userTime <= 1320) {  // 21  -  22
+            standardRestTime = 140;
+        } else if(userTime <= 1380) {  // 22  -  23
+            standardRestTime = 140;
+        } else if(userTime <= 1440) {  // 23  -  24
+            standardRestTime = 135;
+        }
+
+
+        double rest_factor = 0;
+        if(userWithoutStopDriving <= standardRestTime - 30) {
+            rest_factor = 100;
+        } else if(userWithoutStopDriving <= standardRestTime - 20) {
+            rest_factor = 98;
+        } else if(userWithoutStopDriving <= standardRestTime - 10) {
+            rest_factor = 95;
+        } else if(userWithoutStopDriving <= standardRestTime) {
+            rest_factor = 93;
+        } else if(userWithoutStopDriving <= standardRestTime + 10) {
+            rest_factor = 88;
+        } else if(userWithoutStopDriving <= standardRestTime + 20) {
+            rest_factor = 80;
+        } else if(userWithoutStopDriving <= standardRestTime + 30) {
+            rest_factor = 75;
+        } else if(userWithoutStopDriving <= standardRestTime + 40) {
+            rest_factor = 68;
+        } else if(userWithoutStopDriving <= standardRestTime + 50) {
+            rest_factor = 60;
+        } else if(userWithoutStopDriving <= standardRestTime + 60) {
+            rest_factor = 50;
+        } else if(userWithoutStopDriving <= standardRestTime + 70) {
+            rest_factor = 45;
+        } else if(userWithoutStopDriving <= standardRestTime + 80) {
+            rest_factor = 40;
+        } else if(userWithoutStopDriving <= standardRestTime + 90) {
+            rest_factor = 30;
+        } else if(userWithoutStopDriving <= standardRestTime + 100) {
+            rest_factor = 22;
+        } else if(userWithoutStopDriving <= standardRestTime + 120) {
+            rest_factor = 15;
+        } else if(userWithoutStopDriving <= standardRestTime + 130) {
+            rest_factor = 10;
+        }  else {
+            rest_factor = 0;
+        }
+
+        if(userTotalDriving >= 300) { // 6
+            rest_factor *= 1;
+        } else if(userTotalDriving >= 480) { // 8
+            rest_factor *= 0.95;
+        } else if(userTotalDriving >= 600) { // 10
+            rest_factor *= 0.9;
+        } else if(userTotalDriving >= 720) { // 12
+            rest_factor *= 0.85;
+        } else if(userTotalDriving >= 900) { // 15
+            rest_factor *= 0.8;
+        } else if(userTotalDriving >= 1080) { // 18
+            rest_factor *= 0.7;
+        } else if(userTotalDriving >= 1260) { // 21
+            rest_factor *= 0.6;
+        } else if(userTotalDriving >= 1440) { // 24
+            rest_factor *= 0.5;
+        } else {
+            rest_factor *= 0.4;
+        }
+
+
+        if((userTotalDriving/userTotalRest) <= 3) {
+            rest_factor *= 1.4;
+        } else if((userTotalDriving/userTotalRest) <= 5) {
+            rest_factor *= 1.2;
+        } else if((userTotalDriving/userTotalRest) <= 8) {
+            rest_factor *= 1.1;
+        }  else if((userTotalDriving/userTotalRest) <= 10) {
+            //
+        } else if((userTotalDriving/userTotalRest) <= 13) {
+            rest_factor *= 0.9;
+        } else if((userTotalDriving/userTotalRest) <= 15) {
+            rest_factor *= 0.8;
+        } else if((userTotalDriving/userTotalRest) <= 17) {
+            rest_factor *= 0.7;
+        } else if((userTotalDriving/userTotalRest) <= 19) {
+            rest_factor *= 0.6;
+        } else {
+            rest_factor *= 0.5;
+        }
+
+        if(rest_factor <= 0) {
+            rest_factor = 0;
+        }
+
+        if(rest_factor >= 100) {
+            rest_factor = 100;
+        }
+
+        return rest_factor;
     }
 }

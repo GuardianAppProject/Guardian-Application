@@ -7,11 +7,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.os.StrictMode;
 import android.util.DisplayMetrics;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.guardian.guardian_v1.DriveStatus.Weather;
 import com.guardian.guardian_v1.Transmission.TokenChecker;
 
 import java.io.BufferedReader;
@@ -26,12 +28,22 @@ import java.io.OutputStreamWriter;
 public class MainActivity extends AppCompatActivity {
 
     private static int TIME_OUT = 2500; //Time to launch the another activity
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         TokenChecker.beginCheck(read(),this);
-
+//        if (android.os.Build.VERSION.SDK_INT > 9) {
+//            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+//            StrictMode.setThreadPolicy(policy);
+//        }
+//        StatusCalculator statusCalculator = new StatusCalculator();
+//        try {
+//            statusCalculator.weatherCalculator(42, 324, Weather.WeatherType.Ash);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
         String string = read();
         if(string.length()>=1){

@@ -26,7 +26,7 @@ public class Weather {
         this.Id = Id;
     }
 
-    public static Weather getWeather(int lon, int lat) throws IOException {
+    public static Weather getWeather(double lon, double lat) throws IOException {
         HttpURLConnection connection = (HttpURLConnection) new URL("https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&units=metric&appid=" + KEY).openConnection();
         connection.setRequestMethod("GET");
         BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
