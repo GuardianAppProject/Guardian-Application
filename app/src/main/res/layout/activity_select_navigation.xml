@@ -23,7 +23,7 @@
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="51dp"
+            android:layout_height="46dp"
             android:alpha="1"
             tools:ignore="MissingConstraints">
             <ImageView
@@ -100,7 +100,7 @@
                         android:layout_height="35dp"
                         android:layout_gravity="center"
                         android:layout_marginRight="10dp"
-                        android:layout_marginBottom="6dp"
+                        android:layout_marginBottom="13dp"
                         android:alpha="1"
                         android:fontFamily="@font/iran_sans"
                         android:src="@drawable/blue"
@@ -142,7 +142,7 @@
 
                 <ImageView
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="46dp"
                     android:background="#FFFFFF"
                     android:alpha="0.2"
                     android:elevation="2dp" />

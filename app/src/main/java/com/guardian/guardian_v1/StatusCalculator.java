@@ -2,11 +2,17 @@ package com.guardian.guardian_v1;
 
 
 import com.guardian.guardian_v1.DriveStatus.Shake;
+import com.guardian.guardian_v1.DriveStatus.Time;
 import com.guardian.guardian_v1.DriveStatus.Weather;
 
-import java.io.IOException;
 
 public class StatusCalculator {
+
+    private Time timeObj;
+
+    public StatusCalculator() {
+        timeObj = new Time();
+    }
 
     public double sleepCalculator(double userSleep, double userAwake) {
         double sleep_factor = 0;
@@ -52,6 +58,15 @@ public class StatusCalculator {
         }
 
         sleep_factor *= sleepCoefficient;
+
+        if(sleep_factor <= 0) {
+            sleep_factor = 0;
+        }
+
+        if(sleep_factor >= 100) {
+            sleep_factor = 100;
+        }
+
         return sleep_factor;
     }
 
@@ -128,10 +143,6 @@ public class StatusCalculator {
             speed_factor = 82 - s;
         }
 
-        if(speed_factor <= 0) {
-            speed_factor = 0;
-        }
-
         if(speedLimit >= 110 && userSpeed >= 15) {
             if(userSpeed <= 30) {
                 speed_factor = 70;
@@ -139,6 +150,15 @@ public class StatusCalculator {
                 speed_factor = 77;
             }
         }
+
+        if(speed_factor <= 0) {
+            speed_factor = 0;
+        }
+
+        if(speed_factor >= 100) {
+            speed_factor = 100;
+        }
+
         return speed_factor;
     }
 
@@ -221,6 +241,10 @@ public class StatusCalculator {
             acceleration_factor = 0;
         }
 
+        if(acceleration_factor >= 100) {
+            acceleration_factor = 100;
+        }
+
         return acceleration_factor;
     }
 
@@ -237,6 +261,14 @@ public class StatusCalculator {
             vibration_factor = 45;
         } else if(userVibration== Shake.ShakeSituation.veryHighShake) {
             vibration_factor = 30;
+        }
+
+        if(vibration_factor <= 0) {
+            vibration_factor = 0;
+        }
+
+        if(vibration_factor >= 100) {
+            vibration_factor = 100;
         }
 
         return vibration_factor;
@@ -297,6 +329,14 @@ public class StatusCalculator {
             time_factor = 75;
         }
 
+        if(time_factor <= 0) {
+            time_factor= 0;
+        }
+
+        if(time_factor >= 100) {
+            time_factor = 100;
+        }
+
         return time_factor;
     }
 
@@ -319,6 +359,14 @@ public class StatusCalculator {
         } else if(userWithNearCityDistance <= 60) {
             nearCities_factor = 85;
         } else {
+            nearCities_factor = 100;
+        }
+
+        if(nearCities_factor <= 0) {
+            nearCities_factor = 0;
+        }
+
+        if(nearCities_factor >= 100) {
             nearCities_factor = 100;
         }
 
@@ -353,6 +401,14 @@ public class StatusCalculator {
             month_factor = 80;
         } else if(userMonth == 12) {
             month_factor = 70;
+        }
+
+        if(month_factor <= 0) {
+            month_factor = 0;
+        }
+
+        if(month_factor >= 100) {
+            month_factor = 100;
         }
 
         return month_factor;
@@ -413,6 +469,14 @@ public class StatusCalculator {
             weather_factor -= 25;
         } else {
             weather_factor -= 34;
+        }
+
+        if(weather_factor <= 0) {
+            weather_factor = 0;
+        }
+
+        if(weather_factor >= 100) {
+            weather_factor = 100;
         }
 
         return weather_factor;
@@ -562,5 +626,86 @@ public class StatusCalculator {
         }
 
         return rest_factor;
+    }
+
+    public double trafficCalculator(double userTraffic) {
+
+        double traffic_factor = 0;
+
+        return traffic_factor;
+    }
+
+    public double roadTypeCalculator(double userRoadType, double userRoadLanes, boolean oneWay) {
+
+        double roadType_factor = 0;
+
+        return roadType_factor;
+    }
+
+    public double calculatePercentageAlgorithm() {
+
+        double average = 0;
+
+//        double sleep_factor = sleepCalculator() * 3;
+//        double time_factor = timeCalculator(timeObj.getTimeHOUR(), timeObj.getTimeMINUTE()) * 3;
+//        double speed_factor = speedCalculator() * 3;
+//        double withoutStopDriving_factor = withoutStopDrivingCalculator() * 3;
+//        double weather_factor = weatherCalculator() * 1;
+//        double nearCities_factor = nearCitiesCalculator() * 2;
+//        double vibration_factor = vibrationCalculator() * 2;
+//        double acceleration_factor = accelerationCalculator() * 2.5;
+//        double month_factor = monthCalculator() * 0.8;
+//        double traffic_factor = trafficCalculator() * 1;
+//        double roadType_factor = roadTypeCalculator() * 1;
+//
+//        average = (sleep_factor + time_factor
+//                + speed_factor + withoutStopDriving_factor
+//                + weather_factor + nearCities_factor
+//                + vibration_factor + acceleration_factor
+//                + month_factor + traffic_factor + roadType_factor) / 22.3;
+
+        return average;
+    }
+
+    public String calculateStatusAlgorithm(double percentage) {
+        String status = "";
+        if(percentage >= 90) {
+            status = "بسیار ایمن";
+        } else if(percentage >= 75) {
+            status = "ایمن";
+        } else if(percentage >= 60) {
+            status = "نیازمند دقت";
+        } else if(percentage >= 50) {
+            status = "نیازمند دقت بالا";
+        } else if(percentage >= 40) {
+            status = "ناایمن";
+        } else if(percentage >= 30) {
+            status = "ایمنی بسیار پایین";
+        } else {
+            status = "شرایط نامناسب رانندگی";
+        }
+
+        return status;
+    }
+
+    public int calculateBackgroundAlgorithm(double percentage) {
+        int background = 0;
+        if(percentage >= 90) {
+            background = 1;
+        } else if(percentage >= 75) {
+            background = 2;
+        } else if(percentage >= 60) {
+            background = 3;
+        } else if(percentage >= 50) {
+            background = 4;
+        } else if(percentage >= 40) {
+            background = 5;
+        } else if(percentage >= 30) {
+            background = 6;
+        } else {
+            background = 7;
+        }
+
+        return background;
     }
 }

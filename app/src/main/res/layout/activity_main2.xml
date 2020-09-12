@@ -40,7 +40,7 @@
 
                 <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="41dp"
+                    android:layout_height="40dp"
                     android:alpha="1">
                     <ImageView
                         android:layout_width="match_parent"
@@ -57,7 +57,7 @@
                         <Button
                             android:layout_width="25dp"
                             android:layout_height="25dp"
-                            android:layout_marginTop="10dp"
+                            android:layout_marginTop="9dp"
                             android:layout_marginStart="12dp"
                             android:background="@drawable/menu_icon"
                             style="?android:attr/borderlessButtonStyle"
@@ -82,7 +82,7 @@
 
                     <FrameLayout
                         android:layout_width="164dp"
-                        android:layout_height="41dp"
+                        android:layout_height="40dp"
                         android:layout_gravity="right"
                         android:layout_marginEnd="8dp"
                         android:layout_marginRight="8dp">
@@ -283,6 +283,7 @@
                         android:layout_gravity="bottom|center">
 
                         <ImageView
+                            android:id="@+id/driving_background"
                             android:layout_width="142dp"
                             android:layout_height="142dp"
                             android:layout_gravity="bottom|center"
@@ -290,7 +291,7 @@
                             android:src="@drawable/circle_gradient_green" />
 
                         <TextView
-                            android:id="@+id/menu_label"
+                            android:id="@+id/driving_percentage"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -302,11 +303,13 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/driving_status"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginTop="24dp"
                             android:text="safe"
+                            android:textSize="12sp"
                             android:textColor="#000000" />
 
                     </FrameLayout>
@@ -326,7 +329,7 @@
             android:layout_marginBottom="112dp"
             android:gravity="center"
             android:background="@drawable/rectangle_alert_background"
-            android:alpha="0.62">
+            android:alpha="0.82">
 
 
             <LinearLayout

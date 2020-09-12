@@ -8,6 +8,7 @@ import android.speech.tts.TextToSpeech;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -102,6 +103,12 @@ public class Main extends AppCompatActivity implements OnMapReadyCallback,
     private DrawerLayout mDrawer;
     private NavigationView nvDrawer;
 
+    // Algorithm
+    private TextView algorithmPercentageText;
+    private TextView algorithmStatusText;
+    private ImageView algorithmBackground;
+    private StatusCalculator statusCalculator;
+
     // Make sure to be using androidx.appcompat.app.ActionBarDrawerToggle version.
     private ActionBarDrawerToggle drawerToggle;
 
@@ -170,6 +177,11 @@ public class Main extends AppCompatActivity implements OnMapReadyCallback,
                 openDrawer();
             }
         });
+
+        algorithmPercentageText = findViewById(R.id.driving_percentage);
+        algorithmStatusText = findViewById(R.id.driving_status);
+        algorithmBackground = findViewById(R.id.driving_background);
+        statusCalculator = new StatusCalculator();
     }
 
     public void openDrawer(){
@@ -248,6 +260,36 @@ public class Main extends AppCompatActivity implements OnMapReadyCallback,
         mDrawer.closeDrawers();
 
     }
+
+    private void callAlgorithmLogic() {
+        double percentage = statusCalculator.calculatePercentageAlgorithm();
+        algorithmPercentageText.setText(String.valueOf(percentage));
+        algorithmStatusText.setText(statusCalculator.calculateStatusAlgorithm(percentage));
+
+        int backgroundNumber = statusCalculator.calculateBackgroundAlgorithm(percentage);
+        if(backgroundNumber == 1) {
+            algorithmBackground.setImageResource(R.drawable.circle_gradient_green);
+        } else if(backgroundNumber == 2) {
+            algorithmBackground.setImageResource(R.drawable.circle_gradient_lightgreen);
+        } else if(backgroundNumber == 3) {
+            algorithmBackground.setImageResource(R.drawable.circle_gardient_yellow);
+        } else if(backgroundNumber == 4) {
+            algorithmBackground.setImageResource(R.drawable.circle_gradient_orange);
+        } else if(backgroundNumber == 5) {
+            algorithmBackground.setImageResource(R.drawable.circle_gradient_darkorange);
+        } else if(backgroundNumber == 6) {
+            algorithmBackground.setImageResource(R.drawable.circle_gradient_lightred);
+        } else if(backgroundNumber == 7) {
+            algorithmBackground.setImageResource(R.drawable.circle_gradient_red);
+        }
+    }
+
+
+
+
+
+
+
 
 
 
