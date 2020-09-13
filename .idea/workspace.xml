@@ -15,8 +15,10 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="67a06c7f-067f-49e3-b362-cfd4a198deb2" name="Default Changelist" comment="fix some changes">
+    <list default="true" id="67a06c7f-067f-49e3-b362-cfd4a198deb2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guardian/guardian_v1/SignIn.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/guardian/guardian_v1/SignIn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guardian/guardian_v1/SignUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/guardian/guardian_v1/SignUp.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +65,7 @@
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/res/drawable" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Dependencies" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
@@ -225,13 +227,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1584196797666</updated>
-    </task>
-    <task id="LOCAL-00006" summary="edit UI">
-      <created>1595843606948</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1595843606948</updated>
     </task>
     <task id="LOCAL-00007" summary="some changes">
       <created>1595870085240</created>
@@ -569,7 +564,14 @@
       <option name="project" value="LOCAL" />
       <updated>1600008031072</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="fix sth">
+      <created>1600011396762</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1600011396762</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -586,7 +588,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="do some changes" />
     <MESSAGE value="change UI of MainPage a lot with Mehdi's UI Design pictures" />
     <MESSAGE value="make changes better" />
     <MESSAGE value="some changes at UI" />
@@ -611,7 +612,8 @@
     <MESSAGE value="Algorithm: Time&#10;+ Without Stop Driving&#10;+ Weather&#10;&#10;+ make some changes to app" />
     <MESSAGE value="complete work of Algorithm&#10;+ call algorithm &#10;+ make it connected to the percentage box&#10;+ some UI changes" />
     <MESSAGE value="fix some changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix some changes" />
+    <MESSAGE value="fix sth" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix sth" />
   </component>
   <component name="WindowStateProjectService">
     <state x="589" y="199" key="#Guardian_v1-app" timestamp="1596375084883">
@@ -622,10 +624,10 @@
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
     <state x="496" y="225" key="#Notifications/0.0.1792.1120@0.0.1792.1120" timestamp="1599926236296" />
-    <state x="421" y="299" key="#PSD" timestamp="1595998027535">
+    <state x="421" y="299" key="#PSD" timestamp="1600012217278">
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
-    <state x="421" y="299" key="#PSD/0.0.1792.1120@0.0.1792.1120" timestamp="1595998027535" />
+    <state x="421" y="299" key="#PSD/0.0.1792.1120@0.0.1792.1120" timestamp="1600012217278" />
     <state x="496" y="222" key="#Updates" timestamp="1596446531929">
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
@@ -655,10 +657,10 @@
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
     <state x="751" y="432" key="AndroidCreateXmlResourceDialog/0.0.1792.1120@0.0.1792.1120" timestamp="1599498819956" />
-    <state x="573" y="162" key="CommitChangelistDialog2" timestamp="1600009234725">
+    <state x="573" y="162" key="CommitChangelistDialog2" timestamp="1600011396649">
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
-    <state x="573" y="162" key="CommitChangelistDialog2/0.0.1792.1120@0.0.1792.1120" timestamp="1600009234725" />
+    <state x="573" y="162" key="CommitChangelistDialog2/0.0.1792.1120@0.0.1792.1120" timestamp="1600011396649" />
     <state x="180" y="101" key="DiffContextDialog" timestamp="1599254752103">
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
@@ -703,10 +705,10 @@
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
     <state x="397" y="199" key="SettingsEditor/0.0.1792.1120@0.0.1792.1120" timestamp="1598613642910" />
-    <state x="496" y="300" key="Vcs.Push.Dialog.v2" timestamp="1600009549717">
+    <state x="496" y="300" key="Vcs.Push.Dialog.v2" timestamp="1600011401548">
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
-    <state x="496" y="300" key="Vcs.Push.Dialog.v2/0.0.1792.1120@0.0.1792.1120" timestamp="1600009549717" />
+    <state x="496" y="300" key="Vcs.Push.Dialog.v2/0.0.1792.1120@0.0.1792.1120" timestamp="1600011401548" />
     <state x="673" y="345" key="chooseDestDirectoryDialog" timestamp="1599251694580">
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
@@ -723,10 +725,10 @@
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
     <state x="676" y="484" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1792.1120@0.0.1792.1120" timestamp="1600008479771" />
-    <state x="546" y="358" key="git4idea.merge.GitPullDialog" timestamp="1600009555927">
+    <state x="546" y="358" key="git4idea.merge.GitPullDialog" timestamp="1600011411149">
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
-    <state x="546" y="358" key="git4idea.merge.GitPullDialog/0.0.1792.1120@0.0.1792.1120" timestamp="1600009555927" />
+    <state x="546" y="358" key="git4idea.merge.GitPullDialog/0.0.1792.1120@0.0.1792.1120" timestamp="1600011411149" />
     <state x="561" y="251" width="670" height="676" key="search.everywhere.popup" timestamp="1600007486284">
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
