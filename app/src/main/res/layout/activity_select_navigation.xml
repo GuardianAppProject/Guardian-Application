@@ -23,7 +23,7 @@
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="46dp"
+            android:layout_height="48dp"
             android:alpha="1"
             tools:ignore="MissingConstraints">
             <ImageView
@@ -187,7 +187,7 @@
             android:layout_height="wrap_content"
             android:background="#B6F485"
             android:gravity="center_horizontal"
-            android:paddingTop="12dp"
+            android:paddingTop="9dp"
             android:text="@string/activity_selectNav_description"
             android:textAlignment="center"
             android:textSize="19dp"
@@ -195,7 +195,7 @@
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteX="63dp"
             android:fontFamily="@font/iran_sans"
-            android:paddingBottom="16dp"/>
+            android:paddingBottom="11dp"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

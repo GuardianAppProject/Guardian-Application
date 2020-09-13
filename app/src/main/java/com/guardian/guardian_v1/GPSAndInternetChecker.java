@@ -8,6 +8,7 @@ import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.provider.Settings;
+import android.view.View;
 
 public class GPSAndInternetChecker {
     public static boolean check(Context context){
@@ -25,14 +26,15 @@ public class GPSAndInternetChecker {
 
     public static void showInternetAlert(final Context context){
         new AlertDialog.Builder(context)
-                .setMessage("no Internet")
-                .setPositiveButton("WIFI", new DialogInterface.OnClickListener() {
+                .setTitle("عدم اتصال به اینترنت                 ")
+                .setMessage("اتصال شما به اینترنت برقرار نیست. برای استفاده از گاردین به اینترنت متصل شوید!")
+                .setPositiveButton("اینترنت Wi-Fi", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface paramDialogInterface, int paramInt) {
                         context.startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
                     }
                 })
-                .setNegativeButton("DATA",new DialogInterface.OnClickListener() {
+                .setNegativeButton("اینترنت موبایل",new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface paramDialogInterface, int paramInt) {
                         context.startActivity(new Intent(Settings.ACTION_DATA_USAGE_SETTINGS));
@@ -45,7 +47,8 @@ public class GPSAndInternetChecker {
 
     public static void showGPSAlert(final Context context){
         new AlertDialog.Builder(context)
-                .setMessage("no GPS")
+                .setTitle("عدم فعال بودن GPS                  ")
+                .setMessage("برای استفاده از گاردین لطفا GPS تلفن همراه خود را روشن نمایید.")
                 .setPositiveButton("Setting", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface paramDialogInterface, int paramInt) {

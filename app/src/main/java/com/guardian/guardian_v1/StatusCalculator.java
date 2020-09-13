@@ -5,8 +5,12 @@ import com.guardian.guardian_v1.DriveStatus.Shake;
 import com.guardian.guardian_v1.DriveStatus.Time;
 import com.guardian.guardian_v1.DriveStatus.Weather;
 
+import java.util.ArrayList;
+
 
 public class StatusCalculator {
+
+    ArrayList<String> alerts;
 
     private Time timeObj;
 
@@ -646,23 +650,23 @@ public class StatusCalculator {
 
         double average = 0;
 
-//        double sleep_factor = sleepCalculator() * 3;
-//        double time_factor = timeCalculator(timeObj.getTimeHOUR(), timeObj.getTimeMINUTE()) * 3;
-//        double speed_factor = speedCalculator() * 3;
-//        double withoutStopDriving_factor = withoutStopDrivingCalculator() * 3;
-//        double weather_factor = weatherCalculator() * 1;
-//        double nearCities_factor = nearCitiesCalculator() * 2;
-//        double vibration_factor = vibrationCalculator() * 2;
-//        double acceleration_factor = accelerationCalculator() * 2.5;
-//        double month_factor = monthCalculator() * 0.8;
-//        double traffic_factor = trafficCalculator() * 1;
-//        double roadType_factor = roadTypeCalculator() * 1;
-//
-//        average = (sleep_factor + time_factor
-//                + speed_factor + withoutStopDriving_factor
-//                + weather_factor + nearCities_factor
-//                + vibration_factor + acceleration_factor
-//                + month_factor + traffic_factor + roadType_factor) / 22.3;
+        double sleep_factor = 0; //sleepCalculator() * 3;
+        double time_factor = 0; // timeCalculator(timeObj.getTimeHOUR(), timeObj.getTimeMINUTE()) * 3;
+        double speed_factor = 0; // speedCalculator() * 3;
+        double withoutStopDriving_factor = 0; // withoutStopDrivingCalculator() * 3;
+        double weather_factor = 0; // weatherCalculator() * 1;
+        double nearCities_factor = 0; // nearCitiesCalculator() * 2;
+        double vibration_factor = 0; // vibrationCalculator() * 2;
+        double acceleration_factor = 0; // accelerationCalculator() * 2.5;
+        double month_factor = 0; // monthCalculator() * 0.8;
+        double traffic_factor = 0; // trafficCalculator() * 1;
+        double roadType_factor = 0; // roadTypeCalculator() * 1;
+
+        average = (sleep_factor + time_factor
+                + speed_factor + withoutStopDriving_factor
+                + weather_factor + nearCities_factor
+                + vibration_factor + acceleration_factor
+                + month_factor + traffic_factor + roadType_factor) / 22.3;
 
         return average;
     }
@@ -707,5 +711,148 @@ public class StatusCalculator {
         }
 
         return background;
+    }
+
+    public String sleepAlert(double sleep_factor) {
+
+        String sleep_alert = "";
+        if(sleep_factor <= 65) {
+            sleep_alert = "بهتر است در اولین فرصت کمی استراحت کنید.";
+        } else if(sleep_factor <= 50) {
+            sleep_alert = "خواب شما به میزان کافی نبوده است.";
+        } else if(sleep_factor <= 30) {
+            sleep_alert = "شرایط خواب شما برای رانندگی اصلا مناسب نیست!";
+        }
+        return sleep_alert;
+    }
+
+    public String speedAlert(double speed_factor) {
+
+        String speed_alert = "";
+        if(speed_factor <= 65) {
+            speed_alert = "کمی از سرعت خود بکاهید.";
+        } else if(speed_factor <= 50) {
+            speed_alert = "سرعت شما بسیار زیاد است.";
+        } else if(speed_factor <= 30) {
+            speed_alert = "سرعت شما به شدن خطرناک است!";
+        }
+        return speed_alert;
+    }
+
+    public String accelerationAlert(double acceleration_factor) {
+
+        String acceleration_alert = "";
+        if(acceleration_factor <= 65) {
+            acceleration_alert = "کمی در افزایش و کاهش سرعت دقت کنید.";
+        } else if(acceleration_factor <= 50) {
+            acceleration_alert = "شتاب خودرویتان را متعادل تر کنید.";
+        } else if(acceleration_factor <= 30) {
+            acceleration_alert = "شتاب خودروی شما خطرناک است!";
+        }
+        return acceleration_alert;
+    }
+
+    public String vibrationAlert(double vibration_factor) {
+
+        String vibration_alert = "";
+        if(vibration_factor <= 65) {
+            vibration_alert = "لرزش خودروی شما بیش از حد است؛ کمی دقت کنید.";
+        } else if(vibration_factor <= 50) {
+            vibration_alert = "لرزش خودروی شما زیاد است؛ دقت کنید.";
+        } else if(vibration_factor <= 30) {
+            vibration_alert = "لرزش خودروی شما به شدت زیاد است!";
+        }
+        return vibration_alert;
+    }
+
+    public String timeAlert(double time_factor) {
+
+        String time_alert = "";
+        if(time_factor <= 65) {
+            time_alert = "این زمان رانندگی پرخطر است؛ کمی بیشتر دقت کنید.";
+        } else if(time_factor <= 50) {
+            time_alert = "زمان بسیار خطرناک است؛ با دقت رانندگی کنید.";
+        } else if(time_factor <= 30) {
+            time_alert = "ساعت اوج تصادف؛ بسیار مراقب باشید!";
+        }
+        return time_alert;
+    }
+
+    public String nearCitiesAlert(double nearCities_factor) {
+
+        String nearCities_alert = "";
+        if(nearCities_factor <= 65) {
+            nearCities_alert = "منطقه ی حادثه خیز؛ دقت کنید.";
+        } else if(nearCities_factor <= 50) {
+            nearCities_alert = "منطقه ی پرتصادف؛ با دقت بیشتری رانندگی کنید.";
+        } else if(nearCities_factor <= 30) {
+            nearCities_alert = "منطقه ی بسیار حادثه خیز؛ با هوشیاری رانندگی کنید!";
+        }
+        return nearCities_alert;
+    }
+
+    public String monthAlert(double month_factor) {
+
+        String month_alert = "";
+        if(month_factor <= 65) {
+            month_alert = "زمان حادثه خیز؛ مراقب باشید.";
+        } else if(month_factor <= 50) {
+            month_alert = "زمان بسیار حادثه خیز؛ در رانندگی دقت بیشتری کنید.";
+        } else if(month_factor <= 30) {
+            month_alert = "زمان اوج تصادف؛ بیشتر مراقب باشید!";
+        }
+        return month_alert;
+    }
+
+    public String weatherAlert(double weather_factor) {
+
+        String weather_alert = "";
+        if(weather_factor <= 65) {
+            weather_alert = "آب و هوا کمی نامناسب است؛ مراقب باشید.";
+        } else if(weather_factor <= 50) {
+            weather_alert = "آب و هوا بد است؛ در رانندگی بیشتر دقت کنید.";
+        } else if(weather_factor <= 30) {
+            weather_alert = "هوا بسیار بد است؛ بسیار مراقب باشید!";
+        }
+        return weather_alert;
+    }
+
+    public String withoutStopAlert(double withoutStop_factor) {
+
+        String withoutStop_alert = "";
+        if(withoutStop_factor <= 65) {
+            withoutStop_alert = "زمان رانندگی شما زیاد شده؛ کمی استراحت کنید.";
+        } else if(withoutStop_factor <= 50) {
+            withoutStop_alert = "زمان رانندگی شما بسیار زیاد شده؛ لطفا کمی استراحت کنید.";
+        } else if(withoutStop_factor <= 30) {
+            withoutStop_alert = "زمان بسیار طولانی رانندگی کرده اید؛ استراحت کنید!";
+        }
+        return withoutStop_alert;
+    }
+
+    public String trafficAlert(double traffic_factor) {
+
+        String traffic_alert = "";
+        if(traffic_factor <= 65) {
+            traffic_alert = "مسیر ترافیک کمی دارد؛ لطفا دقت کنید.";
+        } else if(traffic_factor <= 50) {
+            traffic_alert = "ترافیک مسیر سنگین است؛ بسیار دقت کنید.";
+        } else if(traffic_factor <= 30) {
+            traffic_alert = "ترافیک خیلی زیاد است؛ با دقت ادامه دهید!";
+        }
+        return traffic_alert;
+    }
+
+    public String roadTypeAlert(double roadType_factor) {
+
+        String roadType_alert = "";
+        if(roadType_factor <= 65) {
+            roadType_alert = "جاده مناسب نیست؛ دقت کنید.";
+        } else if(roadType_factor <= 50) {
+            roadType_alert = "جاده بسیار نامناسب است؛ با دقت بیشتری ادامه دهید.";
+        } else if(roadType_factor <= 30) {
+            roadType_alert = "جاده بسیار خطرناک است؛ بسیار دقت کنید!";
+        }
+        return roadType_alert;
     }
 }

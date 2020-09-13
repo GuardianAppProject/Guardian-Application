@@ -17,8 +17,8 @@
         android:scaleType="fitCenter" />
 
         <ImageView
-            android:layout_width="60dp"
-            android:layout_height="45dp"
+            android:layout_width="45dp"
+            android:layout_height="35dp"
             android:src="@drawable/tour"
             android:layout_gravity="center" />
 

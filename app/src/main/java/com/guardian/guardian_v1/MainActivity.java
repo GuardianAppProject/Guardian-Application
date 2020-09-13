@@ -9,7 +9,9 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.StrictMode;
 import android.util.DisplayMetrics;
+import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -25,6 +27,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
+import static java.lang.Thread.sleep;
+
 public class MainActivity extends AppCompatActivity {
 
     private static int TIME_OUT = 2500; //Time to launch the another activity
@@ -33,6 +37,34 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        Button retryButton = findViewById(R.id.retryButton);
+
+        retryButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if(!GPSAndInternetChecker.check(MainActivity.this)) {
+                    retryButton.setVisibility(View.VISIBLE);
+                } else {
+
+                    retryButton.setVisibility(View.INVISIBLE);
+                    startApp();
+                }
+            }
+        });
+
+        if(!GPSAndInternetChecker.check(MainActivity.this)) {
+            retryButton.setVisibility(View.VISIBLE);
+
+        }
+
+        if(retryButton.getVisibility()==View.INVISIBLE) {
+           startApp();
+        }
+
+    }
+
+    private void startApp() {
         TokenChecker.beginCheck(read(),this);
 //        if (android.os.Build.VERSION.SDK_INT > 9) {
 //            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -66,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
 //                finish();
 //            }
 //        }, TIME_OUT);
+
 
 
 
@@ -110,8 +143,10 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }, TIME_OUT);
 
-                startActivity(new Intent(MainActivity.this, SignUp.class));
-                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+
+                    startActivity(new Intent(MainActivity.this, SignUp.class));
+                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+
             }
 
         }.start();
@@ -164,4 +199,14 @@ public class MainActivity extends AppCompatActivity {
         }
         return string;
     }
+
+    private void checkToken() {
+        System.out.println("dsafdasf");
+        if(TokenChecker.tokenIsValid()){
+            Intent i = new Intent(MainActivity.this, SeatBelt.class);
+            startActivity(i);
+            finish();
+        }
+    }
+
 }

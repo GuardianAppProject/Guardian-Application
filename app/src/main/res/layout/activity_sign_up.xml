@@ -86,7 +86,7 @@
                     android:gravity="center_horizontal|center_vertical"
                     android:textAlignment="center"
                     android:nextFocusDown="@id/password"
-                    android:maxLength="14"
+                    android:maxLength="20"
                     android:singleLine="true"
                     android:textSize="17sp"/>
 
@@ -137,7 +137,7 @@
                     android:gravity="center_horizontal|center_vertical"
                     android:textAlignment="center"
                     android:nextFocusDown="@id/phoneNum"
-                    android:maxLength="14"
+                    android:maxLength="20"
                     android:singleLine="true"
                     android:textSize="17sp" />
 

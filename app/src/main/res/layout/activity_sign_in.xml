@@ -85,7 +85,7 @@
                     android:gravity="center_horizontal|center_vertical"
                     android:textAlignment="center"
                     android:nextFocusDown="@id/password"
-                    android:maxLength="14"
+                    android:maxLength="20"
                     android:singleLine="true"
                     android:textSize="17sp" />
 
@@ -133,7 +133,7 @@
                     android:background="@drawable/edit_text_background"
                     android:gravity="center_horizontal|center_vertical"
                     android:textAlignment="center"
-                    android:maxLength="14"
+                    android:maxLength="20"
                     android:singleLine="true"
                     android:textSize="17sp" />
 
@@ -191,7 +191,7 @@
         android:id="@+id/signInProgress"
         android:elevation="10dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="120dp"
+        android:layout_marginBottom="115dp"
         android:layout_centerHorizontal="true"
         android:padding="13dp"
         android:visibility="invisible">
