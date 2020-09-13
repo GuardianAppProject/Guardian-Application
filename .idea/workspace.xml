@@ -15,7 +15,9 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="67a06c7f-067f-49e3-b362-cfd4a198deb2" name="Default Changelist" comment="fix some changes" />
+    <list default="true" id="67a06c7f-067f-49e3-b362-cfd4a198deb2" name="Default Changelist" comment="fix some changes">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -701,10 +703,10 @@
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
     <state x="397" y="199" key="SettingsEditor/0.0.1792.1120@0.0.1792.1120" timestamp="1598613642910" />
-    <state x="496" y="300" key="Vcs.Push.Dialog.v2" timestamp="1600009139407">
+    <state x="496" y="300" key="Vcs.Push.Dialog.v2" timestamp="1600009549717">
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
-    <state x="496" y="300" key="Vcs.Push.Dialog.v2/0.0.1792.1120@0.0.1792.1120" timestamp="1600009139407" />
+    <state x="496" y="300" key="Vcs.Push.Dialog.v2/0.0.1792.1120@0.0.1792.1120" timestamp="1600009549717" />
     <state x="673" y="345" key="chooseDestDirectoryDialog" timestamp="1599251694580">
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
@@ -721,10 +723,10 @@
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
     <state x="676" y="484" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1792.1120@0.0.1792.1120" timestamp="1600008479771" />
-    <state x="546" y="358" key="git4idea.merge.GitPullDialog" timestamp="1600009329374">
+    <state x="546" y="358" key="git4idea.merge.GitPullDialog" timestamp="1600009555927">
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
-    <state x="546" y="358" key="git4idea.merge.GitPullDialog/0.0.1792.1120@0.0.1792.1120" timestamp="1600009329374" />
+    <state x="546" y="358" key="git4idea.merge.GitPullDialog/0.0.1792.1120@0.0.1792.1120" timestamp="1600009555927" />
     <state x="561" y="251" width="670" height="676" key="search.everywhere.popup" timestamp="1600007486284">
       <screen x="0" y="0" width="1792" height="1120" />
     </state>

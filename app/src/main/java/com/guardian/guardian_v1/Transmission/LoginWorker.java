@@ -1,7 +1,6 @@
 package com.guardian.guardian_v1.Transmission;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.TextView;
@@ -89,7 +88,7 @@ public class LoginWorker extends AsyncTask<String,Void,String> {
         toast = Toast.makeText(context,result,Toast.LENGTH_LONG);
         toast.show();
 
-        TextView messageText = ((Activity)context).findViewById(R.id.messageTextSingIn);
+        TextView messageText = ((Activity)context).findViewById(R.id.messageTextSignIn);
         if(result.contains("login complete")) {
             messageText.setText("لطفا چند لحظه منتظر بمانید.");
             messageText.setTextColor(context.getResources().getColor(R.color.colorPositiveError));
