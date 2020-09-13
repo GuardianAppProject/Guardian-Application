@@ -25,6 +25,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import static java.lang.Thread.sleep;
+
 public class MyAccount extends AppCompatActivity {
 
     @Override
@@ -50,6 +52,7 @@ public class MyAccount extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onClickEdit();
+
             }
         });
 
@@ -98,6 +101,13 @@ public class MyAccount extends AppCompatActivity {
         EditWorker editWorker = new EditWorker(this);
         editWorker.execute("edit",getToken(),editText.getText().toString());
         Toast.makeText(this,getToken() + "   " + editText.getText().toString(),Toast.LENGTH_LONG).show();
+        TokenChecker.beginCheck(read(),this);
+        try {
+            sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        updatePrivateData();
     }
 
     private void updatePrivateData(){
@@ -108,5 +118,29 @@ public class MyAccount extends AppCompatActivity {
         username.setText(TokenChecker.getUsername());
         phoneNum.setText(TokenChecker.getPhoneNum());
         userPass.setText(TokenChecker.getUserPass());
+    }
+
+    public String read(){
+        //reading text from file
+        String string = "";
+        try {
+            FileInputStream fileIn=openFileInput("tokenFile.txt");
+            InputStreamReader InputRead= new InputStreamReader(fileIn);
+
+            char[] inputBuffer= new char[10000];
+
+            int charRead;
+
+            while ((charRead=InputRead.read(inputBuffer))>0) {
+                // char to string conversion
+                String readstring=String.copyValueOf(inputBuffer,0,charRead);
+                string +=readstring;
+            }
+            InputRead.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return string;
     }
 }

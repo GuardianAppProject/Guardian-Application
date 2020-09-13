@@ -30,6 +30,7 @@
         <activity android:name=".SeatBelt" />
         <activity android:name=".Main" />
         <activity android:name=".SignUp" />
+       <activity android:name=".SleepManager.SleepManagerActivity"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -42,6 +43,12 @@
             android:launchMode="singleTop"
             android:process=":yourService"
             />
+        <service
+            android:name=".SleepManager.SleepDetectorService"
+            android:launchMode="singleTop"
+            android:process=":yourService2"
+            />
+
     </application>
 
 </manifest>
