@@ -72,7 +72,7 @@ public class SignUp extends AppCompatActivity {
                 }
                 if(!isRegisterResultValid()) return;
 
-                Intent i = new Intent(SignUp.this, SeatBelt.class);
+                Intent i = new Intent(SignUp.this, SignIn.class);
                 startActivity(i);
                 finish();
             }
