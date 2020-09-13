@@ -1,0 +1,737 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AndroidLayouts">
+    <shared>
+      <config>
+        <device id="pixel" />
+        <device id="Nexus 7 2013" />
+        <device id="pixel_xl" />
+        <device id="pixel_3_xl" />
+        <device id="pixel_3" />
+      </config>
+    </shared>
+  </component>
+  <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="67a06c7f-067f-49e3-b362-cfd4a198deb2" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="Nexus_6_API_R" />
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view />
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="layoutResourceFile" />
+        <option value="Enum" />
+        <option value="valueResourceFile" />
+        <option value="resourceFile" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1Z7izn107HomgkeRRZ0chf5JKrX" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/res/drawable" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.17" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="show.migrate.to.gradle.popup" value="false" />
+    <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/app/src/main/res/drawable/Road.png" />
+  </component>
+  <component name="PsdUISettings">
+    <option name="MODULE_TAB" value="Properties" />
+    <option name="LAST_EDITED_SIGNING_CONFIG" value="debug" />
+    <option name="LAST_EDITED_BUILD_TYPE" value="release" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/src/main/res/drawable" />
+      <recent name="$PROJECT_DIR$/app/src/main/res/font" />
+      <recent name="$PROJECT_DIR$/app/src/main/res/drawable-mdpi" />
+      <recent name="$PROJECT_DIR$/app/src/main/res/layout-v21" />
+      <recent name="$PROJECT_DIR$/app/src/main/res/drawable-xxhdpi" />
+    </key>
+    <key name="android.template.packageName">
+      <recent name="com.guardian.guardian_v1" />
+    </key>
+    <key name="android.template.1882513603">
+      <recent name="com.guardian.guardian_v1" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/src/main/res/drawable-mdpi" />
+      <recent name="$PROJECT_DIR$/app/src/main/res/drawable" />
+      <recent name="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi" />
+    </key>
+    <key name="android.template.664190046">
+      <recent name="com.guardian.guardian_v1" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.guardian.guardian_v1" />
+    </key>
+    <key name="android.template.1156747251">
+      <recent name="com.guardian.guardian_v1" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Android App.app">
+    <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Guardian_v1-app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
+      <module name="Guardian_v1-app" />
+      <option name="DEPLOY" value="true" />
+      <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
+      <option name="DEPLOY_AS_INSTANT" value="false" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="PM_INSTALL_OPTIONS" value="" />
+      <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
+      <option name="ACTIVITY_EXTRA_FLAGS" value="" />
+      <option name="MODE" value="default_activity" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
+      <option name="FORCE_STOP_RUNNING_APP" value="true" />
+      <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
+      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
+      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
+      <option name="DEBUGGER_TYPE" value="Auto" />
+      <Auto>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Auto>
+      <Hybrid>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Hybrid>
+      <Java />
+      <Native>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Native>
+      <Profilers>
+        <option name="ADVANCED_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Sample Java Methods" />
+      </Profilers>
+      <option name="DEEP_LINK" value="" />
+      <option name="ACTIVITY_CLASS" value="" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
+      <module name="app" />
+      <option name="DEPLOY" value="true" />
+      <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
+      <option name="DEPLOY_AS_INSTANT" value="false" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="PM_INSTALL_OPTIONS" value="" />
+      <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
+      <option name="ACTIVITY_EXTRA_FLAGS" value="" />
+      <option name="MODE" value="default_activity" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
+      <option name="FORCE_STOP_RUNNING_APP" value="true" />
+      <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
+      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
+      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
+      <option name="DEBUGGER_TYPE" value="Auto" />
+      <Auto>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Auto>
+      <Hybrid>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Hybrid>
+      <Java />
+      <Native>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Native>
+      <Profilers>
+        <option name="ADVANCED_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Sample Java Methods" />
+      </Profilers>
+      <option name="DEEP_LINK" value="" />
+      <option name="ACTIVITY_CLASS" value="" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="67a06c7f-067f-49e3-b362-cfd4a198deb2" name="Default Changelist" comment="" />
+      <created>1584196797666</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1584196797666</updated>
+    </task>
+    <task id="LOCAL-00006" summary="edit UI">
+      <created>1595843606948</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1595843606948</updated>
+    </task>
+    <task id="LOCAL-00007" summary="some changes">
+      <created>1595870085240</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1595870085240</updated>
+    </task>
+    <task id="LOCAL-00008" summary="create menu pages and style them!">
+      <created>1595938486769</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1595938486769</updated>
+    </task>
+    <task id="LOCAL-00009" summary="DriveStatusCalculator Class added!">
+      <created>1596104071807</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1596104071807</updated>
+    </task>
+    <task id="LOCAL-00010" summary="DriveStatusCalculator Class added!">
+      <created>1596715089723</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1596715089723</updated>
+    </task>
+    <task id="LOCAL-00011" summary="edit names and extract them as strings to strings.xml">
+      <created>1596813525391</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1596813525391</updated>
+    </task>
+    <task id="LOCAL-00012" summary="edit names and extract them as strings to strings.xml">
+      <created>1596814247110</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1596814247110</updated>
+    </task>
+    <task id="LOCAL-00013" summary="change fonts and do something to fix sizes">
+      <created>1596818317188</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1596818317188</updated>
+    </task>
+    <task id="LOCAL-00014" summary="change something at navigation">
+      <created>1596824046944</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1596824046944</updated>
+    </task>
+    <task id="LOCAL-00015" summary="change something at navigation">
+      <created>1598087851391</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1598087851391</updated>
+    </task>
+    <task id="LOCAL-00016" summary="make some pages Responsive">
+      <created>1598888572531</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1598888572531</updated>
+    </task>
+    <task id="LOCAL-00017" summary="make something Responsive again">
+      <created>1598889118089</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1598889118089</updated>
+    </task>
+    <task id="LOCAL-00018" summary="make something Responsive again!!">
+      <created>1598889199591</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1598889199591</updated>
+    </task>
+    <task id="LOCAL-00019" summary="first commit at new Repository">
+      <created>1598889889743</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1598889889743</updated>
+    </task>
+    <task id="LOCAL-00020" summary="make settings page and the feature that can make map routing to Dark mode or Light mode!">
+      <created>1598963243274</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1598963243274</updated>
+    </task>
+    <task id="LOCAL-00021" summary="add ProgressBar at waiting moments to get logged in!&#10;+ add Lock button and make password *&#10;+ add dialog to show errors at SignUp and SignIn">
+      <created>1598983550908</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1598983550908</updated>
+    </task>
+    <task id="LOCAL-00022" summary="add Light Mode and Dark Mode to Navigation Routing &#10;+ save data&#10;+ add its switch to the Settings of the application">
+      <created>1598985319811</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1598985319811</updated>
+    </task>
+    <task id="LOCAL-00023" summary="edit something">
+      <created>1598985364445</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1598985364445</updated>
+    </task>
+    <task id="LOCAL-00024" summary="add navigation drawer menu to SelectNavigation Activity&#10;+ make something new at its UI">
+      <created>1598991187513</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1598991187513</updated>
+    </task>
+    <task id="LOCAL-00025" summary="edit some colors!">
+      <created>1598991669130</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1598991669130</updated>
+    </task>
+    <task id="LOCAL-00026" summary="edit something">
+      <created>1598992987966</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1598992987966</updated>
+    </task>
+    <task id="LOCAL-00027" summary="edit something">
+      <created>1598993111837</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1598993111837</updated>
+    </task>
+    <task id="LOCAL-00028" summary="make dialog better!">
+      <created>1598998502321</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1598998502322</updated>
+    </task>
+    <task id="LOCAL-00029" summary="do some changes">
+      <created>1599038683465</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1599038683466</updated>
+    </task>
+    <task id="LOCAL-00030" summary="change UI of MainPage a lot with Mehdi's UI Design pictures">
+      <created>1599253069176</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1599253069176</updated>
+    </task>
+    <task id="LOCAL-00031" summary="make changes better">
+      <created>1599253328256</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1599253328256</updated>
+    </task>
+    <task id="LOCAL-00032" summary="some changes at UI">
+      <created>1599308800816</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1599308800817</updated>
+    </task>
+    <task id="LOCAL-00033" summary="make green gradient of Main Page better">
+      <created>1599308966272</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1599308966272</updated>
+    </task>
+    <task id="LOCAL-00034" summary="saving file">
+      <created>1599335239452</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1599335239452</updated>
+    </task>
+    <task id="LOCAL-00035" summary="saving file deleted!">
+      <created>1599335602606</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1599335602606</updated>
+    </task>
+    <task id="LOCAL-00036" summary="edit SignUp and SignIn &#10;+ add its edit texts LINE LIMIT + CHARACTER LIMIT&#10;+ make its fonts fixed&#10;+ when user click ENTER go to next field of inputs!">
+      <created>1599381381961</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1599381381961</updated>
+    </task>
+    <task id="LOCAL-00037" summary="make save file fixed!">
+      <created>1599407601594</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1599407601594</updated>
+    </task>
+    <task id="LOCAL-00038" summary="first steps of Algorithm!">
+      <created>1599485226961</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1599485226962</updated>
+    </task>
+    <task id="LOCAL-00039" summary="first steps of Algorithm!">
+      <created>1599485437830</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1599485437830</updated>
+    </task>
+    <task id="LOCAL-00040" summary="fix errors and show them all at SignUp/SignIn/Account !&#10;+ UI of errors&#10;+ next step of Algorithm">
+      <created>1599495798284</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1599495798284</updated>
+    </task>
+    <task id="LOCAL-00041" summary="fix things about error message&#10;+ change the UI of Account Page">
+      <created>1599497207942</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1599497207942</updated>
+    </task>
+    <task id="LOCAL-00042" summary="change the UI of Account activity to show the data of user at the page &#10;+ add logout button">
+      <created>1599499824262</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1599499824262</updated>
+    </task>
+    <task id="LOCAL-00043" summary="make Account page UI better">
+      <created>1599499904812</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1599499904812</updated>
+    </task>
+    <task id="LOCAL-00044" summary="Algorithm: Sleep Calculator">
+      <created>1599508871021</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1599508871021</updated>
+    </task>
+    <task id="LOCAL-00045" summary="Algorithm: Sleep Calculator">
+      <created>1599594721864</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1599594721864</updated>
+    </task>
+    <task id="LOCAL-00046" summary="Algorithm: Speed Calculator">
+      <created>1599653907481</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1599653907481</updated>
+    </task>
+    <task id="LOCAL-00047" summary="Algorithm: Acceleration Calculator">
+      <created>1599655567545</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1599655567545</updated>
+    </task>
+    <task id="LOCAL-00048" summary="Algorithm: one step of Vibration">
+      <created>1599655903097</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1599655903097</updated>
+    </task>
+    <task id="LOCAL-00049" summary="Algorithm: Vibration Calculator">
+      <created>1599656381457</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1599656381457</updated>
+    </task>
+    <task id="LOCAL-00050" summary="packaging of classes &#10;+ optimize algorithm">
+      <created>1599656855235</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1599656855235</updated>
+    </task>
+    <task id="LOCAL-00051" summary="Algorithm: Near Cities&#10;+ Month&#10;+ first steps of Time&#10;&#10;+ adding Sunset - Sunrise feature&#10;+ adding PersianCalender feature&#10;+ ...">
+      <created>1599731101051</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1599731101051</updated>
+    </task>
+    <task id="LOCAL-00052" summary="Algorithm: Time&#10;+ Without Stop Driving&#10;+ Weather&#10;&#10;+ make some changes to app">
+      <created>1599828236870</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1599828236871</updated>
+    </task>
+    <task id="LOCAL-00053" summary="complete work of Algorithm&#10;+ call algorithm &#10;+ make it connected to the percentage box&#10;+ some UI changes">
+      <created>1599925907486</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1599925907486</updated>
+    </task>
+    <task id="LOCAL-00054" summary="fix some changes">
+      <created>1600008031072</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1600008031072</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="do some changes" />
+    <MESSAGE value="change UI of MainPage a lot with Mehdi's UI Design pictures" />
+    <MESSAGE value="make changes better" />
+    <MESSAGE value="some changes at UI" />
+    <MESSAGE value="make green gradient of Main Page better" />
+    <MESSAGE value="saving file" />
+    <MESSAGE value="saving file deleted!" />
+    <MESSAGE value="edit SignUp and SignIn &#10;+ add its edit texts LINE LIMIT + CHARACTER LIMIT&#10;+ make its fonts fixed&#10;+ when user click ENTER go to next field of inputs!" />
+    <MESSAGE value="make save file fixed!" />
+    <MESSAGE value="first steps of Algorithm!" />
+    <MESSAGE value="fix errors and show them all at SignUp/SignIn/Account !&#10;+ UI of errors" />
+    <MESSAGE value="fix errors and show them all at SignUp/SignIn/Account !&#10;+ UI of errors&#10;+ next step of Algorithm" />
+    <MESSAGE value="fix things about error message&#10;+ change the UI of Account Page" />
+    <MESSAGE value="change the UI of Account activity to show the data of user at the page &#10;+ add logout button" />
+    <MESSAGE value="make Account page UI better" />
+    <MESSAGE value="Algorithm: Sleep Calculator" />
+    <MESSAGE value="Algorithm: Speed Calculator" />
+    <MESSAGE value="Algorithm: Acceleration Calculator" />
+    <MESSAGE value="Algorithm: one step of Vibration" />
+    <MESSAGE value="Algorithm: Vibration Calculator" />
+    <MESSAGE value="packaging of classes &#10;+ optimize algorithm" />
+    <MESSAGE value="Algorithm: Near Cities&#10;+ Month&#10;+ first steps of Time&#10;&#10;+ adding Sunset - Sunrise feature&#10;+ adding PersianCalender feature&#10;+ ..." />
+    <MESSAGE value="Algorithm: Time&#10;+ Without Stop Driving&#10;+ Weather&#10;&#10;+ make some changes to app" />
+    <MESSAGE value="complete work of Algorithm&#10;+ call algorithm &#10;+ make it connected to the percentage box&#10;+ some UI changes" />
+    <MESSAGE value="fix some changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix some changes" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="589" y="199" key="#Guardian_v1-app" timestamp="1596375084883">
+      <screen x="0" y="0" width="1792" height="1120" />
+    </state>
+    <state x="589" y="199" key="#Guardian_v1-app/0.0.1792.1120@0.0.1792.1120" timestamp="1596375084883" />
+    <state x="496" y="225" key="#Notifications" timestamp="1599926236296">
+      <screen x="0" y="0" width="1792" height="1120" />
+    </state>
+    <state x="496" y="225" key="#Notifications/0.0.1792.1120@0.0.1792.1120" timestamp="1599926236296" />
+    <state x="421" y="299" key="#PSD" timestamp="1595998027535">
+      <screen x="0" y="0" width="1792" height="1120" />
+    </state>
+    <state x="421" y="299" key="#PSD/0.0.1792.1120@0.0.1792.1120" timestamp="1595998027535" />
+    <state x="496" y="222" key="#Updates" timestamp="1596446531929">
+      <screen x="0" y="0" width="1792" height="1120" />
+    </state>
+    <state x="496" y="222" key="#Updates/0.0.1792.1120@0.0.1792.1120" timestamp="1596446531929" />
+    <state x="496" y="226" key="#Updates/0.23.1792.1024@0.23.1792.1024" timestamp="1596446507806" />
+    <state x="709" y="276" key="#com.intellij.ide.util.MemberChooser" timestamp="1598995995050">
+      <screen x="0" y="0" width="1792" height="1120" />
+    </state>
+    <state x="709" y="276" key="#com.intellij.ide.util.MemberChooser/0.0.1792.1120@0.0.1792.1120" timestamp="1598995995050" />
+    <state x="584" y="295" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1599238709458">
+      <screen x="0" y="0" width="1792" height="1120" />
+    </state>
+    <state x="584" y="295" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1792.1120@0.0.1792.1120" timestamp="1599238709458" />
+    <state x="382" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1599658434928">
+      <screen x="0" y="0" width="1792" height="1120" />
+    </state>
+    <state x="382" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1792.1120@0.0.1792.1120" timestamp="1599658434928" />
+    <state x="634" y="314" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1599249562512">
+      <screen x="0" y="0" width="1792" height="1120" />
+    </state>
+    <state x="634" y="314" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1792.1120@0.0.1792.1120" timestamp="1599249562512" />
+    <state x="484" y="322" key="AndroidCreateResourceFileDialog" timestamp="1599923458915">
+      <screen x="0" y="0" width="1792" height="1120" />
+    </state>
+    <state x="484" y="322" key="AndroidCreateResourceFileDialog/0.0.1792.1120@0.0.1792.1120" timestamp="1599923458915" />
+    <state x="751" y="432" key="AndroidCreateXmlResourceDialog" timestamp="1599498819956">
+      <screen x="0" y="0" width="1792" height="1120" />
+    </state>
+    <state x="751" y="432" key="AndroidCreateXmlResourceDialog/0.0.1792.1120@0.0.1792.1120" timestamp="1599498819956" />
+    <state x="573" y="162" key="CommitChangelistDialog2" timestamp="1600009234725">
+      <screen x="0" y="0" width="1792" height="1120" />
+    </state>
+    <state x="573" y="162" key="CommitChangelistDialog2/0.0.1792.1120@0.0.1792.1120" timestamp="1600009234725" />
+    <state x="180" y="101" key="DiffContextDialog" timestamp="1599254752103">
+      <screen x="0" y="0" width="1792" height="1120" />
+    </state>
+    <state x="180" y="101" key="DiffContextDialog/0.0.1792.1120@0.0.1792.1120" timestamp="1599254752103" />
+    <state width="1750" height="318" key="GridCell.Tab.0.bottom" timestamp="1599998095862">
+      <screen x="0" y="23" width="1792" height="1028" />
+    </state>
+    <state width="1750" height="318" key="GridCell.Tab.0.bottom/0.0.1792.1120@0.0.1792.1120" timestamp="1599995556541" />
+    <state width="1750" height="318" key="GridCell.Tab.0.bottom/0.23.1792.1022@0.23.1792.1022" timestamp="1599843339525" />
+    <state width="1750" height="318" key="GridCell.Tab.0.bottom/0.23.1792.1028@0.23.1792.1028" timestamp="1599998095862" />
+    <state width="1750" height="318" key="GridCell.Tab.0.center" timestamp="1599998095860">
+      <screen x="0" y="23" width="1792" height="1028" />
+    </state>
+    <state width="1750" height="318" key="GridCell.Tab.0.center/0.0.1792.1120@0.0.1792.1120" timestamp="1599995556540" />
+    <state width="1750" height="318" key="GridCell.Tab.0.center/0.23.1792.1022@0.23.1792.1022" timestamp="1599843339524" />
+    <state width="1750" height="318" key="GridCell.Tab.0.center/0.23.1792.1028@0.23.1792.1028" timestamp="1599998095860" />
+    <state width="1750" height="318" key="GridCell.Tab.0.left" timestamp="1599998095859">
+      <screen x="0" y="23" width="1792" height="1028" />
+    </state>
+    <state width="1750" height="318" key="GridCell.Tab.0.left/0.0.1792.1120@0.0.1792.1120" timestamp="1599995556539" />
+    <state width="1750" height="318" key="GridCell.Tab.0.left/0.23.1792.1022@0.23.1792.1022" timestamp="1599843339523" />
+    <state width="1750" height="318" key="GridCell.Tab.0.left/0.23.1792.1028@0.23.1792.1028" timestamp="1599998095859" />
+    <state width="1750" height="318" key="GridCell.Tab.0.right" timestamp="1599998095861">
+      <screen x="0" y="23" width="1792" height="1028" />
+    </state>
+    <state width="1750" height="318" key="GridCell.Tab.0.right/0.0.1792.1120@0.0.1792.1120" timestamp="1599995556540" />
+    <state width="1750" height="318" key="GridCell.Tab.0.right/0.23.1792.1022@0.23.1792.1022" timestamp="1599843339525" />
+    <state width="1750" height="318" key="GridCell.Tab.0.right/0.23.1792.1028@0.23.1792.1028" timestamp="1599998095861" />
+    <state x="179" y="101" key="MergeDialog" timestamp="1599731186611">
+      <screen x="0" y="0" width="1792" height="1120" />
+    </state>
+    <state x="179" y="101" key="MergeDialog/0.0.1792.1120@0.0.1792.1120" timestamp="1599731186611" />
+    <state x="606" y="283" key="MultipleFileMergeDialog" timestamp="1599731191015">
+      <screen x="0" y="0" width="1792" height="1120" />
+    </state>
+    <state x="606" y="283" key="MultipleFileMergeDialog/0.0.1792.1120@0.0.1792.1120" timestamp="1599731191015" />
+    <state x="494" y="261" key="NewModule_or_Project.wizard" timestamp="1599743375014">
+      <screen x="0" y="0" width="1792" height="1120" />
+    </state>
+    <state x="494" y="261" key="NewModule_or_Project.wizard/0.0.1792.1120@0.0.1792.1120" timestamp="1599743375014" />
+    <state x="397" y="199" key="SettingsEditor" timestamp="1598613642910">
+      <screen x="0" y="0" width="1792" height="1120" />
+    </state>
+    <state x="397" y="199" key="SettingsEditor/0.0.1792.1120@0.0.1792.1120" timestamp="1598613642910" />
+    <state x="496" y="300" key="Vcs.Push.Dialog.v2" timestamp="1600009139407">
+      <screen x="0" y="0" width="1792" height="1120" />
+    </state>
+    <state x="496" y="300" key="Vcs.Push.Dialog.v2/0.0.1792.1120@0.0.1792.1120" timestamp="1600009139407" />
+    <state x="673" y="345" key="chooseDestDirectoryDialog" timestamp="1599251694580">
+      <screen x="0" y="0" width="1792" height="1120" />
+    </state>
+    <state x="673" y="345" key="chooseDestDirectoryDialog/0.0.1792.1120@0.0.1792.1120" timestamp="1599251694580" />
+    <state x="100" y="100" width="1592" height="920" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1598356773453">
+      <screen x="0" y="0" width="1792" height="1120" />
+    </state>
+    <state x="100" y="100" width="1592" height="920" key="com.android.tools.idea.avdmanager.AvdListDialog/0.0.1792.1120@0.0.1792.1120" timestamp="1598356773453" />
+    <state x="566" y="359" key="com.intellij.ide.util.TipDialog" timestamp="1599538834780">
+      <screen x="0" y="0" width="1792" height="1120" />
+    </state>
+    <state x="566" y="359" key="com.intellij.ide.util.TipDialog/0.0.1792.1120@0.0.1792.1120" timestamp="1599538834780" />
+    <state x="676" y="484" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1600008479771">
+      <screen x="0" y="0" width="1792" height="1120" />
+    </state>
+    <state x="676" y="484" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1792.1120@0.0.1792.1120" timestamp="1600008479771" />
+    <state x="546" y="358" key="git4idea.merge.GitPullDialog" timestamp="1600009128455">
+      <screen x="0" y="0" width="1792" height="1120" />
+    </state>
+    <state x="546" y="358" key="git4idea.merge.GitPullDialog/0.0.1792.1120@0.0.1792.1120" timestamp="1600009128455" />
+    <state x="561" y="251" width="670" height="676" key="search.everywhere.popup" timestamp="1600007486284">
+      <screen x="0" y="0" width="1792" height="1120" />
+    </state>
+    <state x="561" y="251" width="670" height="676" key="search.everywhere.popup/0.0.1792.1120@0.0.1792.1120" timestamp="1600007486284" />
+    <state x="675" y="348" key="strings.multiline.dialog" timestamp="1595938440476">
+      <screen x="0" y="0" width="1792" height="1120" />
+    </state>
+    <state x="675" y="348" key="strings.multiline.dialog/0.0.1792.1120@0.0.1792.1120" timestamp="1595938440476" />
+  </component>
+</project>
