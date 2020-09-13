@@ -23,7 +23,7 @@
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="49dp"
             android:alpha="1"
             tools:ignore="MissingConstraints">
             <ImageView
@@ -142,7 +142,7 @@
 
                 <ImageView
                     android:layout_width="match_parent"
-                    android:layout_height="46dp"
+                    android:layout_height="47.5dp"
                     android:background="#FFFFFF"
                     android:alpha="0.2"
                     android:elevation="2dp" />
@@ -167,7 +167,7 @@
         <Button
             android:id="@+id/startButton"
             android:layout_width="match_parent"
-            android:layout_height="52dp"
+            android:layout_height="50dp"
             android:layout_marginLeft="85dp"
             android:layout_marginRight="20dp"
             android:background="@color/mapboxGrayLight"
@@ -187,15 +187,15 @@
             android:layout_height="wrap_content"
             android:background="#B6F485"
             android:gravity="center_horizontal"
-            android:paddingTop="9dp"
+            android:paddingTop="8dp"
             android:text="@string/activity_selectNav_description"
             android:textAlignment="center"
-            android:textSize="19dp"
+            android:textSize="17dp"
             app:layout_constraintBottom_toBottomOf="@+id/mapView"
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteX="63dp"
             android:fontFamily="@font/iran_sans"
-            android:paddingBottom="11dp"/>
+            android:paddingBottom="10dp"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

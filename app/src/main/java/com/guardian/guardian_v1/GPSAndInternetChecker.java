@@ -49,7 +49,7 @@ public class GPSAndInternetChecker {
         new AlertDialog.Builder(context)
                 .setTitle("عدم فعال بودن GPS                  ")
                 .setMessage("برای استفاده از گاردین لطفا GPS تلفن همراه خود را روشن نمایید.")
-                .setPositiveButton("Setting", new DialogInterface.OnClickListener() {
+                .setPositiveButton("موقعیت مکانی GPS", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface paramDialogInterface, int paramInt) {
                         context.startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));

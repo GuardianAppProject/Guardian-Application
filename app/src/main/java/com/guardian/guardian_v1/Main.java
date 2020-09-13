@@ -4,10 +4,12 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
+import android.os.Handler;
 import android.speech.tts.TextToSpeech;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -107,6 +109,9 @@ public class Main extends AppCompatActivity implements OnMapReadyCallback,
     private TextView algorithmPercentageText;
     private TextView algorithmStatusText;
     private ImageView algorithmBackground;
+    private TextView alertMessageText;
+    private FrameLayout alertMessageBox;
+    private ImageView alertMessageImage;
     private StatusCalculator statusCalculator;
 
     // Make sure to be using androidx.appcompat.app.ActionBarDrawerToggle version.
@@ -181,7 +186,22 @@ public class Main extends AppCompatActivity implements OnMapReadyCallback,
         algorithmPercentageText = findViewById(R.id.driving_percentage);
         algorithmStatusText = findViewById(R.id.driving_status);
         algorithmBackground = findViewById(R.id.driving_background);
+        alertMessageText = findViewById(R.id.alertMessageText);
+        alertMessageBox = findViewById(R.id.alertMessageBox);
+        alertMessageImage = findViewById(R.id.alertMessageImage);
         statusCalculator = new StatusCalculator();
+
+        final Handler ha = new Handler();
+        ha.postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                //call function
+                callAlgorithmLogic();
+                ha.postDelayed(this, 30000);
+            }
+        }, 30000);
+
     }
 
     public void openDrawer(){
@@ -266,6 +286,17 @@ public class Main extends AppCompatActivity implements OnMapReadyCallback,
         algorithmPercentageText.setText(String.valueOf(percentage));
         algorithmStatusText.setText(statusCalculator.calculateStatusAlgorithm(percentage));
 
+        String toShowAlert = DriveAlertHandler.toShowAlert();
+        if(toShowAlert.equalsIgnoreCase("")) {
+            alertMessageText.setText("با دقت به رانندگی ادامه دهید.");
+            alertMessageBox.setBackgroundResource(R.drawable.rectangle_alert_background_green);
+            alertMessageImage.setImageResource(R.drawable.warning);
+        } else {
+            alertMessageText.setText(toShowAlert);
+            alertMessageBox.setBackgroundResource(R.drawable.rectangle_alert_background_red);
+            alertMessageImage.setImageResource(R.drawable.alert_icon);
+        }
+
         int backgroundNumber = statusCalculator.calculateBackgroundAlgorithm(percentage);
         if(backgroundNumber == 1) {
             algorithmBackground.setImageResource(R.drawable.circle_gradient_green);
@@ -282,6 +313,8 @@ public class Main extends AppCompatActivity implements OnMapReadyCallback,
         } else if(backgroundNumber == 7) {
             algorithmBackground.setImageResource(R.drawable.circle_gradient_red);
         }
+
+        DriveAlertHandler.passCycle();
     }
 
 
