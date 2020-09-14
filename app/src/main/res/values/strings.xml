@@ -45,4 +45,22 @@
     <string name="on_text">روشن</string>
     <string name="wait_text">لطفا چند لحظه منتظر بمانید.</string>
     <string name="activity_account_subtitle0">اطلاعات حساب کاربری</string>
+
+    <string name="rain">باران</string>
+    <string name="snow">برف</string>
+    <string name="clear">صاف</string>
+    <string name="drizzle">باران ملایم</string>
+    <string name="thunderstorm">رعد و برق</string>
+    <string name="dust">شنی</string>
+    <string name="sand">شنی</string>
+    <string name="ash">خاکستر</string>
+    <string name="cloud">ابری</string>
+    <string name="mist">مه</string>
+    <string name="smoke">دود</string>
+    <string name="haze">مه</string>
+    <string name="fog">مه</string>
+    <string name="tornado">طوفانی</string>
+    <string name="squall">باد شدید</string>
+
+
 </resources>

@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.speech.tts.TextToSpeech;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,6 +24,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
+import com.guardian.guardian_v1.DriveStatus.Weather;
 import com.mapbox.android.core.location.LocationEngineCallback;
 import com.mapbox.android.core.location.LocationEngineResult;
 import com.mapbox.api.directions.v5.models.BannerText;
@@ -58,7 +60,9 @@ import com.mapbox.services.android.navigation.v5.navigation.NavigationRoute;
 import com.mapbox.services.android.navigation.v5.offroute.OffRouteListener;
 import com.mapbox.services.android.navigation.v5.routeprogress.ProgressChangeListener;
 import com.mapbox.services.android.navigation.v5.routeprogress.RouteProgress;
+import com.squareup.picasso.Picasso;
 
+import java.io.IOException;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -98,6 +102,8 @@ public class Main extends AppCompatActivity implements OnMapReadyCallback,
     TextView arrivalTime;
     TextView primaryTxt;
     TextView secondaryTxt;
+    TextView weatherTypeTxt;
+    ImageView weatherTypeImg;
     Button stopButton;
 
     public static String routeStyle = Style.DARK;
@@ -145,7 +151,8 @@ public class Main extends AppCompatActivity implements OnMapReadyCallback,
         arrivalTime = (TextView) findViewById(R.id.arrivalTime);
         secondaryTxt = (TextView) findViewById(R.id.secondaryTxt);
         stopButton = (Button) findViewById(R.id.stopButt);
-
+        weatherTypeImg = findViewById(R.id.WeatherTypeImage);
+        weatherTypeTxt = findViewById(R.id.WeatherTypeTextView);
 
         instructionView.retrieveSoundButton().hide();
         instructionView.retrieveSoundButton().addOnClickListener(
@@ -283,11 +290,35 @@ public class Main extends AppCompatActivity implements OnMapReadyCallback,
 
     }
 
+    private void setWeatherImage(String url){
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Picasso.get().load(url).into(weatherTypeImg);
+            }
+        });
+
+    }
     private void callAlgorithmLogic() {
         double percentage = statusCalculator.calculatePercentageAlgorithm();
         algorithmPercentageText.setText(String.valueOf((int)percentage));
         algorithmStatusText.setText(statusCalculator.calculateStatusAlgorithm(percentage));
 
+        ///setting weather type
+        Thread weatherThread = new Thread() {
+            @Override
+            public void run() {
+                try {
+                    Weather weather = Weather.getCurrentLocationWeather(getApplicationContext());
+                    weatherTypeTxt.setText(weather.getWeatherTypePersian());
+                    System.out.println(weather.getImageUrl());
+                    setWeatherImage(weather.getImageUrl());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        weatherThread.start();
         String toShowAlert = DriveAlertHandler.toShowAlert();
         if(toShowAlert.equalsIgnoreCase("")) {
             alertMessageText.setText("با دقت به رانندگی ادامه دهید.");

@@ -99,7 +99,6 @@ public class SpeedCheckerService extends Service {
 
     static String detectedActivitiesToJson(ArrayList<DetectedActivity> detectedActivitiesList) {
         Type type = new TypeToken<ArrayList<DetectedActivity>>() {}.getType();
-        System.out.println(detectedActivitiesList.toString());
         if ((detectedActivitiesList.size()>=1)&&(detectedActivitiesList.get(0).getType() == DetectedActivity.IN_VEHICLE) && (detectedActivitiesList.get(0).getConfidence()) >= 60){
             speedCheckerService.makeNotification();
             try {

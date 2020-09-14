@@ -41,7 +41,7 @@ public class SleepDetectorService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        if(mActivityRecognitionClient== null){
+         if(mActivityRecognitionClient== null){
             mActivityRecognitionClient = new ActivityRecognitionClient(this);
             mActivityRecognitionClient.requestActivityUpdates(1000 * 60 * 5,PendingIntent.getService(this,0,intent,PendingIntent.FLAG_UPDATE_CURRENT));
         }

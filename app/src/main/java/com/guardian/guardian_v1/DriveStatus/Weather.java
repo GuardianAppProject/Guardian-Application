@@ -98,6 +98,25 @@ public class Weather {
         return weatherType;
     }
 
+    public String getWeatherTypePersian(){
+        if(weatherType.equals(WeatherType.Thunderstorm)) return "رعد و برق";
+        if(weatherType.equals(WeatherType.Drizzle)) return "باران ملایم";
+        if(weatherType.equals(WeatherType.Rain)) return "باران";
+        if(weatherType.equals(WeatherType.Snow)) return "برف";
+        if(weatherType.equals(WeatherType.Clear)) return "صاف";
+        if(weatherType.equals(WeatherType.Clouds)) return "ابری";
+        if(weatherType.equals(WeatherType.Mist)) return "مه";
+        if(weatherType.equals(WeatherType.Smoke)) return "دود";
+        if(weatherType.equals(WeatherType.Haze)) return "مه";
+        if(weatherType.equals(WeatherType.Dust)) return "شن";
+        if(weatherType.equals(WeatherType.Fog)) return "مه";
+        if(weatherType.equals(WeatherType.Sand)) return "شنی";
+        if(weatherType.equals(WeatherType.Ash)) return "خاکستر";
+        if(weatherType.equals(WeatherType.Tornado)) return "طوفانی";
+        if(weatherType.equals(WeatherType.Squall)) return "باد شدید";
+        return "?";
+    }
+
     public String getImageUrl() {
         return "http://openweathermap.org/img/wn/" + Id + "@2x.png";
     }

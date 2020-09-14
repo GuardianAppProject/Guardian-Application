@@ -2,6 +2,7 @@ package com.guardian.guardian_v1;
 
 import android.animation.ObjectAnimator;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.guardian.guardian_v1.SleepManager.SleepDetectorService;
 import com.guardian.guardian_v1.Transmission.AverageWorker;
 import com.guardian.guardian_v1.Transmission.TokenChecker;
 
@@ -54,6 +56,14 @@ public class MainActivity extends AppCompatActivity {
 
         if(retryButton.getVisibility()==View.INVISIBLE) {
            startApp();
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+             startForegroundService(new Intent(this,SpeedCheckerService.class));
+             startForegroundService(new Intent(this, SleepDetectorService.class));
+        }else{
+            startService(new Intent(this,SpeedCheckerService.class));
+            startService(new Intent(this, SleepDetectorService.class));
         }
 
     }
