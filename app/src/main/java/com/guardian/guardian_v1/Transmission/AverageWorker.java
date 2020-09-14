@@ -1,11 +1,8 @@
 package com.guardian.guardian_v1.Transmission;
 
 import android.content.Context;
-import android.media.session.MediaSession;
 import android.os.AsyncTask;
 import android.widget.Toast;
-
-import com.guardian.guardian_v1.SignIn;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -30,7 +27,7 @@ public class AverageWorker extends AsyncTask<String, Void, String> {
 
     @Override
     protected String doInBackground(String... strings) {
-        String login_url = "http://www.guardianapp.ir/.php"; // <=== ???
+        String login_url = "http://www.guardianapp.ir/get_avg_driver_432.php"; // <=== ???
         try {
             String token = strings[0];
 
@@ -63,6 +60,7 @@ public class AverageWorker extends AsyncTask<String, Void, String> {
             bufferedReader.close();
             inputStream.close();
             httpURLConnection.disconnect();
+            System.err.println("\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\lllllllllllllllllllllllllllllllllllll");
             System.err.println(result);
             ans = result;
             return result;

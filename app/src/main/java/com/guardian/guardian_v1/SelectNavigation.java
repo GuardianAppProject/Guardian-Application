@@ -18,6 +18,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
+import com.guardian.guardian_v1.Transmission.AverageWorker;
 import com.mapbox.android.core.permissions.PermissionsListener;
 import com.mapbox.android.core.permissions.PermissionsManager;
 import com.mapbox.api.directions.v5.models.DirectionsResponse;
@@ -45,6 +46,8 @@ import com.mapbox.mapboxsdk.style.sources.GeoJsonSource;
 import com.mapbox.services.android.navigation.ui.v5.route.NavigationMapRoute;
 import com.mapbox.services.android.navigation.v5.navigation.NavigationRoute;
 
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
 import java.util.List;
 
 import retrofit2.Call;
@@ -87,6 +90,7 @@ public class SelectNavigation extends AppCompatActivity implements OnMapReadyCal
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         Mapbox.getInstance(this, getString(R.string.access_token));
         setContentView(R.layout.activity_select_navigation);
@@ -113,6 +117,7 @@ public class SelectNavigation extends AppCompatActivity implements OnMapReadyCal
         });
 
         TextView allTimeAvg = (TextView) findViewById(R.id.textView3);
+        allTimeAvg.setText(AverageWorker.getAverage());
     }
 
 
@@ -488,6 +493,30 @@ public class SelectNavigation extends AppCompatActivity implements OnMapReadyCal
     public void onLowMemory() {
         super.onLowMemory();
         mapView.onLowMemory();
+    }
+
+    public String read(){
+        //reading text from file
+        String string = "";
+        try {
+            FileInputStream fileIn= openFileInput("tokenFile.txt");
+            InputStreamReader InputRead= new InputStreamReader(fileIn);
+
+            char[] inputBuffer= new char[10000];
+
+            int charRead;
+
+            while ((charRead=InputRead.read(inputBuffer))>0) {
+                // char to string conversion
+                String readstring=String.copyValueOf(inputBuffer,0,charRead);
+                string +=readstring;
+            }
+            InputRead.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return string;
     }
 
 }
