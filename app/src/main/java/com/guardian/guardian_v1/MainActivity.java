@@ -200,13 +200,4 @@ public class MainActivity extends AppCompatActivity {
         return string;
     }
 
-    private void checkToken() {
-        System.out.println("dsafdasf");
-        if(TokenChecker.tokenIsValid()){
-            Intent i = new Intent(MainActivity.this, SeatBelt.class);
-            startActivity(i);
-            finish();
-        }
-    }
-
 }

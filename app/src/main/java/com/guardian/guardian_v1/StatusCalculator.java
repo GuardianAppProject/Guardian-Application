@@ -829,7 +829,7 @@ public class StatusCalculator {
             speed_alert = "سرعت شما بسیار زیاد است.";
             DriveAlertHandler.speed_alert = new DriveAlertHandler(speed_alert, 2, false, DriveAlertHandler.Type.SPEED);
         } else if(speed_factor <= 30) {
-            speed_alert = "سرعت شما به شدن خطرناک است!";
+            speed_alert = "سرعت شما به شدت خطرناک است!";
             DriveAlertHandler.speed_alert = new DriveAlertHandler(speed_alert, 4, true, DriveAlertHandler.Type.SPEED);
         }
         return speed_alert;
