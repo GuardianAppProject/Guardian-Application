@@ -1,15 +1,11 @@
 package com.guardian.guardian_v1.Transmission;
 
-import android.app.Activity;
-import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Build;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 
-import com.guardian.guardian_v1.R;
 import com.guardian.guardian_v1.SignUp;
 
 import java.io.BufferedReader;
@@ -23,15 +19,13 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class DataSender extends AsyncTask<String, Void, String> {
-    Context context;
+
     private Toast toast;
 
-    public DataSender(Context ctx) {
-        context = ctx;
+    public DataSender() {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -118,8 +112,7 @@ public class DataSender extends AsyncTask<String, Void, String> {
 
     @Override
     protected void onPostExecute(String result) {
-        toast = Toast.makeText(context,result,Toast.LENGTH_LONG);
-        toast.show();
+
     }
 
     @Override

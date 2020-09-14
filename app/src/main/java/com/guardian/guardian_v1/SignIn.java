@@ -121,13 +121,15 @@ public class SignIn extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        token = toWrite;
     }
 
     public String read(){
         //reading text from file
         String string = "";
         try {
-            FileInputStream fileIn=openFileInput("tokenFile.txt");
+            FileInputStream fileIn= openFileInput("tokenFile.txt");
             InputStreamReader InputRead= new InputStreamReader(fileIn);
 
             char[] inputBuffer= new char[10000];
@@ -188,5 +190,9 @@ public class SignIn extends AppCompatActivity {
 
     private boolean isLoginResultValid(){
         return loginResult.contains("login complete");
+    }
+    private static String token;
+    protected static String getToken(){
+        return token;
     }
 }

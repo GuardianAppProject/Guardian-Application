@@ -4,6 +4,7 @@ package com.guardian.guardian_v1;
 import com.guardian.guardian_v1.DriveStatus.Shake;
 import com.guardian.guardian_v1.DriveStatus.Time;
 import com.guardian.guardian_v1.DriveStatus.Weather;
+import com.guardian.guardian_v1.Transmission.DataSender;
 
 import java.util.ArrayList;
 
@@ -718,6 +719,12 @@ public class StatusCalculator {
             double roadType_save = calculateAverage(sleep_data);
 
             // Should save data
+            DataSender sender = new DataSender();
+            sender.execute(
+                    SignIn.getToken(),Double.toString(sleep_save),Double.toString(time_save),Double.toString(speed_save)
+                    ,Double.toString(withoutStop_save),Double.toString(roadType_save),Double.toString(traffic_save),Double.toString(weather_save),Double.toString(nearCities_save)
+                    ,Double.toString(vibration_save),Double.toString(acceleration_save),Double.toString(month_save),Double.toString(average)
+            );
 
             sleep_data.clear();
             speed_data.clear();
@@ -978,4 +985,5 @@ public class StatusCalculator {
         }
         return roadType_alert;
     }
+
 }
