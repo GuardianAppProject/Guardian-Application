@@ -12,14 +12,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.27"
+        android:layout_weight="0.25"
         android:orientation="vertical">
         <ImageView
             android:layout_width="93dp"
             android:layout_height="93dp"
             android:src="@drawable/logo_white"
             android:layout_gravity="center"
-            android:layout_marginTop="60dp"/>
+            android:layout_marginTop="55dp"/>
 
     </LinearLayout>
 
@@ -210,7 +210,7 @@
             android:textSize="14sp"
             android:gravity="center"
             android:fontFamily="@font/iran_sans"
-            android:layout_marginTop="7.5dp"
+            android:layout_marginTop="17dp"
             android:textColor="#B4000000"/>
 
         <View
@@ -267,7 +267,7 @@
             android:id="@+id/editButton"
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:layout_marginTop="3dp"
+            android:layout_marginTop="5dp"
             android:layout_marginLeft="60dp"
             android:layout_marginRight="60dp"
             android:background="@drawable/button_background"
@@ -276,19 +276,20 @@
             android:fontFamily="@font/iran_sans"
             android:textSize="16sp"/>
 
-        <Button
-            android:id="@+id/logoutButton"
-            android:layout_width="200dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="13dp"
-            android:layout_gravity="center"
-            android:background="#D2FF4866"
-            android:padding="2dp"
-            android:text="خروج از حساب کاربری"
-            android:textColor="@color/inputBoxColor"
-            android:fontFamily="@font/iran_sans"
-            android:textSize="16sp"/>
+
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/logoutButton"
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:layout_gravity="center"
+        android:background="#D2FF4866"
+        android:fontFamily="@font/iran_sans"
+        android:padding="2dp"
+        android:text="خروج از حساب کاربری"
+        android:textColor="@color/inputBoxColor"
+        android:textSize="16sp" />
 
 </LinearLayout>
