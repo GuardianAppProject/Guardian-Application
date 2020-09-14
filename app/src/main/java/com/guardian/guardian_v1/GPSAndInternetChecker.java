@@ -8,7 +8,9 @@ import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.provider.Settings;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 
 public class GPSAndInternetChecker {
     public static boolean check(Context context){
@@ -25,37 +27,90 @@ public class GPSAndInternetChecker {
 
 
     public static void showInternetAlert(final Context context){
-        new AlertDialog.Builder(context)
-                .setTitle("عدم اتصال به اینترنت                 ")
-                .setMessage("اتصال شما به اینترنت برقرار نیست. برای استفاده از گاردین به اینترنت متصل شوید!")
-                .setPositiveButton("اینترنت Wi-Fi", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface paramDialogInterface, int paramInt) {
-                        context.startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
-                    }
-                })
-                .setNegativeButton("اینترنت موبایل",new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface paramDialogInterface, int paramInt) {
-                        context.startActivity(new Intent(Settings.ACTION_DATA_USAGE_SETTINGS));
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        View view = LayoutInflater.from(context).inflate(R.layout.internet_alert_dialog, null);
 
-                    }
-                })
-                .show();
+        Button wifiBtn = view.findViewById(R.id.wifiButton);
+        wifiBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                context.startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
+            }
+        });
+        Button internetBtn = view.findViewById(R.id.internetButton);
+        internetBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                context.startActivity(new Intent(Settings.ACTION_DATA_USAGE_SETTINGS));
+            }
+        });
+
+        builder.setView(view);
+        builder.show();
+
+//        builder.setPositiveButton("اینترنت Wi-Fi", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface paramDialogInterface, int paramInt) {
+//                context.startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
+//            }
+//        });
+//
+//        builder.setNegativeButton("اینترنت موبایل",new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface paramDialogInterface, int paramInt) {
+//                context.startActivity(new Intent(Settings.ACTION_DATA_USAGE_SETTINGS));
+//
+//            }
+//        });
+
+
+//        new AlertDialog.Builder(context)
+//                .setTitle("عدم اتصال به اینترنت                 ")
+//                .setMessage("اتصال شما به اینترنت برقرار نیست. برای استفاده از گاردین به اینترنت متصل شوید!")
+//                .setPositiveButton("اینترنت Wi-Fi", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface paramDialogInterface, int paramInt) {
+//                        context.startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
+//                    }
+//                })
+//                .setNegativeButton("اینترنت موبایل",new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface paramDialogInterface, int paramInt) {
+//                        context.startActivity(new Intent(Settings.ACTION_DATA_USAGE_SETTINGS));
+//
+//                    }
+//                })
+//                .show();
 
     }
 
     public static void showGPSAlert(final Context context){
-        new AlertDialog.Builder(context)
-                .setTitle("عدم فعال بودن GPS                  ")
-                .setMessage("برای استفاده از گاردین لطفا GPS تلفن همراه خود را روشن نمایید.")
-                .setPositiveButton("موقعیت مکانی GPS", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface paramDialogInterface, int paramInt) {
-                        context.startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
-                    }
-                })
-                .show();
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        View view = LayoutInflater.from(context).inflate(R.layout.gps_alert_dialog, null);
+
+        Button gpsBtn = view.findViewById(R.id.gpsButton);
+        gpsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                context.startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+            }
+        });
+
+        builder.setView(view);
+        builder.show();
+
+
+//        new AlertDialog.Builder(context)
+//                .setTitle("عدم فعال بودن GPS                  ")
+//                .setMessage("برای استفاده از گاردین لطفا GPS تلفن همراه خود را روشن نمایید.")
+//                .setPositiveButton("موقعیت مکانی GPS", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface paramDialogInterface, int paramInt) {
+//                        context.startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+//                    }
+//                })
+//                .show();
 
     }
 
