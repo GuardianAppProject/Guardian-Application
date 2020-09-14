@@ -7,13 +7,13 @@
     <string name="user_location_permission_not_granted">You didn\'t grant location permissions.</string>
 
     <string name="email"><a href="mailto:support@guardianapp.ir">ایمیل پشتیانی</a></string>
-    <string name="website"><a href="http://guardianapp.ir">وبسایت گاردیَن</a></string>
+    <string name="website"><a href="http://guardianapp.ir">وبسایت گاردین</a></string>
 
     <string name="activity_info_description">تصادفات رانندگی یکی از علل مهم مرگ و میر در سرتاسر جهان و به ویژه در ایران می باشد؛ به صورتی که می توان از آن به عنوان دومین علت مرگ و میر در ایران یاد کرد.\n
     <b><i>گاردیَن</i></b> با بررسی عوامل موثر بر رانندگی سالم شما از جمله؛ میزان خواب، ساعت شبانه روز، سرعت خودرو، میزان رانندگی بدون توقف، نوع جاده، ترافیک مسیر، آب و هوا، درنظر گرفتن محدوده ی ۳۰ کیلومتری شهرهای بزرگ به صورت هوشمند
     با ارائه ی راهکار های مناسب به اینکه شما سالم تر رانندگی کنید، کمک کند!</string>
 
-    <string name="activity_info_title">درباره ی گاردیَن</string>
+    <string name="activity_info_title">درباره ی گاردین</string>
     <string name="activity_info_subtitle">گاردیَن چیست؟</string>
 
     <string name="activity_account_title">حساب کاربری من</string>
