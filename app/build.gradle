@@ -64,5 +64,6 @@ dependencies {
     implementation 'com.android.volley:volley:1.1.0'
     implementation 'com.luckycatlabs:SunriseSunsetCalculator:1.2'
     implementation 'com.github.bikcrum:CircularRangeSlider-Android:1.0'
-
+    implementation 'com.google.android.gms:play-services-location:11.8.0'
+    implementation 'com.google.code.gson:gson:2.8.1'
 }

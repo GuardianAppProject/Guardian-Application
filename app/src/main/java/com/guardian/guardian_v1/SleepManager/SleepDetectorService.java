@@ -15,9 +15,12 @@ import android.content.Intent;
 
 
 import android.os.IBinder;
+
 import android.util.Log;
 
+
 import androidx.annotation.Nullable;
+
 
 
 import com.google.gson.reflect.TypeToken;
@@ -29,6 +32,8 @@ public class SleepDetectorService extends Service {
 
     private static HashMap<Date,DetectedActivity> sleepData= new HashMap<>();
     private static ArrayList<Date> allDates = new ArrayList<>();
+
+
 
     private  ActivityRecognitionClient mActivityRecognitionClient;
 
@@ -61,13 +66,11 @@ public class SleepDetectorService extends Service {
 
     static String detectedActivitiesToJson(ArrayList<DetectedActivity> detectedActivitiesList) {
         Type type = new TypeToken<ArrayList<DetectedActivity>>() {}.getType();
-        System.out.println(detectedActivitiesList.toString());
         if(detectedActivitiesList != null){
             deleteOldData();
             Date date = getDate(Calendar.getInstance().getTime());
             sleepData.put(date,detectedActivitiesList.get(0));
             allDates.add(date);
-            Log.d("my sleep data",sleepData.toString());
         }
         return new Gson().toJson(detectedActivitiesList, type);
     }
@@ -92,16 +95,44 @@ public class SleepDetectorService extends Service {
             if((sleepData.containsKey(date))&&(sleepData.get(date).getType()!=DetectedActivity.STILL)){
                 error++;
             }
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(date);
+            calendar.add(Calendar.MINUTE,5);
+            date = calendar.getTime();
+            calendar.clear();
         }
         return error <= 3;
     }
 
     public static ArrayList<Date> getSleepTime(){
-        return null;
+        deleteOldData();
+        ArrayList<Boolean> l = new ArrayList<>();
+        for (Date date : allDates) {
+            l.add(((sleepData.containsKey(date))&&(sleepData.get(date).getType()==DetectedActivity.STILL)));
+        }
+        int index = 0;
+        int lenght = 0;
+        int maxLenght = 0;
+        for(int i=0; i<l.size() ; i++){
+            if(l.get(i)){
+                lenght ++;
+                index = i;
+            }else{
+                if(lenght > maxLenght){
+                    maxLenght = lenght;
+                    index = i;
+                }
+                lenght = 0;
+            }
+        }
+        ArrayList<Date> dates=new ArrayList<>();
+        dates.add(allDates.get(index-lenght+1));
+        dates.add(allDates.get(index));
+        return dates;
     }
 
     private static Date getDate(Date date){
-        return new Date(date.getYear(),date.getMonth(),date.getDay(),date.getHours(),(date.getMinutes()/5)*5,0);
+        return new Date(date.getYear(),date.getMonth(),date.getDate(),date.getHours(),(date.getMinutes()/5)*5,0);
     }
 
     @Override
@@ -116,5 +147,8 @@ public class SleepDetectorService extends Service {
         System.out.println("task removed");
     }
 
+    public static HashMap<Date, DetectedActivity> getSleepData() {
+        return sleepData;
+    }
 }
 
