@@ -1,5 +1,13 @@
 package com.guardian.guardian_v1.DriveStatus;
 
+import android.Manifest;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationManager;
+
+import androidx.core.app.ActivityCompat;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -53,6 +61,16 @@ public class Weather {
         }
     }
 
+    public static Weather getCurrentLocationWeather(Context context) throws IOException {
+        LocationManager locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+        if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return null;
+        }
+        Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        return getWeather(location.getLongitude(),location.getLatitude());
+    }
+
+
 
     public enum WeatherType {
         Thunderstorm,
@@ -86,3 +104,37 @@ public class Weather {
 
     //Picasso.get().load("http://i.imgur.com/DvpvklR.png").into(imageView);
 }
+
+
+/*
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        System.out.println(data);
+        switch (requestCode) {
+            case REQ_CODE: {
+                if(data!=null){
+              //  if (resultCode = = RESULT_OK && null ! = data) {
+                    ArrayList result = data
+                            .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                    textView.setText(result.get(0).toString());
+                }
+                break;
+            }
+        }
+    }
+
+    private void startSpeechToText(){
+        Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+                RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Need to speak");
+        try {
+            startActivityForResult(intent, REQ_CODE);
+        } catch (ActivityNotFoundException a) {
+            Toast.makeText(getApplicationContext(),
+                    "Sorry your device not supported",
+                    Toast.LENGTH_SHORT).show();
+        }
+    }*/
