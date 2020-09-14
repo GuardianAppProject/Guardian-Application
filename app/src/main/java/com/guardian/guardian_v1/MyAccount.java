@@ -2,10 +2,13 @@ package com.guardian.guardian_v1;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -60,9 +63,6 @@ public class MyAccount extends AppCompatActivity {
         logoutButton.setOnClickListener( new View.OnClickListener() {
             public void onClick(View v) {
                 onClickLogout();
-                Intent i = new Intent(MyAccount.this, MainActivity.class);
-                startActivity(i);
-                finish();
             }
         });
     }
@@ -92,8 +92,33 @@ public class MyAccount extends AppCompatActivity {
     }
 
     private void onClickLogout(){
-        LogoutWorker logoutWorker = new LogoutWorker(this);
-        logoutWorker.execute("logout",getToken());
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        View view = LayoutInflater.from(this).inflate(R.layout.logout_alert, null);
+
+        Button logoutYes = view.findViewById(R.id.logoutYesButton);
+        logoutYes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LogoutWorker logoutWorker = new LogoutWorker(MyAccount.this);
+                logoutWorker.execute("logout",getToken());
+
+                Intent i = new Intent(MyAccount.this, MainActivity.class);
+                startActivity(i);
+                finish();
+            }
+        });
+        Button logoutNo = view.findViewById(R.id.logoutNoBtn);
+        logoutNo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        builder.setView(view);
+        builder.show();
+
+
     }
 
     private void onClickEdit(){

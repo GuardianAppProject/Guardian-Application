@@ -37,8 +37,8 @@
 
             <ImageButton
                 android:background="@drawable/back"
-                android:layout_height="20dp"
-                android:layout_width="16dp"
+                android:layout_height="18dp"
+                android:layout_width="12dp"
                 android:layout_marginTop="8dp"
                 android:padding="10dp"
                 android:layout_marginLeft="10dp"

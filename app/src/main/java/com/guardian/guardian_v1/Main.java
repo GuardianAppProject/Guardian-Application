@@ -2,6 +2,7 @@ package com.guardian.guardian_v1;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.Handler;
@@ -191,6 +192,7 @@ public class Main extends AppCompatActivity implements OnMapReadyCallback,
         alertMessageImage = findViewById(R.id.alertMessageImage);
         statusCalculator = new StatusCalculator();
 
+        callAlgorithmLogic();
         final Handler ha = new Handler();
         ha.postDelayed(new Runnable() {
 
@@ -283,13 +285,14 @@ public class Main extends AppCompatActivity implements OnMapReadyCallback,
 
     private void callAlgorithmLogic() {
         double percentage = statusCalculator.calculatePercentageAlgorithm();
-        algorithmPercentageText.setText(String.valueOf(percentage));
+        algorithmPercentageText.setText(String.valueOf((int)percentage));
         algorithmStatusText.setText(statusCalculator.calculateStatusAlgorithm(percentage));
 
         String toShowAlert = DriveAlertHandler.toShowAlert();
         if(toShowAlert.equalsIgnoreCase("")) {
             alertMessageText.setText("با دقت به رانندگی ادامه دهید.");
             alertMessageBox.setBackgroundResource(R.drawable.rectangle_alert_background_green);
+            alertMessageText.setTextColor(Color.BLACK);
             alertMessageImage.setImageResource(R.drawable.warning);
         } else {
             alertMessageText.setText(toShowAlert);
