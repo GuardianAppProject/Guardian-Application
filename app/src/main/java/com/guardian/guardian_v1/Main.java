@@ -323,8 +323,8 @@ public class Main extends AppCompatActivity implements OnMapReadyCallback,
         if(toShowAlert.equalsIgnoreCase("")) {
             alertMessageText.setText("با دقت به رانندگی ادامه دهید.");
             alertMessageBox.setBackgroundResource(R.drawable.rectangle_alert_background_green);
-            alertMessageText.setTextColor(Color.BLACK);
-            alertMessageImage.setImageResource(R.drawable.warning);
+//            alertMessageText.setTextColor(Color.BLACK);
+            alertMessageImage.setImageResource(R.drawable.warning_white);
         } else {
             alertMessageText.setText(toShowAlert);
             alertMessageBox.setBackgroundResource(R.drawable.rectangle_alert_background_red);

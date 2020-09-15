@@ -707,16 +707,16 @@ public class StatusCalculator {
 
         if(cycle == 10) {
             double sleep_save = calculateAverage(sleep_data);
-            double speed_save = calculateAverage(sleep_data);
-            double time_save = calculateAverage(sleep_data);
-            double withoutStop_save = calculateAverage(sleep_data);
-            double weather_save = calculateAverage(sleep_data);
-            double nearCities_save = calculateAverage(sleep_data);
-            double vibration_save = calculateAverage(sleep_data);
-            double acceleration_save = calculateAverage(sleep_data);
-            double month_save = calculateAverage(sleep_data);
-            double traffic_save = calculateAverage(sleep_data);
-            double roadType_save = calculateAverage(sleep_data);
+            double speed_save = calculateAverage(speed_data);
+            double time_save = calculateAverage(time_data);
+            double withoutStop_save = calculateAverage(withoutStop_data);
+            double weather_save = calculateAverage(weather_data);
+            double nearCities_save = calculateAverage(nearCities_data);
+            double vibration_save = calculateAverage(vibration_data);
+            double acceleration_save = calculateAverage(acceleration_data);
+            double month_save = calculateAverage(month_data);
+            double traffic_save = calculateAverage(traffic_data);
+            double roadType_save = calculateAverage(roadType_data);
 
             // Should save data
             DataSender sender = new DataSender();

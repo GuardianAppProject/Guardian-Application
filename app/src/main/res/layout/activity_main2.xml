@@ -332,7 +332,7 @@
             android:layout_marginBottom="112dp"
             android:gravity="center"
             android:background="@drawable/rectangle_alert_background_red"
-            android:alpha="0.88">
+            android:alpha="0.93">
 
 
             <LinearLayout
