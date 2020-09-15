@@ -12,8 +12,11 @@ import android.os.Build;
 import android.os.Bundle;
 
 
+import android.provider.Settings;
+import android.view.LayoutInflater;
 import android.view.View;
 
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -128,37 +131,61 @@ public class SleepManagerActivity extends AppCompatActivity {
 
     public void submit(View view) {
         if ((sleepTimeDate == null) || (wakeUpTimeDate == null)) {
-            Toast.makeText(this, "please enter a sleep time", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "لطفا میزان خواب را وارد کنید!", Toast.LENGTH_LONG).show();
             return;
         }
         if (SleepDetectorService.isSleepValid(sleepTimeDate, wakeUpTimeDate) == false) {
-            Toast.makeText(this, "please enter a valid sleep time", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "این میزان خواب برای شما معتبر نیست!", Toast.LENGTH_LONG).show();
             return;
         }
-        new AlertDialog.Builder(this)
-                .setTitle("submit")
-                .setMessage("Are you sure you want to submit your data")
-                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        //put your code here
-                    }
-                })
-                .setNegativeButton("cancel", null)
-                .setIcon(android.R.drawable.ic_dialog_alert)
-                .show();
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        View dialogView = LayoutInflater.from(this).inflate(R.layout.sleep_sureness_alert, null);
+
+        Button yesButton = dialogView.findViewById(R.id.yesButton);
+        yesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //put your code here
+            }
+        });
+
+        Button noButton = dialogView.findViewById(R.id.noButton);
+        noButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        builder.setView(dialogView);
+        builder.show();
+
+
+//        new AlertDialog.Builder(this)
+//                .setTitle("submit")
+//                .setMessage("Are you sure you want to submit your data")
+//                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        //put your code here
+//                    }
+//                })
+//                .setNegativeButton("cancel", null)
+//                .setIcon(android.R.drawable.ic_dialog_alert)
+//                .show();
 
     }
 
     public void changeTexts() {
-        sleepTime.setText("sleep time=  " + sleepTimeDate.getHours() + "H:" + sleepTimeDate.getMinutes() + "M");
-        wakeUpTime.setText("wake up time=  " + wakeUpTimeDate.getHours() + "H:" + wakeUpTimeDate.getMinutes() + "M");
+        sleepTime.setText("ساعت خواب:  " + sleepTimeDate.getHours() + "H:" + sleepTimeDate.getMinutes() + "M");
+        wakeUpTime.setText("ساعت بیدارشدن:  " + wakeUpTimeDate.getHours() + "H:" + wakeUpTimeDate.getMinutes() + "M");
         totalSleep.setText(getTotalSleepTime(wakeUpTimeDate, sleepTimeDate));
     }
 
     public void recordAuto(View view) {
         ArrayList<Date> dates = SleepDetectorService.getSleepTime();
         if (dates.get(0).equals(dates.get(1))) {
-            Toast.makeText(this, "not enough data", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "اطلاعات کافی موجود نیست!", Toast.LENGTH_SHORT).show();
             return;
         }
         setSleepTimeDate(dates.get(0));
