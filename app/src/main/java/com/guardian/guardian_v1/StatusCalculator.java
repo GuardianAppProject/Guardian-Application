@@ -6,7 +6,10 @@ import com.guardian.guardian_v1.DriveStatus.Time;
 import com.guardian.guardian_v1.DriveStatus.Weather;
 import com.guardian.guardian_v1.Transmission.DataSender;
 
+import java.io.IOException;
 import java.util.ArrayList;
+
+import static com.mapbox.mapboxsdk.Mapbox.getApplicationContext;
 
 
 public class StatusCalculator {
@@ -660,6 +663,23 @@ public class StatusCalculator {
         return roadType_factor;
     }
 
+    double weather_factor = 0;
+    public void setWeather_factor() {
+        this.weather_factor = weather_factor;
+        Thread weatherThread = new Thread() {
+            @Override
+            public void run() {
+                try {
+                    Weather weather = Weather.getCurrentLocationWeather(getApplicationContext());
+                    weather_factor = weatherCalculator(weather.getTemperature(),weather.getWindSpeed(),weather.getWeatherType());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        weatherThread.start();
+    }
+
     public double calculatePercentageAlgorithm() {
 
         double average = 0;
@@ -675,12 +695,11 @@ public class StatusCalculator {
         double month_raw = 0;
         double traffic_raw = 0;
         double roadType_raw = 0;
-
+        setWeather_factor();
         double sleep_factor = 0; //sleepCalculator() * 3;
         double time_factor = 0; // timeCalculator(timeObj.getTimeHOUR(), timeObj.getTimeMINUTE()) * 3;
         double speed_factor = 0; // speedCalculator() * 3;
         double withoutStopDriving_factor = 0; // withoutStopDrivingCalculator() * 3;
-        double weather_factor = 0; // weatherCalculator() * 1;
         double nearCities_factor = 0; // nearCitiesCalculator() * 2;
         double vibration_factor = 0; // vibrationCalculator() * 2;
         double acceleration_factor = 0; // accelerationCalculator() * 2.5;
