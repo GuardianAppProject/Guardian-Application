@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
            startApp();
         }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
              startForegroundService(new Intent(this,SpeedCheckerService.class));
              startForegroundService(new Intent(this, SleepDetectorService.class));
         }else{
