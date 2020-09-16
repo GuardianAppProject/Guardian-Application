@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -45,8 +46,6 @@ public class SleepManagerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sleep_manager);
         initiateViews();
         initiateClock();
-        startForegroundService(new Intent(this, SleepDetectorService.class));
-
     }
 
     public String getTotalSleepTime(Date wakeUpDate, Date sleepDate) {

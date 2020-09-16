@@ -64,6 +64,7 @@ import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 import java.lang.ref.WeakReference;
+import java.security.Provider;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -210,7 +211,6 @@ public class Main extends AppCompatActivity implements OnMapReadyCallback,
                 ha.postDelayed(this, 30000);
             }
         }, 30000);
-
     }
 
     public void openDrawer(){

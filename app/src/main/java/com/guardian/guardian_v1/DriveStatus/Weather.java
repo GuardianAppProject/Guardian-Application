@@ -67,6 +67,10 @@ public class Weather {
             return null;
         }
         Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        if(location == null){
+            System.out.println("weather invalid");
+           return getWeather(58,30);
+        }
         return getWeather(location.getLongitude(),location.getLatitude());
     }
 

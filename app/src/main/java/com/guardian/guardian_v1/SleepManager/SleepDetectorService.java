@@ -36,15 +36,17 @@ public class SleepDetectorService extends Service {
 
 
     private  ActivityRecognitionClient mActivityRecognitionClient;
-
+    private boolean started = false;
 
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-         if(mActivityRecognitionClient== null){
+        System.out.println(started);
+         if((mActivityRecognitionClient== null)&&(!started)){
             mActivityRecognitionClient = new ActivityRecognitionClient(this);
             mActivityRecognitionClient.requestActivityUpdates(1000 * 60 * 5,PendingIntent.getService(this,0,intent,PendingIntent.FLAG_UPDATE_CURRENT));
-        }
+            started = true;
+         }
 
         if (ActivityRecognitionResult.hasResult(intent)) {
             ActivityRecognitionResult result = ActivityRecognitionResult.extractResult(intent);
@@ -71,6 +73,7 @@ public class SleepDetectorService extends Service {
             Date date = getDate(Calendar.getInstance().getTime());
             sleepData.put(date,detectedActivitiesList.get(0));
             allDates.add(date);
+            System.out.println(sleepData);
         }
         return new Gson().toJson(detectedActivitiesList, type);
     }

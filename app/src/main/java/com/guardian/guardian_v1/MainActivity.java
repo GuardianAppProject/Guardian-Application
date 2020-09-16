@@ -58,13 +58,13 @@ public class MainActivity extends AppCompatActivity {
            startApp();
         }
 
-       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-             startForegroundService(new Intent(this,SpeedCheckerService.class));
-             startForegroundService(new Intent(this, SleepDetectorService.class));
-        }else{
+      // if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            // startForegroundService(new Intent(this,SpeedCheckerService.class));
+            // startForegroundService(new Intent(this, SleepDetectorService.class));
+       // }else{
             startService(new Intent(this,SpeedCheckerService.class));
-            startService(new Intent(this, SleepDetectorService.class));
-        }
+            //startService(new Intent(this, SleepDetectorService.class));
+       // }
 
     }
 

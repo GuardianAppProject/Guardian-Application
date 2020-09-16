@@ -41,7 +41,7 @@
         <service
             android:name=".SpeedCheckerService"
             android:launchMode="singleTop"
-            android:process=":yourService"
+            android:process=":SpeedService"
             />
         <service
             android:name=".SleepManager.SleepDetectorService"

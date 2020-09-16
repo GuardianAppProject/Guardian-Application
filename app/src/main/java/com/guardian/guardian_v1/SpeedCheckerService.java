@@ -2,23 +2,28 @@ package com.guardian.guardian_v1;
 
 import java.util.ArrayList;
 import java.lang.reflect.Type;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 
+import android.app.ActivityManager;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
-import android.content.Context;
+
 
 import com.google.android.gms.location.ActivityRecognitionClient;
+
 import com.google.gson.Gson;
+
+import android.content.Context;
 import android.content.Intent;
 
 import android.graphics.Color;
 import android.os.Build;
 import android.os.IBinder;
-import android.content.res.Resources;
-
 
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
@@ -35,89 +40,21 @@ public class SpeedCheckerService extends Service {
     protected static final String TAG = "Activity";
     private static SpeedCheckerService speedCheckerService;
     private  ActivityRecognitionClient mActivityRecognitionClient;
-
+    private boolean started = false;
+    Date lastNotification;
 
 
     @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-        if(mActivityRecognitionClient== null){
-            mActivityRecognitionClient = new ActivityRecognitionClient(this);
-            mActivityRecognitionClient.requestActivityUpdates(1000,PendingIntent.getService(this,0,intent,PendingIntent.FLAG_UPDATE_CURRENT));
-        }
-        speedCheckerService = this;
-
-        if (ActivityRecognitionResult.hasResult(intent)) {
-            ActivityRecognitionResult result = ActivityRecognitionResult.extractResult(intent);
-            ArrayList<DetectedActivity> detectedActivities = (ArrayList) result.getProbableActivities();
-            detectedActivitiesToJson(detectedActivities);
-        }
-        return START_STICKY;
+    public void onCreate() {
+        createNotificationChannel();
     }
-
-
 
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
-        System.out.println("bind");
         return null;
     }
 
-
-    static String getActivityString(Context context, int detectedActivityType) {
-        Resources resources = context.getResources();
-        switch(detectedActivityType) {
-            case DetectedActivity.ON_BICYCLE:
-                return "bicycle";
-            case DetectedActivity.ON_FOOT:
-                return "foot";
-            case DetectedActivity.RUNNING:
-                return "running";
-            case DetectedActivity.STILL:
-                return "still";
-            case DetectedActivity.TILTING:
-                return "tilting";
-            case DetectedActivity.WALKING:
-                return "walking";
-            case DetectedActivity.IN_VEHICLE:
-                return "vehicle";
-            default:
-                return "unknown";
-        }
-    }
-    static final int[] POSSIBLE_ACTIVITIES = {
-
-            DetectedActivity.STILL,
-            DetectedActivity.ON_FOOT,
-            DetectedActivity.WALKING,
-            DetectedActivity.RUNNING,
-            DetectedActivity.IN_VEHICLE,
-            DetectedActivity.ON_BICYCLE,
-            DetectedActivity.TILTING,
-            DetectedActivity.UNKNOWN
-    };
-
-    static String detectedActivitiesToJson(ArrayList<DetectedActivity> detectedActivitiesList) {
-        Type type = new TypeToken<ArrayList<DetectedActivity>>() {}.getType();
-        if ((detectedActivitiesList.size()>=1)&&(detectedActivitiesList.get(0).getType() == DetectedActivity.IN_VEHICLE) && (detectedActivitiesList.get(0).getConfidence()) >= 60){
-            speedCheckerService.makeNotification();
-            try {
-                Thread.sleep(1000*60*20);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-        return new Gson().toJson(detectedActivitiesList, type);
-    }
-
-    static ArrayList<DetectedActivity> detectedActivitiesFromJson(String jsonArray) {
-        Type listType = new TypeToken<ArrayList<DetectedActivity>>(){}.getType();
-        ArrayList<DetectedActivity> detectedActivities = new Gson().fromJson(jsonArray, listType);
-        if (detectedActivities == null) {
-            detectedActivities = new ArrayList<>();
-        }
-        return detectedActivities;
-    }
 
     public void makeNotification(){
         createNotificationChannel();
@@ -125,11 +62,11 @@ public class SpeedCheckerService extends Service {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
-                .setSmallIcon(R.drawable.logo_white)
-                .setContentTitle("Driving detected")
-                .setContentText("would you like to start Guardian?")
+                .setContentTitle("رانندگی شناسایی شد")
+                .setContentText("ایا مایل به باز کردن گاردین هستید؟")
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setContentIntent(pendingIntent)
+                .setSmallIcon(R.drawable.mapbox_logo_icon)
                 .setColor(Color.parseColor("#00ff00"))
                 .setAutoCancel(true);
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
@@ -148,17 +85,63 @@ public class SpeedCheckerService extends Service {
         }
     }
 
-
     @Override
-    public void onDestroy() {
-        super.onDestroy();
+    public int onStartCommand(final Intent intent, int flags, int startId) {
+
+        if((mActivityRecognitionClient== null)&&(!started)){
+            mActivityRecognitionClient = new ActivityRecognitionClient(this);
+            mActivityRecognitionClient.requestActivityUpdates(1000 * 60 * 2,PendingIntent.getService(this,0,intent,PendingIntent.FLAG_UPDATE_CURRENT));
+            started = true;
+        }
+
+        speedCheckerService = this;
+
+        if (ActivityRecognitionResult.hasResult(intent)) {
+            ActivityRecognitionResult result = ActivityRecognitionResult.extractResult(intent);
+            ArrayList<DetectedActivity> detectedActivities = (ArrayList) result.getProbableActivities();
+            detectedActivitiesToJson(detectedActivities);
+        }
+        return START_STICKY;
     }
+
+    String detectedActivitiesToJson(ArrayList<DetectedActivity> detectedActivitiesList) {
+        Type type = new TypeToken<ArrayList<DetectedActivity>>() {}.getType();
+        System.out.println(detectedActivitiesList.toString());
+        if ((detectedActivitiesList.size()>=1)&&(detectedActivitiesList.get(0).getType() == DetectedActivity.IN_VEHICLE) && (detectedActivitiesList.get(0).getConfidence()) >= 60){
+            ActivityManager am = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+            List<ActivityManager.RunningTaskInfo> alltasks = am.getRunningTasks(2);
+            for (ActivityManager.RunningTaskInfo aTask : alltasks) {
+                System.out.println(aTask.baseActivity.getClassName());
+                if(aTask.baseActivity.getClassName().equals("com.guardian.guardian_v1.MainActivity"))
+                return null;
+            }
+            if(lastNotification!=null){
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(lastNotification);
+                calendar.add(Calendar.MINUTE,1);
+                Date newDate = calendar.getTime();
+                calendar.clear();
+                if(newDate.after(lastNotification) == false)
+                return null;
+            }
+            speedCheckerService.makeNotification();
+            lastNotification = Calendar.getInstance().getTime();
+        }
+        return new Gson().toJson(detectedActivitiesList, type);
+    }
+
 
     @Override
     public void onTaskRemoved(Intent rootIntent) {
         super.onTaskRemoved(rootIntent);
+        System.out.println("remove");
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        System.out.println("destroy");
+    }
 }
 
 //to start service startForeground(intent)
