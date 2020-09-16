@@ -47,6 +47,7 @@ public class RoadInformation extends AppCompatActivity {
     private int counter, i;
     public int speed = 0;
     public int lanes = 0;
+    public int test = 0;
     enum highwayTags {motorway, trunk, primary, secondary, tertiary, unclassified, residential, motorway_link
         , trunk_link, primary_link, secondary_link, tertiary_link, road}
     highwayTags highwayResult;
