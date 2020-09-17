@@ -1,4 +1,4 @@
-package com.guardian.guardian_v1.SleepManager;
+package com.guardian.guardian_v1.SleepSpeedManager;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
@@ -6,14 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 
 
-import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
 
@@ -116,7 +112,6 @@ public class SleepManagerActivity extends AppCompatActivity {
                 ArrayList<Date> dates = generateToDate(clock.getStartIndex(), clock.getEndIndex());
                 wakeUpTimeDate = dates.get(1);
                 sleepTimeDate = dates.get(0);
-                System.out.println(SleepDetectorService.getSleepData().toString());
                 changeTexts();
             }
 
@@ -133,7 +128,7 @@ public class SleepManagerActivity extends AppCompatActivity {
             Toast.makeText(this, "لطفا میزان خواب را وارد کنید!", Toast.LENGTH_LONG).show();
             return;
         }
-        if (SleepDetectorService.isSleepValid(sleepTimeDate, wakeUpTimeDate) == false) {
+        if (SleepSpeedDetectorService.isSleepValid(sleepTimeDate, wakeUpTimeDate) == false) {
             Toast.makeText(this, "این میزان خواب برای شما معتبر نیست!", Toast.LENGTH_LONG).show();
             return;
         }
@@ -153,7 +148,7 @@ public class SleepManagerActivity extends AppCompatActivity {
         noButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                finish();
             }
         });
 
@@ -182,7 +177,7 @@ public class SleepManagerActivity extends AppCompatActivity {
     }
 
     public void recordAuto(View view) {
-        ArrayList<Date> dates = SleepDetectorService.getSleepTime();
+        ArrayList<Date> dates = SleepSpeedDetectorService.getSleepTime();
         if (dates.get(0).equals(dates.get(1))) {
             Toast.makeText(this, "اطلاعات کافی موجود نیست!", Toast.LENGTH_SHORT).show();
             return;
