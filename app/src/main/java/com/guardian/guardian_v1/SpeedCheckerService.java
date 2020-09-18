@@ -66,7 +66,7 @@ public class SpeedCheckerService extends Service {
                 .setContentText("ایا مایل به باز کردن گاردین هستید؟")
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setContentIntent(pendingIntent)
-                .setSmallIcon(R.drawable.logo_white)
+                .setSmallIcon(R.drawable.mapbox_logo_icon)
                 .setColor(Color.parseColor("#00ff00"))
                 .setAutoCancel(true);
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
