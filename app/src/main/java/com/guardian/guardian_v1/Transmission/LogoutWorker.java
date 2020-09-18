@@ -31,7 +31,7 @@ public class LogoutWorker extends AsyncTask<String,Void,String> {
     @Override
     protected String doInBackground(String... strings) {
         String type = strings[0];
-        String login_url = "http://www.guardianapp.ir/logout_444.php";
+        String login_url = "https://www.guardianapp.ir/logout_444.php";
         if (type.equals("logout")) {
             try {
                 String token = strings[1];

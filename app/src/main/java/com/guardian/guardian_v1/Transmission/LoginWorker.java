@@ -30,7 +30,7 @@ public class LoginWorker extends AsyncTask<String,Void,String> {
     @Override
     protected String doInBackground(String... strings) {
         String type = strings[0];
-        String login_url = "http://www.guardianapp.ir/login555555.php" ;
+        String login_url = "https://www.guardianapp.ir/login555555.php" ;
         if(type.equals("login")){
             try {
                 String username = strings[1];

@@ -31,7 +31,7 @@ public class DataSender extends AsyncTask<String, Void, String> {
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected String doInBackground(String... strings) {
-        String register_url = "http://www.guardianapp.ir/insert_driver_data_asd.php";
+        String register_url = "https://www.guardianapp.ir/insert_driver_data_asd.php";
 
         try {
             String token = strings[0];

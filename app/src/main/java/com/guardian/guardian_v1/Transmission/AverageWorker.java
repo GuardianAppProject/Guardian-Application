@@ -27,7 +27,7 @@ public class AverageWorker extends AsyncTask<String, Void, String> {
 
     @Override
     protected String doInBackground(String... strings) {
-        String login_url = "http://www.guardianapp.ir/get_avg_driver_432.php"; // <=== ???
+        String login_url = "https://www.guardianapp.ir/get_avg_driver_432.php"; // <=== ???
         try {
             String token = strings[0];
 
