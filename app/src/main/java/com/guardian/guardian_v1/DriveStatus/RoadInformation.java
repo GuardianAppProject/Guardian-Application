@@ -27,7 +27,6 @@ public class RoadInformation extends AppCompatActivity {
     public int speed = 0;
     public int lanes = 0;
     public int test = 0;
-    public boolean oneway = false;
     enum highwayTags {motorway, trunk, primary, secondary, tertiary, unclassified, residential, motorway_link
         , trunk_link, primary_link, secondary_link, tertiary_link, road}
     highwayTags highwayResult;
@@ -95,18 +94,6 @@ public class RoadInformation extends AppCompatActivity {
                         }
                         Log.d("highway result", highwayResult.toString() + "");
                         Log.d("lanes", lines[counter]);
-                    }
-
-                    if(lines[counter].contains("oneway")) {
-                        if(lines[counter].contains("yes")) {
-                            oneway = true;
-                        }
-                        else if(lines[counter].contains("no")) {
-                            oneway = false;
-                        }
-                        else {
-                            oneway = false;
-                        }
                     }
                 }
                 Log.d("responce", result);
