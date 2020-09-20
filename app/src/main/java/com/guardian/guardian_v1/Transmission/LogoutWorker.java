@@ -65,7 +65,6 @@ public class LogoutWorker extends AsyncTask<String,Void,String> {
                 bufferedReader.close();
                 inputStream.close();
                 httpURLConnection.disconnect();
-                SignIn.setLoginResult(result);
                 System.err.println(result);
                 ans = result;
                 return result;
