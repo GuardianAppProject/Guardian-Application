@@ -1,4 +1,4 @@
-package com.guardian.guardian_v1.SleepManager;
+package com.guardian.guardian_v1.SleepSpeedManager;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
@@ -6,14 +6,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 
 
-import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
 
@@ -22,8 +21,23 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bikcrum.circularrangeslider.CircularRangeSlider;
+import com.google.gson.Gson;
 import com.guardian.guardian_v1.R;
+import com.guardian.guardian_v1.SeatBelt;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.EOFException;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -44,6 +58,11 @@ public class SleepManagerActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sleep_manager);
+        if(isThereSleepDataFile(this)  == false){
+            makeSleepDataFile(this);
+        }else{
+            System.out.println("hastesh");
+        }
         initiateViews();
         initiateClock();
     }
@@ -116,7 +135,6 @@ public class SleepManagerActivity extends AppCompatActivity {
                 ArrayList<Date> dates = generateToDate(clock.getStartIndex(), clock.getEndIndex());
                 wakeUpTimeDate = dates.get(1);
                 sleepTimeDate = dates.get(0);
-                System.out.println(SleepDetectorService.getSleepData().toString());
                 changeTexts();
             }
 
@@ -133,46 +151,32 @@ public class SleepManagerActivity extends AppCompatActivity {
             Toast.makeText(this, "لطفا میزان خواب را وارد کنید!", Toast.LENGTH_LONG).show();
             return;
         }
-        if (SleepDetectorService.isSleepValid(sleepTimeDate, wakeUpTimeDate) == false) {
+        if (SleepSpeedDetectorService.isSleepValid(sleepTimeDate, wakeUpTimeDate) == false) {
             Toast.makeText(this, "این میزان خواب برای شما معتبر نیست!", Toast.LENGTH_LONG).show();
             return;
         }
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
         View dialogView = LayoutInflater.from(this).inflate(R.layout.sleep_sureness_alert, null);
 
         Button yesButton = dialogView.findViewById(R.id.yesButton);
         yesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //put your code here
+               writeInfoToFile(SleepManagerActivity.this,sleepTimeDate,wakeUpTimeDate);
+               Intent intent = new Intent(SleepManagerActivity.this, SeatBelt.class);
+               startActivity(intent);
+               finish();
             }
         });
-
-        Button noButton = dialogView.findViewById(R.id.noButton);
-        noButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
+       builder.setNeutralButton("خروج", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
             }
         });
-
         builder.setView(dialogView);
         builder.show();
-
-
-//        new AlertDialog.Builder(this)
-//                .setTitle("submit")
-//                .setMessage("Are you sure you want to submit your data")
-//                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        //put your code here
-//                    }
-//                })
-//                .setNegativeButton("cancel", null)
-//                .setIcon(android.R.drawable.ic_dialog_alert)
-//                .show();
-
     }
 
     public void changeTexts() {
@@ -182,7 +186,7 @@ public class SleepManagerActivity extends AppCompatActivity {
     }
 
     public void recordAuto(View view) {
-        ArrayList<Date> dates = SleepDetectorService.getSleepTime();
+        ArrayList<Date> dates = SleepSpeedDetectorService.getSleepTime();
         if (dates.get(0).equals(dates.get(1))) {
             Toast.makeText(this, "اطلاعات کافی موجود نیست!", Toast.LENGTH_SHORT).show();
             return;
@@ -212,5 +216,99 @@ public class SleepManagerActivity extends AppCompatActivity {
         wakeUpTimeDate = date;
     }
 
-}
+    public static boolean isThereSleepDataFile(Context context){
+        for (String s : context.fileList()) {
+            if(s.equals("SleepData")) return true;
+        }
+        return false;
+    }
 
+    public static void makeSleepDataFile(Context context){
+        File file = new File(context.getFilesDir(), "SleepData");
+    }
+
+    public static boolean writeInfoToFile(Context context, Date sleepTimeDate, Date wakeUpTimeDate){
+        try {
+            makeSleepDataFile(context);
+            SleepData sleepData = new SleepData(sleepTimeDate,wakeUpTimeDate,Calendar.getInstance().getTime());
+            Gson gson = new Gson();
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput("SleepData", Context.MODE_PRIVATE));
+            outputStreamWriter.write(gson.toJson(sleepData));
+            outputStreamWriter.close();
+            System.out.println("done");
+            isSleepDataRecordedToday(context);
+            return true;
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return false;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public static SleepData readDataFromFile(Context context){
+        String ret = "";
+        try {
+            InputStream inputStream = context.openFileInput("SleepData");
+
+            if ( inputStream != null ) {
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                String receiveString = "";
+                StringBuilder stringBuilder = new StringBuilder();
+
+                while ( (receiveString = bufferedReader.readLine()) != null ) {
+                    stringBuilder.append(receiveString);
+                }
+
+                inputStream.close();
+                ret = stringBuilder.toString();
+            }
+        }
+        catch (IOException e) {
+            return null;
+        }
+        Gson gson = new Gson();
+        return   gson.fromJson(ret,SleepData.class);
+    }
+
+    public static boolean isSleepDataRecordedToday(Context context){
+        if(isThereSleepDataFile(context)  == false) makeSleepDataFile(context);
+        String ret = "";
+        try {
+            InputStream inputStream = context.openFileInput("SleepData");
+
+            if ( inputStream != null ) {
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                String receiveString = "";
+                StringBuilder stringBuilder = new StringBuilder();
+
+                while ( (receiveString = bufferedReader.readLine()) != null ) {
+                    stringBuilder.append(receiveString);
+                }
+
+                inputStream.close();
+                ret = stringBuilder.toString();
+            }
+        }
+        catch (FileNotFoundException e) {
+          System.out.println("login activity File not found: " + e.toString());
+          return false;
+        } catch (IOException e) {
+            System.out. println("login activity Can not read file: " + e.toString());
+            return false;
+        }
+        System.out.println(ret);
+        Gson gson = new Gson();
+        SleepData sleepData =  gson.fromJson(ret,SleepData.class);
+        Date now = Calendar.getInstance().getTime();
+        return !((sleepData.getCurrentTime().getDate()!=now.getDate()) && (now.getHours()+24-sleepData.getCurrentTime().getHours()>24));
+    }
+
+    public static void deleteSleepData(Context context){
+       makeSleepDataFile(context);
+    }
+
+}

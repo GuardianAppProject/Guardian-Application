@@ -15,7 +15,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.guardian.guardian_v1.SleepManager.SleepDetectorService;
+
+import com.guardian.guardian_v1.SleepSpeedManager.SleepSpeedDetectorService;
 import com.guardian.guardian_v1.Transmission.AverageWorker;
 import com.guardian.guardian_v1.Transmission.TokenChecker;
 
@@ -58,13 +59,11 @@ public class MainActivity extends AppCompatActivity {
            startApp();
         }
 
-      // if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            // startForegroundService(new Intent(this,SpeedCheckerService.class));
-            // startForegroundService(new Intent(this, SleepDetectorService.class));
-       // }else{
-            startService(new Intent(this,SpeedCheckerService.class));
-            //startService(new Intent(this, SleepDetectorService.class));
-       // }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            startForegroundService(new Intent(this, SleepSpeedDetectorService.class));
+        }else{
+            startService(new Intent(this, SleepSpeedDetectorService.class));
+        }
 
     }
 

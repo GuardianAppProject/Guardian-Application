@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.guardian.guardian_v1.PasswordManager.AsteriskPasswordTransformationMethod;
 import com.guardian.guardian_v1.PasswordManager.DoNothingTransformationMethod;
+import com.guardian.guardian_v1.SleepSpeedManager.SleepManagerActivity;
 import com.guardian.guardian_v1.Transmission.RegisterWorker;
 import com.guardian.guardian_v1.Transmission.TokenChecker;
 
@@ -31,9 +32,15 @@ public class SignUp extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         if(TokenChecker.tokenIsValid()){
-            Intent i = new Intent(SignUp.this, SeatBelt.class);
-            startActivity(i);
-            finish();
+            if(SleepManagerActivity.isSleepDataRecordedToday(this) == false){
+                Intent intent = new Intent(SignUp.this, SleepManagerActivity.class);
+                startActivity(intent);
+                finish();
+            }else {
+                Intent i = new Intent(SignUp.this, SeatBelt.class);
+                startActivity(i);
+                finish();
+            }
         }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);

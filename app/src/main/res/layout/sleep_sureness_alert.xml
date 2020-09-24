@@ -40,15 +40,6 @@
 
             <Button
                 android:fontFamily="@font/iran_sans"
-                android:id="@+id/noButton"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.5"
-                android:background="#F2F2F2"
-                android:text="خیر" />
-
-            <Button
-                android:fontFamily="@font/iran_sans"
                 android:id="@+id/yesButton"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
