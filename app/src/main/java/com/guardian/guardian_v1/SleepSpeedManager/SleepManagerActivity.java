@@ -304,7 +304,10 @@ public class SleepManagerActivity extends AppCompatActivity {
         Gson gson = new Gson();
         SleepData sleepData =  gson.fromJson(ret,SleepData.class);
         Date now = Calendar.getInstance().getTime();
-        return !((sleepData.getCurrentTime().getDate()!=now.getDate()) && (now.getHours()+24-sleepData.getCurrentTime().getHours()>24));
+        System.out.println(sleepData.getCurrentTime().getHours());
+        System.out.println(now.getHours());
+        if(sleepData.getCurrentTime().getDate()-now.getDate()>1) return false;
+        return !((sleepData.getCurrentTime().getDate()!=now.getDate()) && (now.getHours()>10));
     }
 
     public static void deleteSleepData(Context context){
