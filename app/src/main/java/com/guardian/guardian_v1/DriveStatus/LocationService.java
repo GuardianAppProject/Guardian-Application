@@ -29,6 +29,7 @@ public class LocationService extends Service implements
     ArrayList<Double> speedArray = new ArrayList<>();
     ArrayList<Long> timeArray = new ArrayList<>();
     ArrayList<Long> timeSaving = new ArrayList<>();
+    ArrayList<Long> nonStopDriving = new ArrayList<>();
     private static final long INTERVAL = 1000 * 2;
     private static final long FASTEST_INTERVAL = 1000 * 1;
     LocationRequest mLocationRequest;
@@ -46,6 +47,10 @@ public class LocationService extends Service implements
     long endingTime;
     boolean firstSpeedTime = true;
     long saveSpeedTime;
+    long nonStopDrivingTime;
+    Long firstSpeedStart = Long.valueOf(0);
+    boolean firstForSpeed = false;
+    long nonStopDrivingShow;
 
     @Nullable
     @Override
@@ -139,6 +144,12 @@ public class LocationService extends Service implements
             long diff = Speedometer.endTime - Speedometer.startTime;
             diff = TimeUnit.MILLISECONDS.toMinutes(diff);
             Log.d("time", "Total Time: " + diff + " minutes");
+            //non stop
+            if(firstSpeedStart == Long.valueOf(0)) {
+                firstSpeedStart = endingTime;
+            }
+            nonStopDrivingShow = endingTime - firstSpeedStart;
+            Log.d("non stop driving", String.valueOf(nonStopDrivingShow));
             if (speed >= 0.0) {
                 Log.d("speed", "Current speed: " + new DecimalFormat("#.##").format(speed) + " km/hr");
 
@@ -154,12 +165,23 @@ public class LocationService extends Service implements
                 }
                 else {
                     first = true;
+                    //non stop
+                    if(firstForSpeed) {
+                        firstSpeedStart = endingTime;
+                        firstForSpeed = false;
+                    }
 
                     if(firstSpeedTime) {
                         saveSpeedTime = endingTime;
                         stopTime = endingTime - firstTime;
                         timeArray.add(stopTime);
                         firstSpeedTime = false;
+                        //non stop
+                        nonStopDrivingTime = endingTime - firstSpeedStart;
+                        nonStopDriving.add(nonStopDrivingTime);
+                        firstForSpeed = true;
+                        nonStopDrivingTime = 0;
+                        nonStopDrivingShow = 0;
                     }
                 }
 
