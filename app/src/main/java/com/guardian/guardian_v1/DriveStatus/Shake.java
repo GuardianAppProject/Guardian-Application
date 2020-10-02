@@ -1,5 +1,7 @@
 package com.guardian.guardian_v1.DriveStatus;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -10,20 +12,48 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.util.Log;
 
-public class Shake extends AppCompatActivity implements SensorEventListener {
+import com.guardian.guardian_v1.SignUp;
+
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
+
+public class Shake {
 
     private SensorManager sensorManager;
     private Sensor accelometerSensor;
     private boolean isAccelometerSensorAvailible, several = false;
-    private float currentX, currentY, currentZ, lastX, lastY, lastZ, xDifference, yDifference, zDifference;
-    private float shakeThrehold = 5f;
+    public float currentX, currentY, currentZ, lastX, lastY, lastZ, xDifference, yDifference, zDifference;
     public enum ShakeSituation {noShake, lowShake, mediumShake, highShake, veryHighShake}
+    public ShakeSituation situation = ShakeSituation.noShake;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public float getxDifference() {
+        return xDifference;
+    }
 
-        sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+    public void setxDifference(float xDifference) {
+        this.xDifference = xDifference;
+    }
+
+    public float getyDifference() {
+        return yDifference;
+    }
+
+    public void setyDifference(float yDifference) {
+        this.yDifference = yDifference;
+    }
+
+    public float getzDifference() {
+        return zDifference;
+    }
+
+    public void setzDifference(float zDifference) {
+        this.zDifference = zDifference;
+    }
+
+    public Shake(Context applicationContext) {
+        sensorManager = (SensorManager) applicationContext.getSystemService(Context.SENSOR_SERVICE);
 
         if(sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER) != null) {
             accelometerSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
@@ -33,75 +63,83 @@ public class Shake extends AppCompatActivity implements SensorEventListener {
             Log.d("xAccelometer", "Accelometer is not availible");
             isAccelometerSensorAvailible = false;
         }
+
+        Log.d("shake thread", Thread.currentThread().getName());
     }
 
-    @Override
-    public void onSensorChanged(SensorEvent sensorEvent) {
-        Log.d("xAccelometer", sensorEvent.values[0]+ "m/s2");
-        Log.d("yAccelometer", sensorEvent.values[1]+ "m/s2");
-        Log.d("zAccelometer", sensorEvent.values[2]+ "m/s2");
+    SensorEventListener sensorEventListener = new SensorEventListener() {
+        @Override
+        public void onSensorChanged(SensorEvent sensorEvent) {
+            Log.d("xAccelometer", sensorEvent.values[0]+ "m/s2");
+            Log.d("yAccelometer", sensorEvent.values[1]+ "m/s2");
+            Log.d("zAccelometer", sensorEvent.values[2]+ "m/s2");
+            Log.d("sensor thread", Thread.currentThread().getName());
 
-        currentX = sensorEvent.values[0];
-        currentY = sensorEvent.values[1];
-        currentZ = sensorEvent.values[2];
+            currentX = sensorEvent.values[0];
+            currentY = sensorEvent.values[1];
+            currentZ = sensorEvent.values[2];
 
-        if(several) {
+            if(several) {
 
-            xDifference = Math.abs(lastX - currentX);
-            yDifference = Math.abs(lastY - currentY);
-            zDifference = Math.abs(lastZ - currentZ);
+                xDifference = Math.abs(lastX - currentX);
+                yDifference = Math.abs(lastY - currentY);
+                zDifference = Math.abs(lastZ - currentZ);
 
-            if((xDifference > 7f && yDifference > 7f)
-                    || (xDifference > 7f && zDifference > 7f)
-                    || (yDifference > 7f && zDifference > 7f)) {
-                Log.d("shake situation", ShakeSituation.veryHighShake.toString());
+                if((xDifference > 7f && yDifference > 7f)
+                        || (xDifference > 7f && zDifference > 7f)
+                        || (yDifference > 7f && zDifference > 7f)) {
+                    //Log.d("shake situation", ShakeSituation.veryHighShake.toString());
+                    situation = ShakeSituation.veryHighShake;
+                }
+                else if ((xDifference > 6f && yDifference > 6f)
+                        || (xDifference > 6f && zDifference > 6f)
+                        || (yDifference > 6f && zDifference > 6f)) {
+                    //Log.d("shake situation", ShakeSituation.highShake.toString());
+                    situation = ShakeSituation.highShake;
+                }
+                else if ((xDifference > 5f && yDifference > 5f)
+                        || (xDifference > 5f && zDifference > 5f)
+                        || (yDifference > 5f && zDifference > 5f)) {
+                    //Log.d("shake situation", ShakeSituation.mediumShake.toString());
+                    situation = ShakeSituation.mediumShake;
+                }
+                else if ((xDifference > 4f && yDifference > 4f)
+                        || (xDifference > 4f && zDifference > 4f)
+                        || (yDifference > 4f && zDifference > 4f)) {
+                    //Log.d("shake situation", ShakeSituation.lowShake.toString());
+                    situation = ShakeSituation.lowShake;
+                }
+                else {
+                    //Log.d("shake situation", ShakeSituation.noShake.toString());
+                    situation = ShakeSituation.noShake;
+                }
             }
-            else if ((xDifference > 6f && yDifference > 6f)
-                    || (xDifference > 6f && zDifference > 6f)
-                    || (yDifference > 6f && zDifference > 6f)) {
-                Log.d("shake situation", ShakeSituation.highShake.toString());
-            }
-            else if ((xDifference > 5f && yDifference > 5f)
-                    || (xDifference > 5f && zDifference > 5f)
-                    || (yDifference > 5f && zDifference > 5f)) {
-                Log.d("shake situation", ShakeSituation.mediumShake.toString());
-            }
-            else if ((xDifference > 4f && yDifference > 4f)
-                    || (xDifference > 4f && zDifference > 4f)
-                    || (yDifference > 4f && zDifference > 4f)) {
-                Log.d("shake situation", ShakeSituation.lowShake.toString());
-            }
-            else {
-                Log.d("shake situation", ShakeSituation.noShake.toString());
-            }
+
+            lastX = currentX;
+            lastY = currentY;
+            lastZ = currentZ;
+            several = true;
+
+            setxDifference(xDifference);
+            setyDifference(yDifference);
+            setzDifference(zDifference);
+
         }
 
-        lastX = currentX;
-        lastY = currentY;
-        lastZ = currentZ;
-        several = true;
-    }
+        @Override
+        public void onAccuracyChanged(Sensor sensor, int i) {
 
-    @Override
-    public void onAccuracyChanged(Sensor sensor, int i) {
-
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        if(isAccelometerSensorAvailible) {
-            sensorManager.registerListener(this, accelometerSensor, SensorManager.SENSOR_DELAY_NORMAL);
         }
-    }
+    };
 
-    @Override
-    protected void onPause() {
-        super.onPause();
 
-        if(isAccelometerSensorAvailible) {
-            sensorManager.unregisterListener(this);
+    public void registerUnregister(boolean register) {
+
+        if(register) {
+            sensorManager.registerListener(sensorEventListener, accelometerSensor, SensorManager.SENSOR_DELAY_NORMAL);
+        }
+        else {
+            sensorManager.unregisterListener(sensorEventListener);
         }
     }
 

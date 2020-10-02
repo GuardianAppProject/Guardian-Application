@@ -26,82 +26,13 @@ public class RoadInformation extends AppCompatActivity {
     private int counter, i;
     public int speed = 0;
     public int lanes = 0;
-    public int test = 0;
-    enum highwayTags {motorway, trunk, primary, secondary, tertiary, unclassified, residential, motorway_link
+
+    public boolean oneway = false;
+    public enum highwayTags {motorway, trunk, primary, secondary, tertiary, unclassified, residential, motorway_link
         , trunk_link, primary_link, secondary_link, tertiary_link, road}
-    highwayTags highwayResult;
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    public highwayTags highwayResult;
 
-
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                String result = getXmlFromUrl(33.670049, 33.670249, 72.998251, 72.998451);
-                String[] lines = result.split(System.getProperty("line.separator"));
-                for(counter = 0; counter < lines.length; counter++) {
-
-                    //speed limit
-                    if(lines[counter].contains("maxspeed")) {
-                        String[] parts = lines[counter].split(" ");
-                        String[] hold = parts[parts.length - 1].split("=");
-                        String[] temp = hold[hold.length - 1].split("\"");
-                        Log.d("temp", temp[1]);
-                        speed = Integer.parseInt(temp[1]);
-                        Log.d("speed", lines[counter]);
-                    }
-
-                    //lanes
-                    if(lines[counter].contains("lanes")) {
-                        String[] parts = lines[counter].split(" ");
-                        String[] hold = parts[parts.length - 1].split("=");
-                        String[] temp = hold[hold.length - 1].split("\"");
-                        Log.d("temp", temp[1]);
-                        lanes = Integer.parseInt(temp[1]);
-                        Log.d("lanes", lanes + "");
-                        Log.d("lanes", lines[counter]);
-                    }
-
-                    if(lines[counter].contains("highway")) {
-                        if(lines[counter].contains("motorway")) {
-                            highwayResult = highwayTags.motorway;
-                        } else if(lines[counter].contains("trunk")) {
-                            highwayResult = highwayTags.trunk;
-                        } else if(lines[counter].contains("primary")) {
-                            highwayResult = highwayTags.primary;
-                        } else if(lines[counter].contains("secondary")) {
-                            highwayResult = highwayTags.secondary;
-                        } else if(lines[counter].contains("tertiary")) {
-                            highwayResult = highwayTags.tertiary;
-                        } else if(lines[counter].contains("unclassified")) {
-                            highwayResult = highwayTags.unclassified;
-                        } else if(lines[counter].contains("residential")) {
-                            highwayResult = highwayTags.residential;
-                        } else if(lines[counter].contains("motorway_link")) {
-                            highwayResult = highwayTags.motorway_link;
-                        } else if(lines[counter].contains("trunk_link")) {
-                            highwayResult = highwayTags.trunk_link;
-                        } else if(lines[counter].contains("primary_link")) {
-                            highwayResult = highwayTags.primary_link;
-                        } else if(lines[counter].contains("secondary_link")) {
-                            highwayResult = highwayTags.secondary_link;
-                        } else if(lines[counter].contains("tertiary_link")) {
-                            highwayResult = highwayTags.tertiary_link;
-                        } else {
-                            highwayResult = highwayTags.road;
-                        }
-                        Log.d("highway result", highwayResult.toString() + "");
-                        Log.d("lanes", lines[counter]);
-                    }
-                }
-                Log.d("responce", result);
-
-            }
-        });
-
-        thread.start();
+    public RoadInformation() {
 
     }
 
@@ -128,4 +59,89 @@ public class RoadInformation extends AppCompatActivity {
         return xml;
     }
 
+    public int GetSpeedLimit(String xml) {
+        int speedResult = 0;
+        String[] lines = xml.split(System.getProperty("line.separator"));
+        for (counter = 0; counter < lines.length; counter++) {
+
+            //speed limit
+            if (lines[counter].contains("maxspeed")) {
+                String[] parts = lines[counter].split(" ");
+                String[] hold = parts[parts.length - 1].split("=");
+                String[] temp = hold[hold.length - 1].split("\"");
+                speedResult = Integer.parseInt(temp[1]);
+            }
+
+        }
+        return speedResult;
+    }
+
+    public int GetLanes(String xml) {
+        int lanesResult = 0;
+        String[] lines = xml.split(System.getProperty("line.separator"));
+        for(counter = 0; counter < lines.length; counter++) {
+            if(lines[counter].contains("lanes")) {
+                String[] parts = lines[counter].split(" ");
+                String[] hold = parts[parts.length - 1].split("=");
+                String[] temp = hold[hold.length - 1].split("\"");
+                lanesResult = Integer.parseInt(temp[1]);
+            }
+        }
+        return lanesResult;
+    }
+
+    public highwayTags RoadType(String xml) {
+        highwayTags tagResult = highwayTags.road;
+        String[] lines = xml.split(System.getProperty("line.separator"));
+        for(counter = 0; counter < lines.length; counter++) {
+            if(lines[counter].contains("highway")) {
+                if(lines[counter].contains("motorway")) {
+                    tagResult = highwayTags.motorway;
+                } else if(lines[counter].contains("trunk")) {
+                    tagResult = highwayTags.trunk;
+                } else if(lines[counter].contains("primary")) {
+                    tagResult = highwayTags.primary;
+                } else if(lines[counter].contains("secondary")) {
+                    tagResult = highwayTags.secondary;
+                } else if(lines[counter].contains("tertiary")) {
+                    tagResult = highwayTags.tertiary;
+                } else if(lines[counter].contains("unclassified")) {
+                    tagResult = highwayTags.unclassified;
+                } else if(lines[counter].contains("residential")) {
+                    tagResult = highwayTags.residential;
+                } else if(lines[counter].contains("motorway_link")) {
+                    tagResult = highwayTags.motorway_link;
+                } else if(lines[counter].contains("trunk_link")) {
+                    tagResult = highwayTags.trunk_link;
+                } else if(lines[counter].contains("primary_link")) {
+                    tagResult = highwayTags.primary_link;
+                } else if(lines[counter].contains("secondary_link")) {
+                    tagResult = highwayTags.secondary_link;
+                } else if(lines[counter].contains("tertiary_link")) {
+                    tagResult = highwayTags.tertiary_link;
+                } else {
+                    tagResult = highwayTags.road;
+                }
+            }
+        }
+        return tagResult;
+    }
+
+    public boolean IsOneway(String xml) {
+        String[] lines = xml.split(System.getProperty("line.separator"));
+        for(counter = 0; counter < lines.length; counter++) {
+            if(lines[counter].contains("oneway")) {
+                if(lines[counter].contains("yes")) {
+                    oneway = true;
+                }
+                else if(lines[counter].contains("no")) {
+                    oneway = false;
+                }
+                else {
+                    oneway = false;
+                }
+            }
+        }
+        return oneway;
+    }
 }

@@ -1,13 +1,19 @@
 package com.guardian.guardian_v1;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.speech.tts.TextToSpeech;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -24,6 +30,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
+import com.guardian.guardian_v1.DriveStatus.Shake;
 import com.guardian.guardian_v1.DriveStatus.Weather;
 import com.mapbox.android.core.location.LocationEngineCallback;
 import com.mapbox.android.core.location.LocationEngineResult;
@@ -77,7 +84,15 @@ import timber.log.Timber;
 
 public class Main extends AppCompatActivity implements OnMapReadyCallback,
         Callback<DirectionsResponse>, MapboxMap.OnMapClickListener, NavigationEventListener,
-        OffRouteListener, ProgressChangeListener, MilestoneEventListener, TextToSpeech.OnInitListener {
+        OffRouteListener, ProgressChangeListener, MilestoneEventListener, TextToSpeech.OnInitListener, SensorEventListener {
+
+    //Morteza
+    private SensorManager sensorManager;
+    private Sensor accelometerSensor;
+    private boolean isAccelometerSensorAvailible, several = false;
+    public float currentX, currentY, currentZ, lastX, lastY, lastZ, xDifference, yDifference, zDifference;
+    public enum ShakeSituation {noShake, lowShake, mediumShake, highShake, veryHighShake}
+    public Shake.ShakeSituation situation = Shake.ShakeSituation.noShake;
 
 
     // Map
@@ -130,6 +145,18 @@ public class Main extends AppCompatActivity implements OnMapReadyCallback,
         setTheme(R.style.NavigationViewLight);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+
+        //Morteza
+        sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+
+        if(sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER) != null) {
+            accelometerSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+            isAccelometerSensorAvailible = true;
+        }
+        else {
+            Log.d("xAccelometer", "Accelometer is not availible");
+            isAccelometerSensorAvailible = false;
+        }
 
         ORIGIN = Point.fromLngLat(getIntent().getDoubleExtra("originLng", 0), getIntent().getDoubleExtra("originLat", 0));
         DESTINATION = Point.fromLngLat(getIntent().getDoubleExtra("destinationLng", 0), getIntent().getDoubleExtra("destinationLat", 0));
@@ -211,6 +238,67 @@ public class Main extends AppCompatActivity implements OnMapReadyCallback,
                 ha.postDelayed(this, 30000);
             }
         }, 30000);
+    }
+
+    //Morteza
+    @Override
+    public void onSensorChanged(SensorEvent sensorEvent) {
+        Log.d("x", sensorEvent.values[0]+ "m/s2");
+        Log.d("y", sensorEvent.values[1]+ "m/s2");
+        Log.d("z", sensorEvent.values[2]+ "m/s2");
+
+        currentX = sensorEvent.values[0];
+        currentY = sensorEvent.values[1];
+        currentZ = sensorEvent.values[2];
+
+        if(several) {
+
+            xDifference = Math.abs(lastX - currentX);
+            yDifference = Math.abs(lastY - currentY);
+            zDifference = Math.abs(lastZ - currentZ);
+
+            if((xDifference > 7f && yDifference > 7f)
+                    || (xDifference > 7f && zDifference > 7f)
+                    || (yDifference > 7f && zDifference > 7f)) {
+                Log.d("shake situation", ShakeSituation.veryHighShake.toString());
+                situation = Shake.ShakeSituation.veryHighShake;
+            }
+            else if ((xDifference > 6f && yDifference > 6f)
+                    || (xDifference > 6f && zDifference > 6f)
+                    || (yDifference > 6f && zDifference > 6f)) {
+                Log.d("shake situation", ShakeSituation.highShake.toString());
+                situation = Shake.ShakeSituation.highShake;
+            }
+            else if ((xDifference > 5f && yDifference > 5f)
+                    || (xDifference > 5f && zDifference > 5f)
+                    || (yDifference > 5f && zDifference > 5f)) {
+                Log.d("shake situation", ShakeSituation.mediumShake.toString());
+                situation = Shake.ShakeSituation.mediumShake;
+            }
+            else if ((xDifference > 4f && yDifference > 4f)
+                    || (xDifference > 4f && zDifference > 4f)
+                    || (yDifference > 4f && zDifference > 4f)) {
+                Log.d("shake situation", ShakeSituation.lowShake.toString());
+                situation = Shake.ShakeSituation.lowShake;
+            }
+            else {
+                Log.d("shake situation", ShakeSituation.noShake.toString());
+                situation = Shake.ShakeSituation.noShake;
+            }
+
+        }
+
+        lastX = currentX;
+        lastY = currentY;
+        lastZ = currentZ;
+        several = true;
+
+        statusCalculator.vibrationCalculator(situation);
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int i) {
+
     }
 
     public void openDrawer(){
@@ -375,6 +463,11 @@ public class Main extends AppCompatActivity implements OnMapReadyCallback,
     public void onResume() {
         super.onResume();
         mapView.onResume();
+
+        //Morteza
+        if(isAccelometerSensorAvailible) {
+            sensorManager.registerListener( this, accelometerSensor, SensorManager.SENSOR_DELAY_NORMAL);
+        }
     }
 
     @Override
@@ -399,6 +492,11 @@ public class Main extends AppCompatActivity implements OnMapReadyCallback,
     public void onPause() {
         super.onPause();
         mapView.onPause();
+
+        //Morteza
+        if(isAccelometerSensorAvailible) {
+            sensorManager.unregisterListener( this);
+        }
     }
 
     @Override

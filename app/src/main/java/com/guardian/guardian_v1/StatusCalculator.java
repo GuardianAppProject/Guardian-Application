@@ -1,6 +1,8 @@
 package com.guardian.guardian_v1;
 
 
+import com.guardian.guardian_v1.DriveStatus.GPSTracker;
+import com.guardian.guardian_v1.DriveStatus.RoadInformation;
 import com.guardian.guardian_v1.DriveStatus.Shake;
 import com.guardian.guardian_v1.DriveStatus.Time;
 import com.guardian.guardian_v1.DriveStatus.Weather;
@@ -13,6 +15,14 @@ import static com.mapbox.mapboxsdk.Mapbox.getApplicationContext;
 
 
 public class StatusCalculator {
+
+    //Morteza
+    int speedLimit = 0;
+    int lanes = 0;
+    boolean oneway = false;
+    double latitude, longtitude, distance;
+    String city;
+    RoadInformation.highwayTags highwayType = RoadInformation.highwayTags.road;
 
     private int cycle = 0;
     private ArrayList<Double> sleep_data = new ArrayList<>();
@@ -656,7 +666,7 @@ public class StatusCalculator {
         return traffic_factor;
     }
 
-    public double roadTypeCalculator(double userRoadType, double userRoadLanes, boolean oneWay) {
+    public double roadTypeCalculator(RoadInformation.highwayTags highwayTags, double userRoadLanes, boolean oneWay) {
 
         double roadType_factor = 0;
 
@@ -682,6 +692,34 @@ public class StatusCalculator {
 
     public double calculatePercentageAlgorithm() {
 
+        //Morteza for location
+        GPSTracker gps = new GPSTracker(getApplicationContext());
+        if(gps.canGetLocation()) {
+            latitude = gps.getLatitude();
+            longtitude = gps.getLongtitude();
+            city = gps.getNearestCIty();
+            distance = gps.getNearestDistance();
+        }
+        else {
+            gps.ShowGPSAlertDialog();
+        }
+        //end Morteza for location
+
+        //Morteza calling roadInformation class
+        RoadInformation roadInformation = new RoadInformation();
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String xml = roadInformation.getXmlFromUrl(latitude, latitude + 0.0002, longtitude, longtitude + 0.0002);
+                speedLimit = roadInformation.GetSpeedLimit(xml);
+                lanes = roadInformation.GetLanes(xml);
+                oneway = roadInformation.IsOneway(xml);
+                highwayType = roadInformation.RoadType(xml);
+            }
+        });
+        thread.start();
+        //Morteza calling roadInformation class
+
         double average = 0;
 
         double sleep_raw = 0;
@@ -705,7 +743,7 @@ public class StatusCalculator {
         double acceleration_factor = 0; // accelerationCalculator() * 2.5;
         double month_factor = 0; // monthCalculator() * 0.8;
         double traffic_factor = 0; // trafficCalculator() * 1;
-        double roadType_factor = 0; // roadTypeCalculator() * 1;
+        double roadType_factor = roadTypeCalculator(highwayType, lanes, oneway) * 1;
         sleepAlert(sleep_factor);
         speedAlert(speed_factor);
         timeAlert(time_factor);
