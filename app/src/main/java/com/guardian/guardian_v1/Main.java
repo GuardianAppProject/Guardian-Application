@@ -1,16 +1,26 @@
 package com.guardian.guardian_v1;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.ServiceConnection;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.location.Location;
+import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.IBinder;
 import android.os.Looper;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
@@ -30,7 +40,9 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
+import com.guardian.guardian_v1.DriveStatus.LocationService;
 import com.guardian.guardian_v1.DriveStatus.Shake;
+import com.guardian.guardian_v1.DriveStatus.Speedometer;
 import com.guardian.guardian_v1.DriveStatus.Weather;
 import com.mapbox.android.core.location.LocationEngineCallback;
 import com.mapbox.android.core.location.LocationEngineResult;
@@ -94,11 +106,20 @@ public class Main extends AppCompatActivity implements OnMapReadyCallback,
     public enum ShakeSituation {noShake, lowShake, mediumShake, highShake, veryHighShake}
     public Shake.ShakeSituation situation = Shake.ShakeSituation.noShake;
 
+    //Morteza speedometer
+    LocationService myService;
+    static boolean status;
+    LocationManager locationManager;
+    public static long startTime, endTime;
+    public static ProgressDialog locate;
+    public static int p = 0;
+
 
     // Map
     MapView mapView;
     View contentLayout;
     InstructionView instructionView;
+
 
     private Point ORIGIN = Point.fromLngLat(-0.358764, 39.494876);
     private Point DESTINATION = Point.fromLngLat(-0.383524, 39.497825);
@@ -136,9 +157,44 @@ public class Main extends AppCompatActivity implements OnMapReadyCallback,
     private FrameLayout alertMessageBox;
     private ImageView alertMessageImage;
     private StatusCalculator statusCalculator;
+    public static TextView speedText;
+    public static TextView driveText;
 
     // Make sure to be using androidx.appcompat.app.ActionBarDrawerToggle version.
     private ActionBarDrawerToggle drawerToggle;
+
+    //Morteza speedometer
+    private ServiceConnection sc = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            LocationService.LocalBinder binder = (LocationService.LocalBinder) service;
+            myService = binder.getService();
+            status = true;
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            status = false;
+        }
+    };
+
+    void bindService() {
+        if (status == true)
+            return;
+        Intent i = new Intent(getApplicationContext(), LocationService.class);
+        bindService(i, sc, BIND_AUTO_CREATE);
+        status = true;
+        startTime = System.currentTimeMillis();
+    }
+
+    void unbindService() {
+        if (status == false)
+            return;
+        Intent i = new Intent(getApplicationContext(), LocationService.class);
+        unbindService(sc);
+        status = false;
+    }
+    //end Morteza speedometer
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -146,7 +202,7 @@ public class Main extends AppCompatActivity implements OnMapReadyCallback,
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-        //Morteza
+        //Morteza shake
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 
         if(sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER) != null) {
@@ -157,6 +213,34 @@ public class Main extends AppCompatActivity implements OnMapReadyCallback,
             Log.d("xAccelometer", "Accelometer is not availible");
             isAccelometerSensorAvailible = false;
         }
+        //end Morteza shake
+
+        //Morteza speedometer
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[] {Manifest.permission.ACCESS_FINE_LOCATION} , 1000);
+        }
+
+        //The method below checks if Location is enabled on device or not. If not, then an alert dialog box appears with option
+        //to enable gps.
+        checkGps();
+        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+
+        if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+
+            return;
+        }
+
+
+        if (status == false)
+            //Here, the Location Service gets bound and the GPS Speedometer gets Active.
+            bindService();
+        locate = new ProgressDialog(Main.this);
+        locate.setIndeterminate(true);
+        locate.setCancelable(false);
+        locate.setMessage("Getting Location...");
+        locate.show();
+        //end Morteza speedometer
 
         ORIGIN = Point.fromLngLat(getIntent().getDoubleExtra("originLng", 0), getIntent().getDoubleExtra("originLat", 0));
         DESTINATION = Point.fromLngLat(getIntent().getDoubleExtra("destinationLng", 0), getIntent().getDoubleExtra("destinationLat", 0));
@@ -181,6 +265,8 @@ public class Main extends AppCompatActivity implements OnMapReadyCallback,
         stopButton = (Button) findViewById(R.id.stopButt);
         weatherTypeImg = findViewById(R.id.WeatherTypeImage);
         weatherTypeTxt = findViewById(R.id.WeatherTypeTextView);
+        speedText = findViewById(R.id.speedTextView);
+        driveText = findViewById(R.id.driveTextView);
 
         instructionView.retrieveSoundButton().hide();
         instructionView.retrieveSoundButton().addOnClickListener(
@@ -240,7 +326,7 @@ public class Main extends AppCompatActivity implements OnMapReadyCallback,
         }, 30000);
     }
 
-    //Morteza
+    //Morteza shake
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
         Log.d("x", sensorEvent.values[0]+ "m/s2");
@@ -392,6 +478,8 @@ public class Main extends AppCompatActivity implements OnMapReadyCallback,
         algorithmPercentageText.setText(String.valueOf((int)percentage));
         algorithmStatusText.setText(statusCalculator.calculateStatusAlgorithm(percentage));
 
+        //Log.d("total time", StatusCalculator.totalTime + "");
+
         ///setting weather type
         Thread weatherThread = new Thread() {
             @Override
@@ -437,20 +525,58 @@ public class Main extends AppCompatActivity implements OnMapReadyCallback,
         }
 
         DriveAlertHandler.passCycle();
+
+
     }
 
 
+    //Morteza speedometer
+    //This method leads you to the alert dialog box.
+    void checkGps() {
+        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+
+        if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
 
 
+            showGPSDisabledAlertToUser();
+        }
+    }
 
+    //This method configures the Alert Dialog box.
+    private void showGPSDisabledAlertToUser() {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setMessage("Enable GPS to use application")
+                .setCancelable(false)
+                .setPositiveButton("Enable GPS",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                Intent callGPSSettingIntent = new Intent(
+                                        android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                                startActivity(callGPSSettingIntent);
+                            }
+                        });
+        alertDialogBuilder.setNegativeButton("Cancel",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alert = alertDialogBuilder.create();
+        alert.show();
+    }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 1000) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
-
-
-
-
-
-
+            } else {
+                finish();
+            }
+        }
+    }
+    //end Morteza speedometer
 
 
     public void changeIntent(){

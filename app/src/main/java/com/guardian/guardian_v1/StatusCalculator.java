@@ -23,6 +23,11 @@ public class StatusCalculator {
     double latitude, longtitude, distance;
     String city;
     RoadInformation.highwayTags highwayType = RoadInformation.highwayTags.road;
+    public static double staticUserSpeed;
+    public static long totalTime;
+    public static long totalDrive;
+    public static long nonStop;
+    public static double acceleration;
 
     private int cycle = 0;
     private ArrayList<Double> sleep_data = new ArrayList<>();
@@ -736,11 +741,11 @@ public class StatusCalculator {
         setWeather_factor();
         double sleep_factor = 0; //sleepCalculator() * 3;
         double time_factor = 0; // timeCalculator(timeObj.getTimeHOUR(), timeObj.getTimeMINUTE()) * 3;
-        double speed_factor = 0; // speedCalculator() * 3;
-        double withoutStopDriving_factor = 0; // withoutStopDrivingCalculator() * 3;
-        double nearCities_factor = 0; // nearCitiesCalculator() * 2;
+        double speed_factor = 0; //speedCalculator() * 3;
+        double withoutStopDriving_factor = 0; //withoutStopDrivingCalculator() * 3;
+        double nearCities_factor = nearCitiesCalculator(distance) * 2;
         double vibration_factor = 0; // vibrationCalculator() * 2;
-        double acceleration_factor = 0; // accelerationCalculator() * 2.5;
+        double acceleration_factor = 0; //accelerationCalculator() * 2.5;
         double month_factor = 0; // monthCalculator() * 0.8;
         double traffic_factor = 0; // trafficCalculator() * 1;
         double roadType_factor = roadTypeCalculator(highwayType, lanes, oneway) * 1;

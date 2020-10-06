@@ -145,6 +145,7 @@
 <!--                                android:paddingLeft="1dp"/>-->
 
                             <TextView
+                                android:id="@+id/speedTextView"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.2"
@@ -209,6 +210,7 @@
 <!--                                android:src="@drawable/clock"/>-->
 
                             <TextView
+                                android:id="@+id/driveTextView"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.27"

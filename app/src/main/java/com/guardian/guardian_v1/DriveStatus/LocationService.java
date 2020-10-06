@@ -16,6 +16,8 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
+import com.guardian.guardian_v1.Main;
+import com.guardian.guardian_v1.StatusCalculator;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -51,6 +53,7 @@ public class LocationService extends Service implements
     Long firstSpeedStart = Long.valueOf(0);
     boolean firstForSpeed = false;
     long nonStopDrivingShow;
+    long totalRest = 0;
 
     @Nullable
     @Override
@@ -106,7 +109,7 @@ public class LocationService extends Service implements
 
     @Override
     public void onLocationChanged(Location location) {
-        Speedometer.locate.dismiss();
+        Main.locate.dismiss();
         mCurrentLocation = location;
         if (lStart == null) {
             lStart = mCurrentLocation;
@@ -137,21 +140,27 @@ public class LocationService extends Service implements
 
     //The live feed of Distance and Speed are being set in the method below .
     private double updateUI() {
-        if (Speedometer.p == 0) {
+        if (Main.p == 0) {
+            Main.locate.dismiss();
             distance = distance + (lStart.distanceTo(lEnd) / 1000.00);
-            Speedometer.endTime = System.currentTimeMillis();
-            endingTime = TimeUnit.MILLISECONDS.toMinutes(Speedometer.endTime);
-            long diff = Speedometer.endTime - Speedometer.startTime;
+            Main.endTime = System.currentTimeMillis();
+            endingTime = TimeUnit.MILLISECONDS.toMinutes(Main.endTime);
+            long diff = Main.endTime - Main.startTime;
             diff = TimeUnit.MILLISECONDS.toMinutes(diff);
-            Log.d("time", "Total Time: " + diff + " minutes");
+            //Log.d("time", "Total Time: " + diff + " minutes");
+            StatusCalculator.totalDrive = diff - totalRest;
             //non stop
             if(firstSpeedStart == Long.valueOf(0)) {
                 firstSpeedStart = endingTime;
             }
             nonStopDrivingShow = endingTime - firstSpeedStart;
             Log.d("non stop driving", String.valueOf(nonStopDrivingShow));
+            Main.driveText.setText(String.valueOf(nonStopDrivingShow));
+            StatusCalculator.nonStop = nonStopDrivingShow;
             if (speed >= 0.0) {
                 Log.d("speed", "Current speed: " + new DecimalFormat("#.##").format(speed) + " km/hr");
+                StatusCalculator.staticUserSpeed = speed;
+                Main.speedText.setText(new DecimalFormat("#.##").format(speed));
 
                 if (speed <= 9.0 ) {
 
@@ -195,13 +204,14 @@ public class LocationService extends Service implements
 
             } else {
                 Log.d("speed", ".......");
+                Main.speedText.setText("...");
             }
             Log.d("distination", new DecimalFormat("#.###").format(distance) + " Km's.");
 
             lStart = lEnd;
 
             speedArray.add(counter , speed);
-            timeSaving.add(counter, Speedometer.endTime);
+            timeSaving.add(counter, Main.endTime);
             MeasureAcceleration(speedArray, timeSaving);
 
             if (firstArray) {
@@ -219,6 +229,17 @@ public class LocationService extends Service implements
                 speedArray.remove(0);
             }
 
+            if(timeArray != null) {
+                for(counter = 0; counter < timeArray.size(); counter++) {
+                    totalRest = totalRest + timeArray.get(counter);
+                }
+            }
+            else {
+                totalRest = 0;
+            }
+
+            StatusCalculator.totalTime = totalRest;
+
         }
         return speed;
     }
@@ -228,14 +249,18 @@ public class LocationService extends Service implements
         long deltat;
         double acceleration;
         if (speedArray.size() < 10 || timeSaving.size() < 10) {
+            StatusCalculator.acceleration = 0;
             return 0;
         }
         else {
             deltav = speedArray.get(4) - speedArray.get(0);
             deltat = timeSaving.get(4) - timeSaving.get(0);
             acceleration = deltav / deltat;
+            StatusCalculator.acceleration = acceleration;
             return acceleration;
         }
+
+
     }
 
     @Override
