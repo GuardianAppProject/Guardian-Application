@@ -1,11 +1,6 @@
 package com.guardian.guardian_v1.DriveStatus;
 
-import android.os.Bundle;
-import android.util.Log;
-
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.guardian.guardian_v1.R;
 
 
 import org.apache.http.HttpEntity;
@@ -28,9 +23,9 @@ public class RoadInformation extends AppCompatActivity {
     public int lanes = 0;
 
     public boolean oneway = false;
-    public enum highwayTags {motorway, trunk, primary, secondary, tertiary, unclassified, residential, motorway_link
+    public enum HighwayTags {motorway, trunk, primary, secondary, tertiary, unclassified, residential, motorway_link
         , trunk_link, primary_link, secondary_link, tertiary_link, road}
-    public highwayTags highwayResult;
+    public HighwayTags highwayResult;
 
     public RoadInformation() {
 
@@ -90,37 +85,37 @@ public class RoadInformation extends AppCompatActivity {
         return lanesResult;
     }
 
-    public highwayTags RoadType(String xml) {
-        highwayTags tagResult = highwayTags.road;
+    public HighwayTags RoadType(String xml) {
+        HighwayTags tagResult = HighwayTags.road;
         String[] lines = xml.split(System.getProperty("line.separator"));
         for(counter = 0; counter < lines.length; counter++) {
             if(lines[counter].contains("highway")) {
                 if(lines[counter].contains("motorway")) {
-                    tagResult = highwayTags.motorway;
+                    tagResult = HighwayTags.motorway;
                 } else if(lines[counter].contains("trunk")) {
-                    tagResult = highwayTags.trunk;
+                    tagResult = HighwayTags.trunk;
                 } else if(lines[counter].contains("primary")) {
-                    tagResult = highwayTags.primary;
+                    tagResult = HighwayTags.primary;
                 } else if(lines[counter].contains("secondary")) {
-                    tagResult = highwayTags.secondary;
+                    tagResult = HighwayTags.secondary;
                 } else if(lines[counter].contains("tertiary")) {
-                    tagResult = highwayTags.tertiary;
+                    tagResult = HighwayTags.tertiary;
                 } else if(lines[counter].contains("unclassified")) {
-                    tagResult = highwayTags.unclassified;
+                    tagResult = HighwayTags.unclassified;
                 } else if(lines[counter].contains("residential")) {
-                    tagResult = highwayTags.residential;
+                    tagResult = HighwayTags.residential;
                 } else if(lines[counter].contains("motorway_link")) {
-                    tagResult = highwayTags.motorway_link;
+                    tagResult = HighwayTags.motorway_link;
                 } else if(lines[counter].contains("trunk_link")) {
-                    tagResult = highwayTags.trunk_link;
+                    tagResult = HighwayTags.trunk_link;
                 } else if(lines[counter].contains("primary_link")) {
-                    tagResult = highwayTags.primary_link;
+                    tagResult = HighwayTags.primary_link;
                 } else if(lines[counter].contains("secondary_link")) {
-                    tagResult = highwayTags.secondary_link;
+                    tagResult = HighwayTags.secondary_link;
                 } else if(lines[counter].contains("tertiary_link")) {
-                    tagResult = highwayTags.tertiary_link;
+                    tagResult = HighwayTags.tertiary_link;
                 } else {
-                    tagResult = highwayTags.road;
+                    tagResult = HighwayTags.road;
                 }
             }
         }

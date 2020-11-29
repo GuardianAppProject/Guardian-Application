@@ -5,7 +5,7 @@ import java.util.Locale;
 
 public class PersianCalender {
 
-    private class SolarCalendar {
+     public class SolarCalendar {
 
         public String strWeekDay = "";
         public String strMonth = "";

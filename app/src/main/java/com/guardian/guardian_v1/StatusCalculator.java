@@ -2,8 +2,8 @@ package com.guardian.guardian_v1;
 
 
 import com.guardian.guardian_v1.DriveStatus.GPSTracker;
+import com.guardian.guardian_v1.DriveStatus.PersianCalender;
 import com.guardian.guardian_v1.DriveStatus.RoadInformation;
-import com.guardian.guardian_v1.DriveStatus.Shake;
 import com.guardian.guardian_v1.DriveStatus.Time;
 import com.guardian.guardian_v1.DriveStatus.Weather;
 import com.guardian.guardian_v1.Transmission.DataSender;
@@ -22,12 +22,13 @@ public class StatusCalculator {
     boolean oneway = false;
     double latitude, longtitude, distance;
     String city;
-    RoadInformation.highwayTags highwayType = RoadInformation.highwayTags.road;
+    RoadInformation.HighwayTags highwayType = RoadInformation.HighwayTags.road;
     public static double staticUserSpeed;
     public static long totalTime;
     public static long totalDrive;
     public static long nonStop;
     public static double acceleration;
+    public static Main.ShakeSituation vibration;
 
     private int cycle = 0;
     private ArrayList<Double> sleep_data = new ArrayList<>();
@@ -45,6 +46,7 @@ public class StatusCalculator {
     ArrayList<String> alerts;
 
     private Time timeObj;
+    private PersianCalender.SolarCalendar solarCalendar;
 
     public StatusCalculator() {
         timeObj = new Time();
@@ -284,18 +286,23 @@ public class StatusCalculator {
         return acceleration_factor;
     }
 
-    public double vibrationCalculator(Shake.ShakeSituation userVibration) {
+
+    public static void setVibration(Main.ShakeSituation vibration) {
+        StatusCalculator.vibration = vibration;
+    }
+
+    public double vibrationCalculator(Main.ShakeSituation userVibration) {
 
         double vibration_factor = 0;
-        if(userVibration== Shake.ShakeSituation.noShake) {
+        if(userVibration== Main.ShakeSituation.noShake) {
             vibration_factor = 100;
-        } else if(userVibration== Shake.ShakeSituation.lowShake) {
+        } else if(userVibration== Main.ShakeSituation.lowShake) {
             vibration_factor = 80;
-        } else if(userVibration== Shake.ShakeSituation.mediumShake) {
+        } else if(userVibration== Main.ShakeSituation.mediumShake) {
             vibration_factor = 60;
-        } else if(userVibration== Shake.ShakeSituation.highShake) {
+        } else if(userVibration== Main.ShakeSituation.highShake) {
             vibration_factor = 45;
-        } else if(userVibration== Shake.ShakeSituation.veryHighShake) {
+        } else if(userVibration== Main.ShakeSituation.veryHighShake) {
             vibration_factor = 30;
         }
 
@@ -310,7 +317,7 @@ public class StatusCalculator {
         return vibration_factor;
     }
 
-    public double timeCalculator(double userTimeHOUR, double userTimeMINUTE, String sunrise, String sunset) {
+    public double timeCalculator(double userTimeHOUR, double userTimeMINUTE, double sunrise, double sunset) {
 
         double userTime = (userTimeHOUR * 60) + userTimeMINUTE;
         double time_factor = 0;
@@ -671,14 +678,60 @@ public class StatusCalculator {
         return traffic_factor;
     }
 
-    public double roadTypeCalculator(RoadInformation.highwayTags highwayTags, double userRoadLanes, boolean oneWay) {
+    public double roadTypeCalculator(RoadInformation.HighwayTags highwayTags, double userRoadLanes, boolean oneWay) {
 
         double roadType_factor = 0;
+        if(highwayTags == RoadInformation.HighwayTags.motorway) {
+            roadType_factor = 100;
+        } else if(highwayTags == RoadInformation.HighwayTags.trunk) {
+            roadType_factor = 100;
+        } else if(highwayTags == RoadInformation.HighwayTags.primary) {
+            roadType_factor = 90;
+        } else if(highwayTags == RoadInformation.HighwayTags.secondary) {
+            roadType_factor = 75;
+        } else if(highwayTags == RoadInformation.HighwayTags.tertiary) {
+            roadType_factor = 50;
+        } else if(highwayTags == RoadInformation.HighwayTags.unclassified) {
+            roadType_factor = 30;
+        } else if(highwayTags == RoadInformation.HighwayTags.residential) {
+            roadType_factor = 60;
+        } else if(highwayTags == RoadInformation.HighwayTags.motorway_link) {
+            roadType_factor = 90;
+        } else if(highwayTags == RoadInformation.HighwayTags.trunk_link) {
+            roadType_factor = 90;
+        } else if(highwayTags == RoadInformation.HighwayTags.primary_link) {
+            roadType_factor = 80;
+        } else if(highwayTags == RoadInformation.HighwayTags.secondary_link) {
+            roadType_factor = 65;
+        } else if(highwayTags == RoadInformation.HighwayTags.tertiary_link) {
+            roadType_factor = 40;
+        } else if(highwayTags == RoadInformation.HighwayTags.road) {
+            roadType_factor = 30;
+        }
+
+        if(!oneWay) {
+            roadType_factor *= 0.8;
+        }
+
+        double roadTypeCoefficient = 1;
+        if(userRoadLanes >= 5) {
+           //
+        } else if(userRoadLanes >= 4) {
+            roadTypeCoefficient = 0.98;
+        } else if(userRoadLanes >= 3) {
+            roadTypeCoefficient = 0.9;
+        } else if(userRoadLanes >= 2) {
+            roadTypeCoefficient = 0.85;
+        } else {
+            roadTypeCoefficient = 0.75;
+        }
+        roadType_factor *= roadTypeCoefficient;
 
         return roadType_factor;
     }
 
     double weather_factor = 0;
+    Weather.WeatherType weatherType;
     public void setWeather_factor() {
         this.weather_factor = weather_factor;
         Thread weatherThread = new Thread() {
@@ -687,6 +740,7 @@ public class StatusCalculator {
                 try {
                     Weather weather = Weather.getCurrentLocationWeather(getApplicationContext());
                     weather_factor = weatherCalculator(weather.getTemperature(),weather.getWindSpeed(),weather.getWeatherType());
+                    weatherType = weather.getWeatherType();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -725,28 +779,16 @@ public class StatusCalculator {
         thread.start();
         //Morteza calling roadInformation class
 
-        double average = 0;
-
-        double sleep_raw = 0;
-        double speed_raw = 0;
-        double time_raw = 0;
-        double acceleration_raw = 0;
-        double withoutStop_raw = 0;
-        double weather_raw = 0;
-        double nearCities_raw = 0;
-        double vibration_raw = 0;
-        double month_raw = 0;
-        double traffic_raw = 0;
-        double roadType_raw = 0;
         setWeather_factor();
+
         double sleep_factor = 0; //sleepCalculator() * 3;
-        double time_factor = 0; // timeCalculator(timeObj.getTimeHOUR(), timeObj.getTimeMINUTE()) * 3;
-        double speed_factor = 0; //speedCalculator() * 3;
-        double withoutStopDriving_factor = 0; //withoutStopDrivingCalculator() * 3;
+        double time_factor = timeCalculator(timeObj.getTimeHOUR(), timeObj.getTimeMINUTE(), 0, 0) * 3;
+        double speed_factor = speedCalculator(staticUserSpeed, speedLimit, weatherType) * 3;
+        double withoutStopDriving_factor = withoutStopDrivingCalculator(nonStop, totalDrive, totalTime, timeObj.getTimeHOUR(), timeObj.getTimeMINUTE()) * 3;
         double nearCities_factor = nearCitiesCalculator(distance) * 2;
-        double vibration_factor = 0; // vibrationCalculator() * 2;
-        double acceleration_factor = 0; //accelerationCalculator() * 2.5;
-        double month_factor = 0; // monthCalculator() * 0.8;
+        double vibration_factor = vibrationCalculator(vibration) * 2;
+        double acceleration_factor = accelerationCalculator(acceleration, weatherType) * 2.5;
+        double month_factor =  monthCalculator(solarCalendar.month) * 0.8;
         double traffic_factor = 0; // trafficCalculator() * 1;
         double roadType_factor = roadTypeCalculator(highwayType, lanes, oneway) * 1;
         sleepAlert(sleep_factor);
@@ -760,6 +802,20 @@ public class StatusCalculator {
         monthAlert(month_factor);
         trafficAlert(traffic_factor);
         roadTypeAlert(roadType_factor);
+
+        double average = 0;
+
+        double sleep_raw = 0; //EncodeDecode.sleepEncode();
+        double speed_raw = EncodeDecode.speedEncode(staticUserSpeed);
+        double time_raw = EncodeDecode.timeEncode(timeObj.getTimeHOUR(), timeObj.getTimeMINUTE());
+        double acceleration_raw = EncodeDecode.accelerationEncode(acceleration);
+        double withoutStop_raw = EncodeDecode.withoutStopEncode(nonStop);
+        double weather_raw = EncodeDecode.weatherEncode(weatherType);
+        double nearCities_raw = EncodeDecode.nearCitiesEncode(distance);
+        double vibration_raw = EncodeDecode.vibrationEncode(vibration);
+        double month_raw = EncodeDecode.monthEncode(solarCalendar.month);
+        double traffic_raw = 0;
+        double roadType_raw = EncodeDecode.roadTypeEncode(highwayType);
 
         average = (sleep_factor + time_factor
                 + speed_factor + withoutStopDriving_factor

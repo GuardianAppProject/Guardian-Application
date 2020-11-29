@@ -379,7 +379,7 @@ public class Main extends AppCompatActivity implements OnMapReadyCallback,
         lastZ = currentZ;
         several = true;
 
-        statusCalculator.vibrationCalculator(situation);
+        statusCalculator.setVibration(situation);
     }
 
     @Override
