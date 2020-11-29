@@ -4,6 +4,7 @@ package com.guardian.guardian_v1;
 import com.guardian.guardian_v1.DriveStatus.GPSTracker;
 import com.guardian.guardian_v1.DriveStatus.PersianCalender;
 import com.guardian.guardian_v1.DriveStatus.RoadInformation;
+import com.guardian.guardian_v1.DriveStatus.Shake;
 import com.guardian.guardian_v1.DriveStatus.Time;
 import com.guardian.guardian_v1.DriveStatus.Weather;
 import com.guardian.guardian_v1.Transmission.DataSender;
@@ -28,7 +29,7 @@ public class StatusCalculator {
     public static long totalDrive;
     public static long nonStop;
     public static double acceleration;
-    public static Main.ShakeSituation vibration;
+    public static Shake.ShakeSituation vibration;
 
     private int cycle = 0;
     private ArrayList<Double> sleep_data = new ArrayList<>();
@@ -287,22 +288,22 @@ public class StatusCalculator {
     }
 
 
-    public static void setVibration(Main.ShakeSituation vibration) {
+    public static void setVibration(Shake.ShakeSituation vibration) {
         StatusCalculator.vibration = vibration;
     }
 
-    public double vibrationCalculator(Main.ShakeSituation userVibration) {
+    public double vibrationCalculator(Shake.ShakeSituation userVibration) {
 
         double vibration_factor = 0;
-        if(userVibration== Main.ShakeSituation.noShake) {
+        if(userVibration== Shake.ShakeSituation.noShake) {
             vibration_factor = 100;
-        } else if(userVibration== Main.ShakeSituation.lowShake) {
+        } else if(userVibration== Shake.ShakeSituation.lowShake) {
             vibration_factor = 80;
-        } else if(userVibration== Main.ShakeSituation.mediumShake) {
+        } else if(userVibration== Shake.ShakeSituation.mediumShake) {
             vibration_factor = 60;
-        } else if(userVibration== Main.ShakeSituation.highShake) {
+        } else if(userVibration== Shake.ShakeSituation.highShake) {
             vibration_factor = 45;
-        } else if(userVibration== Main.ShakeSituation.veryHighShake) {
+        } else if(userVibration== Shake.ShakeSituation.veryHighShake) {
             vibration_factor = 30;
         }
 

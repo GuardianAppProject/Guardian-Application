@@ -36,17 +36,17 @@ public class EncodeDecode {
         return String.format("%.2f (m2/s)", input);
     }
 
-    public static double vibrationEncode(Main.ShakeSituation userShake) {
+    public static double vibrationEncode(Shake.ShakeSituation userShake) {
         int vibration = 0;
-        if(userShake == Main.ShakeSituation.noShake) {
+        if(userShake == Shake.ShakeSituation.noShake) {
             vibration = 0;
-        } else if(userShake == Main.ShakeSituation.lowShake) {
+        } else if(userShake == Shake.ShakeSituation.lowShake) {
             vibration = 1;
-        } else if(userShake == Main.ShakeSituation.mediumShake) {
+        } else if(userShake == Shake.ShakeSituation.mediumShake) {
             vibration = 2;
-        } else if(userShake == Main.ShakeSituation.highShake) {
+        } else if(userShake == Shake.ShakeSituation.highShake) {
             vibration = 3;
-        } else if(userShake == Main.ShakeSituation.veryHighShake) {
+        } else if(userShake == Shake.ShakeSituation.veryHighShake) {
             vibration = 4;
         }
         return vibration;
