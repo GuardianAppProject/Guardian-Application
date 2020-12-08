@@ -873,6 +873,23 @@ public class StatusCalculator {
         return average;
     }
 
+    public void restNeeded(double percentage) {
+
+    }
+
+    public void nearestRestComplex(double dist, String restComplexName) {
+        // Morteza
+    }
+
+    public boolean checkIfStopped() {
+        //Morteza
+        return false;
+    }
+
+    public void theTotalRest(double restTime) {
+        // Morteza
+    }
+
     private double calculateAverage(ArrayList<Double> array) {
         double ave = 0;
         for (Double item : array) {
