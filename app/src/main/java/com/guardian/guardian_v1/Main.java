@@ -16,6 +16,7 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -35,9 +36,12 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.guardian.guardian_v1.DriveStatus.LocationService;
@@ -61,7 +65,7 @@ import com.mapbox.mapboxsdk.camera.CameraUpdateFactory;
 import com.mapbox.mapboxsdk.geometry.LatLng;
 import com.mapbox.mapboxsdk.location.LocationComponent;
 import com.mapbox.mapboxsdk.location.modes.RenderMode;
-import com.mapbox.mapboxsdk.maps.MapView;
+//import com.mapbox.mapboxsdk.maps.MapView;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
 import com.mapbox.mapboxsdk.maps.Style;
@@ -81,6 +85,12 @@ import com.mapbox.services.android.navigation.v5.routeprogress.ProgressChangeLis
 import com.mapbox.services.android.navigation.v5.routeprogress.RouteProgress;
 import com.squareup.picasso.Picasso;
 
+import org.osmdroid.api.IMapController;
+import org.osmdroid.config.Configuration;
+import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
+import org.osmdroid.util.GeoPoint;
+import org.osmdroid.views.overlay.Marker;
+
 import java.io.IOException;
 import java.lang.ref.WeakReference;
 import java.security.Provider;
@@ -94,9 +104,54 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import timber.log.Timber;
 
-public class Main extends AppCompatActivity implements OnMapReadyCallback,
-        Callback<DirectionsResponse>, MapboxMap.OnMapClickListener, NavigationEventListener,
-        OffRouteListener, ProgressChangeListener, MilestoneEventListener, TextToSpeech.OnInitListener, SensorEventListener {
+
+
+
+
+//
+
+
+import android.Manifest;
+import android.app.Activity;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
+
+
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
+
+import com.bumptech.glide.Glide;
+
+import org.osmdroid.api.IMapController;
+import org.osmdroid.config.Configuration;
+import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
+import org.osmdroid.util.GeoPoint;
+import org.osmdroid.views.MapView;
+import org.osmdroid.views.overlay.Marker;
+
+
+import java.util.ArrayList;
+
+
+
+public class Main extends AppCompatActivity implements  SensorEventListener{
+
+    ///
+    private final int REQUEST_PERMISSIONS_REQUEST_CODE = 1;
+    private org.osmdroid.views.MapView map = null;
+    IMapController mapController;
+    static Location location;
+    ImageView loadingGif;
+
+
+
 
     //Morteza
     private SensorManager sensorManager;
@@ -116,23 +171,23 @@ public class Main extends AppCompatActivity implements OnMapReadyCallback,
 
 
     // Map
-    MapView mapView;
-    View contentLayout;
-    InstructionView instructionView;
-
-
-    private Point ORIGIN = Point.fromLngLat(-0.358764, 39.494876);
-    private Point DESTINATION = Point.fromLngLat(-0.383524, 39.497825);
-    private Polyline polyline;
-
-    private final RerouteActivityLocationCallback callback = new RerouteActivityLocationCallback(this);
-    private Location lastLocation;
-    private ReplayRouteLocationEngine mockLocationEngine;
-    private MapboxNavigation navigation;
-    private MapboxMap mapboxMap;
-    private boolean running = false;
-    private boolean tracking;
-    private boolean wasInTunnel = false;
+//    MapView mapView;
+//    View contentLayout;
+//    InstructionView instructionView;
+//
+//
+//    private Point ORIGIN = Point.fromLngLat(-0.358764, 39.494876);
+//    private Point DESTINATION = Point.fromLngLat(-0.383524, 39.497825);
+//    private Polyline polyline;
+//
+//    private final RerouteActivityLocationCallback callback = new RerouteActivityLocationCallback(this);
+//    private Location lastLocation;
+//    private ReplayRouteLocationEngine mockLocationEngine;
+//    private MapboxNavigation navigation;
+//    private MapboxMap mapboxMap;
+//    private boolean running = false;
+//    private boolean tracking;
+//    private boolean wasInTunnel = false;
 
     TextView distanceRem;
     TextView durationRem;
@@ -242,20 +297,20 @@ public class Main extends AppCompatActivity implements OnMapReadyCallback,
         locate.show();
         //end Morteza speedometer
 
-        ORIGIN = Point.fromLngLat(getIntent().getDoubleExtra("originLng", 0), getIntent().getDoubleExtra("originLat", 0));
-        DESTINATION = Point.fromLngLat(getIntent().getDoubleExtra("destinationLng", 0), getIntent().getDoubleExtra("destinationLat", 0));
-
-        mapView = (MapView)findViewById(R.id.mapView);
-        contentLayout = (View) findViewById(android.R.id.content);
-        instructionView = (InstructionView) findViewById(R.id.instructionView);
-
-        mapView.onCreate(savedInstanceState);
-        mapView.getMapAsync(this);
-
-        MapboxNavigationOptions options = MapboxNavigationOptions.builder().isDebugLoggingEnabled(false).build();
-        navigation = new MapboxNavigation(getApplicationContext(), getResources().getString(R.string.access_token), options);
-        navigation.addNavigationEventListener(this);
-        navigation.addMilestoneEventListener(this);
+//        ORIGIN = Point.fromLngLat(getIntent().getDoubleExtra("originLng", 0), getIntent().getDoubleExtra("originLat", 0));
+//        DESTINATION = Point.fromLngLat(getIntent().getDoubleExtra("destinationLng", 0), getIntent().getDoubleExtra("destinationLat", 0));
+//
+//        mapView = (MapView)findViewById(R.id.mapView);
+//        contentLayout = (View) findViewById(android.R.id.content);
+//        instructionView = (InstructionView) findViewById(R.id.instructionView);
+//
+//        mapView.onCreate(savedInstanceState);
+//        mapView.getMapAsync(this);
+//
+//        MapboxNavigationOptions options = MapboxNavigationOptions.builder().isDebugLoggingEnabled(false).build();
+//        navigation = new MapboxNavigation(getApplicationContext(), getResources().getString(R.string.access_token), options);
+//        navigation.addNavigationEventListener(this);
+//        navigation.addMilestoneEventListener(this);
 
         primaryTxt = (TextView) findViewById(R.id.primaryTxt);
         distanceRem = (TextView) findViewById(R.id.distanceRem);
@@ -268,10 +323,10 @@ public class Main extends AppCompatActivity implements OnMapReadyCallback,
         speedText = findViewById(R.id.speedTextView);
         driveText = findViewById(R.id.driveTextView);
 
-        instructionView.retrieveSoundButton().hide();
-        instructionView.retrieveSoundButton().addOnClickListener(
-                v -> Toast.makeText(this, "Sound button clicked!", Toast.LENGTH_SHORT).show()
-        );
+//        instructionView.retrieveSoundButton().hide();
+//        instructionView.retrieveSoundButton().addOnClickListener(
+//                v -> Toast.makeText(this, "Sound button clicked!", Toast.LENGTH_SHORT).show()
+//        );
 
         Instruction myInstruction = new Instruction() {
             @Override
@@ -324,6 +379,39 @@ public class Main extends AppCompatActivity implements OnMapReadyCallback,
                 ha.postDelayed(this, 30000);
             }
         }, 30000);
+
+
+
+        ///////
+        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+//             TODOne: Consider calling
+//                ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 30000, 10, mLocationListener);
+
+        //load/initialize the osmdroid configuration, this can be done
+        Configuration.getInstance().setUserAgentValue(BuildConfig.APPLICATION_ID);
+        Context ctx = getApplicationContext();
+        //Configuration.getInstance().load(ctx, PreferenceManager.getDefaultSharedPreferences(ctx));
+//        setContentView(R.layout.activity_main);
+        loadingGif = findViewById(R.id.mapLoad);
+        Glide.with(this).load(R.drawable.loading).into(loadingGif);
+        map = (org.osmdroid.views.MapView) findViewById(R.id.map);
+        map.setTileSource(TileSourceFactory.MAPNIK);
+        map.setVisibility(View.INVISIBLE);
+        requestPermissionsIfNecessary(new String[]{
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+        });
+        map.setMultiTouchControls(true);
+        mapController = map.getController();
+        mapController.setZoom(18);
     }
 
     //Morteza shake
@@ -565,174 +653,174 @@ public class Main extends AppCompatActivity implements OnMapReadyCallback,
         alert.show();
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == 1000) {
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
-            } else {
-                finish();
-            }
-        }
-    }
-    //end Morteza speedometer
-
-
-    public void changeIntent(){
-        Intent i = new Intent(this, MainActivity.class);
-        startActivity(i);
-        finish();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        mapView.onResume();
-
-        //Morteza
-        if(isAccelometerSensorAvailible) {
-            sensorManager.registerListener( this, accelometerSensor, SensorManager.SENSOR_DELAY_NORMAL);
-        }
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        mapView.onStart();
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        mapView.onSaveInstanceState(outState);
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        mapView.onStop();
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        mapView.onPause();
-
-        //Morteza
-        if(isAccelometerSensorAvailible) {
-            sensorManager.unregisterListener( this);
-        }
-    }
-
-    @Override
-    public void onLowMemory() {
-        super.onLowMemory();
-        mapView.onLowMemory();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        mapView.onDestroy();
-        shutdownLocationEngine();
-        shutdownNavigation();
-    }
-
-
-    @SuppressLint("MissingPermission")
-    @Override
-    public void onMapReady(@NonNull MapboxMap mapboxMap) {
-        this.mapboxMap = mapboxMap;
-        this.mapboxMap.addOnMapClickListener(this);
-        mapboxMap.setStyle(routeStyle, style -> {
-            LocationComponent locationComponent = mapboxMap.getLocationComponent();
-            locationComponent.activateLocationComponent(this, style);
-            locationComponent.setLocationComponentEnabled(true);
-            locationComponent.setRenderMode(RenderMode.GPS);
-
-            mockLocationEngine = new ReplayRouteLocationEngine();
-            getRoute(ORIGIN, DESTINATION);
-        });
-    }
-
-    @Override
-    public boolean onMapClick(@NonNull LatLng point) {
-//        if (!running || mapboxMap == null || lastLocation == null) {
-//            return false;
-//        }
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+//        if (requestCode == 1000) {
+//            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 //
-//        mapboxMap.addMarker(new MarkerOptions().position(point));
-//        mapboxMap.removeOnMapClickListener(this);
-//
-//        DESTINATION = Point.fromLngLat(point.getLongitude(), point.getLatitude());
-//        resetLocationEngine(DESTINATION);
-//
-//        tracking = false;
-        return false;
-    }
-
-    @Override
-    public void onRunning(boolean running) {
-        this.running = running;
-        if (running) {
-            navigation.addOffRouteListener(this);
-            navigation.addProgressChangeListener(this);
-        }
-    }
-
-    @Override
-    public void userOffRoute(Location location) {
-        ORIGIN = Point.fromLngLat(lastLocation.getLongitude(), lastLocation.getLatitude());
-        getRoute(ORIGIN, DESTINATION);
-        Snackbar.make(contentLayout, "User Off Route", Snackbar.LENGTH_SHORT).show();
-        mapboxMap.addMarker(new MarkerOptions().position(new LatLng(location.getLatitude(), location.getLongitude())));
-    }
-
-    @Override
-    public void onProgressChange(Location location, RouteProgress routeProgress) {
-        boolean isInTunnel = routeProgress.inTunnel();
-        lastLocation = location;
-        if (!wasInTunnel && isInTunnel) {
-            wasInTunnel = true;
-            Snackbar.make(contentLayout, "Enter tunnel!", Snackbar.LENGTH_SHORT).show();
-        }
-        if (wasInTunnel && !isInTunnel) {
-            wasInTunnel = false;
-            Snackbar.make(contentLayout, "Exit tunnel!", Snackbar.LENGTH_SHORT).show();
-        }
-        if (tracking) {
-            mapboxMap.getLocationComponent().forceLocationUpdate(location);
-            CameraPosition cameraPosition = new CameraPosition.Builder()
-                    .zoom(16)
-                    .target(new LatLng(location.getLatitude(), location.getLongitude()))
-                    .bearing(location.getBearing())
-                    .tilt(25)
-                    .build();
-            mapboxMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition), 2000);
-        }
-        instructionView.updateDistanceWith(routeProgress);
-
-        navigation.addProgressChangeListener(new ProgressChangeListener() {
-            @Override
-            public void onProgressChange(Location location, RouteProgress routeProgress) {
-                distanceRem.setText(calculateDistance(routeProgress.distanceRemaining()));
-                durationRem.setText(calculateDuration(routeProgress.durationRemaining()));
-                arrivalTime.setText(calculateArrivalTime(routeProgress.durationRemaining()));
-            }
-
-//            public void onProgressChange(Location location, RouteStepProgress routeStepProgress) {
-//                textView2.setText(String.valueOf(routeStepProgress.distanceRemaining()));
-//
+//            } else {
+//                finish();
 //            }
-
-
-        });
-
-
-
-
-    }
+//        }
+//    }
+//    //end Morteza speedometer
+//
+//
+//    public void changeIntent(){
+//        Intent i = new Intent(this, MainActivity.class);
+//        startActivity(i);
+//        finish();
+//    }
+//
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//        mapView.onResume();
+//
+//        //Morteza
+//        if(isAccelometerSensorAvailible) {
+//            sensorManager.registerListener( this, accelometerSensor, SensorManager.SENSOR_DELAY_NORMAL);
+//        }
+//    }
+//
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//        mapView.onStart();
+//    }
+//
+//    @Override
+//    protected void onSaveInstanceState(Bundle outState) {
+//        super.onSaveInstanceState(outState);
+//        mapView.onSaveInstanceState(outState);
+//    }
+//
+//    @Override
+//    protected void onStop() {
+//        super.onStop();
+//        mapView.onStop();
+//    }
+//
+//    @Override
+//    public void onPause() {
+//        super.onPause();
+//        mapView.onPause();
+//
+//        //Morteza
+//        if(isAccelometerSensorAvailible) {
+//            sensorManager.unregisterListener( this);
+//        }
+//    }
+//
+//    @Override
+//    public void onLowMemory() {
+//        super.onLowMemory();
+//        mapView.onLowMemory();
+//    }
+//
+//    @Override
+//    protected void onDestroy() {
+//        super.onDestroy();
+//        mapView.onDestroy();
+//        shutdownLocationEngine();
+//        shutdownNavigation();
+//    }
+//
+//
+//    @SuppressLint("MissingPermission")
+//    @Override
+//    public void onMapReady(@NonNull MapboxMap mapboxMap) {
+//        this.mapboxMap = mapboxMap;
+//        this.mapboxMap.addOnMapClickListener(this);
+//        mapboxMap.setStyle(routeStyle, style -> {
+//            LocationComponent locationComponent = mapboxMap.getLocationComponent();
+//            locationComponent.activateLocationComponent(this, style);
+//            locationComponent.setLocationComponentEnabled(true);
+//            locationComponent.setRenderMode(RenderMode.GPS);
+//
+//            mockLocationEngine = new ReplayRouteLocationEngine();
+//            getRoute(ORIGIN, DESTINATION);
+//        });
+//    }
+//
+//    @Override
+//    public boolean onMapClick(@NonNull LatLng point) {
+////        if (!running || mapboxMap == null || lastLocation == null) {
+////            return false;
+////        }
+////
+////        mapboxMap.addMarker(new MarkerOptions().position(point));
+////        mapboxMap.removeOnMapClickListener(this);
+////
+////        DESTINATION = Point.fromLngLat(point.getLongitude(), point.getLatitude());
+////        resetLocationEngine(DESTINATION);
+////
+////        tracking = false;
+//        return false;
+//    }
+//
+//    @Override
+//    public void onRunning(boolean running) {
+//        this.running = running;
+//        if (running) {
+//            navigation.addOffRouteListener(this);
+//            navigation.addProgressChangeListener(this);
+//        }
+//    }
+//
+//    @Override
+//    public void userOffRoute(Location location) {
+//        ORIGIN = Point.fromLngLat(lastLocation.getLongitude(), lastLocation.getLatitude());
+//        getRoute(ORIGIN, DESTINATION);
+//        Snackbar.make(contentLayout, "User Off Route", Snackbar.LENGTH_SHORT).show();
+//        mapboxMap.addMarker(new MarkerOptions().position(new LatLng(location.getLatitude(), location.getLongitude())));
+//    }
+//
+//    @Override
+//    public void onProgressChange(Location location, RouteProgress routeProgress) {
+//        boolean isInTunnel = routeProgress.inTunnel();
+//        lastLocation = location;
+//        if (!wasInTunnel && isInTunnel) {
+//            wasInTunnel = true;
+//            Snackbar.make(contentLayout, "Enter tunnel!", Snackbar.LENGTH_SHORT).show();
+//        }
+//        if (wasInTunnel && !isInTunnel) {
+//            wasInTunnel = false;
+//            Snackbar.make(contentLayout, "Exit tunnel!", Snackbar.LENGTH_SHORT).show();
+//        }
+//        if (tracking) {
+//            mapboxMap.getLocationComponent().forceLocationUpdate(location);
+//            CameraPosition cameraPosition = new CameraPosition.Builder()
+//                    .zoom(16)
+//                    .target(new LatLng(location.getLatitude(), location.getLongitude()))
+//                    .bearing(location.getBearing())
+//                    .tilt(25)
+//                    .build();
+//            mapboxMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition), 2000);
+//        }
+//        instructionView.updateDistanceWith(routeProgress);
+//
+//        navigation.addProgressChangeListener(new ProgressChangeListener() {
+//            @Override
+//            public void onProgressChange(Location location, RouteProgress routeProgress) {
+//                distanceRem.setText(calculateDistance(routeProgress.distanceRemaining()));
+//                durationRem.setText(calculateDuration(routeProgress.durationRemaining()));
+//                arrivalTime.setText(calculateArrivalTime(routeProgress.durationRemaining()));
+//            }
+//
+////            public void onProgressChange(Location location, RouteStepProgress routeStepProgress) {
+////                textView2.setText(String.valueOf(routeStepProgress.distanceRemaining()));
+////
+////            }
+//
+//
+//        });
+//
+//
+//
+//
+//    }
 
     private String calculateDistance(double distance){
         int kiloMeter = (int) (distance/1000);
@@ -801,141 +889,141 @@ public class Main extends AppCompatActivity implements OnMapReadyCallback,
 //        Timber.d("onMilestoneEvent - Current Instruction: %s", instruction);
 //    }
 
-    @Override
-    public void onResponse(@NonNull Call<DirectionsResponse> call, @NonNull Response<DirectionsResponse> response) {
-        Timber.d(call.request().url().toString());
-        if (response.body() != null) {
-            if (!response.body().routes().isEmpty()) {
-                DirectionsRoute route = response.body().routes().get(0);
-                drawRoute(route);
-                resetLocationEngine(route);
-                navigation.startNavigation(route);
-                mapboxMap.addOnMapClickListener(this);
-                tracking = true;
-            }
-        }
-    }
+//    @Override
+//    public void onResponse(@NonNull Call<DirectionsResponse> call, @NonNull Response<DirectionsResponse> response) {
+//        Timber.d(call.request().url().toString());
+//        if (response.body() != null) {
+//            if (!response.body().routes().isEmpty()) {
+//                DirectionsRoute route = response.body().routes().get(0);
+//                drawRoute(route);
+//                resetLocationEngine(route);
+//                navigation.startNavigation(route);
+//                mapboxMap.addOnMapClickListener(this);
+//                tracking = true;
+//            }
+//        }
+//    }
+//
+//    @Override
+//    public void onFailure(@NonNull Call<DirectionsResponse> call, @NonNull Throwable throwable) {
+//        Timber.e(throwable);
+//    }
+//
+//    void updateLocation(Location location) {
+//        if (!tracking) {
+//            mapboxMap.getLocationComponent().forceLocationUpdate(location);
+//        }
+//    }
+//
+//    private void getRoute(Point origin, Point destination) {
+//        NavigationRoute.builder(this)
+//                .origin(origin)
+//                .destination(destination)
+//                .accessToken(Mapbox.getAccessToken())
+//                .build().getRoute(this);
+//    }
+//
+//    private void drawRoute(DirectionsRoute route) {
+//        List<LatLng> points = new ArrayList<>();
+//        List<Point> coords = LineString.fromPolyline(route.geometry(), Constants.PRECISION_6).coordinates();
+//
+//        for (Point point : coords) {
+//            points.add(new LatLng(point.latitude(), point.longitude()));
+//        }
+//
+//        if (!points.isEmpty()) {
+//            if (polyline != null) {
+//                mapboxMap.removePolyline(polyline);
+//            }
+//            polyline = mapboxMap.addPolyline(new PolylineOptions()
+//                    .addAll(points)
+//                    .color(R.color.colorAccent)//Color.parseColor(getString(R.string.blue))
+//                    .width(5));
+//        }
+//    }
+//
+//    private void resetLocationEngine(Point point) {
+//        mockLocationEngine.moveTo(point);
+//        navigation.setLocationEngine(mockLocationEngine);
+//    }
+//
+//    private void resetLocationEngine(DirectionsRoute directionsRoute) {
+//        mockLocationEngine.assign(directionsRoute);
+//        navigation.setLocationEngine(mockLocationEngine);
+//    }
+//
+//    private void shutdownLocationEngine() {
+//        if (mockLocationEngine != null) {
+//            mockLocationEngine.removeLocationUpdates(callback);
+//        }
+//    }
+//
+//    private void shutdownNavigation() {
+//        navigation.removeNavigationEventListener(this);
+//        navigation.removeProgressChangeListener(this);
+//        navigation.onDestroy();
+//    }
+//
+//    @Override
+//    public void onInit(int status) {
+//
+//        if(status==TextToSpeech.SUCCESS)
+//        {
+////            Toast.makeText(getApplicationContext(), "engine installed",Toast.LENGTH_SHORT).show();
+//        }
+//        if(status==TextToSpeech.ERROR)
+//        {
+////            Toast.makeText(getApplicationContext(), "engine not installed", Toast.LENGTH_SHORT).show();
+//        }
+//    }
+//
+//    private static class RerouteActivityLocationCallback implements LocationEngineCallback<LocationEngineResult> {
+//
+//        private final WeakReference<Main> activityWeakReference;
+//
+//        RerouteActivityLocationCallback(Main activity) {
+//            this.activityWeakReference = new WeakReference<>(activity);
+//        }
+//
+//        @Override
+//        public void onSuccess(LocationEngineResult result) {
+//            Main activity = activityWeakReference.get();
+//            if (activity != null) {
+//                Location location = result.getLastLocation();
+//                if (location == null) {
+//                    return;
+//                }
+//                activity.updateLocation(location);
+//            }
+//        }
+//
+//        @Override
+//        public void onFailure(@NonNull Exception exception) {
+//            Timber.e(exception);
+//        }
+//    }
+//
+//
+//
+//
+//
+//    @Override
+//    public void onMilestoneEvent(RouteProgress routeProgress, String instruction, Milestone milestone) {
+//        if (milestone instanceof BannerInstructionMilestone) {
+//            BannerText primaryInstruction = ((BannerInstructionMilestone) milestone).getBannerInstructions().primary();
+//            InstructionLoader loader = new InstructionLoader(primaryTxt, primaryInstruction);
+//            loader.loadInstruction();
+//
+//            BannerText secondaryInstruction = ((BannerInstructionMilestone) milestone).getBannerInstructions().secondary();
+//            if(secondaryInstruction!=null){
+//                InstructionLoader loader2 = new InstructionLoader(secondaryTxt, secondaryInstruction);
+//                loader2.loadInstruction();
+//            } else {
+//                secondaryTxt.setText("");
+//            }
+//        }
 
-    @Override
-    public void onFailure(@NonNull Call<DirectionsResponse> call, @NonNull Throwable throwable) {
-        Timber.e(throwable);
-    }
-
-    void updateLocation(Location location) {
-        if (!tracking) {
-            mapboxMap.getLocationComponent().forceLocationUpdate(location);
-        }
-    }
-
-    private void getRoute(Point origin, Point destination) {
-        NavigationRoute.builder(this)
-                .origin(origin)
-                .destination(destination)
-                .accessToken(Mapbox.getAccessToken())
-                .build().getRoute(this);
-    }
-
-    private void drawRoute(DirectionsRoute route) {
-        List<LatLng> points = new ArrayList<>();
-        List<Point> coords = LineString.fromPolyline(route.geometry(), Constants.PRECISION_6).coordinates();
-
-        for (Point point : coords) {
-            points.add(new LatLng(point.latitude(), point.longitude()));
-        }
-
-        if (!points.isEmpty()) {
-            if (polyline != null) {
-                mapboxMap.removePolyline(polyline);
-            }
-            polyline = mapboxMap.addPolyline(new PolylineOptions()
-                    .addAll(points)
-                    .color(R.color.colorAccent)//Color.parseColor(getString(R.string.blue))
-                    .width(5));
-        }
-    }
-
-    private void resetLocationEngine(Point point) {
-        mockLocationEngine.moveTo(point);
-        navigation.setLocationEngine(mockLocationEngine);
-    }
-
-    private void resetLocationEngine(DirectionsRoute directionsRoute) {
-        mockLocationEngine.assign(directionsRoute);
-        navigation.setLocationEngine(mockLocationEngine);
-    }
-
-    private void shutdownLocationEngine() {
-        if (mockLocationEngine != null) {
-            mockLocationEngine.removeLocationUpdates(callback);
-        }
-    }
-
-    private void shutdownNavigation() {
-        navigation.removeNavigationEventListener(this);
-        navigation.removeProgressChangeListener(this);
-        navigation.onDestroy();
-    }
-
-    @Override
-    public void onInit(int status) {
-
-        if(status==TextToSpeech.SUCCESS)
-        {
-//            Toast.makeText(getApplicationContext(), "engine installed",Toast.LENGTH_SHORT).show();
-        }
-        if(status==TextToSpeech.ERROR)
-        {
-//            Toast.makeText(getApplicationContext(), "engine not installed", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private static class RerouteActivityLocationCallback implements LocationEngineCallback<LocationEngineResult> {
-
-        private final WeakReference<Main> activityWeakReference;
-
-        RerouteActivityLocationCallback(Main activity) {
-            this.activityWeakReference = new WeakReference<>(activity);
-        }
-
-        @Override
-        public void onSuccess(LocationEngineResult result) {
-            Main activity = activityWeakReference.get();
-            if (activity != null) {
-                Location location = result.getLastLocation();
-                if (location == null) {
-                    return;
-                }
-                activity.updateLocation(location);
-            }
-        }
-
-        @Override
-        public void onFailure(@NonNull Exception exception) {
-            Timber.e(exception);
-        }
-    }
-
-
-
-
-
-    @Override
-    public void onMilestoneEvent(RouteProgress routeProgress, String instruction, Milestone milestone) {
-        if (milestone instanceof BannerInstructionMilestone) {
-            BannerText primaryInstruction = ((BannerInstructionMilestone) milestone).getBannerInstructions().primary();
-            InstructionLoader loader = new InstructionLoader(primaryTxt, primaryInstruction);
-            loader.loadInstruction();
-
-            BannerText secondaryInstruction = ((BannerInstructionMilestone) milestone).getBannerInstructions().secondary();
-            if(secondaryInstruction!=null){
-                InstructionLoader loader2 = new InstructionLoader(secondaryTxt, secondaryInstruction);
-                loader2.loadInstruction();
-            } else {
-                secondaryTxt.setText("");
-            }
-        }
-
-        TextToSpeech tts = new TextToSpeech(this, this);
+//        TextToSpeech tts = new TextToSpeech(this, this);
 //        TextToSpeech tts = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
 //            @Override
 //            public void onInit(int status) {
@@ -954,11 +1042,11 @@ public class Main extends AppCompatActivity implements OnMapReadyCallback,
 //                }
 //            }
 //        });
-        tts.setLanguage(Locale.US);
-        tts.speak(instruction, TextToSpeech.QUEUE_ADD, null);
+//        tts.setLanguage(Locale.US);
+//        tts.speak(instruction, TextToSpeech.QUEUE_ADD, null);
 //        Toast.makeText(getApplicationContext(), instruction,Toast.LENGTH_SHORT).show();
 
-    }
+//    }
 
 //    @Override
 //    public void onMilestoneEvent(RouteProgress routeProgress, String instruction, Milestone milestone) {
@@ -966,4 +1054,92 @@ public class Main extends AppCompatActivity implements OnMapReadyCallback,
 //    }
 
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        map.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        map.onPause();
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        ArrayList<String> permissionsToRequest = new ArrayList<>();
+        for (int i = 0; i < grantResults.length; i++) {
+            permissionsToRequest.add(permissions[i]);
+        }
+        if (permissionsToRequest.size() > 0) {
+            ActivityCompat.requestPermissions(
+                    this,
+                    permissionsToRequest.toArray(new String[0]),
+                    REQUEST_PERMISSIONS_REQUEST_CODE);
+        }
+    }
+
+    private void requestPermissionsIfNecessary(String[] permissions) {
+        ArrayList<String> permissionsToRequest = new ArrayList<>();
+        for (String permission : permissions) {
+            if (ContextCompat.checkSelfPermission(this, permission)
+                    != PackageManager.PERMISSION_GRANTED) {
+                permissionsToRequest.add(permission);
+            }
+        }
+        if (permissionsToRequest.size() > 0) {
+            ActivityCompat.requestPermissions(
+                    this,
+                    permissionsToRequest.toArray(new String[0]),
+                    REQUEST_PERMISSIONS_REQUEST_CODE);
+        }
+
+
+    }
+
+
+    private final LocationListener mLocationListener = new LocationListener() {
+        @Override
+        public void onLocationChanged(final Location location) {
+            GeoPoint startPoint = new GeoPoint(location.getLatitude(), location.getLongitude());
+            mapController.setCenter(startPoint);
+            setIcon(startPoint);
+            Main.location=location;
+            map.setVisibility(View.VISIBLE);
+            loadingGif.setVisibility(View.INVISIBLE);
+        }
+
+        @Override
+        public void onStatusChanged(String provider, int status, Bundle extras) {
+
+        }
+
+        @Override
+        public void onProviderEnabled(String provider) {
+
+        }
+
+        @Override
+        public void onProviderDisabled(String provider) {
+
+        }
+
+        Marker startMarker;
+        public void setIcon(GeoPoint startPoint){
+            map.getOverlays().remove(startMarker);
+            startMarker = new Marker(map);
+            startMarker.setIcon(getDrawable(R.drawable.marker_default));
+            startMarker.setPosition(startPoint);
+            startMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
+            map.getOverlays().add(startMarker);
+        }
+    };
+
+
+    public void currentLocation(View view) {
+        if(location == null) return;
+        GeoPoint startPoint = new GeoPoint(location.getLatitude(), location.getLongitude());
+        mapController.setCenter(startPoint);
+    }
 }

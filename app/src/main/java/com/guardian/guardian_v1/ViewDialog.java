@@ -22,8 +22,8 @@ public class ViewDialog {
         okButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                navClass.changeIntent();
-                dialog.dismiss();
+//                navClass.changeIntent();
+//                dialog.dismiss();
             }
         });
 

@@ -47,7 +47,7 @@ public class StatusCalculator {
     ArrayList<String> alerts;
 
     private Time timeObj;
-    private PersianCalender.SolarCalendar solarCalendar;
+    private PersianCalender.SolarCalendar solarCalendar = new PersianCalender.SolarCalendar();
 
     public StatusCalculator() {
         timeObj = new Time();
@@ -789,7 +789,7 @@ public class StatusCalculator {
         double nearCities_factor = nearCitiesCalculator(distance) * 2;
         double vibration_factor = vibrationCalculator(vibration) * 2;
         double acceleration_factor = accelerationCalculator(acceleration, weatherType) * 2.5;
-        double month_factor =  monthCalculator(solarCalendar.month) * 0.8;
+        double month_factor =  0; //monthCalculator(solarCalendar.month) * 0.8;
         double traffic_factor = 0; // trafficCalculator() * 1;
         double roadType_factor = roadTypeCalculator(highwayType, lanes, oneway) * 1;
         sleepAlert(sleep_factor);
@@ -805,7 +805,7 @@ public class StatusCalculator {
         roadTypeAlert(roadType_factor);
 
         double average = 0;
-
+        
         double sleep_raw = 0; //EncodeDecode.sleepEncode();
         double speed_raw = EncodeDecode.speedEncode(staticUserSpeed);
         double time_raw = EncodeDecode.timeEncode(timeObj.getTimeHOUR(), timeObj.getTimeMINUTE());

@@ -5,7 +5,7 @@ import java.util.Locale;
 
 public class PersianCalender {
 
-     public class SolarCalendar {
+     public static class SolarCalendar {
 
         public String strWeekDay = "";
         public String strMonth = "";
@@ -243,9 +243,10 @@ public class PersianCalender {
     public static String getCurrentShamsidate() {
         Locale loc = new Locale("en_US");
         PersianCalender util = new PersianCalender();
-        SolarCalendar sc = util.new SolarCalendar();
+//        SolarCalendar sc = util.new SolarCalendar();
 //        return String.valueOf(sc.year) + "/" + String.format(loc, "%02d",
 //                sc.month) + "/" + String.format(loc, "%02d", sc.date);
-        return String.valueOf(sc.month);
+//        return String.valueOf(sc.month);
+        return "a";
     }
 }
