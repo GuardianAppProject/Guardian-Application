@@ -2,6 +2,7 @@ package com.guardian.guardian_v1.Transmission;
 
 import android.os.AsyncTask;
 import android.os.Build;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
@@ -57,7 +58,7 @@ public class DataSender extends AsyncTask<String, Void, String> {
 
             OutputStream outputStream = httpURLConnection.getOutputStream();
             BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
-
+            Log.d("tok", "token is : " + token);
             String post_data = URLEncoder.encode("token", "UTF-8") + "=" + URLEncoder.encode(token, "UTF-8")
                     + "&" + URLEncoder.encode("sleep_amount", "UTF-8") + "=" + URLEncoder.encode(sleep, "UTF-8")
                     + "&" + URLEncoder.encode("time_data", "UTF-8") + "=" + URLEncoder.encode(time_d, "UTF-8")

@@ -1,6 +1,8 @@
 package com.guardian.guardian_v1;
 
 
+import android.util.Log;
+
 import com.guardian.guardian_v1.DriveStatus.GPSTracker;
 import com.guardian.guardian_v1.DriveStatus.PersianCalender;
 import com.guardian.guardian_v1.DriveStatus.RoadInformation;
@@ -740,7 +742,7 @@ public class StatusCalculator {
             public void run() {
                 try {
                     Weather weather = Weather.getCurrentLocationWeather(getApplicationContext());
-                    weather_factor = weatherCalculator(weather.getTemperature(),weather.getWindSpeed(),weather.getWeatherType());
+                    weather_factor = weatherCalculator(weather.getTemperature(),weather.getWindSpeed(),weather.getWeatherType()) * 2;
                     weatherType = weather.getWeatherType();
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -782,25 +784,28 @@ public class StatusCalculator {
 
         setWeather_factor();
 
-        double sleep_factor = 0; //sleepCalculator() * 3;
+        double sleep_factor = 300; //sleepCalculator() * 3;
         double time_factor = timeCalculator(timeObj.getTimeHOUR(), timeObj.getTimeMINUTE(), 0, 0) * 3;
         double speed_factor = speedCalculator(staticUserSpeed, speedLimit, weatherType) * 3;
         double withoutStopDriving_factor = withoutStopDrivingCalculator(nonStop, totalDrive, totalTime, timeObj.getTimeHOUR(), timeObj.getTimeMINUTE()) * 3;
         double nearCities_factor = nearCitiesCalculator(distance) * 2;
         double vibration_factor = vibrationCalculator(vibration) * 2;
         double acceleration_factor = accelerationCalculator(acceleration, weatherType) * 2.5;
-        double month_factor =  0; //monthCalculator(solarCalendar.month) * 0.8;
+        double month_factor = monthCalculator(solarCalendar.month) * 0.8;
         double traffic_factor = 0; // trafficCalculator() * 1;
         double roadType_factor = roadTypeCalculator(highwayType, lanes, oneway) * 1;
-        sleepAlert(sleep_factor);
-        speedAlert(speed_factor);
-        timeAlert(time_factor);
-        withoutStopAlert(withoutStopDriving_factor);
+        Log.d("drive status", "sleep: " + sleep_factor + " + time: " + time_factor +
+        "+ speed: " + speed_factor + "+ wihtoutstop: " + withoutStopDriving_factor + " + nearcity: " + nearCities_factor + "+ vibration: "
+                        + vibration_factor + " + accelration: " + acceleration_factor + "+ month: " + month_factor + " + roadtype: " + roadType_factor);
+        sleepAlert(sleep_factor/3);
+        speedAlert(speed_factor/3);
+        timeAlert(time_factor/3);
+        withoutStopAlert(withoutStopDriving_factor/3);
         weatherAlert(weather_factor);
-        nearCitiesAlert(nearCities_factor);
-        vibrationAlert(vibration_factor);
-        accelerationAlert(acceleration_factor);
-        monthAlert(month_factor);
+        nearCitiesAlert(nearCities_factor/2);
+        vibrationAlert(vibration_factor/2);
+        accelerationAlert(acceleration_factor/2.5);
+        monthAlert(month_factor/0.8);
         trafficAlert(traffic_factor);
         roadTypeAlert(roadType_factor);
 
@@ -822,7 +827,7 @@ public class StatusCalculator {
                 + speed_factor + withoutStopDriving_factor
                 + weather_factor + nearCities_factor
                 + vibration_factor + acceleration_factor
-                + month_factor + traffic_factor + roadType_factor) / 22.3;
+                + month_factor + traffic_factor + roadType_factor) / 21.3;
 
         if(cycle == 10) {
             double sleep_save = calculateAverage(sleep_data);
@@ -903,11 +908,11 @@ public class StatusCalculator {
         String status = "";
         if(percentage >= 90) {
             status = "بسیار ایمن";
-        } else if(percentage >= 75) {
+        } else if(percentage >= 70) {
             status = "ایمن";
-        } else if(percentage >= 60) {
+        } else if(percentage >= 55) {
             status = "نیازمند دقت";
-        } else if(percentage >= 50) {
+        } else if(percentage >= 48) {
             status = "نیازمند دقت بالا";
         } else if(percentage >= 40) {
             status = "ناایمن";
@@ -924,11 +929,11 @@ public class StatusCalculator {
         int background = 0;
         if(percentage >= 90) {
             background = 1;
-        } else if(percentage >= 75) {
+        } else if(percentage >= 70) {
             background = 2;
-        } else if(percentage >= 60) {
+        } else if(percentage >= 55) {
             background = 3;
-        } else if(percentage >= 50) {
+        } else if(percentage >= 48) {
             background = 4;
         } else if(percentage >= 40) {
             background = 5;
@@ -966,7 +971,7 @@ public class StatusCalculator {
 
         String speed_alert = "";
         if(speed_factor <= 65) {
-            speed_alert = "کمی از سرعت خود بکاهید.";
+            speed_alert = "لطفا کمی از سرعت خود بکاهید.";
             DriveAlertHandler.speed_alert = new DriveAlertHandler(speed_alert, 1, false, DriveAlertHandler.Type.SPEED);
         } else if(speed_factor <= 50) {
             speed_alert = "سرعت شما بسیار زیاد است.";

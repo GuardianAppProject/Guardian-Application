@@ -160,7 +160,12 @@ public class LocationService extends Service implements
             if (speed >= 0.0) {
                 Log.d("speed", "Current speed: " + new DecimalFormat("#.##").format(speed) + " km/hr");
                 StatusCalculator.staticUserSpeed = speed;
-                Main.speedText.setText(new DecimalFormat("#.##").format(speed));
+//                if(speed >= 5.0) {
+                    Main.speedText.setText(new DecimalFormat("#.#").format(speed));
+//                } else {
+//                    Main.speedText.setText("0");
+//                }
+
 
                 if (speed <= 9.0 ) {
 

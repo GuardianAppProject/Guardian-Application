@@ -563,7 +563,7 @@ public class Main extends AppCompatActivity implements  SensorEventListener{
     }
     private void callAlgorithmLogic() {
         double percentage = statusCalculator.calculatePercentageAlgorithm();
-        algorithmPercentageText.setText(String.valueOf((int)percentage));
+        algorithmPercentageText.setText(String.valueOf((int)percentage) + "%");
         algorithmStatusText.setText(statusCalculator.calculateStatusAlgorithm(percentage));
 
         //Log.d("total time", StatusCalculator.totalTime + "");
