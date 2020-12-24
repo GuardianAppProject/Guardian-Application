@@ -183,7 +183,7 @@
                                 android:gravity="center_horizontal"
                                 android:textColor="#000000"
                                 android:alpha="0.94"
-                                android:paddingLeft="16dp"/>
+                                android:paddingLeft="17dp"/>
 
                             <TextView
                                 android:layout_width="0dp"
@@ -329,11 +329,11 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_marginBottom="10dp"
+                            android:layout_marginBottom="8dp"
                             android:fontFamily="@font/product_sans_bold"
                             android:lines="1"
                             android:text="64%"
-                            android:textSize="40sp"
+                            android:textSize="39sp"
                             android:textStyle="bold" />
 
                         <TextView

@@ -861,6 +861,7 @@ public class StatusCalculator {
             month_data.clear();
             traffic_data.clear();
             roadType_data.clear();
+            cycle = -1;
         }
         cycle ++;
         sleep_data.add(sleep_raw);
