@@ -2,15 +2,15 @@
   <library name="Gradle: com.mapbox.mapboxsdk:mapbox-android-plugin-locationlayer:0.5.0@aar">
     <ANNOTATIONS>
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/c408b10bc0629ad3b496605a38b74be8/jetified-mapbox-android-plugin-locationlayer-0.5.0/annotations.zip!/" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/0da9a546b86901438a8fed3eaa96e011/jetified-mapbox-android-plugin-locationlayer-0.5.0/annotations.zip!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1514a6817edd02f3a3cebc9610a0e9b7/jetified-mapbox-android-plugin-locationlayer-0.5.0/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/c408b10bc0629ad3b496605a38b74be8/jetified-mapbox-android-plugin-locationlayer-0.5.0/AndroidManifest.xml" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/c408b10bc0629ad3b496605a38b74be8/jetified-mapbox-android-plugin-locationlayer-0.5.0/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/c408b10bc0629ad3b496605a38b74be8/jetified-mapbox-android-plugin-locationlayer-0.5.0/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/0da9a546b86901438a8fed3eaa96e011/jetified-mapbox-android-plugin-locationlayer-0.5.0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/0da9a546b86901438a8fed3eaa96e011/jetified-mapbox-android-plugin-locationlayer-0.5.0/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/0da9a546b86901438a8fed3eaa96e011/jetified-mapbox-android-plugin-locationlayer-0.5.0/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1514a6817edd02f3a3cebc9610a0e9b7/jetified-mapbox-android-plugin-locationlayer-0.5.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1514a6817edd02f3a3cebc9610a0e9b7/jetified-mapbox-android-plugin-locationlayer-0.5.0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1514a6817edd02f3a3cebc9610a0e9b7/jetified-mapbox-android-plugin-locationlayer-0.5.0/res" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.mapbox.mapboxsdk/mapbox-android-plugin-locationlayer/0.5.0/8c4d9d684893bfc8ed7eeedc1d426de8370bc9c4/mapbox-android-plugin-locationlayer-0.5.0-javadoc.jar!/" />

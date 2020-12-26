@@ -2,7 +2,7 @@
   <library name="Gradle: com.mapbox.mapboxsdk:mapbox-android-plugin-localization-v7:0.8.0@aar">
     <ANNOTATIONS>
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5a48594b9158d326eef44cabbcd8025f/jetified-mapbox-android-plugin-localization-v7-0.8.0/annotations.zip!/" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d107b7c2df44feee37c22a881f63763b/jetified-mapbox-android-plugin-localization-v7-0.8.0/annotations.zip!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/f067a9f8c91e7528e6fd3121ea5254cd/jetified-mapbox-android-plugin-localization-v7-0.8.0/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5a48594b9158d326eef44cabbcd8025f/jetified-mapbox-android-plugin-localization-v7-0.8.0/AndroidManifest.xml" />
@@ -10,8 +10,9 @@
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5a48594b9158d326eef44cabbcd8025f/jetified-mapbox-android-plugin-localization-v7-0.8.0/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e57cdb218cc444a73df3afe74f91845d/jetified-mapbox-android-plugin-localization-v7-0.8.0/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d107b7c2df44feee37c22a881f63763b/jetified-mapbox-android-plugin-localization-v7-0.8.0/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d107b7c2df44feee37c22a881f63763b/jetified-mapbox-android-plugin-localization-v7-0.8.0/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d107b7c2df44feee37c22a881f63763b/jetified-mapbox-android-plugin-localization-v7-0.8.0/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/f067a9f8c91e7528e6fd3121ea5254cd/jetified-mapbox-android-plugin-localization-v7-0.8.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/f067a9f8c91e7528e6fd3121ea5254cd/jetified-mapbox-android-plugin-localization-v7-0.8.0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/f067a9f8c91e7528e6fd3121ea5254cd/jetified-mapbox-android-plugin-localization-v7-0.8.0/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

@@ -531,6 +531,8 @@ public class StatusCalculator {
     public double withoutStopDrivingCalculator(double userWithoutStopDriving, double userTotalDriving, double userTotalRest, double userTimeHOUR, double userTimeMINUTE) {
 
 
+        Log.d("wstop", "userWithoutStopDriving" + userWithoutStopDriving + "userTotalDriving" + userTotalDriving + "userTotalRest" + userTotalRest
+        + "usermin" + userTimeMINUTE + "userho" + userTimeHOUR);
         double userTime = (userTimeHOUR * 60) + userTimeMINUTE;
 
         double standardRestTime = 0;
@@ -754,6 +756,7 @@ public class StatusCalculator {
 
     public double calculatePercentageAlgorithm() {
 
+        Log.d("vib", "" + vibration);
         //Morteza for location
         GPSTracker gps = new GPSTracker(getApplicationContext());
         if(gps.canGetLocation()) {
@@ -952,34 +955,32 @@ public class StatusCalculator {
     }
 
     public String sleepAlert(double sleep_factor) {
-
         String sleep_alert = "";
-        if(sleep_factor <= 65) {
-            sleep_alert = "بهتر است در اولین فرصت کمی استراحت کنید.";
-            DriveAlertHandler.sleep_alert = new DriveAlertHandler(sleep_alert, 1, false, DriveAlertHandler.Type.SLEEP);
+        if(sleep_factor <= 30) {
+            sleep_alert = "شرایط خواب شما برای رانندگی اصلا مناسب نیست!";
+            DriveAlertHandler.sleep_alert = new DriveAlertHandler(sleep_alert, 4, true, DriveAlertHandler.Type.SLEEP);
         } else if(sleep_factor <= 50) {
             sleep_alert = "خواب شما به میزان کافی نبوده است.";
             DriveAlertHandler.sleep_alert = new DriveAlertHandler(sleep_alert, 2, false, DriveAlertHandler.Type.SLEEP);
-        } else if(sleep_factor <= 30) {
-            sleep_alert = "شرایط خواب شما برای رانندگی اصلا مناسب نیست!";
-            DriveAlertHandler.sleep_alert = new DriveAlertHandler(sleep_alert, 4, true, DriveAlertHandler.Type.SLEEP);
+        } else if(sleep_factor <= 65) {
+            sleep_alert = "بهتر است در اولین فرصت کمی استراحت کنید.";
+            DriveAlertHandler.sleep_alert = new DriveAlertHandler(sleep_alert, 1, false, DriveAlertHandler.Type.SLEEP);
         }
-
         return sleep_alert;
     }
 
     public String speedAlert(double speed_factor) {
 
         String speed_alert = "";
-        if(speed_factor <= 65) {
-            speed_alert = "لطفا کمی از سرعت خود بکاهید.";
-            DriveAlertHandler.speed_alert = new DriveAlertHandler(speed_alert, 1, false, DriveAlertHandler.Type.SPEED);
+        if(speed_factor <= 30) {
+            speed_alert = "سرعت شما به شدت خطرناک است!";
+            DriveAlertHandler.speed_alert = new DriveAlertHandler(speed_alert, 4, true, DriveAlertHandler.Type.SPEED);
         } else if(speed_factor <= 50) {
             speed_alert = "سرعت شما بسیار زیاد است.";
             DriveAlertHandler.speed_alert = new DriveAlertHandler(speed_alert, 2, false, DriveAlertHandler.Type.SPEED);
-        } else if(speed_factor <= 30) {
-            speed_alert = "سرعت شما به شدت خطرناک است!";
-            DriveAlertHandler.speed_alert = new DriveAlertHandler(speed_alert, 4, true, DriveAlertHandler.Type.SPEED);
+        } else if(speed_factor <= 65) {
+            speed_alert = "لطفا کمی از سرعت خود بکاهید.";
+            DriveAlertHandler.speed_alert = new DriveAlertHandler(speed_alert, 1, false, DriveAlertHandler.Type.SPEED);
         }
         return speed_alert;
     }
@@ -987,15 +988,15 @@ public class StatusCalculator {
     public String accelerationAlert(double acceleration_factor) {
 
         String acceleration_alert = "";
-        if(acceleration_factor <= 65) {
-            acceleration_alert = "کمی در افزایش و کاهش سرعت دقت کنید.";
-            DriveAlertHandler.acceleration_alert = new DriveAlertHandler(acceleration_alert, 1, false, DriveAlertHandler.Type.ACCELERATION);
+        if(acceleration_factor <= 30) {
+            acceleration_alert = "شتاب خودروی شما خطرناک است!";
+            DriveAlertHandler.acceleration_alert = new DriveAlertHandler(acceleration_alert, 4, true, DriveAlertHandler.Type.ACCELERATION);
         } else if(acceleration_factor <= 50) {
             acceleration_alert = "شتاب خودرویتان را متعادل تر کنید.";
             DriveAlertHandler.acceleration_alert = new DriveAlertHandler(acceleration_alert, 2, false, DriveAlertHandler.Type.ACCELERATION);
-        } else if(acceleration_factor <= 30) {
-            acceleration_alert = "شتاب خودروی شما خطرناک است!";
-            DriveAlertHandler.acceleration_alert = new DriveAlertHandler(acceleration_alert, 4, true, DriveAlertHandler.Type.ACCELERATION);
+        } else if(acceleration_factor <= 65) {
+            acceleration_alert = "کمی در افزایش و کاهش سرعت دقت کنید.";
+            DriveAlertHandler.acceleration_alert = new DriveAlertHandler(acceleration_alert, 1, false, DriveAlertHandler.Type.ACCELERATION);
         }
         return acceleration_alert;
     }
@@ -1003,15 +1004,15 @@ public class StatusCalculator {
     public String vibrationAlert(double vibration_factor) {
 
         String vibration_alert = "";
-        if(vibration_factor <= 65) {
-            vibration_alert = "لرزش خودروی شما بیش از حد است؛ کمی دقت کنید.";
-            DriveAlertHandler.vibration_alert = new DriveAlertHandler(vibration_alert, 1, false, DriveAlertHandler.Type.VIBRATION);
+        if(vibration_factor <= 30) {
+            vibration_alert = "لرزش خودروی شما به شدت زیاد است!";
+            DriveAlertHandler.vibration_alert = new DriveAlertHandler(vibration_alert, 4, true, DriveAlertHandler.Type.VIBRATION);
         } else if(vibration_factor <= 50) {
             vibration_alert = "لرزش خودروی شما زیاد است؛ دقت کنید.";
             DriveAlertHandler.vibration_alert = new DriveAlertHandler(vibration_alert, 2, false, DriveAlertHandler.Type.VIBRATION);
-        } else if(vibration_factor <= 30) {
-            vibration_alert = "لرزش خودروی شما به شدت زیاد است!";
-            DriveAlertHandler.vibration_alert = new DriveAlertHandler(vibration_alert, 4, true, DriveAlertHandler.Type.VIBRATION);
+        } else if(vibration_factor <= 65) {
+            vibration_alert = "لرزش خودروی شما بیش از حد است؛ کمی دقت کنید.";
+            DriveAlertHandler.vibration_alert = new DriveAlertHandler(vibration_alert, 1, false, DriveAlertHandler.Type.VIBRATION);
         }
         return vibration_alert;
     }
@@ -1019,15 +1020,15 @@ public class StatusCalculator {
     public String timeAlert(double time_factor) {
 
         String time_alert = "";
-        if(time_factor <= 65) {
-            time_alert = "این زمان رانندگی پرخطر است؛ کمی بیشتر دقت کنید.";
-            DriveAlertHandler.time_alert = new DriveAlertHandler(time_alert, 1, false, DriveAlertHandler.Type.TIME);
+        if(time_factor <= 30) {
+            time_alert = "ساعت اوج تصادف؛ بسیار مراقب باشید!";
+            DriveAlertHandler.time_alert = new DriveAlertHandler(time_alert, 4, true, DriveAlertHandler.Type.TIME);
         } else if(time_factor <= 50) {
             time_alert = "زمان بسیار خطرناک است؛ با دقت رانندگی کنید.";
             DriveAlertHandler.time_alert = new DriveAlertHandler(time_alert, 2, false, DriveAlertHandler.Type.TIME);
-        } else if(time_factor <= 30) {
-            time_alert = "ساعت اوج تصادف؛ بسیار مراقب باشید!";
-            DriveAlertHandler.time_alert = new DriveAlertHandler(time_alert, 4, true, DriveAlertHandler.Type.TIME);
+        } else if(time_factor <= 65) {
+            time_alert = "این زمان رانندگی پرخطر است؛ کمی بیشتر دقت کنید.";
+            DriveAlertHandler.time_alert = new DriveAlertHandler(time_alert, 1, false, DriveAlertHandler.Type.TIME);
         }
         return time_alert;
     }
@@ -1035,15 +1036,15 @@ public class StatusCalculator {
     public String nearCitiesAlert(double nearCities_factor) {
 
         String nearCities_alert = "";
-        if(nearCities_factor <= 65) {
-            nearCities_alert = "منطقه ی حادثه خیز؛ دقت کنید.";
-            DriveAlertHandler.nearCities_alert = new DriveAlertHandler(nearCities_alert, 1, false, DriveAlertHandler.Type.NEAR_CITIES);
-        } else if(nearCities_factor <= 50) {
-            nearCities_alert = "منطقه ی پرتصادف؛ با دقت بیشتری رانندگی کنید.";
-            DriveAlertHandler.nearCities_alert = new DriveAlertHandler(nearCities_alert, 2, false, DriveAlertHandler.Type.NEAR_CITIES);
-        } else if(nearCities_factor <= 30) {
+        if(nearCities_factor <= 30) {
             nearCities_alert = "منطقه ی بسیار حادثه خیز؛ با هوشیاری رانندگی کنید!";
             DriveAlertHandler.nearCities_alert = new DriveAlertHandler(nearCities_alert, 4, true, DriveAlertHandler.Type.NEAR_CITIES);
+        }else if(nearCities_factor <= 50) {
+            nearCities_alert = "منطقه ی پرتصادف؛ با دقت بیشتری رانندگی کنید.";
+            DriveAlertHandler.nearCities_alert = new DriveAlertHandler(nearCities_alert, 2, false, DriveAlertHandler.Type.NEAR_CITIES);
+        } else if(nearCities_factor <= 65) {
+            nearCities_alert = "منطقه ی حادثه خیز؛ دقت کنید.";
+            DriveAlertHandler.nearCities_alert = new DriveAlertHandler(nearCities_alert, 1, false, DriveAlertHandler.Type.NEAR_CITIES);
         }
         return nearCities_alert;
     }
@@ -1051,15 +1052,15 @@ public class StatusCalculator {
     public String monthAlert(double month_factor) {
 
         String month_alert = "";
-        if(month_factor <= 65) {
-            month_alert = "زمان حادثه خیز؛ مراقب باشید.";
-            DriveAlertHandler.month_alert = new DriveAlertHandler(month_alert, 1, false, DriveAlertHandler.Type.MONTH);
+        if(month_factor <= 30) {
+            month_alert = "زمان اوج تصادف؛ بیشتر مراقب باشید!";
+            DriveAlertHandler.month_alert = new DriveAlertHandler(month_alert, 4, true, DriveAlertHandler.Type.MONTH);
         } else if(month_factor <= 50) {
             month_alert = "زمان بسیار حادثه خیز؛ در رانندگی دقت بیشتری کنید.";
             DriveAlertHandler.month_alert = new DriveAlertHandler(month_alert, 2, false, DriveAlertHandler.Type.MONTH);
-        } else if(month_factor <= 30) {
-            month_alert = "زمان اوج تصادف؛ بیشتر مراقب باشید!";
-            DriveAlertHandler.month_alert = new DriveAlertHandler(month_alert, 4, true, DriveAlertHandler.Type.MONTH);
+        } else if(month_factor <= 65) {
+            month_alert = "زمان حادثه خیز؛ مراقب باشید.";
+            DriveAlertHandler.month_alert = new DriveAlertHandler(month_alert, 1, false, DriveAlertHandler.Type.MONTH);
         }
         return month_alert;
     }
@@ -1067,15 +1068,15 @@ public class StatusCalculator {
     public String weatherAlert(double weather_factor) {
 
         String weather_alert = "";
-        if(weather_factor <= 65) {
-            weather_alert = "آب و هوا کمی نامناسب است؛ مراقب باشید.";
-            DriveAlertHandler.weather_alert = new DriveAlertHandler(weather_alert, 1, false, DriveAlertHandler.Type.WEATHER);
+        if(weather_factor <= 30) {
+            weather_alert = "هوا بسیار بد است؛ بسیار مراقب باشید!";
+            DriveAlertHandler.weather_alert = new DriveAlertHandler(weather_alert, 4, true, DriveAlertHandler.Type.WEATHER);
         } else if(weather_factor <= 50) {
             weather_alert = "آب و هوا بد است؛ در رانندگی بیشتر دقت کنید.";
             DriveAlertHandler.weather_alert = new DriveAlertHandler(weather_alert, 2, false, DriveAlertHandler.Type.WEATHER);
-        } else if(weather_factor <= 30) {
-            weather_alert = "هوا بسیار بد است؛ بسیار مراقب باشید!";
-            DriveAlertHandler.weather_alert = new DriveAlertHandler(weather_alert, 4, true, DriveAlertHandler.Type.WEATHER);
+        } else if(weather_factor <= 65) {
+            weather_alert = "آب و هوا کمی نامناسب است؛ مراقب باشید.";
+            DriveAlertHandler.weather_alert = new DriveAlertHandler(weather_alert, 1, false, DriveAlertHandler.Type.WEATHER);
         }
         return weather_alert;
     }
@@ -1083,15 +1084,15 @@ public class StatusCalculator {
     public String withoutStopAlert(double withoutStop_factor) {
 
         String withoutStop_alert = "";
-        if(withoutStop_factor <= 65) {
-            withoutStop_alert = "زمان رانندگی شما زیاد شده؛ کمی استراحت کنید.";
-            DriveAlertHandler.withoutStop_alert = new DriveAlertHandler(withoutStop_alert, 1, false, DriveAlertHandler.Type.WITHOUT_STOP);
+        if(withoutStop_factor <= 30) {
+            withoutStop_alert = "زمان بسیار طولانی رانندگی کرده اید؛ استراحت کنید!";
+            DriveAlertHandler.withoutStop_alert = new DriveAlertHandler(withoutStop_alert, 4, true, DriveAlertHandler.Type.WITHOUT_STOP);
         } else if(withoutStop_factor <= 50) {
             withoutStop_alert = "زمان رانندگی شما بسیار زیاد شده؛ لطفا کمی استراحت کنید.";
             DriveAlertHandler.withoutStop_alert = new DriveAlertHandler(withoutStop_alert, 2, false, DriveAlertHandler.Type.WITHOUT_STOP);
-        } else if(withoutStop_factor <= 30) {
-            withoutStop_alert = "زمان بسیار طولانی رانندگی کرده اید؛ استراحت کنید!";
-            DriveAlertHandler.withoutStop_alert = new DriveAlertHandler(withoutStop_alert, 4, true, DriveAlertHandler.Type.WITHOUT_STOP);
+        } else if(withoutStop_factor <= 65) {
+            withoutStop_alert = "زمان رانندگی شما زیاد شده؛ کمی استراحت کنید.";
+            DriveAlertHandler.withoutStop_alert = new DriveAlertHandler(withoutStop_alert, 1, false, DriveAlertHandler.Type.WITHOUT_STOP);
         }
         return withoutStop_alert;
     }
@@ -1099,15 +1100,15 @@ public class StatusCalculator {
     public String trafficAlert(double traffic_factor) {
 
         String traffic_alert = "";
-        if(traffic_factor <= 65) {
-            traffic_alert = "مسیر ترافیک کمی دارد؛ لطفا دقت کنید.";
-            DriveAlertHandler.traffic_alert = new DriveAlertHandler(traffic_alert, 1, false, DriveAlertHandler.Type.TRAFFIC);
+        if(traffic_factor <= 30) {
+            traffic_alert = "ترافیک خیلی زیاد است؛ با دقت ادامه دهید!";
+            DriveAlertHandler.traffic_alert = new DriveAlertHandler(traffic_alert, 4, true, DriveAlertHandler.Type.TRAFFIC);
         } else if(traffic_factor <= 50) {
             traffic_alert = "ترافیک مسیر سنگین است؛ بسیار دقت کنید.";
             DriveAlertHandler.traffic_alert = new DriveAlertHandler(traffic_alert, 2, false, DriveAlertHandler.Type.TRAFFIC);
-        } else if(traffic_factor <= 30) {
-            traffic_alert = "ترافیک خیلی زیاد است؛ با دقت ادامه دهید!";
-            DriveAlertHandler.traffic_alert = new DriveAlertHandler(traffic_alert, 4, true, DriveAlertHandler.Type.TRAFFIC);
+        } else if(traffic_factor <= 65) {
+            traffic_alert = "مسیر ترافیک کمی دارد؛ لطفا دقت کنید.";
+            DriveAlertHandler.traffic_alert = new DriveAlertHandler(traffic_alert, 1, false, DriveAlertHandler.Type.TRAFFIC);
         }
         return traffic_alert;
     }
@@ -1115,15 +1116,15 @@ public class StatusCalculator {
     public String roadTypeAlert(double roadType_factor) {
 
         String roadType_alert = "";
-        if(roadType_factor <= 65) {
-            roadType_alert = "جاده مناسب نیست؛ دقت کنید.";
-            DriveAlertHandler.roadType_alert = new DriveAlertHandler(roadType_alert, 1, false, DriveAlertHandler.Type.ROAD_TYPE);
+        if(roadType_factor <= 30) {
+            roadType_alert = "جاده بسیار خطرناک است؛ بسیار دقت کنید!";
+            DriveAlertHandler.roadType_alert = new DriveAlertHandler(roadType_alert, 4, true, DriveAlertHandler.Type.ROAD_TYPE);
         } else if(roadType_factor <= 50) {
             roadType_alert = "جاده بسیار نامناسب است؛ با دقت بیشتری ادامه دهید.";
             DriveAlertHandler.roadType_alert = new DriveAlertHandler(roadType_alert, 2, false, DriveAlertHandler.Type.ROAD_TYPE);
-        } else if(roadType_factor <= 30) {
-            roadType_alert = "جاده بسیار خطرناک است؛ بسیار دقت کنید!";
-            DriveAlertHandler.roadType_alert = new DriveAlertHandler(roadType_alert, 4, true, DriveAlertHandler.Type.ROAD_TYPE);
+        } else if(roadType_factor <= 65) {
+            roadType_alert = "جاده مناسب نیست؛ دقت کنید.";
+            DriveAlertHandler.roadType_alert = new DriveAlertHandler(roadType_alert, 1, false, DriveAlertHandler.Type.ROAD_TYPE);
         }
         return roadType_alert;
     }

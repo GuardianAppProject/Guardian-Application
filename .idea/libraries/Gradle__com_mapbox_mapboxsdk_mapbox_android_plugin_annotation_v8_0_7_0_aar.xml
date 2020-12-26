@@ -5,9 +5,10 @@
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/0e51d9b592a64c78202ccfa365a056ed/jetified-mapbox-android-plugin-annotation-v8-0.7.0/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/0e51d9b592a64c78202ccfa365a056ed/jetified-mapbox-android-plugin-annotation-v8-0.7.0/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d3353cca5a7d35cb13d4d653b9c70f98/jetified-mapbox-android-plugin-annotation-v8-0.7.0/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4d15db89b4306a895dd44de0d875e468/jetified-mapbox-android-plugin-annotation-v8-0.7.0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4d15db89b4306a895dd44de0d875e468/jetified-mapbox-android-plugin-annotation-v8-0.7.0/AndroidManifest.xml" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4d15db89b4306a895dd44de0d875e468/jetified-mapbox-android-plugin-annotation-v8-0.7.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/59e7912adb0eed4fab383419522034b7/jetified-mapbox-android-plugin-annotation-v8-0.7.0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/59e7912adb0eed4fab383419522034b7/jetified-mapbox-android-plugin-annotation-v8-0.7.0/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/59e7912adb0eed4fab383419522034b7/jetified-mapbox-android-plugin-annotation-v8-0.7.0/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

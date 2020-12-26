@@ -10,7 +10,7 @@ public class DriveAlertHandler {
     private boolean isTooImportant;
     private Type type;
 
-    private static DriveAlertHandler currentAlert = new DriveAlertHandler("", 1, false, Type.NONE);
+    private static DriveAlertHandler currentAlert = new DriveAlertHandler("", 0, false, Type.NONE);
 
     // number of cycles
     private static final int sleep_timeGap = 14;
@@ -72,6 +72,73 @@ public class DriveAlertHandler {
         setRepetition(repetition);
         setTooImportant(tooImportant);
         setType(type);
+    }
+
+    public void sleep_func(String alertMessage, int repetition, boolean tooImportant, Type type) {
+        sleep_alert.setAlertMessage(alertMessage);
+        sleep_alert.setRepetition(repetition);
+        sleep_alert.setTooImportant(tooImportant);
+        sleep_alert.setType(type);
+    }
+    public void speed_func(String alertMessage, int repetition, boolean tooImportant, Type type) {
+        speed_alert.setAlertMessage(alertMessage);
+        speed_alert.setRepetition(repetition);
+        speed_alert.setTooImportant(tooImportant);
+        speed_alert.setType(type);
+    }
+    public void acceleration_func(String alertMessage, int repetition, boolean tooImportant, Type type) {
+        acceleration_alert.setAlertMessage(alertMessage);
+        acceleration_alert.setRepetition(repetition);
+        acceleration_alert.setTooImportant(tooImportant);
+        acceleration_alert.setType(type);
+    }
+    public void vibration_func(String alertMessage, int repetition, boolean tooImportant, Type type) {
+        vibration_alert.setAlertMessage(alertMessage);
+        vibration_alert.setRepetition(repetition);
+        vibration_alert.setTooImportant(tooImportant);
+        vibration_alert.setType(type);
+    }
+    public void time_func(String alertMessage, int repetition, boolean tooImportant, Type type) {
+        time_alert.setAlertMessage(alertMessage);
+        time_alert.setRepetition(repetition);
+        time_alert.setTooImportant(tooImportant);
+        time_alert.setType(type);
+    }
+    public void nearCities_func(String alertMessage, int repetition, boolean tooImportant, Type type) {
+        nearCities_alert.setAlertMessage(alertMessage);
+        nearCities_alert.setRepetition(repetition);
+        nearCities_alert.setTooImportant(tooImportant);
+        nearCities_alert.setType(type);
+    }
+    public void month_func(String alertMessage, int repetition, boolean tooImportant, Type type) {
+        month_alert.setAlertMessage(alertMessage);
+        month_alert.setRepetition(repetition);
+        month_alert.setTooImportant(tooImportant);
+        month_alert.setType(type);
+    }
+    public void weather_func(String alertMessage, int repetition, boolean tooImportant, Type type) {
+        weather_alert.setAlertMessage(alertMessage);
+        weather_alert.setRepetition(repetition);
+        weather_alert.setTooImportant(tooImportant);
+        weather_alert.setType(type);
+    }
+    public void withoutStop_func(String alertMessage, int repetition, boolean tooImportant, Type type) {
+        withoutStop_alert.setAlertMessage(alertMessage);
+        withoutStop_alert.setRepetition(repetition);
+        withoutStop_alert.setTooImportant(tooImportant);
+        withoutStop_alert.setType(type);
+    }
+    public void traffic_func(String alertMessage, int repetition, boolean tooImportant, Type type) {
+        traffic_alert.setAlertMessage(alertMessage);
+        traffic_alert.setRepetition(repetition);
+        traffic_alert.setTooImportant(tooImportant);
+        traffic_alert.setType(type);
+    }
+    public void roadType_func(String alertMessage, int repetition, boolean tooImportant, Type type) {
+        roadType_alert.setAlertMessage(alertMessage);
+        roadType_alert.setRepetition(repetition);
+        roadType_alert.setTooImportant(tooImportant);
+        roadType_alert.setType(type);
     }
 
     private void setAlertMessage(String alertMessage) {
@@ -143,12 +210,12 @@ public class DriveAlertHandler {
         if(speed_alert.isTooImportant) {
             toShowStr = speed_alert.getAlertMessage();
             speed_restTime = speed_timeGap;
-            currentAlert = sleep_alert;
+            currentAlert = speed_alert;
             return toShowStr;
         } else if(sleep_alert.isTooImportant) {
             toShowStr = sleep_alert.getAlertMessage();
             sleep_restTime = sleep_timeGap;
-            currentAlert = speed_alert;
+            currentAlert = sleep_alert;
             return toShowStr;
         } else if(withoutStop_alert.isTooImportant) {
             toShowStr = withoutStop_alert.getAlertMessage();
@@ -228,7 +295,7 @@ public class DriveAlertHandler {
                 toShowAlertsList.put(traffic_alert, traffic_restTime);
             }
 
-            int min = -1000;
+            int min = 1000;
             for (DriveAlertHandler driveAlertHandler : toShowAlertsList.keySet()) {
                 if(toShowAlertsList.get(driveAlertHandler) < min) {
                     currentAlert = driveAlertHandler;

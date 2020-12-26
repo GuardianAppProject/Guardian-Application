@@ -8,14 +8,14 @@ public class Time {
         TimeZone tz = TimeZone.getTimeZone("GMT+4:30");
         Calendar c = Calendar.getInstance(tz);
 
-        return Calendar.HOUR_OF_DAY;
+        return c.HOUR_OF_DAY;
     }
 
     public double getTimeMINUTE(){
         TimeZone tz = TimeZone.getTimeZone("GMT+4:30");
         Calendar c = Calendar.getInstance(tz);
 
-        return Calendar.MINUTE;
+        return c.MINUTE;
     }
 
     public int getCurrentMonth() {
