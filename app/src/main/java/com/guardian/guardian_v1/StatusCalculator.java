@@ -624,45 +624,48 @@ public class StatusCalculator {
             rest_factor = 0;
         }
 
-        if(userTotalDriving >= 300) { // 6
+        Log.d("with" , "" + rest_factor);
+        if(userTotalDriving <= 300) { // 6
             rest_factor *= 1;
-        } else if(userTotalDriving >= 480) { // 8
+        } else if(userTotalDriving <= 480) { // 8
             rest_factor *= 0.95;
-        } else if(userTotalDriving >= 600) { // 10
+        } else if(userTotalDriving <= 600) { // 10
             rest_factor *= 0.9;
-        } else if(userTotalDriving >= 720) { // 12
+        } else if(userTotalDriving <= 720) { // 12
             rest_factor *= 0.85;
-        } else if(userTotalDriving >= 900) { // 15
+        } else if(userTotalDriving <= 900) { // 15
             rest_factor *= 0.8;
-        } else if(userTotalDriving >= 1080) { // 18
+        } else if(userTotalDriving <= 1080) { // 18
             rest_factor *= 0.7;
-        } else if(userTotalDriving >= 1260) { // 21
+        } else if(userTotalDriving <= 1260) { // 21
             rest_factor *= 0.6;
-        } else if(userTotalDriving >= 1440) { // 24
+        } else if(userTotalDriving <= 1440) { // 24
             rest_factor *= 0.5;
         } else {
             rest_factor *= 0.4;
         }
 
 
-        if((userTotalDriving/userTotalRest) <= 3) {
-            rest_factor *= 1.4;
-        } else if((userTotalDriving/userTotalRest) <= 5) {
-            rest_factor *= 1.2;
-        } else if((userTotalDriving/userTotalRest) <= 8) {
-            rest_factor *= 1.1;
-        }  else if((userTotalDriving/userTotalRest) <= 10) {
-            //
-        } else if((userTotalDriving/userTotalRest) <= 13) {
-            rest_factor *= 0.9;
-        } else if((userTotalDriving/userTotalRest) <= 15) {
-            rest_factor *= 0.8;
-        } else if((userTotalDriving/userTotalRest) <= 17) {
-            rest_factor *= 0.7;
-        } else if((userTotalDriving/userTotalRest) <= 19) {
-            rest_factor *= 0.6;
-        } else {
-            rest_factor *= 0.5;
+        if(userTotalDriving >= 1 && userTotalRest >= 1) {
+            if((userTotalDriving/userTotalRest) <= 3) {
+                rest_factor *= 1.4;
+            } else if((userTotalDriving/userTotalRest) <= 5) {
+                rest_factor *= 1.2;
+            } else if((userTotalDriving/userTotalRest) <= 8) {
+                rest_factor *= 1.1;
+            }  else if((userTotalDriving/userTotalRest) <= 10) {
+                //
+            } else if((userTotalDriving/userTotalRest) <= 13) {
+                rest_factor *= 0.9;
+            } else if((userTotalDriving/userTotalRest) <= 15) {
+                rest_factor *= 0.8;
+            } else if((userTotalDriving/userTotalRest) <= 17) {
+                rest_factor *= 0.7;
+            } else if((userTotalDriving/userTotalRest) <= 19) {
+                rest_factor *= 0.6;
+            } else {
+                rest_factor *= 0.5;
+            }
         }
 
         if(rest_factor <= 0) {

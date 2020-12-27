@@ -7,29 +7,29 @@
     android:background="@color/appThemeColor"
     tools:context=".SleepSpeedManager.SleepManagerActivity">
 
-<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
-<!--        android:id="@+id/constraintLayout"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="50dp"-->
-<!--        android:background="#7E7E7E"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent">-->
+    <!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+    <!--        android:id="@+id/constraintLayout"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="50dp"-->
+    <!--        android:background="#7E7E7E"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent">-->
 
-<!--        <TextView-->
-<!--            android:id="@+id/textView"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:fontFamily="@font/iran_sans"-->
-<!--            android:text="میزان خواب"-->
-<!--            android:textSize="17sp"-->
-<!--            android:textStyle="bold"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent" />-->
+    <!--        <TextView-->
+    <!--            android:id="@+id/textView"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:fontFamily="@font/iran_sans"-->
+    <!--            android:text="میزان خواب"-->
+    <!--            android:textSize="17sp"-->
+    <!--            android:textStyle="bold"-->
+    <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--            app:layout_constraintEnd_toEndOf="parent"-->
+    <!--            app:layout_constraintStart_toStartOf="parent"-->
+    <!--            app:layout_constraintTop_toTopOf="parent" />-->
 
-<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
+    <!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
 
 
     <TextView
@@ -38,55 +38,56 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="34dp"
         android:fontFamily="@font/iran_sans"
-        android:text="لطفا برای سلامت خودتان میزان خواب خود را به دقت وارد کنید."
-        android:paddingRight="50dp"
-        android:paddingLeft="50dp"
-        android:textAlignment="center"
+        android:gravity="center_horizontal"
         android:lines="2"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
+        android:text="لطفا برای سلامت خودتان میزان خواب خود را به دقت وارد کنید."
+        android:textAlignment="center"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/imageView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:gravity="center_horizontal" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="match_parent"
+        android:layout_width="410dp"
         android:layout_height="300dp"
         android:src="@drawable/clock_icon"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.373"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintVertical_bias="0.373" />
 
     <com.bikcrum.circularrangeslider.CircularRangeSlider
         android:id="@+id/clock"
         android:layout_width="227dp"
         android:layout_height="249dp"
-        android:layout_marginLeft="45dp"
-        android:layout_marginRight="45dp"
         app:axisColor="#7E7E7E"
         app:borderColor="#7E7E7E"
         app:circleColor="#F6F6F6"
         app:labelColor="#000000"
         app:layout_constraintBottom_toBottomOf="@+id/imageView2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/imageView2"
+        app:layout_constraintStart_toStartOf="@+id/imageView2"
         app:layout_constraintTop_toTopOf="@+id/imageView2"
         app:layout_constraintVertical_bias="0.313"
+        app:layout_constraintHorizontal_bias="0.75"
         app:progressColor="#839BF8"
         app:startIndexStepColor="#839BF8" />
 
     <LinearLayout
         android:id="@+id/linearLayout3"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="45dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <Button
             android:id="@+id/button2"
@@ -121,48 +122,47 @@
 
 
     <LinearLayout
+        android:id="@+id/linearLayoutContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="5dp"
-        android:orientation="horizontal"
-        android:id="@+id/linearLayoutContainer"
-        android:gravity="center_horizontal"
         app:layout_constraintTop_toBottomOf="@+id/imageView2">
 
         <TextView
-            android:fontFamily="@font/iran_sans"
             android:id="@+id/wakeUpTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:text="ساعت بیدارشدن:"
-            android:layout_marginRight="26dp"/>
+            android:layout_marginRight="26dp"
+            android:fontFamily="@font/iran_sans"
+            android:text="ساعت بیدارشدن:" />
 
         <TextView
-            android:fontFamily="@font/iran_sans"
             android:id="@+id/sleepTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
             android:layout_marginLeft="26dp"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/iran_sans"
             android:text="ساعت خواب:" />
 
     </LinearLayout>
 
 
     <TextView
-        android:fontFamily="@font/iran_sans"
         android:id="@+id/totalSleep"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
+        android:fontFamily="@font/iran_sans"
         android:text="میزان خواب:"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayoutContainer" />
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
