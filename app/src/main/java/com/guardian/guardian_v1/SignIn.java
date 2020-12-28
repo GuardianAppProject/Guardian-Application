@@ -195,4 +195,8 @@ public class SignIn extends AppCompatActivity {
     protected static String getToken(){
         return token;
     }
+
+    public static void setToken(String token) {
+        SignIn.token = token;
+    }
 }

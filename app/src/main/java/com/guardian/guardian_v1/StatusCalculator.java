@@ -802,7 +802,7 @@ public class StatusCalculator {
         double roadType_factor = roadTypeCalculator(highwayType, lanes, oneway) * 1;
         Log.d("drive status", "sleep: " + sleep_factor + " + time: " + time_factor +
         "+ speed: " + speed_factor + "+ wihtoutstop: " + withoutStopDriving_factor + " + nearcity: " + nearCities_factor + "+ vibration: "
-                        + vibration_factor + " + accelration: " + acceleration_factor + "+ month: " + month_factor + " + roadtype: " + roadType_factor);
+                        + vibration_factor +  " + wheather" + weather_factor + " + accelration: " + acceleration_factor + "+ month: " + month_factor + " + roadtype: " + roadType_factor);
         sleepAlert(sleep_factor/3);
         speedAlert(speed_factor/3);
         timeAlert(time_factor/3);
@@ -867,7 +867,7 @@ public class StatusCalculator {
             month_data.clear();
             traffic_data.clear();
             roadType_data.clear();
-            cycle = -1;
+            cycle = 0;
         }
         cycle ++;
         sleep_data.add(sleep_raw);
