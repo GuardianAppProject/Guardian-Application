@@ -561,22 +561,22 @@ public class Main extends FragmentActivity implements  SensorEventListener, OnMa
             case R.id.account:
                 Intent i = new Intent(Main.this, MyAccount.class);
                 startActivity(i);
-                finish();
+//                finish();
                 break;
             case R.id.support:
                 Intent i2 = new Intent(Main.this, Support.class);
                 startActivity(i2);
-                finish();
+//                finish();
                 break;
             case R.id.info:
                 Intent i3 = new Intent(Main.this, Info.class);
                 startActivity(i3);
-                finish();
+//                finish();
                 break;
             case R.id.settings:
                 Intent i4 = new Intent(Main.this, Setting.class);
                 startActivity(i4);
-                finish();
+//                finish();
                 break;
         }
 
