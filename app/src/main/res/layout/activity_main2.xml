@@ -6,19 +6,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Main"
+    android:layoutDirection="ltr"
     android:id="@+id/drawer_layout">
+
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layoutDirection="ltr"/>
 
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <com.mapbox.services.android.navigation.ui.v5.instruction.InstructionView
-            android:id="@+id/instructionView"
-            android:layout_width="1dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+<!--        <com.mapbox.services.android.navigation.ui.v5.instruction.InstructionView-->
+<!--            android:id="@+id/instructionView"-->
+<!--            android:layout_width="1dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
+
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -34,41 +43,39 @@
 <!--                app:mapbox_cameraZoom="10"/>-->
 
 
-            <ImageView
-                android:id="@+id/mapLoad"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                />
-
-
-            <org.osmdroid.views.MapView android:id="@+id/map"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent" >
+<!--            <ImageView-->
+<!--                android:id="@+id/mapLoad"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_centerInParent="true"-->
+<!--                />-->
 
 
 
-            </org.osmdroid.views.MapView>
 
-            <Button
-                android:layout_width="35dp"
-                android:layout_height="38dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginLeft="200dp"
-                android:background="@drawable/current_location"
-                android:onClick="currentLocation"
-                android:src="@drawable/current_location" />
+<!--            <Button-->
+<!--                android:layout_width="35dp"-->
+<!--                android:layout_height="38dp"-->
+<!--                android:layout_alignParentEnd="true"-->
+<!--                android:layout_alignParentRight="true"-->
+<!--                android:layout_alignParentBottom="true"-->
+<!--                android:layout_marginLeft="200dp"-->
+<!--                android:background="@drawable/current_location"-->
+<!--                android:onClick="currentLocation"-->
+<!--                android:src="@drawable/current_location" />-->
+
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_gravity="right"
                 android:orientation="vertical">
 
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:alpha="1">
+                    android:alpha="1"
+                    android:layoutDirection="ltr">
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -137,21 +144,21 @@
                 </FrameLayout>
 
                 <FrameLayout
-                    android:layout_width="164dp"
+                    android:layout_width="172dp"
                     android:layout_height="227dp"
-                    android:layout_gravity="right"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp"><!-- height: 250  -->
+                    android:layout_gravity="right"><!-- height: 250  -->
 
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_marginRight="8dp"
                         android:src="@drawable/rectangle_box"/>
 
                     <LinearLayout
                         android:paddingTop="3dp"
                         android:layout_width="match_parent"
                         android:layout_height="68dp"
+                        android:layoutDirection="ltr"
                         android:orientation="vertical"> <!-- height: 90  -->
 
                         <LinearLayout
@@ -357,14 +364,16 @@
 
         <FrameLayout
             android:id="@+id/alertMessageBox"
-            android:layout_width="280dp"
-            android:layout_height="32dp"
+            android:layout_width="match_parent"
+            android:layout_marginRight="18dp"
+            android:layout_marginLeft="18dp"
+            android:layout_height="36dp"
             android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="112dp"
+            android:layout_marginBottom="17dp"
             android:gravity="center"
             android:background="@drawable/rectangle_alert_background_red"
-            android:alpha="0.93">
+            android:alpha="0.93"><!-- width: 280dp; margin bott: 112 -->
 
 
             <LinearLayout
@@ -372,188 +381,194 @@
                 android:layout_height="match_parent"
                 android:paddingRight="7.5dp"
                 android:paddingLeft="10dp"
+                android:alpha="0.8"
                 android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/alertMessageText"
-                    android:layout_width="237dp"
-                    android:layout_height="match_parent"
-                    android:text="از سرعت خود بکاهید!"
-                    android:textColor="#ffffff"
-                    android:textSize="12sp"
-                    android:layout_gravity="center"
-                    android:paddingTop="4dp"
-                    android:fontFamily="@font/iran_sans"
-                    android:paddingRight="12dp"/>
+
 
                 <ImageView
                     android:id="@+id/alertMessageImage"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
                     android:layout_gravity="center"
                     android:src="@drawable/alert_icon"/>
+
+                <TextView
+                    android:id="@+id/alertMessageText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="از سرعت خود بکاهید!"
+                    android:textColor="#ffffff"
+                    android:textSize="13sp"
+                    android:layout_gravity="right"
+                    android:paddingTop="6.5dp"
+                    android:fontFamily="@font/iran_sans"
+                    android:paddingRight="12dp"/>
             </LinearLayout>
 
 
         </FrameLayout>
 
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="105dp"
-            android:layout_marginRight="55dp"
-            android:layout_marginLeft="55dp"
-            android:layout_alignParentBottom="true" >
+<!--        <FrameLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="105dp"-->
+<!--            android:layout_marginRight="55dp"-->
+<!--            android:layout_marginLeft="55dp"-->
+<!--            android:layout_alignParentBottom="true" >-->
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:orientation="vertical">-->
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="55dp"
-                    android:background="@drawable/rectangle_gradient_green"
-                    android:orientation="horizontal">
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="55dp"-->
+<!--                    android:background="@drawable/rectangle_gradient_green"-->
+<!--                    android:orientation="horizontal">-->
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="5dp"
-                        android:layout_weight="0.2"
-                        android:gravity="center">
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:layout_marginLeft="5dp"-->
+<!--                        android:layout_weight="0.2"-->
+<!--                        android:gravity="center">-->
 
-                        <FrameLayout
-                            android:layout_width="24dp"
-                            android:layout_height="24dp">
-
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="@drawable/circle_road_background" />
-
-                            <Button
-                                android:id="@+id/roadButt"
-                                android:layout_width="15dp"
-                                android:layout_height="15dp"
-                                android:layout_gravity="center"
-                                android:background="@drawable/road_icon2" />
-
-                        </FrameLayout>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.6"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/primaryTxt"
-                            android:layout_width="match_parent"
-                            android:layout_height="23dp"
-                            android:layout_marginTop="11dp"
-                            android:gravity="center_horizontal|top"
-                            android:textColor="#ffffff"
-                            android:textSize="17sp"
-                            android:textStyle="bold"
-                            android:fontFamily="@font/iran_sans"/>
-
-                        <TextView
-                            android:id="@+id/secondaryTxt"
-                            android:layout_width="match_parent"
-                            android:layout_height="25dp"
-                            android:gravity="center_horizontal|top"
-                            android:paddingTop="4dp"
-                            android:textColor="#ffffff"
-                            android:textSize="10sp"
-                            android:fontFamily="@font/iran_sans"/>
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="5dp"
-                        android:layout_weight="0.2"
-                        android:gravity="center">
-
-<!--                        <Button-->
-<!--                            android:id="@+id/stopButt"-->
+<!--                        <FrameLayout-->
 <!--                            android:layout_width="24dp"-->
-<!--                            android:layout_height="24dp"-->
-<!--                            android:background="@drawable/circle_cropped" />-->
+<!--                            android:layout_height="24dp">-->
 
-                        <FrameLayout
-                            android:layout_width="24dp"
-                            android:layout_height="24dp">
+<!--                            <ImageView-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="match_parent"-->
+<!--                                android:background="@drawable/circle_road_background" />-->
 
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="@drawable/circle_road_background" />
+<!--                            <Button-->
+<!--                                android:id="@+id/roadButt"-->
+<!--                                android:layout_width="15dp"-->
+<!--                                android:layout_height="15dp"-->
+<!--                                android:layout_gravity="center"-->
+<!--                                android:background="@drawable/road_icon2" />-->
 
-                            <Button
-                                android:id="@+id/stopButt"
-                                android:layout_width="14dp"
-                                android:layout_height="14dp"
-                                android:layout_gravity="center"
-                                android:background="@drawable/pause_icon" />
+<!--                        </FrameLayout>-->
 
-                        </FrameLayout>
+<!--                    </LinearLayout>-->
 
-                    </LinearLayout>
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:layout_weight="0.6"-->
+<!--                        android:orientation="vertical">-->
 
-                </LinearLayout>
+<!--                        <TextView-->
+<!--                            android:id="@+id/primaryTxt"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="23dp"-->
+<!--                            android:layout_marginTop="11dp"-->
+<!--                            android:gravity="center_horizontal|top"-->
+<!--                            android:textColor="#ffffff"-->
+<!--                            android:textSize="17sp"-->
+<!--                            android:textStyle="bold"-->
+<!--                            android:fontFamily="@font/iran_sans"/>-->
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:background="@drawable/rectangle_gradient_white"
-                    android:orientation="horizontal"
-                    android:paddingLeft="18dp"
-                    android:paddingRight="18dp">
+<!--                        <TextView-->
+<!--                            android:id="@+id/secondaryTxt"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="25dp"-->
+<!--                            android:gravity="center_horizontal|top"-->
+<!--                            android:paddingTop="4dp"-->
+<!--                            android:textColor="#ffffff"-->
+<!--                            android:textSize="10sp"-->
+<!--                            android:fontFamily="@font/iran_sans"/>-->
+<!--                    </LinearLayout>-->
 
-                    <TextView
-                        android:id="@+id/durationRem"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.4"
-                        android:gravity="center_horizontal|center_vertical"
-                        android:textColor="#000000"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:fontFamily="@font/iran_sans"/>
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:layout_marginLeft="5dp"-->
+<!--                        android:layout_weight="0.2"-->
+<!--                        android:gravity="center">-->
 
-                    <TextView
-                        android:id="@+id/arrivalTime"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginBottom="15dp"
-                        android:layout_marginLeft="4dp"
-                        android:layout_weight="0.24"
-                        android:gravity="start|bottom"
-                        android:textColor="#282828"
-                        android:textSize="13sp"
-                        android:fontFamily="@font/iran_sans"/>
+<!--&lt;!&ndash;                        <Button&ndash;&gt;-->
+<!--&lt;!&ndash;                            android:id="@+id/stopButt"&ndash;&gt;-->
+<!--&lt;!&ndash;                            android:layout_width="24dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                            android:layout_height="24dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                            android:background="@drawable/circle_cropped" />&ndash;&gt;-->
 
-                    <TextView
-                        android:id="@+id/distanceRem"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginBottom="15dp"
-                        android:layout_weight="0.36"
-                        android:gravity="start|bottom"
-                        android:paddingTop="8dp"
-                        android:textColor="#686868"
-                        android:textSize="13sp"
-                        android:fontFamily="@font/iran_sans"/>
-                </LinearLayout>
+<!--                        <FrameLayout-->
+<!--                            android:layout_width="24dp"-->
+<!--                            android:layout_height="24dp">-->
 
-            </LinearLayout>
+<!--                            <ImageView-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="match_parent"-->
+<!--                                android:background="@drawable/circle_road_background" />-->
 
-        </FrameLayout>
+<!--                            <Button-->
+<!--                                android:id="@+id/stopButt"-->
+<!--                                android:layout_width="14dp"-->
+<!--                                android:layout_height="14dp"-->
+<!--                                android:layout_gravity="center"-->
+<!--                                android:background="@drawable/pause_icon" />-->
+
+<!--                        </FrameLayout>-->
+
+<!--                    </LinearLayout>-->
+
+<!--                </LinearLayout>-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="50dp"-->
+<!--                    android:background="@drawable/rectangle_gradient_white"-->
+<!--                    android:orientation="horizontal"-->
+<!--                    android:paddingLeft="18dp"-->
+<!--                    android:paddingRight="18dp">-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/durationRem"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:layout_weight="0.4"-->
+<!--                        android:gravity="center_horizontal|center_vertical"-->
+<!--                        android:textColor="#000000"-->
+<!--                        android:textSize="16sp"-->
+<!--                        android:textStyle="bold"-->
+<!--                        android:fontFamily="@font/iran_sans"/>-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/arrivalTime"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:layout_marginBottom="15dp"-->
+<!--                        android:layout_marginLeft="4dp"-->
+<!--                        android:layout_weight="0.24"-->
+<!--                        android:gravity="start|bottom"-->
+<!--                        android:textColor="#282828"-->
+<!--                        android:textSize="13sp"-->
+<!--                        android:fontFamily="@font/iran_sans"/>-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/distanceRem"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:layout_marginLeft="8dp"-->
+<!--                        android:layout_marginBottom="15dp"-->
+<!--                        android:layout_weight="0.36"-->
+<!--                        android:gravity="start|bottom"-->
+<!--                        android:paddingTop="8dp"-->
+<!--                        android:textColor="#686868"-->
+<!--                        android:textSize="13sp"-->
+<!--                        android:fontFamily="@font/iran_sans"/>-->
+
+<!--                </LinearLayout>-->
+
+<!--            </LinearLayout>-->
+
+<!--        </FrameLayout>-->
+
+
 
     </RelativeLayout>
 

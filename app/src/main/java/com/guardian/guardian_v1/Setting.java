@@ -6,11 +6,12 @@ import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.Switch;
 
-import com.mapbox.mapboxsdk.maps.Style;
+//import com.mapbox.mapboxsdk.maps.Style;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -28,35 +29,35 @@ public class Setting extends AppCompatActivity {
         setContentView(R.layout.activity_setting);
 
         Switch mapStyleSwitch = findViewById(R.id.mapStyleSwitch);
-        if(Main.routeStyle.equals(Style.DARK)){
-            mapStyleSwitch.setChecked(true);
-        } else {
-            mapStyleSwitch.setChecked(false);
-        }
+//        if(Main.routeStyle.equals(Style.DARK)){
+//            mapStyleSwitch.setChecked(true);
+//        } else {
+//            mapStyleSwitch.setChecked(false);
+//        }
 
 
         mapStyleSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked) {
-                    Main.routeStyle = Style.DARK;
-                    writeFile(Style.DARK);
+//                    Main.routeStyle = Style.DARK;
+//                    writeFile(Style.DARK);
                 } else {
-                    Main.routeStyle = Style.LIGHT;
-                    writeFile(Style.LIGHT);
+//                    Main.routeStyle = Style.LIGHT;
+//                    writeFile(Style.LIGHT);
                 }
             }
         });
 
 
-        ImageButton backButton = (ImageButton) findViewById(R.id.backButton);
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(Setting.this, SelectNavigation.class);
-                startActivity(i);
-                finish();
-            }
-        });
+//        Button backButton = (Button) findViewById(R.id.backButton);
+//        backButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent i = new Intent(Setting.this, Main.class);
+//                startActivity(i);
+//                finish();
+//            }
+//        });
     }
 
 
@@ -70,5 +71,18 @@ public class Setting extends AppCompatActivity {
         } catch (IOException exp) {
             exp.printStackTrace();
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent i = new Intent(Setting.this, Main.class);
+        startActivity(i);
+        finish();
+    }
+
+    public void clickOnBtn(View v) {
+        Intent i = new Intent(Setting.this, Main.class);
+        startActivity(i);
+        finish();
     }
 }

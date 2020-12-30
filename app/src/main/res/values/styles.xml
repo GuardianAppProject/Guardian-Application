@@ -11,38 +11,38 @@
         <item name = "android:windowNoTitle">true</item>
     </style>
 
-    <style name="NavigationMapRoute">
-        <!-- Colors -->
-        <item name="routeColor">#6DB136</item>
-        <item name="routeModerateCongestionColor">@color/mapboxYellow</item>
-        <item name="routeSevereCongestionColor">@color/mapboxPink</item>
-        <item name="routeShieldColor">@color/mapboxWhite</item>
-        <!-- Scales -->
-        <item name="routeScale">1.0</item>
-    </style>
+<!--    <style name="NavigationMapRoute">-->
+<!--        &lt;!&ndash; Colors &ndash;&gt;-->
+<!--        <item name="routeColor">#6DB136</item>-->
+<!--        <item name="routeModerateCongestionColor">@color/mapboxYellow</item>-->
+<!--        <item name="routeSevereCongestionColor">@color/mapboxPink</item>-->
+<!--        <item name="routeShieldColor">@color/mapboxWhite</item>-->
+<!--        &lt;!&ndash; Scales &ndash;&gt;-->
+<!--        <item name="routeScale">1.0</item>-->
+<!--    </style>-->
 
-    <style name="CustomNavigationMapRoute" parent="@style/NavigationMapRoute">
-        <item name="routeColor">#B0E4FC</item>
-        <item name="routeModerateCongestionColor">@color/mapboxYellow</item>
-        <item name="routeSevereCongestionColor">@color/mapboxPink</item>
-        <item name="routeShieldColor">@color/mapboxWhite</item>
-        <!-- Scales -->
-        <item name="routeScale">1.0</item>
-    </style>
+<!--    <style name="CustomNavigationMapRoute" parent="@style/NavigationMapRoute">-->
+<!--        <item name="routeColor">#B0E4FC</item>-->
+<!--        <item name="routeModerateCongestionColor">@color/mapboxYellow</item>-->
+<!--        <item name="routeSevereCongestionColor">@color/mapboxPink</item>-->
+<!--        <item name="routeShieldColor">@color/mapboxWhite</item>-->
+<!--        &lt;!&ndash; Scales &ndash;&gt;-->
+<!--        <item name="routeScale">1.0</item>-->
+<!--    </style>-->
 
-    <style name="NavigationView" parent="Theme.AppCompat.NoActionBar">
-        <item name="navigationViewPrimary">@color/mapboxWhite</item>
-        <item name="navigationViewSecondary">@color/mapboxBlue</item>
-        <item name="navigationViewAccent">@color/mapboxPink</item>
-        <item name="navigationViewRouteStyle">@style/CustomNavigationMapRoute</item>
-    </style>
+<!--    <style name="NavigationView" parent="Theme.AppCompat.NoActionBar">-->
+<!--        <item name="navigationViewPrimary">@color/mapboxWhite</item>-->
+<!--        <item name="navigationViewSecondary">@color/mapboxBlue</item>-->
+<!--        <item name="navigationViewAccent">@color/mapboxPink</item>-->
+<!--        <item name="navigationViewRouteStyle">@style/CustomNavigationMapRoute</item>-->
+<!--    </style>-->
 
-    <style name="MyCustomTheme" parent="NavigationViewDark">
-        <item name="navigationViewRouteStyle">@style/CustomNavigationMapRoute</item>
-    </style>
+<!--    <style name="MyCustomTheme" parent="NavigationViewDark">-->
+<!--        <item name="navigationViewRouteStyle">@style/CustomNavigationMapRoute</item>-->
+<!--    </style>-->
 
-    <style name="SwitchTheme" parent="Theme.AppCompat.Light">
-        <item name="colorControlActivated">#148E13</item>
-    </style>
+<!--    <style name="SwitchTheme" parent="Theme.AppCompat.Light">-->
+<!--        <item name="colorControlActivated">#148E13</item>-->
+<!--    </style>-->
 
 </resources>

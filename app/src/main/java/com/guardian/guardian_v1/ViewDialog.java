@@ -2,10 +2,13 @@ package com.guardian.guardian_v1;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Intent;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.core.app.ActivityCompat;
 
 public class ViewDialog {
 
@@ -24,6 +27,11 @@ public class ViewDialog {
             public void onClick(View v) {
 //                navClass.changeIntent();
 //                dialog.dismiss();
+                Intent homeIntent = new Intent(Intent.ACTION_MAIN);
+                homeIntent.addCategory( Intent.CATEGORY_HOME );
+                homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                dialog.dismiss();
+                activity.startActivity(homeIntent);
             }
         });
 

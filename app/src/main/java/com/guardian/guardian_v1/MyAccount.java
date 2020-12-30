@@ -38,16 +38,16 @@ public class MyAccount extends AppCompatActivity {
         setContentView(R.layout.activity_my_account);
         updatePrivateData();
 
-        ImageButton backButton = (ImageButton) findViewById(R.id.backButton);
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(MyAccount.this, SelectNavigation.class);
-                startActivity(i);
-                finish();
-
-            }
-        });
+//        Button backButton = (Button) findViewById(R.id.backButton);
+//        backButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent i = new Intent(MyAccount.this, Main.class);
+//                startActivity(i);
+//                finish();
+//
+//            }
+//        });
         Context thisCtx = this;
         Button editButton = (Button) findViewById(R.id.editButton);
 
@@ -167,5 +167,18 @@ public class MyAccount extends AppCompatActivity {
             e.printStackTrace();
         }
         return string;
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent i = new Intent(MyAccount.this, Main.class);
+        startActivity(i);
+        finish();
+    }
+
+    public void clickOnBtn(View v) {
+        Intent i = new Intent(MyAccount.this, Main.class);
+        startActivity(i);
+        finish();
     }
 }

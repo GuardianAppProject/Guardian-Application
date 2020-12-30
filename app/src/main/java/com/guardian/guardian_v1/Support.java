@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -28,15 +29,28 @@ public class Support extends AppCompatActivity {
         email.setMovementMethod(LinkMovementMethod.getInstance());
 
 
-        ImageButton backButton = (ImageButton) findViewById(R.id.backButton);
+        Button backButton = (Button) findViewById(R.id.backButton);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(Support.this, SelectNavigation.class);
+                Intent i = new Intent(Support.this, Main.class);
                 startActivity(i);
                 finish();
 
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent i = new Intent(Support.this, Main.class);
+        startActivity(i);
+        finish();
+    }
+
+    public void clickOnBtn(View v) {
+        Intent i = new Intent(Support.this, Main.class);
+        startActivity(i);
+        finish();
     }
 }

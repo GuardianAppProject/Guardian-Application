@@ -1,6 +1,7 @@
 package com.guardian.guardian_v1;
 
 
+import android.content.Context;
 import android.util.Log;
 
 import com.guardian.guardian_v1.DriveStatus.GPSTracker;
@@ -14,7 +15,7 @@ import com.guardian.guardian_v1.Transmission.DataSender;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static com.mapbox.mapboxsdk.Mapbox.getApplicationContext;
+//import static com.mapbox.mapboxsdk.Mapbox.getApplicationContext;
 
 
 public class StatusCalculator {
@@ -51,9 +52,19 @@ public class StatusCalculator {
     private Time timeObj;
     private PersianCalender.SolarCalendar solarCalendar = new PersianCalender.SolarCalendar();
 
-    public StatusCalculator() {
-        timeObj = new Time();
+    Context context;
+
+    public void setContext(Context context) {
+        this.context = context;
     }
+
+
+
+    public StatusCalculator(Context context) {
+        timeObj = new Time();
+        setContext(context);
+    }
+
 
     public double sleepCalculator(double userSleep, double userAwake) {
         double sleep_factor = 0;
@@ -746,7 +757,7 @@ public class StatusCalculator {
             @Override
             public void run() {
                 try {
-                    Weather weather = Weather.getCurrentLocationWeather(getApplicationContext());
+                    Weather weather = Weather.getCurrentLocationWeather(context.getApplicationContext());
                     weather_factor = weatherCalculator(weather.getTemperature(),weather.getWindSpeed(),weather.getWeatherType()) * 2;
                     weatherType = weather.getWeatherType();
                 } catch (IOException e) {
@@ -761,7 +772,7 @@ public class StatusCalculator {
 
         Log.d("vib", "" + vibration);
         //Morteza for location
-        GPSTracker gps = new GPSTracker(getApplicationContext());
+        GPSTracker gps = new GPSTracker(context.getApplicationContext());
         if(gps.canGetLocation()) {
             latitude = gps.getLatitude();
             longtitude = gps.getLongtitude();
@@ -1027,7 +1038,7 @@ public class StatusCalculator {
             time_alert = "ساعت اوج تصادف؛ بسیار مراقب باشید!";
             DriveAlertHandler.time_alert = new DriveAlertHandler(time_alert, 4, true, DriveAlertHandler.Type.TIME);
         } else if(time_factor <= 50) {
-            time_alert = "زمان بسیار خطرناک است؛ با دقت رانندگی کنید.";
+            time_alert = "این ساعت خطرناک است؛ با دقت رانندگی کنید.";
             DriveAlertHandler.time_alert = new DriveAlertHandler(time_alert, 2, false, DriveAlertHandler.Type.TIME);
         } else if(time_factor <= 65) {
             time_alert = "این زمان رانندگی پرخطر است؛ کمی بیشتر دقت کنید.";

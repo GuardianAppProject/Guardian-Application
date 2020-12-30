@@ -12,14 +12,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.mapbox.mapboxsdk.maps.MapView
-            android:id="@+id/mapView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintTop_toTopOf="parent"
-            mapbox:mapbox_cameraTargetLat="35.715298"
-            mapbox:mapbox_cameraTargetLng="51.404343"
-            mapbox:mapbox_cameraZoom="12" />
+<!--        <com.mapbox.mapboxsdk.maps.MapView-->
+<!--            android:id="@+id/mapView"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            mapbox:mapbox_cameraTargetLat="35.715298"-->
+<!--            mapbox:mapbox_cameraTargetLng="51.404343"-->
+<!--            mapbox:mapbox_cameraZoom="12" />-->
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -151,51 +151,51 @@
 
         </FrameLayout>
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab_location_search"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end|bottom"
-            android:layout_margin="10dp"
-            android:tint="@android:color/white"
-            app:backgroundTint="#85C1E9"
-            app:layout_constraintBottom_toTopOf="@+id/textView"
-            app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@android:drawable/ic_search_category_default"
-            tools:ignore="MissingConstraints" />
+<!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--            android:id="@+id/fab_location_search"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="end|bottom"-->
+<!--            android:layout_margin="10dp"-->
+<!--            android:tint="@android:color/white"-->
+<!--            app:backgroundTint="#85C1E9"-->
+<!--            app:layout_constraintBottom_toTopOf="@+id/textView"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:srcCompat="@android:drawable/ic_search_category_default"-->
+<!--            tools:ignore="MissingConstraints" />-->
 
-        <Button
-            android:id="@+id/startButton"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginLeft="85dp"
-            android:layout_marginRight="20dp"
-            android:background="@color/mapboxGrayLight"
-            android:enabled="false"
-            android:layout_marginBottom="10dp"
-            android:text="@string/activity_selectNav_startTrip"
-            android:textColor="@color/mapboxWhite"
-            android:textSize="20dp"
-            app:layout_constraintBottom_toTopOf="@+id/textView"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:fontFamily="@font/iran_sans"
-            app:layout_constraintStart_toEndOf="@+id/fab_location_search" />
+<!--        <Button-->
+<!--            android:id="@+id/startButton"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:layout_marginLeft="85dp"-->
+<!--            android:layout_marginRight="20dp"-->
+<!--            android:background="@color/mapboxGrayLight"-->
+<!--            android:enabled="false"-->
+<!--            android:layout_marginBottom="10dp"-->
+<!--            android:text="@string/activity_selectNav_startTrip"-->
+<!--            android:textColor="@color/mapboxWhite"-->
+<!--            android:textSize="20dp"-->
+<!--            app:layout_constraintBottom_toTopOf="@+id/textView"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            android:fontFamily="@font/iran_sans"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/fab_location_search" />-->
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#B6F485"
-            android:gravity="center_horizontal"
-            android:paddingTop="8dp"
-            android:text="@string/activity_selectNav_description"
-            android:textAlignment="center"
-            android:textSize="17dp"
-            app:layout_constraintBottom_toBottomOf="@+id/mapView"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="63dp"
-            android:fontFamily="@font/iran_sans"
-            android:paddingBottom="10dp"/>
+<!--        <TextView-->
+<!--            android:id="@+id/textView"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:background="#B6F485"-->
+<!--            android:gravity="center_horizontal"-->
+<!--            android:paddingTop="8dp"-->
+<!--            android:text="@string/activity_selectNav_description"-->
+<!--            android:textAlignment="center"-->
+<!--            android:textSize="17dp"-->
+<!--            app:layout_constraintBottom_toBottomOf="@+id/mapView"-->
+<!--            tools:ignore="MissingConstraints"-->
+<!--            tools:layout_editor_absoluteX="63dp"-->
+<!--            android:fontFamily="@font/iran_sans"-->
+<!--            android:paddingBottom="10dp"/>-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -28,7 +28,7 @@
         <activity android:name=".Info" />
         <activity android:name=".Support" />
         <activity android:name=".MyAccount" />
-        <activity android:name=".SelectNavigation" />
+<!--        <activity android:name=".SelectNavigation" />-->
         <activity android:name=".SignIn" />
         <activity android:name=".SeatBelt" />
         <activity android:name=".Main" />
@@ -41,6 +41,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
 
         <service android:name=".DriveStatus.LocationService"></service>
         <meta-data

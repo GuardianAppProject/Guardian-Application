@@ -89,10 +89,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
 //        Toast.makeText(this, readFile(), Toast.LENGTH_SHORT).show();
-        String mapStyle = readFile().toString();
-        if(mapStyle!=null){
-            Main.routeStyle = mapStyle;
-        }
+//        String mapStyle = readFile().toString();
+//        if(mapStyle!=null){
+//            Main.routeStyle = mapStyle;
+//        }
 
 //        new Handler().postDelayed(new Runnable() {
 //            @Override
@@ -157,27 +157,27 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public StringBuilder readFile() {
-        StringBuilder stringBuffer = new StringBuilder("");
-        try {
-            FileInputStream fileInputStream = openFileInput("settings.txt");
-            InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
-
-            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-            stringBuffer = new StringBuilder();
-
-            String lines;
-            while ((lines = bufferedReader.readLine()) != null) {
-                stringBuffer.append(lines);
-            }
-//            Main.routeStyle = lines;
-        } catch (FileNotFoundException exp) {
-            exp.printStackTrace();
-        } catch (IOException exp) {
-            exp.printStackTrace();
-        }
-        return stringBuffer;
-    }
+//    public StringBuilder readFile() {
+//        StringBuilder stringBuffer = new StringBuilder("");
+//        try {
+//            FileInputStream fileInputStream = openFileInput("settings.txt");
+//            InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
+//
+//            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+//            stringBuffer = new StringBuilder();
+//
+//            String lines;
+//            while ((lines = bufferedReader.readLine()) != null) {
+//                stringBuffer.append(lines);
+//            }
+////            Main.routeStyle = lines;
+//        } catch (FileNotFoundException exp) {
+//            exp.printStackTrace();
+//        } catch (IOException exp) {
+//            exp.printStackTrace();
+//        }
+//        return stringBuffer;
+//    }
 
 
     public String read(){

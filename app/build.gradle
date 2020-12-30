@@ -1,15 +1,15 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.3"
+    compileSdkVersion 30
+    buildToolsVersion "30.0.3"
 
     useLibrary 'org.apache.http.legacy'
 
     defaultConfig {
         applicationId "com.guardian.guardian_v1"
         minSdkVersion 16
-        targetSdkVersion 29
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
@@ -45,15 +45,15 @@ dependencies {
     implementation 'com.google.android.material:material:1.2.0-alpha06'
 
     // Mapbox dependencies
-    implementation 'com.mapbox.mapboxsdk:mapbox-android-sdk:9.0.0'   //6.5
-    implementation 'com.mapbox.mapboxsdk:mapbox-android-plugin-locationlayer:0.5.0'
-    implementation 'com.mapbox.mapboxsdk:mapbox-android-plugin-localization-v7:0.8.0'
-    implementation 'com.mapbox.mapboxsdk:mapbox-android-plugin-places-v9:0.10.0'
-
-    implementation 'com.mapbox.mapboxsdk:mapbox-android-navigation:0.42.6'  //0.42.5
-    implementation('com.mapbox.mapboxsdk:mapbox-android-navigation-ui:0.42.6') {
-        transitive = true
-    }
+//    implementation 'com.mapbox.mapboxsdk:mapbox-android-sdk:9.0.0'   //6.5
+//    implementation 'com.mapbox.mapboxsdk:mapbox-android-plugin-locationlayer:0.5.0'
+//    implementation 'com.mapbox.mapboxsdk:mapbox-android-plugin-localization-v7:0.8.0'
+//    implementation 'com.mapbox.mapboxsdk:mapbox-android-plugin-places-v9:0.10.0'
+//
+//    implementation 'com.mapbox.mapboxsdk:mapbox-android-navigation:0.42.6'  //0.42.5
+//    implementation('com.mapbox.mapboxsdk:mapbox-android-navigation-ui:0.42.6') {
+//        transitive = true
+//    }
 
     implementation 'com.google.android.gms:play-services-location:11.8.0'
     implementation 'com.google.code.gson:gson:2.8.1'

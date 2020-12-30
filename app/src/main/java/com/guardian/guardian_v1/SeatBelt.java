@@ -64,7 +64,7 @@ public class SeatBelt extends AppCompatActivity {
 
             public void onFinish() {
 //                mTextField.setText("done!");
-                Intent i = new Intent(SeatBelt.this, SelectNavigation.class);
+                Intent i = new Intent(SeatBelt.this, Main.class);
                 startActivity(i);
                 finish();
             }

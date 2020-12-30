@@ -7,7 +7,8 @@
     tools:context=".Info"
     android:background="@color/appThemeColor"
     android:layout_weight="1"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:layoutDirection="ltr">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,8 +16,8 @@
         android:layout_weight="0.25"
         android:orientation="vertical">
         <ImageView
-            android:layout_width="93dp"
-            android:layout_height="93dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:src="@drawable/logo_white"
             android:layout_gravity="center"
             android:layout_marginTop="55dp"/>
@@ -35,16 +36,17 @@
             android:layout_height="32dp"
             android:background="#F5F5F5">
 
-            <ImageButton
+            <Button
                 android:background="@drawable/back"
                 android:layout_height="18dp"
                 android:layout_width="12dp"
                 android:layout_marginTop="8dp"
                 android:padding="10dp"
                 android:layout_marginLeft="10dp"
-                android:id="@+id/backButton">
+                android:id="@+id/backButton"
+                android:onClick="clickOnBtn">
 
-            </ImageButton>
+            </Button>
 
             <TextView
                 android:layout_width="0dp"

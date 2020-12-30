@@ -15,21 +15,25 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
 import android.speech.tts.TextToSpeech;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,56 +44,61 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentActivity;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.guardian.guardian_v1.DriveStatus.LocationService;
 import com.guardian.guardian_v1.DriveStatus.Shake;
 import com.guardian.guardian_v1.DriveStatus.Speedometer;
 import com.guardian.guardian_v1.DriveStatus.Weather;
-import com.mapbox.android.core.location.LocationEngineCallback;
-import com.mapbox.android.core.location.LocationEngineResult;
-import com.mapbox.api.directions.v5.models.BannerText;
-import com.mapbox.api.directions.v5.models.DirectionsResponse;
-import com.mapbox.api.directions.v5.models.DirectionsRoute;
-import com.mapbox.core.constants.Constants;
-import com.mapbox.geojson.LineString;
-import com.mapbox.geojson.Point;
-import com.mapbox.mapboxsdk.Mapbox;
-import com.mapbox.mapboxsdk.annotations.MarkerOptions;
-import com.mapbox.mapboxsdk.annotations.Polyline;
-import com.mapbox.mapboxsdk.annotations.PolylineOptions;
-import com.mapbox.mapboxsdk.camera.CameraPosition;
-import com.mapbox.mapboxsdk.camera.CameraUpdateFactory;
-import com.mapbox.mapboxsdk.geometry.LatLng;
-import com.mapbox.mapboxsdk.location.LocationComponent;
-import com.mapbox.mapboxsdk.location.modes.RenderMode;
-//import com.mapbox.mapboxsdk.maps.MapView;
-import com.mapbox.mapboxsdk.maps.MapboxMap;
-import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
-import com.mapbox.mapboxsdk.maps.Style;
-import com.mapbox.services.android.navigation.ui.v5.instruction.InstructionLoader;
-import com.mapbox.services.android.navigation.ui.v5.instruction.InstructionView;
-import com.mapbox.services.android.navigation.v5.instruction.Instruction;
-import com.mapbox.services.android.navigation.v5.location.replay.ReplayRouteLocationEngine;
-import com.mapbox.services.android.navigation.v5.milestone.BannerInstructionMilestone;
-import com.mapbox.services.android.navigation.v5.milestone.Milestone;
-import com.mapbox.services.android.navigation.v5.milestone.MilestoneEventListener;
-import com.mapbox.services.android.navigation.v5.navigation.MapboxNavigation;
-import com.mapbox.services.android.navigation.v5.navigation.MapboxNavigationOptions;
-import com.mapbox.services.android.navigation.v5.navigation.NavigationEventListener;
-import com.mapbox.services.android.navigation.v5.navigation.NavigationRoute;
-import com.mapbox.services.android.navigation.v5.offroute.OffRouteListener;
-import com.mapbox.services.android.navigation.v5.routeprogress.ProgressChangeListener;
-import com.mapbox.services.android.navigation.v5.routeprogress.RouteProgress;
-import com.squareup.picasso.Picasso;
+//import com.mapbox.android.core.location.LocationEngineCallback;
+//import com.mapbox.android.core.location.LocationEngineResult;
+//import com.mapbox.api.directions.v5.models.BannerText;
+//import com.mapbox.api.directions.v5.models.DirectionsResponse;
+//import com.mapbox.api.directions.v5.models.DirectionsRoute;
+//import com.mapbox.core.constants.Constants;
+//import com.mapbox.geojson.LineString;
+//import com.mapbox.geojson.Point;
+//import com.mapbox.mapboxsdk.Mapbox;
+//import com.mapbox.mapboxsdk.annotations.MarkerOptions;
+//import com.mapbox.mapboxsdk.annotations.Polyline;
+//import com.mapbox.mapboxsdk.annotations.PolylineOptions;
+//import com.mapbox.mapboxsdk.camera.CameraPosition;
+//import com.mapbox.mapboxsdk.camera.CameraUpdateFactory;
+//import com.mapbox.mapboxsdk.geometry.LatLng;
+//import com.mapbox.mapboxsdk.location.LocationComponent;
+//import com.mapbox.mapboxsdk.location.modes.RenderMode;
+////import com.mapbox.mapboxsdk.maps.MapView;
+//import com.mapbox.mapboxsdk.maps.MapboxMap;
+//import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
+//import com.mapbox.mapboxsdk.maps.Style;
+//import com.mapbox.services.android.navigation.ui.v5.instruction.InstructionLoader;
+//import com.mapbox.services.android.navigation.ui.v5.instruction.InstructionView;
+//import com.mapbox.services.android.navigation.v5.instruction.Instruction;
+//import com.mapbox.services.android.navigation.v5.location.replay.ReplayRouteLocationEngine;
+//import com.mapbox.services.android.navigation.v5.milestone.BannerInstructionMilestone;
+//import com.mapbox.services.android.navigation.v5.milestone.Milestone;
+//import com.mapbox.services.android.navigation.v5.milestone.MilestoneEventListener;
+//import com.mapbox.services.android.navigation.v5.navigation.MapboxNavigation;
+//import com.mapbox.services.android.navigation.v5.navigation.MapboxNavigationOptions;
+//import com.mapbox.services.android.navigation.v5.navigation.NavigationEventListener;
+//import com.mapbox.services.android.navigation.v5.navigation.NavigationRoute;
+//import com.mapbox.services.android.navigation.v5.offroute.OffRouteListener;
+//import com.mapbox.services.android.navigation.v5.routeprogress.ProgressChangeListener;
+//import com.mapbox.services.android.navigation.v5.routeprogress.RouteProgress;
+//import com.squareup.picasso.Picasso;
 
-import org.osmdroid.api.IMapController;
-import org.osmdroid.config.Configuration;
-import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
-import org.osmdroid.util.GeoPoint;
-import org.osmdroid.views.overlay.Marker;
+//import org.osmdroid.api.IMapController;
+//import org.osmdroid.config.Configuration;
+//import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
+//import org.osmdroid.util.GeoPoint;
+//import org.osmdroid.views.overlay.Marker;
 
 import java.io.IOException;
 import java.lang.ref.WeakReference;
@@ -99,10 +108,10 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import timber.log.Timber;
+//import retrofit2.Call;
+//import retrofit2.Callback;
+//import retrofit2.Response;
+//import timber.log.Timber;
 
 
 
@@ -111,46 +120,51 @@ import timber.log.Timber;
 //
 
 
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.FragmentActivity;
+
 import android.Manifest;
-import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
+import android.location.Criteria;
 import android.location.Location;
-import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ImageView;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.LatLng;
+import com.squareup.picasso.Picasso;
 
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
-
-import com.bumptech.glide.Glide;
-
-import org.osmdroid.api.IMapController;
-import org.osmdroid.config.Configuration;
-import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
-import org.osmdroid.util.GeoPoint;
-import org.osmdroid.views.MapView;
-import org.osmdroid.views.overlay.Marker;
+import java.util.Locale;
 
 
 import java.util.ArrayList;
 
+import java.util.Locale;
+
+//
 
 
-public class Main extends AppCompatActivity implements  SensorEventListener{
 
-    ///
-    private final int REQUEST_PERMISSIONS_REQUEST_CODE = 1;
-    private org.osmdroid.views.MapView map = null;
-    IMapController mapController;
-    static Location location;
-    ImageView loadingGif;
+import java.util.Locale;
 
+public class Main extends FragmentActivity implements  SensorEventListener, OnMapReadyCallback, LocationListener {
 
+//    ///
+//    private final int REQUEST_PERMISSIONS_REQUEST_CODE = 1;
+//    private org.osmdroid.views.MapView map = null;
+//    IMapController mapController;
+//    static Location location;
+//    ImageView loadingGif;
+//
+//
 
 
     //Morteza
@@ -169,6 +183,7 @@ public class Main extends AppCompatActivity implements  SensorEventListener{
     public static ProgressDialog locate;
     public static int p = 0;
 
+    private static boolean firstTime = true;
 
     // Map
 //    MapView mapView;
@@ -198,7 +213,7 @@ public class Main extends AppCompatActivity implements  SensorEventListener{
     ImageView weatherTypeImg;
     Button stopButton;
 
-    public static String routeStyle = Style.DARK;
+//    public static String routeStyle = Style.DARK;
 
     // Menu
     private DrawerLayout mDrawer;
@@ -251,11 +266,43 @@ public class Main extends AppCompatActivity implements  SensorEventListener{
     }
     //end Morteza speedometer
 
+
+    private GoogleMap mMap;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTheme(R.style.NavigationViewLight);
+//        setTheme(R.style.NavigationViewLight);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+
+
+
+        String languageToLoad = "fa_IR";
+        Locale locale = new Locale(languageToLoad);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config,
+                getBaseContext().getResources().getDisplayMetrics());
+
+        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+
+
+
 
         //Morteza shake
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
@@ -290,11 +337,15 @@ public class Main extends AppCompatActivity implements  SensorEventListener{
         if (status == false)
             //Here, the Location Service gets bound and the GPS Speedometer gets Active.
             bindService();
-        locate = new ProgressDialog(Main.this);
-        locate.setIndeterminate(true);
-        locate.setCancelable(false);
-        locate.setMessage("Getting Location...");
-        locate.show();
+        if(firstTime){
+            locate = new ProgressDialog(Main.this);
+            locate.setIndeterminate(true);
+            locate.setCancelable(false);
+            locate.setMessage("Getting Location...");
+            locate.show();
+            firstTime = false;
+        }
+
         //end Morteza speedometer
 
 //        ORIGIN = Point.fromLngLat(getIntent().getDoubleExtra("originLng", 0), getIntent().getDoubleExtra("originLat", 0));
@@ -312,12 +363,12 @@ public class Main extends AppCompatActivity implements  SensorEventListener{
 //        navigation.addNavigationEventListener(this);
 //        navigation.addMilestoneEventListener(this);
 
-        primaryTxt = (TextView) findViewById(R.id.primaryTxt);
-        distanceRem = (TextView) findViewById(R.id.distanceRem);
-        durationRem = (TextView) findViewById(R.id.durationRem);
-        arrivalTime = (TextView) findViewById(R.id.arrivalTime);
-        secondaryTxt = (TextView) findViewById(R.id.secondaryTxt);
-        stopButton = (Button) findViewById(R.id.stopButt);
+//        primaryTxt = (TextView) findViewById(R.id.primaryTxt);
+//        distanceRem = (TextView) findViewById(R.id.distanceRem);
+//        durationRem = (TextView) findViewById(R.id.durationRem);
+//        arrivalTime = (TextView) findViewById(R.id.arrivalTime);
+//        secondaryTxt = (TextView) findViewById(R.id.secondaryTxt);
+//        stopButton = (Button) findViewById(R.id.stopButt);
         weatherTypeImg = findViewById(R.id.WeatherTypeImage);
         weatherTypeTxt = findViewById(R.id.WeatherTypeTextView);
         speedText = findViewById(R.id.speedTextView);
@@ -328,20 +379,20 @@ public class Main extends AppCompatActivity implements  SensorEventListener{
 //                v -> Toast.makeText(this, "Sound button clicked!", Toast.LENGTH_SHORT).show()
 //        );
 
-        Instruction myInstruction = new Instruction() {
-            @Override
-            public String buildInstruction(RouteProgress routeProgress) {
-                return routeProgress.currentLegProgress().upComingStep().maneuver().instruction();
-            }
-        };
+//        Instruction myInstruction = new Instruction() {
+//            @Override
+//            public String buildInstruction(RouteProgress routeProgress) {
+//                return routeProgress.currentLegProgress().upComingStep().maneuver().instruction();
+//            }
+//        };
 
-        stopButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-
-                ViewDialog alert = new ViewDialog();
-                alert.showDialog(Main.this, "آیا مطمئن هستید می خواهید مسیریابی را لغو کنید؟", Main.this);
-            }
-        });
+//        stopButton.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//
+//                ViewDialog alert = new ViewDialog();
+//                alert.showDialog(Main.this, "آیا مطمئن هستید می خواهید مسیریابی را لغو کنید؟", Main.this);
+//            }
+//        });
 
         mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
@@ -366,7 +417,7 @@ public class Main extends AppCompatActivity implements  SensorEventListener{
         alertMessageText = findViewById(R.id.alertMessageText);
         alertMessageBox = findViewById(R.id.alertMessageBox);
         alertMessageImage = findViewById(R.id.alertMessageImage);
-        statusCalculator = new StatusCalculator();
+        statusCalculator = new StatusCalculator(this);
 
         callAlgorithmLogic();
         final Handler ha = new Handler();
@@ -383,35 +434,35 @@ public class Main extends AppCompatActivity implements  SensorEventListener{
 
 
         ///////
-        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-//             TODOne: Consider calling
-//                ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
-        }
-        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 30000, 10, mLocationListener);
-
-        //load/initialize the osmdroid configuration, this can be done
-        Configuration.getInstance().setUserAgentValue(BuildConfig.APPLICATION_ID);
-        Context ctx = getApplicationContext();
-        //Configuration.getInstance().load(ctx, PreferenceManager.getDefaultSharedPreferences(ctx));
-//        setContentView(R.layout.activity_main);
-        loadingGif = findViewById(R.id.mapLoad);
-        Glide.with(this).load(R.drawable.loading).into(loadingGif);
-        map = (org.osmdroid.views.MapView) findViewById(R.id.map);
-        map.setTileSource(TileSourceFactory.MAPNIK);
-        map.setVisibility(View.INVISIBLE);
-        requestPermissionsIfNecessary(new String[]{
-                Manifest.permission.WRITE_EXTERNAL_STORAGE
-        });
-        map.setMultiTouchControls(true);
-        mapController = map.getController();
-        mapController.setZoom(18);
+//        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+//        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+////             TODOne: Consider calling
+////                ActivityCompat#requestPermissions
+//            // here to request the missing permissions, and then overriding
+//            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+//            //                                          int[] grantResults)
+//            // to handle the case where the user grants the permission. See the documentation
+//            // for ActivityCompat#requestPermissions for more details.
+//            return;
+//        }
+//        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 30000, 10, mLocationListener);
+//
+//        //load/initialize the osmdroid configuration, this can be done
+//        Configuration.getInstance().setUserAgentValue(BuildConfig.APPLICATION_ID);
+//        Context ctx = getApplicationContext();
+//        //Configuration.getInstance().load(ctx, PreferenceManager.getDefaultSharedPreferences(ctx));
+////        setContentView(R.layout.activity_main);
+//        loadingGif = findViewById(R.id.mapLoad);
+//        Glide.with(this).load(R.drawable.loading).into(loadingGif);
+//        map = (org.osmdroid.views.MapView) findViewById(R.id.map);
+//        map.setTileSource(TileSourceFactory.MAPNIK);
+//        map.setVisibility(View.INVISIBLE);
+//        requestPermissionsIfNecessary(new String[]{
+//                Manifest.permission.WRITE_EXTERNAL_STORAGE
+//        });
+//        map.setMultiTouchControls(true);
+//        mapController = map.getController();
+//        mapController.setZoom(18);
     }
 
     //Morteza shake
@@ -1054,92 +1105,194 @@ public class Main extends AppCompatActivity implements  SensorEventListener{
 //    }
 
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        map.onResume();
-    }
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//        map.onResume();
+//    }
+//
+//    @Override
+//    public void onPause() {
+//        super.onPause();
+//        map.onPause();
+//    }
+//
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+//        ArrayList<String> permissionsToRequest = new ArrayList<>();
+//        for (int i = 0; i < grantResults.length; i++) {
+//            permissionsToRequest.add(permissions[i]);
+//        }
+//        if (permissionsToRequest.size() > 0) {
+//            ActivityCompat.requestPermissions(
+//                    this,
+//                    permissionsToRequest.toArray(new String[0]),
+//                    REQUEST_PERMISSIONS_REQUEST_CODE);
+//        }
+//    }
+//
+//    private void requestPermissionsIfNecessary(String[] permissions) {
+//        ArrayList<String> permissionsToRequest = new ArrayList<>();
+//        for (String permission : permissions) {
+//            if (ContextCompat.checkSelfPermission(this, permission)
+//                    != PackageManager.PERMISSION_GRANTED) {
+//                permissionsToRequest.add(permission);
+//            }
+//        }
+//        if (permissionsToRequest.size() > 0) {
+//            ActivityCompat.requestPermissions(
+//                    this,
+//                    permissionsToRequest.toArray(new String[0]),
+//                    REQUEST_PERMISSIONS_REQUEST_CODE);
+//        }
+//
+//
+//    }
+//
+//
+//    private final LocationListener mLocationListener = new LocationListener() {
+//        @Override
+//        public void onLocationChanged(final Location location) {
+//            GeoPoint startPoint = new GeoPoint(location.getLatitude(), location.getLongitude());
+//            mapController.setCenter(startPoint);
+//            setIcon(startPoint);
+//            Main.location=location;
+//            map.setVisibility(View.VISIBLE);
+//            loadingGif.setVisibility(View.INVISIBLE);
+//        }
+//
+//        @Override
+//        public void onStatusChanged(String provider, int status, Bundle extras) {
+//
+//        }
+//
+//        @Override
+//        public void onProviderEnabled(String provider) {
+//
+//        }
+//
+//        @Override
+//        public void onProviderDisabled(String provider) {
+//
+//        }
+//
+//        Marker startMarker;
+//        public void setIcon(GeoPoint startPoint){
+//            map.getOverlays().remove(startMarker);
+//            startMarker = new Marker(map);
+//            startMarker.setIcon(getDrawable(R.drawable.marker_default));
+//            startMarker.setPosition(startPoint);
+//            startMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
+//            map.getOverlays().add(startMarker);
+//        }
+//    };
+//
+//
+//    public void currentLocation(View view) {
+//        if(location == null) return;
+//        GeoPoint startPoint = new GeoPoint(location.getLatitude(), location.getLongitude());
+//        mapController.setCenter(startPoint);
+//    }
 
-    @Override
-    public void onPause() {
-        super.onPause();
-        map.onPause();
-    }
 
+    /**
+     * Manipulates the map once available.
+     * This callback is triggered when the map is ready to be used.
+     * This is where we can add markers or lines, add listeners or move the camera. In this case,
+     * we just add a marker near Sydney, Australia.
+     * If Google Play services is not installed on the device, the user will be prompted to install
+     * it inside the SupportMapFragment. This method will only be triggered once the user has
+     * installed Google Play services and returned to the app.
+     */
     @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        ArrayList<String> permissionsToRequest = new ArrayList<>();
-        for (int i = 0; i < grantResults.length; i++) {
-            permissionsToRequest.add(permissions[i]);
-        }
-        if (permissionsToRequest.size() > 0) {
-            ActivityCompat.requestPermissions(
-                    this,
-                    permissionsToRequest.toArray(new String[0]),
-                    REQUEST_PERMISSIONS_REQUEST_CODE);
-        }
-    }
+    public void onMapReady(GoogleMap googleMap) {
 
-    private void requestPermissionsIfNecessary(String[] permissions) {
-        ArrayList<String> permissionsToRequest = new ArrayList<>();
-        for (String permission : permissions) {
-            if (ContextCompat.checkSelfPermission(this, permission)
-                    != PackageManager.PERMISSION_GRANTED) {
-                permissionsToRequest.add(permission);
+        mMap = googleMap;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (ActivityCompat.checkSelfPermission
+                    (this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                    &&
+                    ActivityCompat.checkSelfPermission
+                            (this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(new String[]{
+                        Manifest.permission.ACCESS_COARSE_LOCATION,
+                        Manifest.permission.ACCESS_FINE_LOCATION
+                }, 1);
+                //return;
+            } else {
+                googleMap.setMyLocationEnabled(true);
+                LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+                Criteria criteria = new Criteria();
+                Location location = locationManager.getLastKnownLocation(locationManager.getBestProvider(criteria,false));
+
+                if (location != null)
+                {
+                    LatLng loc = new LatLng(location.getLatitude(), location.getLongitude());
+                    CameraPosition cameraPosition = new CameraPosition.Builder().target(loc).zoom(15).build();
+                    googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+                }
             }
         }
-        if (permissionsToRequest.size() > 0) {
-            ActivityCompat.requestPermissions(
-                    this,
-                    permissionsToRequest.toArray(new String[0]),
-                    REQUEST_PERMISSIONS_REQUEST_CODE);
-        }
 
+
+        View locationButton = ((View) findViewById(Integer.parseInt("1")).getParent()).findViewById(Integer.parseInt("2"));
+        RelativeLayout.LayoutParams rlp = (RelativeLayout.LayoutParams) locationButton.getLayoutParams();
+// position on right bottom
+        rlp.addRule(RelativeLayout.ALIGN_BOTTOM, 0);
+        rlp.addRule(RelativeLayout.ALIGN_BOTTOM, RelativeLayout.TRUE);
+        locationButton.setLeft(100);
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        int height = displayMetrics.heightPixels;
+        int width = displayMetrics.widthPixels;
+        rlp.setMargins(0, (height - 250), 110, 0);
+
+        locationButton.post(new Runnable(){
+            @Override
+            public void run() {
+                locationButton.performClick();
+            }
+        });
 
     }
 
 
-    private final LocationListener mLocationListener = new LocationListener() {
-        @Override
-        public void onLocationChanged(final Location location) {
-            GeoPoint startPoint = new GeoPoint(location.getLatitude(), location.getLongitude());
-            mapController.setCenter(startPoint);
-            setIcon(startPoint);
-            Main.location=location;
-            map.setVisibility(View.VISIBLE);
-            loadingGif.setVisibility(View.INVISIBLE);
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+//        case 1:
+        if (grantResults[0] != PackageManager.PERMISSION_GRANTED){
+            // permission not granted
         }
-
-        @Override
-        public void onStatusChanged(String provider, int status, Bundle extras) {
-
+        else {
+            // permission granted
         }
+//        break;
+        //default:
+        //super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
 
-        @Override
-        public void onProviderEnabled(String provider) {
+    @Override
+    public void onLocationChanged(Location location) {
+        LatLng loc = new LatLng(location.getLatitude(), location.getLongitude());
+        CameraPosition cameraPosition = new CameraPosition.Builder().target(loc).zoom(15).build();
+        mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+    }
 
-        }
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) { }
 
-        @Override
-        public void onProviderDisabled(String provider) {
+    @Override
+    public void onProviderEnabled(String provider) { }
 
-        }
+    @Override
+    public void onProviderDisabled(String provider) { }
 
-        Marker startMarker;
-        public void setIcon(GeoPoint startPoint){
-            map.getOverlays().remove(startMarker);
-            startMarker = new Marker(map);
-            startMarker.setIcon(getDrawable(R.drawable.marker_default));
-            startMarker.setPosition(startPoint);
-            startMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
-            map.getOverlays().add(startMarker);
-        }
-    };
-
-
-    public void currentLocation(View view) {
-        if(location == null) return;
-        GeoPoint startPoint = new GeoPoint(location.getLatitude(), location.getLongitude());
-        mapController.setCenter(startPoint);
+    @Override
+    public void onBackPressed() {
+        ViewDialog alert = new ViewDialog();
+        alert.showDialog(Main.this, "آیا مطمئن هستید می خواهید مسیریابی را لغو کنید؟", Main.this);
     }
 }
+
