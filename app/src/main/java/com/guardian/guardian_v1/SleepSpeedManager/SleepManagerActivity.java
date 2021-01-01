@@ -37,7 +37,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -187,7 +186,7 @@ public class SleepManagerActivity extends AppCompatActivity {
 
     public void recordAuto(View view) {
         ArrayList<Date> dates = SleepSpeedDetectorService.getSleepTime();
-        if (dates.get(0).equals(dates.get(1))) {
+        if ((dates==null)||(dates.get(0).equals(dates.get(1)))) {
             Toast.makeText(this, "اطلاعات کافی موجود نیست!", Toast.LENGTH_SHORT).show();
             return;
         }

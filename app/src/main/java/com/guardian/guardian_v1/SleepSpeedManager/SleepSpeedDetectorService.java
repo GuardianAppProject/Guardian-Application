@@ -8,10 +8,12 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.hardware.display.DisplayManager;
 import android.os.Build;
 import android.os.CountDownTimer;
 import android.os.IBinder;
 import android.util.Log;
+import android.view.Display;
 
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
@@ -130,7 +132,7 @@ public class SleepSpeedDetectorService extends Service {
             Date date = getDate(Calendar.getInstance().getTime());
             sleepData.put(date,detectedActivitiesList.get(0));
             allDates.add(date);
-            System.out.println(sleepData);
+            System.out.println(sleepData+"sleepjjojojojo");
         }
         if ((detectedActivitiesList.size()>=1)&&(detectedActivitiesList.get(0).getType() == DetectedActivity.IN_VEHICLE) && (detectedActivitiesList.get(0).getConfidence()) >= 60){ //speed
             ActivityManager am = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
@@ -262,6 +264,7 @@ public class SleepSpeedDetectorService extends Service {
                 lenght = 0;
             }
         }
+        if(allDates.size()<2) return null;
         ArrayList<Date> dates=new ArrayList<>();
         dates.add(allDates.get(index-lenght+1));
         dates.add(allDates.get(index));
@@ -282,6 +285,8 @@ public class SleepSpeedDetectorService extends Service {
         if((lastActivity.getType()==DetectedActivity.IN_VEHICLE)&&(lastActivity.getConfidence()>50)) return 1;
         return -1;
     }
+
+
 
 
 
