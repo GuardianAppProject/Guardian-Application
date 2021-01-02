@@ -1,6 +1,11 @@
 package com.guardian.guardian_v1;
 
+import android.animation.ValueAnimator;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -100,7 +105,7 @@ public class SelectNavigation extends AppCompatActivity {//implements OnMapReady
 //    private NavigationView nvDrawer;
 //
     private  int counter = 0;
-    private int total = 30; // the total number
+    private int total = 0; // the total number
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 //
@@ -135,33 +140,50 @@ public class SelectNavigation extends AppCompatActivity {//implements OnMapReady
 
         double x = Double.parseDouble(AverageWorker.getAverage());
         counter = (int) Math.floor(x);
-//...
-//when you want to start the counting start the thread bellow.
-        new Thread(new Runnable() {
+//
+//                            allTimeAvg.setText("" + counter + "%");
+//
+        StatusCalculator statusCalculator = new StatusCalculator(this);
+        int backgroundNumber = statusCalculator.calculateBackgroundAlgorithm(counter);
+        ImageView algorithmBackground = (ImageView) findViewById(R.id.avg_background);
+        if(backgroundNumber == 1) {
+            algorithmBackground.setImageResource(R.drawable.circle_gradient_green);
+        } else if(backgroundNumber == 2) {
+            algorithmBackground.setImageResource(R.drawable.circle_gradient_lightgreen);
+        } else if(backgroundNumber == 3) {
+            algorithmBackground.setImageResource(R.drawable.circle_gardient_yellow);
+        } else if(backgroundNumber == 4) {
+            algorithmBackground.setImageResource(R.drawable.circle_gradient_orange);
+        } else if(backgroundNumber == 5) {
+            algorithmBackground.setImageResource(R.drawable.circle_gradient_darkorange);
+        } else if(backgroundNumber == 6) {
+            algorithmBackground.setImageResource(R.drawable.circle_gradient_lightred);
+        } else if(backgroundNumber == 7) {
+            algorithmBackground.setImageResource(R.drawable.circle_gradient_red);
+        }
 
-            public void run() {
-                while (counter < total) {
-                    try {
-                        Thread.sleep(500);
-                    } catch (InterruptedException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    }
-                    allTimeAvg.post(new Runnable() {
-
-                        public void run() {
-                            allTimeAvg.setText("" + counter + "%");
-
-                        }
-
-                    });
-                    counter++;
-                }
-
+        ValueAnimator animator = new ValueAnimator();
+        animator.setObjectValues(0, counter);// here you set the range, from 0 to "count" value
+        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            public void onAnimationUpdate(ValueAnimator animation) {
+                allTimeAvg.setText(String.valueOf(animation.getAnimatedValue()) + "%");
             }
+        });
+        animator.setDuration(1900); // here you set the duration of the anim
+        animator.start();
 
-        }).start();
+        TextView algorithmStatusText = (TextView) findViewById(R.id.avg_desc);
+        algorithmStatusText.setText(statusCalculator.calculateStatusAlgorithm(counter));
 
+        Button button = findViewById(R.id.startButton);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(SelectNavigation.this, SeatBelt.class);
+                startActivity(i);
+                finish();
+            }
+        });
 
     }
 }

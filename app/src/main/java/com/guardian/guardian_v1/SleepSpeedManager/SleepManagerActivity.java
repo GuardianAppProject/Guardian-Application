@@ -24,6 +24,7 @@ import com.bikcrum.circularrangeslider.CircularRangeSlider;
 import com.google.gson.Gson;
 import com.guardian.guardian_v1.R;
 import com.guardian.guardian_v1.SeatBelt;
+import com.guardian.guardian_v1.SelectNavigation;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -164,7 +165,7 @@ public class SleepManagerActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                writeInfoToFile(SleepManagerActivity.this,sleepTimeDate,wakeUpTimeDate);
-               Intent intent = new Intent(SleepManagerActivity.this, SeatBelt.class);
+               Intent intent = new Intent(SleepManagerActivity.this, SelectNavigation.class);
                startActivity(intent);
                finish();
             }

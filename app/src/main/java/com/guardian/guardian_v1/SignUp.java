@@ -37,7 +37,7 @@ public class SignUp extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }else {
-                Intent i = new Intent(SignUp.this, SeatBelt.class);
+                Intent i = new Intent(SignUp.this, SelectNavigation.class);
                 startActivity(i);
                 finish();
             }
