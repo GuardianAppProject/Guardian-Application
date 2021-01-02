@@ -51,6 +51,7 @@ import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.guardian.guardian_v1.DriveStatus.LocationService;
@@ -114,9 +115,6 @@ import java.util.Locale;
 //import timber.log.Timber;
 
 
-
-
-
 //
 
 
@@ -152,10 +150,9 @@ import java.util.Locale;
 //
 
 
-
 import java.util.Locale;
 
-public class Main extends FragmentActivity implements  SensorEventListener, OnMapReadyCallback, LocationListener {
+public class Main extends FragmentActivity implements SensorEventListener, OnMapReadyCallback, LocationListener {
 
 //    ///
 //    private final int REQUEST_PERMISSIONS_REQUEST_CODE = 1;
@@ -172,7 +169,9 @@ public class Main extends FragmentActivity implements  SensorEventListener, OnMa
     private Sensor accelometerSensor;
     private boolean isAccelometerSensorAvailible, several = false;
     public float currentX, currentY, currentZ, lastX, lastY, lastZ, xDifference, yDifference, zDifference;
+
     public enum ShakeSituation {noShake, lowShake, mediumShake, highShake, veryHighShake}
+
     public Shake.ShakeSituation situation = Shake.ShakeSituation.noShake;
 
     //Morteza speedometer
@@ -269,12 +268,22 @@ public class Main extends FragmentActivity implements  SensorEventListener, OnMa
 
     private GoogleMap mMap;
 
+    private GoogleMap.OnMyLocationChangeListener myLocationChangeListener = new GoogleMap.OnMyLocationChangeListener() {
+        @Override
+        public void onMyLocationChange(Location location) {
+            LatLng loc = new LatLng(location.getLatitude(), location.getLongitude());
+//                mMarker = mMap.addMarker(new MarkerOptions().position(loc));
+            if (mMap != null) {
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(loc, 16.0f));
+            }
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 //        setTheme(R.style.NavigationViewLight);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
-
 
 
         String languageToLoad = "fa_IR";
@@ -302,25 +311,22 @@ public class Main extends FragmentActivity implements  SensorEventListener, OnMa
         }
 
 
-
-
         //Morteza shake
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 
-        if(sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER) != null) {
+        if (sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER) != null) {
             accelometerSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
             isAccelometerSensorAvailible = true;
-        }
-        else {
+        } else {
             Log.d("xAccelometer", "Accelometer is not availible");
             isAccelometerSensorAvailible = false;
         }
         //end Morteza shake
 
         //Morteza speedometer
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
-            requestPermissions(new String[] {Manifest.permission.ACCESS_FINE_LOCATION} , 1000);
+            requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1000);
         }
 
         //The method below checks if Location is enabled on device or not. If not, then an alert dialog box appears with option
@@ -337,7 +343,7 @@ public class Main extends FragmentActivity implements  SensorEventListener, OnMa
         if (status == false)
             //Here, the Location Service gets bound and the GPS Speedometer gets Active.
             bindService();
-        if(firstTime){
+        if (firstTime) {
             locate = new ProgressDialog(Main.this);
             locate.setIndeterminate(true);
             locate.setCancelable(false);
@@ -432,7 +438,6 @@ public class Main extends FragmentActivity implements  SensorEventListener, OnMa
         }, 30000);
 
 
-
         ///////
 //        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 //        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -463,6 +468,37 @@ public class Main extends FragmentActivity implements  SensorEventListener, OnMa
 //        map.setMultiTouchControls(true);
 //        mapController = map.getController();
 //        mapController.setZoom(18);
+
+
+    }
+
+
+    private void setUpMapIfNeeded() {
+        // Do a null check to confirm that we have not already instantiated the map.
+        if (mMap == null) {
+            // Try to obtain the map from the SupportMapFragment.
+//            mMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
+                return;
+            }
+            mMap.setMyLocationEnabled(true);
+            // Check if we were successful in obtaining the map.
+            if (mMap != null) {
+                mMap.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
+                    @Override
+                    public void onMyLocationChange(Location arg0) {
+                        mMap.addMarker(new MarkerOptions().position(new LatLng(arg0.getLatitude(), arg0.getLongitude())).title("It's Me!"));
+                    }
+                });
+            }
+        }
     }
 
     //Morteza shake
@@ -1233,6 +1269,7 @@ public class Main extends FragmentActivity implements  SensorEventListener, OnMa
                 }
             }
         }
+        mMap.setOnMyLocationChangeListener(myLocationChangeListener);
 
 
         View locationButton = ((View) findViewById(Integer.parseInt("1")).getParent()).findViewById(Integer.parseInt("2"));
@@ -1253,7 +1290,7 @@ public class Main extends FragmentActivity implements  SensorEventListener, OnMa
                 locationButton.performClick();
             }
         });
-
+        setUpMapIfNeeded();
     }
 
 

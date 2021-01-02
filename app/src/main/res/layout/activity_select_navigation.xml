@@ -12,7 +12,85 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-<!--        <com.mapbox.mapboxsdk.maps.MapView-->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_marginRight="60dp"
+            android:layout_marginLeft="60dp"
+            android:layout_height="300dp"
+            android:layout_gravity="right"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/frameLayout"><!-- height: 250  -->
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="8dp"
+                android:src="@drawable/rectangle_box" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="68dp"
+                android:layoutDirection="ltr"
+                android:orientation="vertical"
+                android:paddingTop="3dp"> <!-- height: 90  -->
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="7dp"
+                    android:fontFamily="@font/ebtekar"
+                    android:text="میانگین رانندگی سالم شما"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView3"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+            </LinearLayout>
+
+
+            <FrameLayout
+                android:layout_width="155dp"
+                android:layout_height="160dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="40dp">
+
+                <ImageView
+                    android:id="@+id/driving_background"
+                    android:layout_width="142dp"
+                    android:layout_height="142dp"
+                    android:layout_gravity="bottom|center"
+                    android:layout_marginBottom="10dp"
+                    android:src="@drawable/circle_gradient_green" />
+
+                <TextView
+                    android:id="@+id/tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="8dp"
+                    android:fontFamily="@font/product_sans_bold"
+                    android:lines="1"
+                    android:text="64%"
+                    android:textSize="39sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/driving_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="24dp"
+                    android:text="safe"
+                    android:textColor="#000000"
+                    android:textSize="10.5sp" />
+
+            </FrameLayout>
+        </FrameLayout>
+
+
+        <!--        <com.mapbox.mapboxsdk.maps.MapView-->
 <!--            android:id="@+id/mapView"-->
 <!--            android:layout_width="match_parent"-->
 <!--            android:layout_height="match_parent"-->
@@ -22,15 +100,17 @@
 <!--            mapbox:mapbox_cameraZoom="12" />-->
 
         <FrameLayout
+            android:id="@+id/frameLayout"
             android:layout_width="match_parent"
             android:layout_height="49dp"
             android:alpha="1"
             tools:ignore="MissingConstraints">
+
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#7E7E7E"
-                android:alpha="1"/>
+                android:alpha="1"
+                android:background="#7E7E7E" />
 
             <!-- This LinearLayout represents the contents of the screen  -->
             <LinearLayout
@@ -39,14 +119,14 @@
                 android:orientation="vertical">
 
                 <Button
+                    android:id="@+id/menuButton2"
+                    style="?android:attr/borderlessButtonStyle"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
-                    android:layout_marginTop="12dp"
                     android:layout_marginStart="12dp"
-                    android:background="@drawable/menu_icon"
-                    style="?android:attr/borderlessButtonStyle"
                     android:layout_marginLeft="6dp"
-                    android:id="@+id/menuButton2"/>
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/menu_icon" />
 
                 <!-- The ActionBar displayed at the top -->
                 <!--        <include-->
@@ -57,19 +137,17 @@
                 <!-- The main content view where fragments are loaded -->
                 <FrameLayout
                     android:id="@+id/flContent"
-                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior" />
             </LinearLayout>
-
 
 
             <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_marginLeft="47.5dp"
                 android:layout_height="54dp"
-                android:layout_gravity="right">
-
+                android:layout_gravity="right"
+                android:layout_marginLeft="47.5dp">
 
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -87,12 +165,12 @@
                         android:gravity="center_horizontal|center_vertical"
                         android:text="گاردین"
                         android:textAlignment="center"
+                        android:textColor="#D8FFFFFF"
                         android:textSize="19sp"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/imageView"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:textColor="#D8FFFFFF"/>
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <ImageView
                         android:id="@+id/imageView"
@@ -112,42 +190,19 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/ebtekar"
-                        android:text="میانگین رانندگی سالم شما: "
-                        android:textSize="16sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        android:layout_marginBottom="7dp"
-                        app:layout_constraintStart_toEndOf="@+id/textView3"
-                        app:layout_constraintTop_toTopOf="parent"/>
 
-                    <TextView
-                        android:id="@+id/textView3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="7.5dp"
-                        android:layout_marginLeft="7.5dp"
-                        android:layout_marginBottom="7dp"
-                        android:fontFamily="@font/ebtekar"
-                        android:text="71% "
-                        android:textSize="20sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:textColor="#DD000000"/>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="47.5dp"
-                    android:background="#FFFFFF"
                     android:alpha="0.2"
+                    android:background="#FFFFFF"
                     android:elevation="2dp" />
 
             </FrameLayout>
+
 
         </FrameLayout>
 
@@ -164,40 +219,38 @@
 <!--            app:srcCompat="@android:drawable/ic_search_category_default"-->
 <!--            tools:ignore="MissingConstraints" />-->
 
-<!--        <Button-->
-<!--            android:id="@+id/startButton"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="50dp"-->
-<!--            android:layout_marginLeft="85dp"-->
-<!--            android:layout_marginRight="20dp"-->
-<!--            android:background="@color/mapboxGrayLight"-->
-<!--            android:enabled="false"-->
-<!--            android:layout_marginBottom="10dp"-->
-<!--            android:text="@string/activity_selectNav_startTrip"-->
-<!--            android:textColor="@color/mapboxWhite"-->
-<!--            android:textSize="20dp"-->
-<!--            app:layout_constraintBottom_toTopOf="@+id/textView"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            android:fontFamily="@font/iran_sans"-->
-<!--            app:layout_constraintStart_toEndOf="@+id/fab_location_search" />-->
+        <Button
+            android:id="@+id/startButton"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/mapboxGrayLight"
+            android:enabled="false"
+            android:fontFamily="@font/iran_sans"
+            android:text="@string/activity_selectNav_startTrip"
+            android:textColor="@color/mapboxWhite"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
 <!--        <TextView-->
 <!--            android:id="@+id/textView"-->
 <!--            android:layout_width="match_parent"-->
 <!--            android:layout_height="wrap_content"-->
 <!--            android:background="#B6F485"-->
+<!--            android:fontFamily="@font/iran_sans"-->
 <!--            android:gravity="center_horizontal"-->
 <!--            android:paddingTop="8dp"-->
+<!--            android:paddingBottom="10dp"-->
 <!--            android:text="@string/activity_selectNav_description"-->
 <!--            android:textAlignment="center"-->
 <!--            android:textSize="17dp"-->
-<!--            app:layout_constraintBottom_toBottomOf="@+id/mapView"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
 <!--            tools:ignore="MissingConstraints"-->
-<!--            tools:layout_editor_absoluteX="63dp"-->
-<!--            android:fontFamily="@font/iran_sans"-->
-<!--            android:paddingBottom="10dp"/>-->
+<!--            tools:layout_editor_absoluteX="-16dp" />-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 
 

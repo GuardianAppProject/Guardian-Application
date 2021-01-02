@@ -800,7 +800,7 @@ public class StatusCalculator {
         //Morteza calling roadInformation class
 
         setWeather_factor();
-
+        Log.d("acceleration is", "" + acceleration);
         double sleep_factor = 300; //sleepCalculator() * 3;
         double time_factor = timeCalculator(timeObj.getTimeHOUR(), timeObj.getTimeMINUTE(), 0, 0) * 3;
         double speed_factor = speedCalculator(staticUserSpeed, speedLimit, weatherType) * 3;

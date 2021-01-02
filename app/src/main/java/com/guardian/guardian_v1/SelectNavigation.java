@@ -1,8 +1,11 @@
 package com.guardian.guardian_v1;
 
 import android.os.Bundle;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.guardian.guardian_v1.Transmission.AverageWorker;
 
 //package com.guardian.guardian_v1;
 //
@@ -96,14 +99,16 @@ public class SelectNavigation extends AppCompatActivity {//implements OnMapReady
 //    private DrawerLayout mDrawer;
 //    private NavigationView nvDrawer;
 //
+    private  int counter = 0;
+    private int total = 30; // the total number
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 //
         super.onCreate(savedInstanceState);
 //        Mapbox.getInstance(this, getString(R.string.access_token));
-//        setContentView(R.layout.activity_select_navigation);
-    }
-}
+        setContentView(R.layout.activity_select_navigation);
+
+
 //        mapView = findViewById(R.id.mapView);
 //        mapView.onCreate(savedInstanceState);
 //        mapView.getMapAsync(this);
@@ -126,9 +131,40 @@ public class SelectNavigation extends AppCompatActivity {//implements OnMapReady
 //            }
 //        });
 //
-//        TextView allTimeAvg = (TextView) findViewById(R.id.textView3);
-//        allTimeAvg.setText(AverageWorker.getAverage());
-//    }
+        TextView allTimeAvg = (TextView) findViewById(R.id.tv);
+
+        double x = Double.parseDouble(AverageWorker.getAverage());
+        counter = (int) Math.floor(x);
+//...
+//when you want to start the counting start the thread bellow.
+        new Thread(new Runnable() {
+
+            public void run() {
+                while (counter < total) {
+                    try {
+                        Thread.sleep(500);
+                    } catch (InterruptedException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+                    allTimeAvg.post(new Runnable() {
+
+                        public void run() {
+                            allTimeAvg.setText("" + counter + "%");
+
+                        }
+
+                    });
+                    counter++;
+                }
+
+            }
+
+        }).start();
+
+
+    }
+}
 //
 //
 //
