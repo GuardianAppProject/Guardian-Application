@@ -74,67 +74,67 @@ public class DriveAlertHandler {
         setType(type);
     }
 
-    public void sleep_func(String alertMessage, int repetition, boolean tooImportant, Type type) {
+    public static void sleep_func(String alertMessage, int repetition, boolean tooImportant, Type type) {
         sleep_alert.setAlertMessage(alertMessage);
         sleep_alert.setRepetition(repetition);
         sleep_alert.setTooImportant(tooImportant);
         sleep_alert.setType(type);
     }
-    public void speed_func(String alertMessage, int repetition, boolean tooImportant, Type type) {
+    public static void speed_func(String alertMessage, int repetition, boolean tooImportant, Type type) {
         speed_alert.setAlertMessage(alertMessage);
         speed_alert.setRepetition(repetition);
         speed_alert.setTooImportant(tooImportant);
         speed_alert.setType(type);
     }
-    public void acceleration_func(String alertMessage, int repetition, boolean tooImportant, Type type) {
+    public static void acceleration_func(String alertMessage, int repetition, boolean tooImportant, Type type) {
         acceleration_alert.setAlertMessage(alertMessage);
         acceleration_alert.setRepetition(repetition);
         acceleration_alert.setTooImportant(tooImportant);
         acceleration_alert.setType(type);
     }
-    public void vibration_func(String alertMessage, int repetition, boolean tooImportant, Type type) {
+    public static void vibration_func(String alertMessage, int repetition, boolean tooImportant, Type type) {
         vibration_alert.setAlertMessage(alertMessage);
         vibration_alert.setRepetition(repetition);
         vibration_alert.setTooImportant(tooImportant);
         vibration_alert.setType(type);
     }
-    public void time_func(String alertMessage, int repetition, boolean tooImportant, Type type) {
+    public static void time_func(String alertMessage, int repetition, boolean tooImportant, Type type) {
         time_alert.setAlertMessage(alertMessage);
         time_alert.setRepetition(repetition);
         time_alert.setTooImportant(tooImportant);
         time_alert.setType(type);
     }
-    public void nearCities_func(String alertMessage, int repetition, boolean tooImportant, Type type) {
+    public static void nearCities_func(String alertMessage, int repetition, boolean tooImportant, Type type) {
         nearCities_alert.setAlertMessage(alertMessage);
         nearCities_alert.setRepetition(repetition);
         nearCities_alert.setTooImportant(tooImportant);
         nearCities_alert.setType(type);
     }
-    public void month_func(String alertMessage, int repetition, boolean tooImportant, Type type) {
+    public static void month_func(String alertMessage, int repetition, boolean tooImportant, Type type) {
         month_alert.setAlertMessage(alertMessage);
         month_alert.setRepetition(repetition);
         month_alert.setTooImportant(tooImportant);
         month_alert.setType(type);
     }
-    public void weather_func(String alertMessage, int repetition, boolean tooImportant, Type type) {
+    public static void weather_func(String alertMessage, int repetition, boolean tooImportant, Type type) {
         weather_alert.setAlertMessage(alertMessage);
         weather_alert.setRepetition(repetition);
         weather_alert.setTooImportant(tooImportant);
         weather_alert.setType(type);
     }
-    public void withoutStop_func(String alertMessage, int repetition, boolean tooImportant, Type type) {
+    public static void withoutStop_func(String alertMessage, int repetition, boolean tooImportant, Type type) {
         withoutStop_alert.setAlertMessage(alertMessage);
         withoutStop_alert.setRepetition(repetition);
         withoutStop_alert.setTooImportant(tooImportant);
         withoutStop_alert.setType(type);
     }
-    public void traffic_func(String alertMessage, int repetition, boolean tooImportant, Type type) {
+    public static void traffic_func(String alertMessage, int repetition, boolean tooImportant, Type type) {
         traffic_alert.setAlertMessage(alertMessage);
         traffic_alert.setRepetition(repetition);
         traffic_alert.setTooImportant(tooImportant);
         traffic_alert.setType(type);
     }
-    public void roadType_func(String alertMessage, int repetition, boolean tooImportant, Type type) {
+    public static void roadType_func(String alertMessage, int repetition, boolean tooImportant, Type type) {
         roadType_alert.setAlertMessage(alertMessage);
         roadType_alert.setRepetition(repetition);
         roadType_alert.setTooImportant(tooImportant);
@@ -205,59 +205,58 @@ public class DriveAlertHandler {
 
         String toShowStr = "با دقت به رانندگی ادامه دهید.";
 
-
         // zire 30 ha
-        if(speed_alert.isTooImportant) {
+        if(speed_alert.isTooImportant && speed_alert.repetition>1) {
             toShowStr = speed_alert.getAlertMessage();
             speed_restTime = speed_timeGap;
             currentAlert = speed_alert;
             return toShowStr;
-        } else if(sleep_alert.isTooImportant) {
+        } else if(sleep_alert.isTooImportant && sleep_alert.repetition>1) {
             toShowStr = sleep_alert.getAlertMessage();
             sleep_restTime = sleep_timeGap;
             currentAlert = sleep_alert;
             return toShowStr;
-        } else if(withoutStop_alert.isTooImportant) {
+        } else if(withoutStop_alert.isTooImportant && withoutStop_alert.repetition>1) {
             toShowStr = withoutStop_alert.getAlertMessage();
             withoutStop_restTime = withoutStop_timeGap;
             currentAlert = withoutStop_alert;
             return toShowStr;
-        } else if(acceleration_alert.isTooImportant) {
+        } else if(acceleration_alert.isTooImportant && acceleration_alert.repetition>1) {
             toShowStr = acceleration_alert.getAlertMessage();
             acceleration_restTime = acceleration_timeGap;
             currentAlert = acceleration_alert;
             return toShowStr;
-        } else if(vibration_alert.isTooImportant) {
+        } else if(vibration_alert.isTooImportant && vibration_alert.repetition>1) {
             toShowStr = vibration_alert.getAlertMessage();
             vibration_restTime = vibration_timeGap;
             currentAlert = vibration_alert;
             return toShowStr;
-        } else if(time_alert.isTooImportant) {
+        } else if(time_alert.isTooImportant && time_alert.repetition>1) {
             toShowStr = time_alert.getAlertMessage();
             time_restTime = time_timeGap;
             currentAlert = time_alert;
             return toShowStr;
-        } else if(nearCities_alert.isTooImportant) {
+        } else if(nearCities_alert.isTooImportant && nearCities_alert.repetition>1) {
             toShowStr = nearCities_alert.getAlertMessage();
             nearCities_restTime = nearCities_timeGap;
             currentAlert = nearCities_alert;
             return toShowStr;
-        }  else if(weather_alert.isTooImportant) {
+        }  else if(weather_alert.isTooImportant && weather_alert.repetition>1) {
             toShowStr = weather_alert.getAlertMessage();
             weather_restTime = weather_timeGap;
             currentAlert = weather_alert;
             return toShowStr;
-        } else if(roadType_alert.isTooImportant) {
+        } else if(roadType_alert.isTooImportant && roadType_alert.repetition>1) {
             toShowStr = roadType_alert.getAlertMessage();
             roadType_restTime = roadType_timeGap;
             currentAlert = roadType_alert;
             return toShowStr;
-        } else if(month_alert.isTooImportant) {
+        } else if(month_alert.isTooImportant && month_alert.repetition>1) {
             toShowStr = month_alert.getAlertMessage();
             month_restTime = month_timeGap;
             currentAlert = month_alert;
             return toShowStr;
-        } else if(traffic_alert.isTooImportant) {
+        } else if(traffic_alert.isTooImportant && traffic_alert.repetition>1) {
             toShowStr = traffic_alert.getAlertMessage();
             traffic_restTime = traffic_timeGap;
             currentAlert = traffic_alert;
