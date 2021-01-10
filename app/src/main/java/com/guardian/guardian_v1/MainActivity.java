@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
                 int height = displayMetrics.heightPixels;
                 int width = displayMetrics.widthPixels;
 
-                ObjectAnimator textViewAnimator = ObjectAnimator.ofFloat(animateTextView, "translationY",0f,-(height/3.63f)); //700 -- 3.2
+                ObjectAnimator textViewAnimator = ObjectAnimator.ofFloat(animateTextView, "translationY",0f,-(height/3.72f)); //700 -- 3.2
                 textViewAnimator.setDuration(3000);
                 textViewAnimator.setInterpolator(new AccelerateDecelerateInterpolator());
                 textViewAnimator.start();
