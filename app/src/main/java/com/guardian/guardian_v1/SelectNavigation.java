@@ -195,9 +195,9 @@ public class SelectNavigation extends AppCompatActivity {//implements OnMapReady
             @Override
             public void run() {
                 tipText.setText(tipHandler.getTip());
-                ha.postDelayed(this, 14000);
+                ha.postDelayed(this, 13000);
             }
-        }, 14000);
+        }, 13000);
 
     }
 }
