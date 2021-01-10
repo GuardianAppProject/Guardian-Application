@@ -1038,7 +1038,7 @@ public class StatusCalculator {
             time_alert = "ساعت اوج تصادف؛ بسیار مراقب باشید!";
             DriveAlertHandler.time_func(time_alert, 4, true, DriveAlertHandler.Type.TIME);
         } else if(time_factor <= 55) {
-            time_alert = "این ساعت خطرناک است؛ با دقت رانندگی کنید.";
+            time_alert = "این ساعت خطرناک است؛ با دقت ادامه دهید.";
             DriveAlertHandler.time_func(time_alert, 2, false, DriveAlertHandler.Type.TIME);
         } else if(time_factor <= 68) {
             time_alert = "این زمان رانندگی پرخطر است؛ کمی بیشتر دقت کنید.";

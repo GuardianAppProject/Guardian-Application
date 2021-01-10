@@ -3,6 +3,7 @@ package com.guardian.guardian_v1;
 import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -184,6 +185,19 @@ public class SelectNavigation extends AppCompatActivity {//implements OnMapReady
                 finish();
             }
         });
+
+        TextView tipText = (TextView) findViewById(R.id.tipText);
+        TipHandler tipHandler = new TipHandler();
+        tipText.setText(tipHandler.getTip());
+        final Handler ha = new Handler();
+        ha.postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                tipText.setText(tipHandler.getTip());
+                ha.postDelayed(this, 13500);
+            }
+        }, 13500);
 
     }
 }
