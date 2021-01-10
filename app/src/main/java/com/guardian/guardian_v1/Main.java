@@ -275,15 +275,28 @@ public class Main extends FragmentActivity implements SensorEventListener, OnMap
 //                mMarker = mMap.addMarker(new MarkerOptions().position(loc));
             if (mMap != null) {
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(loc, 16.0f));
+                updateCameraBearing(mMap,location.getBearing());
             }
         }
     };
+
+    private void updateCameraBearing(GoogleMap googleMap, float bearing) {
+        if ( googleMap == null) return;
+        CameraPosition camPos = CameraPosition
+                .builder(
+                        googleMap.getCameraPosition() // current Camera
+                )
+                .bearing(bearing)
+                .build();
+        googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(camPos));
+        System.out.println("salam");
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 //        setTheme(R.style.NavigationViewLight);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main2);
+
 
 
         String languageToLoad = "fa_IR";
@@ -293,7 +306,7 @@ public class Main extends FragmentActivity implements SensorEventListener, OnMap
         config.locale = locale;
         getBaseContext().getResources().updateConfiguration(config,
                 getBaseContext().getResources().getDisplayMetrics());
-
+        setContentView(R.layout.activity_main2);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
