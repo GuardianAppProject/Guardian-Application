@@ -275,22 +275,22 @@ public class Main extends FragmentActivity implements SensorEventListener, OnMap
 //                mMarker = mMap.addMarker(new MarkerOptions().position(loc));
             if (mMap != null) {
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(loc, 16.0f));
-                updateCameraBearing(mMap,location.getBearing());
+                updateCameraBearing(mMap,location);
             }
         }
     };
 
-    private void updateCameraBearing(GoogleMap googleMap, float bearing) {
+    private void updateCameraBearing(GoogleMap googleMap, Location location) {
         if ( googleMap == null) return;
-        CameraPosition camPos = CameraPosition
-                .builder(
-                        googleMap.getCameraPosition() // current Camera
-                )
-                .bearing(bearing)
-                .build();
-        googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(camPos));
-        System.out.println("salam");
-    }
+            LatLng latLng = new LatLng(location.getLatitude(),location.getLongitude());
+            CameraPosition cameraPosition = new CameraPosition.Builder()
+                    .target(latLng)             // Sets the center of the map to current location
+                    .zoom(20)                   // Sets the zoom
+                    .bearing(location.getBearing()) // Sets the orientation of the camera to east
+                    .tilt(0)                   // Sets the tilt of the camera to 0 degrees
+                    .build();                   // Creates a CameraPosition from the builder
+            googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+        }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
