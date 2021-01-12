@@ -25,12 +25,14 @@ public class TipHandler {
         allTips.add("در صورت استفاده از گاردین می توانید از مزایای بسیاری بهره مند شوید!");
         allTips.add("لطفا برای سلامتی خود و خانواده تان به هشدارهای گاردین توجه فرمایید!");
         allTips.add("گاردین تا ۳۰ درصد به سلامت رانندگی شما کمک می کند!");
+        allTips.add("در صفحه اصلی برنامه می توانید 'میانگین درصد رانندگی سالم' خود را طی سفرهای اخیر مشاهده کنید.");
+        allTips.add("در ابتدای سفر با انتخاب گزینه ی 'شروع سفر' سفر خود را آغاز کنید.");
     }
 
     public String getTip() {
         Random rand = new Random();
-        // Generate random integers in range 0 to 15
-        int rand_int = rand.nextInt(16);
+        // Generate random integers in range 0 to 17
+        int rand_int = rand.nextInt(18);
         return allTips.get(rand_int);
     }
 }
