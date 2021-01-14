@@ -1,12 +1,15 @@
 <component name="libraryTable">
   <library name="Gradle: com.google.android.gms:play-services-places:12.0.1@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a204ec35f578a97bbd9027a24572070b/jetified-play-services-places-12.0.1/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a204ec35f578a97bbd9027a24572070b/jetified-play-services-places-12.0.1/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a204ec35f578a97bbd9027a24572070b/jetified-play-services-places-12.0.1/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a9825368baca7ce081fe17fef8875d46/jetified-play-services-places-12.0.1/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a9825368baca7ce081fe17fef8875d46/jetified-play-services-places-12.0.1/AndroidManifest.xml" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a9825368baca7ce081fe17fef8875d46/jetified-play-services-places-12.0.1/res" />
+      <root url="file://$PROJECT_DIR$/../.gradle/caches/transforms-2/files-2.1/a204ec35f578a97bbd9027a24572070b/jetified-play-services-places-12.0.1/AndroidManifest.xml" />
+      <root url="jar://$PROJECT_DIR$/../.gradle/caches/transforms-2/files-2.1/a204ec35f578a97bbd9027a24572070b/jetified-play-services-places-12.0.1/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../.gradle/caches/transforms-2/files-2.1/a204ec35f578a97bbd9027a24572070b/jetified-play-services-places-12.0.1/res" />
+      <root url="jar://$PROJECT_DIR$/../.gradle/caches/transforms-2/files-2.1/a9825368baca7ce081fe17fef8875d46/jetified-play-services-places-12.0.1/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../.gradle/caches/transforms-2/files-2.1/a9825368baca7ce081fe17fef8875d46/jetified-play-services-places-12.0.1/AndroidManifest.xml" />
+      <root url="file://$PROJECT_DIR$/../.gradle/caches/transforms-2/files-2.1/a9825368baca7ce081fe17fef8875d46/jetified-play-services-places-12.0.1/res" />
+      <root url="file://$PROJECT_DIR$/../.gradle/caches/transforms-2/files-2.1/c629c26feaec40defe77340cfe2b4a25/jetified-play-services-places-12.0.1/res" />
+      <root url="file://$PROJECT_DIR$/../.gradle/caches/transforms-2/files-2.1/c629c26feaec40defe77340cfe2b4a25/jetified-play-services-places-12.0.1/AndroidManifest.xml" />
+      <root url="jar://$PROJECT_DIR$/../.gradle/caches/transforms-2/files-2.1/c629c26feaec40defe77340cfe2b4a25/jetified-play-services-places-12.0.1/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

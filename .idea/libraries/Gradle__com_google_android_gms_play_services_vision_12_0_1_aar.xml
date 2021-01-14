@@ -1,11 +1,14 @@
 <component name="libraryTable">
   <library name="Gradle: com.google.android.gms:play-services-vision:12.0.1@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/ef278c67bb8bfd5959809a2ecd3eacb6/jetified-play-services-vision-12.0.1/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9fbba840b7e2da798e60c1c932b8f9d1/jetified-play-services-vision-12.0.1/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9b7e7a4310bdb8fa584d5eb217b2d304/jetified-play-services-vision-12.0.1/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9b7e7a4310bdb8fa584d5eb217b2d304/jetified-play-services-vision-12.0.1/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9b7e7a4310bdb8fa584d5eb217b2d304/jetified-play-services-vision-12.0.1/AndroidManifest.xml" />
+      <root url="file://$PROJECT_DIR$/../.gradle/caches/transforms-2/files-2.1/ef278c67bb8bfd5959809a2ecd3eacb6/jetified-play-services-vision-12.0.1/res" />
+      <root url="file://$PROJECT_DIR$/../.gradle/caches/transforms-2/files-2.1/9fbba840b7e2da798e60c1c932b8f9d1/jetified-play-services-vision-12.0.1/res" />
+      <root url="file://$PROJECT_DIR$/../.gradle/caches/transforms-2/files-2.1/9b7e7a4310bdb8fa584d5eb217b2d304/jetified-play-services-vision-12.0.1/res" />
+      <root url="jar://$PROJECT_DIR$/../.gradle/caches/transforms-2/files-2.1/9b7e7a4310bdb8fa584d5eb217b2d304/jetified-play-services-vision-12.0.1/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../.gradle/caches/transforms-2/files-2.1/9b7e7a4310bdb8fa584d5eb217b2d304/jetified-play-services-vision-12.0.1/AndroidManifest.xml" />
+      <root url="file://$PROJECT_DIR$/../.gradle/caches/transforms-2/files-2.1/52bc5d28c4f8e2d6b4af8169c8098a0c/jetified-play-services-vision-12.0.1/res" />
+      <root url="jar://$PROJECT_DIR$/../.gradle/caches/transforms-2/files-2.1/52bc5d28c4f8e2d6b4af8169c8098a0c/jetified-play-services-vision-12.0.1/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../.gradle/caches/transforms-2/files-2.1/52bc5d28c4f8e2d6b4af8169c8098a0c/jetified-play-services-vision-12.0.1/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
