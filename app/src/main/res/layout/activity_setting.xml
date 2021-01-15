@@ -67,35 +67,159 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="20dp"
+            android:padding="8dp"
             android:layout_gravity="center">
 
             <TextView
-                android:layout_marginTop="80dp"
+                android:layout_marginTop="24dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/dark_mode_switch_text"
+                android:text="اعلان های صوتی"
                 android:fontFamily="@font/iran_sans"
-                android:textSize="18sp"
+                android:textSize="16sp"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="18dp"
+                android:layout_marginLeft="18dp"
+                android:textColor="#7E000000"
+                android:text="می توانید انتخاب کنید اعلان های صوتی برنامه هرچند دقیقه یکبار به شما اعلام شود."
+                android:fontFamily="@font/iran_sans"
+                android:textSize="13sp"
                 android:layout_gravity="center"/>
 
 
-            <Switch
-                android:id="@+id/mapStyleSwitch"
-                android:layout_width="wrap_content"
-                android:layout_height="55dp"
-                android:switchMinWidth="63dp"
-                android:minHeight="40dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="7dp"
-                android:checked="true"
-                android:textOff="@string/off_text"
-                android:textOn="@string/on_text"/>
+<!--            <Switch-->
+<!--                android:id="@+id/mapStyleSwitch"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="55dp"-->
+<!--                android:switchMinWidth="63dp"-->
+<!--                android:minHeight="40dp"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:layout_marginTop="7dp"-->
+<!--                android:checked="true"-->
+<!--                android:textOff="@string/off_text"-->
+<!--                android:textOn="@string/on_text"/>-->
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <SeekBar
+                    android:id="@+id/seekBar"
+                    android:layout_width="230dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="left"
+                    android:layout_marginTop="25dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_marginTop="20dp"
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="right"
+                    android:text="هر بار"
+                    android:fontFamily="@font/iran_sans"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/seekBar" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
 
         </LinearLayout>
 
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="6dp"
+            android:layout_gravity="center">
+
+            <TextView
+                android:layout_marginTop="24dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="حالت خطر"
+                android:fontFamily="@font/iran_sans"
+                android:textSize="16sp"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="18dp"
+                android:layout_marginLeft="18dp"
+                android:textColor="#7E000000"
+                android:text="می توانید حالت خطر برنامه برای ارتباط های صوتی را غیر فعال کنید."
+                android:fontFamily="@font/iran_sans"
+                android:textSize="13sp"
+                android:layout_gravity="center"/>
+
+
+            <!--            <Switch-->
+            <!--                android:id="@+id/mapStyleSwitch"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="55dp"-->
+            <!--                android:switchMinWidth="63dp"-->
+            <!--                android:minHeight="40dp"-->
+            <!--                android:layout_gravity="center"-->
+            <!--                android:layout_marginTop="7dp"-->
+            <!--                android:checked="true"-->
+            <!--                android:textOff="@string/off_text"-->
+            <!--                android:textOn="@string/on_text"/>-->
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="13dp"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/dangerModeSwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center"
+                    android:checked="true"
+                    android:minHeight="20dp"
+                    android:switchMinWidth="63dp"
+                    android:textOff="@string/off_text"
+                    android:textOn="@string/on_text"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textView" />
+
+<!--                <TextView-->
+<!--                    android:id="@+id/textView2"-->
+<!--                    app:layout_constraintTop_toBottomOf="@+id/dangerModeSwitch"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_alignParentTop="true"-->
+<!--                    android:layout_centerHorizontal="true"-->
+<!--                    android:layout_gravity="right"-->
+<!--                    android:fontFamily="@font/iran_sans"-->
+<!--                    android:text="هر بار"-->
+<!--                    android:textSize="16sp"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintStart_toStartOf="parent" />-->
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </LinearLayout>
 
 
     </LinearLayout>

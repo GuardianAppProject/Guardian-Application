@@ -198,7 +198,6 @@ public class SelectNavigation extends AppCompatActivity {//implements OnMapReady
                 ha.postDelayed(this, 13000);
             }
         }, 13000);
-
     }
 }
 //

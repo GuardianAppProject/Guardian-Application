@@ -1,16 +1,16 @@
 package com.guardian.guardian_v1;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
+import android.animation.ObjectAnimator;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -19,44 +19,42 @@ import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.os.AsyncTask;
+import android.media.AudioManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.IBinder;
-import android.os.Looper;
-import android.speech.tts.TextToSpeech;
+import android.speech.RecognizerIntent;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentActivity;
 
-import com.bumptech.glide.Glide;
-import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.snackbar.Snackbar;
 import com.guardian.guardian_v1.DriveStatus.LocationService;
 import com.guardian.guardian_v1.DriveStatus.Shake;
-import com.guardian.guardian_v1.DriveStatus.Speedometer;
 import com.guardian.guardian_v1.DriveStatus.Weather;
 //import com.mapbox.android.core.location.LocationEngineCallback;
 //import com.mapbox.android.core.location.LocationEngineResult;
@@ -102,11 +100,8 @@ import com.guardian.guardian_v1.DriveStatus.Weather;
 //import org.osmdroid.views.overlay.Marker;
 
 import java.io.IOException;
-import java.lang.ref.WeakReference;
-import java.security.Provider;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 import java.util.Locale;
 
 //import retrofit2.Call;
@@ -118,41 +113,19 @@ import java.util.Locale;
 //
 
 
-import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
-import androidx.fragment.app.FragmentActivity;
-
-import android.Manifest;
-import android.content.Context;
-import android.content.pm.PackageManager;
 import android.content.res.Configuration;
-import android.location.Criteria;
-import android.location.Location;
-import android.location.LocationManager;
-import android.os.Build;
-import android.os.Bundle;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.squareup.picasso.Picasso;
 
-import java.util.Locale;
-
-
-import java.util.ArrayList;
-
-import java.util.Locale;
 
 //
 
 
-import java.util.Locale;
-
-public class Main extends FragmentActivity implements SensorEventListener, OnMapReadyCallback, LocationListener {
+public class Main extends FragmentActivity implements SensorEventListener, OnMapReadyCallback { // LocationListener
 
 //    ///
 //    private final int REQUEST_PERMISSIONS_REQUEST_CODE = 1;
@@ -163,6 +136,7 @@ public class Main extends FragmentActivity implements SensorEventListener, OnMap
 //
 //
 
+    View locationButton;
 
     //Morteza
     private SensorManager sensorManager;
@@ -183,6 +157,18 @@ public class Main extends FragmentActivity implements SensorEventListener, OnMap
     public static int p = 0;
 
     private static boolean firstTime = true;
+    private static boolean firstSound = true;
+    private static int volume_media = 10000;
+    private static boolean secondSound = true;
+    private static int soundRepetition = 0;
+    AudioManager audio;
+    private static int SOUND_REPETITION = 0;
+    private static int dangerFlag = 1;
+
+    private final int REQ_CODE = 100;
+    TextView textView;
+    public static boolean dangerModeOn = true;
+    private static boolean firstDanger = true;
 
     // Map
 //    MapView mapView;
@@ -268,24 +254,32 @@ public class Main extends FragmentActivity implements SensorEventListener, OnMap
 
     private GoogleMap mMap;
 
-    private GoogleMap.OnMyLocationChangeListener myLocationChangeListener = new GoogleMap.OnMyLocationChangeListener() {
-        @Override
-        public void onMyLocationChange(Location location) {
-            LatLng loc = new LatLng(location.getLatitude(), location.getLongitude());
-//                mMarker = mMap.addMarker(new MarkerOptions().position(loc));
-            if (mMap != null) {
-                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(loc, 16.2f));
-                updateCameraBearing(mMap,location);
-            }
-        }
-    };
+//    private GoogleMap.OnMyLocationChangeListener myLocationChangeListener = new GoogleMap.OnMyLocationChangeListener() {
+//        @Override
+//        public void onMyLocationChange(Location location) {
+//            LatLng loc = new LatLng(location.getLatitude(), location.getLongitude());
+////                mMarker = mMap.addMarker(new MarkerOptions().position(loc));
+//            if (mMap != null) {
+//                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(loc, 15.4f));
+//                updateCameraBearing(mMap,location);
+//            }
+//        }
+//    };
+
+    public static void set_sound_repetition(int SOUND_REPETITION) {
+        Main.SOUND_REPETITION = SOUND_REPETITION;
+    }
+
+    public static int get_sound_repetition() {
+        return Main.SOUND_REPETITION;
+    }
 
     private void updateCameraBearing(GoogleMap googleMap, Location location) {
         if ( googleMap == null) return;
             LatLng latLng = new LatLng(location.getLatitude(),location.getLongitude());
             CameraPosition cameraPosition = new CameraPosition.Builder()
                     .target(latLng)             // Sets the center of the map to current location
-                    .zoom(16.2f)                   // Sets the zoom
+                    .zoom(15.4f)                   // Sets the zoom
                     .bearing(location.getBearing()) // Sets the orientation of the camera to east
                     .tilt(0)                   // Sets the tilt of the camera to 0 degrees
                     .build();                   // Creates a CameraPosition from the builder
@@ -298,6 +292,7 @@ public class Main extends FragmentActivity implements SensorEventListener, OnMap
         super.onCreate(savedInstanceState);
 
 
+        audio = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 
         String languageToLoad = "fa_IR";
         Locale locale = new Locale(languageToLoad);
@@ -715,6 +710,164 @@ public class Main extends FragmentActivity implements SensorEventListener, OnMap
         DriveAlertHandler.passCycle();
 
 
+        if((soundRepetition==0 || percentage<=40) && (!(percentage<=45 && dangerFlag==0)) || !dangerModeOn) {
+            int max = audio.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+            if((volume_media - 0.5) >= audio.getStreamVolume(AudioManager.STREAM_MUSIC) && secondSound){
+                if(audio.getStreamVolume(AudioManager.STREAM_MUSIC) < (int)(0.65 * max)) {
+                    audio.setStreamVolume(AudioManager.STREAM_MUSIC, (int)(0.65 * max), 0);
+                }
+                secondSound = false;
+            }
+
+            if(percentage<=40) {
+                if(audio.getStreamVolume(AudioManager.STREAM_MUSIC) < (int)(0.8 * max)) {
+                    audio.setStreamVolume(AudioManager.STREAM_MUSIC, (int) (0.8 * max), 0);
+                }
+            } else if(percentage<=50) {
+                if(audio.getStreamVolume(AudioManager.STREAM_MUSIC) < (int)(0.6 * max)){
+                    audio.setStreamVolume(AudioManager.STREAM_MUSIC, (int)(0.6 * max), 0);
+                }
+            }
+
+            if(!firstSound) {
+                DriveAlertHandler.playSound(this);
+//            volume_media = audio.getStreamVolume(AudioManager.STREAM_MUSIC);
+            }
+            volume_media = audio.getStreamVolume(AudioManager.STREAM_MUSIC);
+            soundRepetition = SOUND_REPETITION;
+        } else {
+            if(soundRepetition>0)
+                soundRepetition--;
+        }
+        firstSound = false;
+
+        ImageView warningImg = (ImageView) findViewById(R.id.warningImg);
+        RelativeLayout dangerLayout = (RelativeLayout) findViewById(R.id.dangerLayout);
+        dangerLayout.setVisibility(View.INVISIBLE);
+        warningImg.setVisibility(View.INVISIBLE);
+
+        if(percentage >= 53) {
+            firstDanger = true;
+        }
+        if(percentage<=45) {
+            dangerLayout.setVisibility(View.VISIBLE);
+            warningImg.setVisibility(View.VISIBLE);
+
+            Animation animation = new AlphaAnimation(1, 0); //to change visibility from visible to invisible
+            animation.setDuration(500); //1 second duration for each animation cycle
+            animation.setInterpolator(new LinearInterpolator());
+            animation.setRepeatCount(Animation.INFINITE); //repeating indefinitely
+            animation.setRepeatMode(Animation.REVERSE); //animation will start from end point once ended.
+            warningImg.startAnimation(animation); //to start animation
+
+            if(dangerModeOn && !firstDanger && dangerFlag==0) {
+                Sound.playAlertSound(this);
+
+                textView = findViewById(R.id.text);
+                ImageView speak = findViewById(R.id.speak);
+                speak.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+                        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+                                RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+//                intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+                        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "fa");
+
+                        intent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 5000);
+                        intent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_MINIMUM_LENGTH_MILLIS, 5000);
+                        intent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_POSSIBLY_COMPLETE_SILENCE_LENGTH_MILLIS, 5000);
+
+                        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "لطفا صحبت کنید!");
+                        try {
+                            startActivityForResult(intent, REQ_CODE);
+                        } catch (ActivityNotFoundException a) {
+                            Toast.makeText(getApplicationContext(),
+                                    "Sorry your device not supported",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
+                new CountDownTimer(2810, 2810) {
+
+                    @Override
+                    public void onTick(long millisUntilFinished) { }
+                    public void onFinish() {
+
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+
+                            }
+                        }, 2810);
+
+                        speak.performClick();
+                    }
+                }.start();
+
+                dangerFlag = 20;
+            } else {
+                if(dangerFlag>0)
+                    dangerFlag--;
+            }
+
+            if(firstDanger && dangerModeOn) {
+
+                Sound.playSound(this, "danger_mode_activation");
+
+                new CountDownTimer(3000, 3000) {
+
+                    @Override
+                    public void onTick(long millisUntilFinished) { }
+                    public void onFinish() {
+
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() { }
+                        }, 3000);
+
+                        Sound.playSound(Main.this, "danger_mode_suggestion");
+                    }
+                }.start();
+                new CountDownTimer(11000, 11000) {
+
+                    @Override
+                    public void onTick(long millisUntilFinished) { }
+                    public void onFinish() {
+
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+
+                            }
+                        }, 11000);
+
+                        Sound.playSound(Main.this, "danger_mode_description");
+                        firstDanger = false;
+                    }
+                }.start();
+
+                firstDanger = false;
+            }
+
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case REQ_CODE: {
+                if (resultCode == RESULT_OK && null != data) {
+                    ArrayList result = data
+                            .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                    textView.setText((String) result.get(0));
+
+                }
+                break;
+            }
+        }
     }
 
 
@@ -1277,15 +1430,15 @@ public class Main extends FragmentActivity implements SensorEventListener, OnMap
                 if (location != null)
                 {
                     LatLng loc = new LatLng(location.getLatitude(), location.getLongitude());
-                    CameraPosition cameraPosition = new CameraPosition.Builder().target(loc).zoom(15).build();
+                    CameraPosition cameraPosition = new CameraPosition.Builder().target(loc).zoom(15.4f).build();
                     googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
                 }
             }
         }
-        mMap.setOnMyLocationChangeListener(myLocationChangeListener);
+//        mMap.setOnMyLocationChangeListener(myLocationChangeListener);
 
 
-        View locationButton = ((View) findViewById(Integer.parseInt("1")).getParent()).findViewById(Integer.parseInt("2"));
+        locationButton = ((View) findViewById(Integer.parseInt("1")).getParent()).findViewById(Integer.parseInt("2"));
         RelativeLayout.LayoutParams rlp = (RelativeLayout.LayoutParams) locationButton.getLayoutParams();
 // position on right bottom
         rlp.addRule(RelativeLayout.ALIGN_BOTTOM, 0);
@@ -1323,21 +1476,21 @@ public class Main extends FragmentActivity implements SensorEventListener, OnMap
         //super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
-    @Override
-    public void onLocationChanged(Location location) {
-        LatLng loc = new LatLng(location.getLatitude(), location.getLongitude());
-        CameraPosition cameraPosition = new CameraPosition.Builder().target(loc).zoom(15).build();
-        mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
-    }
+//    @Override
+//    public void onLocationChanged(Location location) {
+//        LatLng loc = new LatLng(location.getLatitude(), location.getLongitude());
+//        CameraPosition cameraPosition = new CameraPosition.Builder().target(loc).zoom(15.2f).build();
+//        mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+//    }
 
-    @Override
-    public void onStatusChanged(String provider, int status, Bundle extras) { }
-
-    @Override
-    public void onProviderEnabled(String provider) { }
-
-    @Override
-    public void onProviderDisabled(String provider) { }
+//    @Override
+//    public void onStatusChanged(String provider, int status, Bundle extras) { }
+//
+//    @Override
+//    public void onProviderEnabled(String provider) { }
+//
+//    @Override
+//    public void onProviderDisabled(String provider) { }
 
     @Override
     public void onBackPressed() {

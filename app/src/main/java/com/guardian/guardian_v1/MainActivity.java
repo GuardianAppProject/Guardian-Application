@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.Button;
@@ -88,11 +89,23 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "not", Toast.LENGTH_SHORT).show();
         }
 
+
+        String str = readFile2().toString();
+        if(str.length()>=1){
+            Main.dangerModeOn = Boolean.parseBoolean(str);
+        } else {
+            Main.dangerModeOn = true;
+        }
+
 //        Toast.makeText(this, readFile(), Toast.LENGTH_SHORT).show();
-//        String mapStyle = readFile().toString();
-//        if(mapStyle!=null){
-//            Main.routeStyle = mapStyle;
-//        }
+        if(isNumeric(readFile().toString())) {
+            int sound_notif = Integer.parseInt(readFile().toString());
+            Main.set_sound_repetition(sound_notif);
+            Log.d("SOUND", "sound" +Main.get_sound_repetition());
+        } else {
+            Main.set_sound_repetition(0);
+        }
+
 
 //        new Handler().postDelayed(new Runnable() {
 //            @Override
@@ -157,27 +170,49 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-//    public StringBuilder readFile() {
-//        StringBuilder stringBuffer = new StringBuilder("");
-//        try {
-//            FileInputStream fileInputStream = openFileInput("settings.txt");
-//            InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
-//
-//            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-//            stringBuffer = new StringBuilder();
-//
-//            String lines;
-//            while ((lines = bufferedReader.readLine()) != null) {
-//                stringBuffer.append(lines);
-//            }
-////            Main.routeStyle = lines;
-//        } catch (FileNotFoundException exp) {
-//            exp.printStackTrace();
-//        } catch (IOException exp) {
-//            exp.printStackTrace();
-//        }
-//        return stringBuffer;
-//    }
+    public StringBuilder readFile() {
+        StringBuilder stringBuffer = new StringBuilder("");
+        try {
+            FileInputStream fileInputStream = openFileInput("settings.txt");
+            InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
+
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+            stringBuffer = new StringBuilder();
+
+            String lines;
+            while ((lines = bufferedReader.readLine()) != null) {
+                stringBuffer.append(lines);
+            }
+//            Main.routeStyle = lines;
+        } catch (FileNotFoundException exp) {
+            exp.printStackTrace();
+        } catch (IOException exp) {
+            exp.printStackTrace();
+        }
+        return stringBuffer;
+    }
+
+    public StringBuilder readFile2() {
+        StringBuilder stringBuffer = new StringBuilder("");
+        try {
+            FileInputStream fileInputStream = openFileInput("dangermode.txt");
+            InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
+
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+            stringBuffer = new StringBuilder();
+
+            String lines;
+            while ((lines = bufferedReader.readLine()) != null) {
+                stringBuffer.append(lines);
+            }
+//            Main.routeStyle = lines;
+        } catch (FileNotFoundException exp) {
+            exp.printStackTrace();
+        } catch (IOException exp) {
+            exp.printStackTrace();
+        }
+        return stringBuffer;
+    }
 
 
     public String read(){
@@ -202,6 +237,18 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         return string;
+    }
+
+    public static boolean isNumeric(String strNum) {
+        if (strNum == null) {
+            return false;
+        }
+        try {
+            double d = Double.parseDouble(strNum);
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        return true;
     }
 
 }

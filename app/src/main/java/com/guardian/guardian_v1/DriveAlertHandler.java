@@ -1,5 +1,7 @@
 package com.guardian.guardian_v1;
 
+import android.content.Context;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -9,8 +11,9 @@ public class DriveAlertHandler {
     private int repetition;
     private boolean isTooImportant;
     private Type type;
+    private String soundURL;
 
-    private static DriveAlertHandler currentAlert = new DriveAlertHandler("", 0, false, Type.NONE);
+    private static DriveAlertHandler currentAlert = new DriveAlertHandler("", 0, false, Type.NONE, "");
 
     // number of cycles
     private static final int sleep_timeGap = 14;
@@ -39,17 +42,17 @@ public class DriveAlertHandler {
     private static int roadType_restTime = 0;
 
     //
-    public static DriveAlertHandler sleep_alert = new DriveAlertHandler("", 1, false, Type.NONE);
-    public static DriveAlertHandler speed_alert = new DriveAlertHandler("", 1, false, Type.NONE);
-    public static DriveAlertHandler acceleration_alert = new DriveAlertHandler("", 1, false, Type.NONE);
-    public static DriveAlertHandler vibration_alert = new DriveAlertHandler("", 1, false, Type.NONE);
-    public static DriveAlertHandler time_alert = new DriveAlertHandler("", 1, false, Type.NONE);
-    public static DriveAlertHandler nearCities_alert = new DriveAlertHandler("", 1, false, Type.NONE);
-    public static DriveAlertHandler month_alert = new DriveAlertHandler("", 1, false, Type.NONE);
-    public static DriveAlertHandler weather_alert = new DriveAlertHandler("", 1, false, Type.NONE);
-    public static DriveAlertHandler withoutStop_alert = new DriveAlertHandler("", 1, false, Type.NONE);
-    public static DriveAlertHandler traffic_alert = new DriveAlertHandler("", 1, false, Type.NONE);
-    public static DriveAlertHandler roadType_alert = new DriveAlertHandler("", 1, false, Type.NONE);
+    public static DriveAlertHandler sleep_alert = new DriveAlertHandler("", 1, false, Type.NONE, "");
+    public static DriveAlertHandler speed_alert = new DriveAlertHandler("", 1, false, Type.NONE, "");
+    public static DriveAlertHandler acceleration_alert = new DriveAlertHandler("", 1, false, Type.NONE, "");
+    public static DriveAlertHandler vibration_alert = new DriveAlertHandler("", 1, false, Type.NONE, "");
+    public static DriveAlertHandler time_alert = new DriveAlertHandler("", 1, false, Type.NONE, "");
+    public static DriveAlertHandler nearCities_alert = new DriveAlertHandler("", 1, false, Type.NONE, "");
+    public static DriveAlertHandler month_alert = new DriveAlertHandler("", 1, false, Type.NONE, "");
+    public static DriveAlertHandler weather_alert = new DriveAlertHandler("", 1, false, Type.NONE, "");
+    public static DriveAlertHandler withoutStop_alert = new DriveAlertHandler("", 1, false, Type.NONE, "");
+    public static DriveAlertHandler traffic_alert = new DriveAlertHandler("", 1, false, Type.NONE, "");
+    public static DriveAlertHandler roadType_alert = new DriveAlertHandler("", 1, false, Type.NONE,"");
 
 
     public enum Type {
@@ -67,78 +70,90 @@ public class DriveAlertHandler {
         NONE
     }
 
-    public DriveAlertHandler(String alertMessage, int repetition, boolean tooImportant, Type type) {
+    public DriveAlertHandler(String alertMessage, int repetition, boolean tooImportant, Type type, String soundURL) {
         setAlertMessage(alertMessage);
         setRepetition(repetition);
         setTooImportant(tooImportant);
         setType(type);
+        setSoundURL(soundURL);
     }
 
-    public static void sleep_func(String alertMessage, int repetition, boolean tooImportant, Type type) {
+    public static void sleep_func(String alertMessage, int repetition, boolean tooImportant, Type type, String soundURL) {
         sleep_alert.setAlertMessage(alertMessage);
         sleep_alert.setRepetition(repetition);
         sleep_alert.setTooImportant(tooImportant);
         sleep_alert.setType(type);
+        sleep_alert.setSoundURL(soundURL);
     }
-    public static void speed_func(String alertMessage, int repetition, boolean tooImportant, Type type) {
+    public static void speed_func(String alertMessage, int repetition, boolean tooImportant, Type type, String soundURL) {
         speed_alert.setAlertMessage(alertMessage);
         speed_alert.setRepetition(repetition);
         speed_alert.setTooImportant(tooImportant);
         speed_alert.setType(type);
+        speed_alert.setSoundURL(soundURL);
     }
-    public static void acceleration_func(String alertMessage, int repetition, boolean tooImportant, Type type) {
+    public static void acceleration_func(String alertMessage, int repetition, boolean tooImportant, Type type, String soundURL) {
         acceleration_alert.setAlertMessage(alertMessage);
         acceleration_alert.setRepetition(repetition);
         acceleration_alert.setTooImportant(tooImportant);
         acceleration_alert.setType(type);
+        acceleration_alert.setSoundURL(soundURL);
     }
-    public static void vibration_func(String alertMessage, int repetition, boolean tooImportant, Type type) {
+    public static void vibration_func(String alertMessage, int repetition, boolean tooImportant, Type type, String soundURL) {
         vibration_alert.setAlertMessage(alertMessage);
         vibration_alert.setRepetition(repetition);
         vibration_alert.setTooImportant(tooImportant);
         vibration_alert.setType(type);
+        vibration_alert.setSoundURL(soundURL);
     }
-    public static void time_func(String alertMessage, int repetition, boolean tooImportant, Type type) {
+    public static void time_func(String alertMessage, int repetition, boolean tooImportant, Type type, String soundURL) {
         time_alert.setAlertMessage(alertMessage);
         time_alert.setRepetition(repetition);
         time_alert.setTooImportant(tooImportant);
         time_alert.setType(type);
+        time_alert.setSoundURL(soundURL);
     }
-    public static void nearCities_func(String alertMessage, int repetition, boolean tooImportant, Type type) {
+    public static void nearCities_func(String alertMessage, int repetition, boolean tooImportant, Type type, String soundURL) {
         nearCities_alert.setAlertMessage(alertMessage);
         nearCities_alert.setRepetition(repetition);
         nearCities_alert.setTooImportant(tooImportant);
         nearCities_alert.setType(type);
+        nearCities_alert.setSoundURL(soundURL);
     }
-    public static void month_func(String alertMessage, int repetition, boolean tooImportant, Type type) {
+    public static void month_func(String alertMessage, int repetition, boolean tooImportant, Type type, String soundURL) {
         month_alert.setAlertMessage(alertMessage);
         month_alert.setRepetition(repetition);
         month_alert.setTooImportant(tooImportant);
         month_alert.setType(type);
+        month_alert.setSoundURL(soundURL);
     }
-    public static void weather_func(String alertMessage, int repetition, boolean tooImportant, Type type) {
+    public static void weather_func(String alertMessage, int repetition, boolean tooImportant, Type type, String soundURL) {
         weather_alert.setAlertMessage(alertMessage);
         weather_alert.setRepetition(repetition);
         weather_alert.setTooImportant(tooImportant);
         weather_alert.setType(type);
+        weather_alert.setSoundURL(soundURL);
     }
-    public static void withoutStop_func(String alertMessage, int repetition, boolean tooImportant, Type type) {
+    public static void withoutStop_func(String alertMessage, int repetition, boolean tooImportant, Type type, String soundURL) {
         withoutStop_alert.setAlertMessage(alertMessage);
         withoutStop_alert.setRepetition(repetition);
         withoutStop_alert.setTooImportant(tooImportant);
         withoutStop_alert.setType(type);
+        withoutStop_alert.setSoundURL(soundURL);
     }
-    public static void traffic_func(String alertMessage, int repetition, boolean tooImportant, Type type) {
+    public static void traffic_func(String alertMessage, int repetition, boolean tooImportant, Type type, String soundURL) {
         traffic_alert.setAlertMessage(alertMessage);
         traffic_alert.setRepetition(repetition);
         traffic_alert.setTooImportant(tooImportant);
         traffic_alert.setType(type);
+        traffic_alert.setSoundURL(soundURL);
     }
-    public static void roadType_func(String alertMessage, int repetition, boolean tooImportant, Type type) {
+    public static void roadType_func(String alertMessage, int repetition, boolean tooImportant, Type type, String soundURL) {
         roadType_alert.setAlertMessage(alertMessage);
         roadType_alert.setRepetition(repetition);
         roadType_alert.setTooImportant(tooImportant);
         roadType_alert.setType(type);
+        roadType_alert.setSoundURL(soundURL);
     }
 
     private void setAlertMessage(String alertMessage) {
@@ -155,6 +170,14 @@ public class DriveAlertHandler {
 
     public void setType(Type type) {
         this.type = type;
+    }
+
+    public void setSoundURL(String soundURL) {
+        this.soundURL = soundURL;
+    }
+
+    public static void playSound(Context context) {
+        Sound.playSound(context, currentAlert.soundURL);
     }
 
     public String getAlertMessage() {
