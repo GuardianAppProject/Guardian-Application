@@ -274,7 +274,7 @@ public class SleepManagerActivity extends AppCompatActivity {
     }
 
     public static boolean isSleepDataRecordedToday(Context context){
-        if(isThereSleepDataFile(context)  == false) makeSleepDataFile(context);
+       if(isThereSleepDataFile(context)  == false) makeSleepDataFile(context);
         String ret = "";
         try {
             InputStream inputStream = context.openFileInput("SleepData");

@@ -1,6 +1,8 @@
 package com.guardian.guardian_v1;
 
 import android.animation.ObjectAnimator;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -16,7 +18,9 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import com.google.android.gms.maps.model.CameraPosition;
 import com.guardian.guardian_v1.SleepSpeedManager.SleepSpeedDetectorService;
+import com.guardian.guardian_v1.SleepSpeedManager.UseMeNotification;
 import com.guardian.guardian_v1.Transmission.AverageWorker;
 import com.guardian.guardian_v1.Transmission.TokenChecker;
 
@@ -25,6 +29,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Calendar;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -65,6 +71,18 @@ public class MainActivity extends AppCompatActivity {
             startService(new Intent(this, SleepSpeedDetectorService.class));
         }
 
+        Date date = Calendar.getInstance().getTime();
+        UseMeNotification.writeInfoToFile(this,date);
+        Intent myIntent = new Intent(this ,UseMeNotification.class);
+        AlarmManager alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
+        PendingIntent pendingIntent = PendingIntent.getService(this, 0, myIntent, 0);
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.HOUR, 0);
+        calendar.set(Calendar.AM_PM, Calendar.AM);
+        calendar.add(Calendar.DAY_OF_MONTH, 0);
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 1000*60*60*24*30 , pendingIntent);
     }
 
     private void startApp() {

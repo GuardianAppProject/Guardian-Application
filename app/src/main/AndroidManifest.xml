@@ -47,6 +47,7 @@
             android:value="@string/google_maps_key" />
 
         <service android:name=".DriveStatus.LocationService"></service>
+        <service android:name=".SleepSpeedManager.UseMeNotification"></service>
         <meta-data
             android:name="com.google.android.gms.version"
 
