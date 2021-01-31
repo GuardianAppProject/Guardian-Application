@@ -330,6 +330,7 @@ public class Main extends FragmentActivity implements SensorEventListener, OnMap
         if (sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER) != null) {
             accelometerSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
             isAccelometerSensorAvailible = true;
+            Log.d("xAccelometer", "xAccelometer is available");
         } else {
             Log.d("xAccelometer", "Accelometer is not availible");
             isAccelometerSensorAvailible = false;
@@ -517,9 +518,10 @@ public class Main extends FragmentActivity implements SensorEventListener, OnMap
     //Morteza shake
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
-        Log.d("x", sensorEvent.values[0]+ "m/s2");
-        Log.d("y", sensorEvent.values[1]+ "m/s2");
-        Log.d("z", sensorEvent.values[2]+ "m/s2");
+        Log.d("ejra", "hello guardian");
+        Log.d("x", sensorEvent.values[0]+ "  m/s2");
+        Log.d("y", sensorEvent.values[1]+ "  m/s2");
+        Log.d("z", sensorEvent.values[2]+ "  m/s2");
 
         currentX = sensorEvent.values[0];
         currentY = sensorEvent.values[1];
@@ -573,6 +575,24 @@ public class Main extends FragmentActivity implements SensorEventListener, OnMap
     @Override
     public void onAccuracyChanged(Sensor sensor, int i) {
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if(isAccelometerSensorAvailible) {
+            sensorManager.registerListener(this, accelometerSensor, SensorManager.SENSOR_DELAY_NORMAL);
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        if(isAccelometerSensorAvailible) {
+            sensorManager.unregisterListener(this);
+        }
     }
 
     public void openDrawer(){

@@ -19,8 +19,6 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 
-import com.guardian.guardian_v1.Setting;
-
 public class GPSTracker extends Service implements LocationListener {
 
     private Context context;
@@ -41,6 +39,26 @@ public class GPSTracker extends Service implements LocationListener {
     private int cityIndex;
     private String nearestCIty;
     private double nearestDistance;
+    private double placeDistance;
+
+    public double getMinPlaceDistance() {
+        return minPlaceDistance;
+    }
+
+    public void setMinPlaceDistance(double minPlaceDistance) {
+        this.minPlaceDistance = minPlaceDistance;
+    }
+
+    public String getPlaceName() {
+        return placeName;
+    }
+
+    public void setPlaceName(String placeName) {
+        this.placeName = placeName;
+    }
+
+    private double minPlaceDistance;
+    private String placeName;
 
     String[] cities = {"Tehran", "Mashhad", "Isfahan", "Karaj", "Shiraz", "Tabriz", "Qom", "Ahvaz", "Kermanshah", "Orumiyeh", "Rasht", "Zahedan"
             , "Kerman", "Yazd", "Ardabil", "BandarAbbas", "Arak", "Zanjan", "Sanandaj", "Qazvin", "Khorramabad", "Gorgan", "Sari", "Bojnourd",
@@ -205,7 +223,7 @@ public class GPSTracker extends Service implements LocationListener {
             ,"جایگاه افرا","پمپ بنزین","پمپ بنزین افرند","پمپ بنزین پیمان","Gas stations","جایگاه دو منظوره پورصادق","gas station","پمپ بنزین زمانی","پمپ بنزین بابایی شلمان"
             ,"جایگاه دومنظوره جیردهی"};
 
-    double[] Rashtlongtitudes = {48.865529,48.857857,48.843184,48.883997,48.897929,48.91521,48.98747,49.116084,49.143654,49.250467,49.313832
+    double[] RashtLongtitudes = {48.865529,48.857857,48.843184,48.883997,48.897929,48.91521,48.98747,49.116084,49.143654,49.250467,49.313832
             ,49.353572,49.379871,49.371777,49.669258,49.647426,49.636761,49.42609,49.491537,49.657483,49.659117,49.551342,49.503379
             ,49.395181,49.492567,49.720435,49.790281,49.850449,50.230519,50.391311};
 
@@ -249,7 +267,7 @@ public class GPSTracker extends Service implements LocationListener {
             ,30.759855,31.516141,31.153144,31.059481,30.849953,31.003608,29.737752,30.015676,30.033919,30.123428,30.008056,30.233443
             ,30.26262,30.13193,30.501819,30.855933,30.918551,30.702331,30.517978};
 
-    String[] Yazd = {"جایگاه پمپ گاز هرات","پمپ بنزین سپهر","پمپ بنزین هرابرجان","جایگاه تنگ چنار","پمپ بنزین","پمپ بنزین","پمپ بنزین خورشیدی","پمپ بنزین فیض آباد","جایگاه زعیمیان ( مسجد ابوالفضل )"
+    String[] YazdPlaces = {"جایگاه پمپ گاز هرات","پمپ بنزین سپهر","پمپ بنزین هرابرجان","جایگاه تنگ چنار","پمپ بنزین","پمپ بنزین","پمپ بنزین خورشیدی","پمپ بنزین فیض آباد","جایگاه زعیمیان ( مسجد ابوالفضل )"
             ,"پمپ بنزین اطلس","پمپ بنزین","پمپ بنزین و گازوئیل","پمپ بنزین","پمپ بنزین و گازوئیل کاسپین","پمپ بنزین عقدا","پمپ بنزین امامزاده سید نورالدین احمد","جایگاه سوخت باغ ایرانی"
             ,"پمپ بنزین"};
 
@@ -361,7 +379,7 @@ public class GPSTracker extends Service implements LocationListener {
             ,37.082782,37.141936,37.207321,37.086069,37.449854,37.295527,37.23653,37.316577,37.436054,37.520287,37.372047,37.361018,37.140282
             ,37.070363,36.90739};
 
-    String[] Sari = {"پمپ بنزین رضی کاظمی","جایگاه دو منظوره سروری","پمپ بنزین کاوه داران","پمپ بنزین کاوه نژاد","جایگاه دو منظوره فیروزی","پمپ بنزین نامور","جایگاه اختصاصی نشتارود",
+    String[] SariPlaces = {"پمپ بنزین رضی کاظمی","جایگاه دو منظوره سروری","پمپ بنزین کاوه داران","پمپ بنزین کاوه نژاد","جایگاه دو منظوره فیروزی","پمپ بنزین نامور","جایگاه اختصاصی نشتارود",
             "Gas Station","جایگاه دو منظوره فجر","پمپ بنزین کلارآباد (پسندی)","پمپ بنزین شرکتی ۲ (سردآبرود)","جایگاه سوخت جعفری","جایگاه دو منظوره صادقی","جایگاه دو منظوره پاسارگاز"
             ,"پمپ بنزین مشایخی","پمپ بنزین مرزن آباد","پمپ بنزین","جایگاه اختصاصی بهروز","پمپ بنزین ملکی","جایگاه سوخت ملکی خداجو","پمپ بنزین پارس","پمپ بنزین رسام","پمپ بنزين قدس"
             ,"پمپ بنزين و گاز رويان","جایگاه اختصاصی نور","پمپ بنزین ایزدشهر","پمپ بنزین شیانی","جایگاه اختصاصی بابانیا","پمپ بنزین اختصاصی کیان پور","پمپ بنزین جمشیدی","Gas Station"
@@ -500,6 +518,8 @@ public class GPSTracker extends Service implements LocationListener {
     }
 
     public Location getLocation() throws SecurityException{
+        minPlaceDistance = Double.MAX_VALUE;
+        placeName = "";
         locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
         isGPSEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
         isNetworkEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
@@ -511,10 +531,12 @@ public class GPSTracker extends Service implements LocationListener {
                     locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, timeUpdate, distanceUpdate, this);
                     if(locationManager != null) {
                         location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-                        latitude = location.getLatitude();
-                        longtitude = location.getLongitude();
-                        //Log.d("location information 2", "lat : " + latitude + " long : " + getLongtitude());
+                        if(location != null) {
+                            latitude = location.getLatitude();
+                            longtitude = location.getLongitude();
+                            //Log.d("location information 2", "lat : " + latitude + " long : " + getLongtitude());
 
+                        }
                     }
                 } else {
                     requestPermissions();
@@ -527,10 +549,13 @@ public class GPSTracker extends Service implements LocationListener {
                     locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, timeUpdate, distanceUpdate, this);
                     if(locationManager != null) {
                         location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-                        latitude = location.getLatitude();
-                        longtitude = location.getLongitude();
+                        if(location != null) {
+                            latitude = location.getLatitude();
+                            longtitude = location.getLongitude();
 
-                        //Log.d("location information 3", "lat : " + latitude + " long : " + getLongtitude());
+                            //Log.d("location information 3", "lat : " + latitude + " long : " + getLongtitude());
+
+                        }
                     }
                 }
             } else {
@@ -551,9 +576,11 @@ public class GPSTracker extends Service implements LocationListener {
 
             destLocation.setLatitude(latitudes[counter]);
             destLocation.setLongitude(longtitudes[counter]);
-            location.setLongitude(location.getLongitude());
-            location.setLatitude(location.getLatitude());
-            result[counter] = location.distanceTo(destLocation);
+            if(location != null) {
+                location.setLongitude(location.getLongitude());
+                location.setLatitude(location.getLatitude());
+                result[counter] = location.distanceTo(destLocation);
+            }
         }
         Log.d("entering measuring", "sdvhkdfhvl");
         min = result[0];
@@ -567,12 +594,14 @@ public class GPSTracker extends Service implements LocationListener {
 
         if(result[cityIndex] > 30000) {
             for(counter = (cityIndex * 4); counter < (cityIndex * 4) + 4; counter++) {
-                location.setLongitude(location.getLongitude());
-                location.setLatitude(location.getLatitude());
-                destLocation.setLatitude(borderLatitude[counter]);
-                destLocation.setLongitude(borderLongtitude[counter]);
-                if(location.distanceTo(destLocation) < result[cityIndex]) {
-                    result[cityIndex] = location.distanceTo(destLocation);
+                if(location != null) {
+                    location.setLongitude(location.getLongitude());
+                    location.setLatitude(location.getLatitude());
+                    destLocation.setLatitude(borderLatitude[counter]);
+                    destLocation.setLongitude(borderLongtitude[counter]);
+                    if (location.distanceTo(destLocation) < result[cityIndex]) {
+                        result[cityIndex] = location.distanceTo(destLocation);
+                    }
                 }
             }
         }
@@ -582,6 +611,473 @@ public class GPSTracker extends Service implements LocationListener {
         nearestDistance = result[cityIndex];
         if (result[cityIndex] < 30000) {
             Log.d("areaTextView", "you are in area of " + cities[cityIndex]);
+        }
+        
+
+        if(nearestCIty == "Tehran") {
+            for(counter = 0; counter < TehranPlaces.length; counter++) {
+                if(location != null) {
+                    location.setLongitude(location.getLongitude());
+                    location.setLatitude(location.getLatitude());
+                    destLocation.setLatitude(TehranLatitudes[counter]);
+                    destLocation.setLongitude(TehranLongtitudes[counter]);
+                    placeDistance = location.distanceTo(destLocation);
+                    if (minPlaceDistance > placeDistance) {
+                        minPlaceDistance = placeDistance;
+                        placeName = TehranPlaces[counter];
+                    }
+                }
+            }
+        }
+        else if(nearestCIty == "Mashhad") {
+            for(counter = 0; counter < MashhadPlaces.length; counter++) {
+                if (location != null) {
+                    location.setLongitude(location.getLongitude());
+                    location.setLatitude(location.getLatitude());
+                    destLocation.setLatitude(MashhadLatitudes[counter]);
+                    destLocation.setLongitude(MashhadLongtitudes[counter]);
+                    placeDistance = location.distanceTo(destLocation);
+                    if (minPlaceDistance > placeDistance) {
+                        minPlaceDistance = placeDistance;
+                        placeName = MashhadPlaces[counter];
+                    }
+                }
+            }
+        }
+        else if(nearestCIty == "Isfahan") {
+            for(counter = 0; counter < IsfahanPlaces.length; counter++) {
+                if (location != null) {
+                    location.setLongitude(location.getLongitude());
+                    location.setLatitude(location.getLatitude());
+                    destLocation.setLatitude(IsfahanLatitudes[counter]);
+                    destLocation.setLongitude(IsfahanLongtitudes[counter]);
+                    placeDistance = location.distanceTo(destLocation);
+                    if (minPlaceDistance > placeDistance) {
+                        minPlaceDistance = placeDistance;
+                        placeName = IsfahanPlaces[counter];
+                    }
+                }
+            }
+        }
+        else if(nearestCIty == "Karaj") {
+            for(counter = 0; counter < KarajPlaces.length; counter++) {
+                if (location != null) {
+                    location.setLongitude(location.getLongitude());
+                    location.setLatitude(location.getLatitude());
+                    destLocation.setLatitude(KarajLatitudes[counter]);
+                    destLocation.setLongitude(KarajLongtitudes[counter]);
+                    placeDistance = location.distanceTo(destLocation);
+                    if (minPlaceDistance > placeDistance) {
+                        minPlaceDistance = placeDistance;
+                        placeName = KarajPlaces[counter];
+                    }
+                }
+            }
+        }
+        else if(nearestCIty == "Shiraz") {
+            for(counter = 0; counter < ShirazPlaces.length; counter++) {
+                if (location != null) {
+                    location.setLongitude(location.getLongitude());
+                    location.setLatitude(location.getLatitude());
+                    destLocation.setLatitude(ShirazLatitudes[counter]);
+                    destLocation.setLongitude(ShirazLongtitudes[counter]);
+                    placeDistance = location.distanceTo(destLocation);
+                    if (minPlaceDistance > placeDistance) {
+                        minPlaceDistance = placeDistance;
+                        placeName = ShirazPlaces[counter];
+                    }
+                }
+            }
+        }
+        else if(nearestCIty == "Tabriz") {
+            for(counter = 0; counter < TabrizPlaces.length; counter++) {
+                if (location != null) {
+                    location.setLongitude(location.getLongitude());
+                    location.setLatitude(location.getLatitude());
+                    destLocation.setLatitude(TabrizLatitudes[counter]);
+                    destLocation.setLongitude(TabrizLongtitudes[counter]);
+                    placeDistance = location.distanceTo(destLocation);
+                    if (minPlaceDistance > placeDistance) {
+                        minPlaceDistance = placeDistance;
+                        placeName = TabrizPlaces[counter];
+                    }
+                }
+            }
+        }
+        else if(nearestCIty == "Qom") {
+            for(counter = 0; counter < QomPlaces.length; counter++) {
+                if (location != null) {
+                    location.setLongitude(location.getLongitude());
+                    location.setLatitude(location.getLatitude());
+                    destLocation.setLatitude(QomLatitudes[counter]);
+                    destLocation.setLongitude(QomLongtitudes[counter]);
+                    placeDistance = location.distanceTo(destLocation);
+                    if (minPlaceDistance > placeDistance) {
+                        minPlaceDistance = placeDistance;
+                        placeName = QomPlaces[counter];
+                    }
+                }
+            }
+        }
+        else if(nearestCIty == "Ahvaz") {
+            for(counter = 0; counter < AhvazPlaces.length; counter++) {
+                if (location != null) {
+                    location.setLongitude(location.getLongitude());
+                    location.setLatitude(location.getLatitude());
+                    destLocation.setLatitude(AhvazLatitudes[counter]);
+                    destLocation.setLongitude(AhvazLongtitudes[counter]);
+                    placeDistance = location.distanceTo(destLocation);
+                    if (minPlaceDistance > placeDistance) {
+                        minPlaceDistance = placeDistance;
+                        placeName = AhvazPlaces[counter];
+                    }
+                }
+            }
+        }
+        else if(nearestCIty == "Kermanshah") {
+            for(counter = 0; counter < KermanshahPlaces.length; counter++) {
+                if (location != null) {
+                    location.setLongitude(location.getLongitude());
+                    location.setLatitude(location.getLatitude());
+                    destLocation.setLatitude(KermanshahLatitudes[counter]);
+                    destLocation.setLongitude(KermanshahLongtitudes[counter]);
+                    placeDistance = location.distanceTo(destLocation);
+                    if (minPlaceDistance > placeDistance) {
+                        minPlaceDistance = placeDistance;
+                        placeName = KermanshahPlaces[counter];
+                    }
+                }
+            }
+        }
+        else if(nearestCIty == "Orumiyeh") {
+            for(counter = 0; counter < OrumiyehPlaces.length; counter++) {
+                if (location != null) {
+                    location.setLongitude(location.getLongitude());
+                    location.setLatitude(location.getLatitude());
+                    destLocation.setLatitude(OrumiyehLatitudes[counter]);
+                    destLocation.setLongitude(OrumiyehLongtitudes[counter]);
+                    placeDistance = location.distanceTo(destLocation);
+                    if (minPlaceDistance > placeDistance) {
+                        minPlaceDistance = placeDistance;
+                        placeName = OrumiyehPlaces[counter];
+                    }
+                }
+            }
+        }
+        else if(nearestCIty == "Rasht") {
+            for(counter = 0; counter < RashtPlaces.length; counter++) {
+                if (location != null) {
+                    location.setLongitude(location.getLongitude());
+                    location.setLatitude(location.getLatitude());
+                    destLocation.setLatitude(RashtLatitudes[counter]);
+                    destLocation.setLongitude(RashtLongtitudes[counter]);
+                    placeDistance = location.distanceTo(destLocation);
+                    if (minPlaceDistance > placeDistance) {
+                        minPlaceDistance = placeDistance;
+                        placeName = RashtPlaces[counter];
+                    }
+                }
+            }
+        }
+        else if(nearestCIty == "Zahedan") {
+            for(counter = 0; counter < ZahedanPlaces.length; counter++) {
+                if (location != null) {
+                    location.setLongitude(location.getLongitude());
+                    location.setLatitude(location.getLatitude());
+                    destLocation.setLatitude(ZahedanLatitudes[counter]);
+                    destLocation.setLongitude(ZahedanLongtitudes[counter]);
+                    placeDistance = location.distanceTo(destLocation);
+                    if (minPlaceDistance > placeDistance) {
+                        minPlaceDistance = placeDistance;
+                        placeName = ZahedanPlaces[counter];
+                    }
+                }
+            }
+        }
+        else if(nearestCIty == "Kerman") {
+            for(counter = 0; counter < KermanPlaces.length; counter++) {
+                if (location != null) {
+                    location.setLongitude(location.getLongitude());
+                    location.setLatitude(location.getLatitude());
+                    destLocation.setLatitude(KermanLatitudes[counter]);
+                    destLocation.setLongitude(KermanLongtitudes[counter]);
+                    placeDistance = location.distanceTo(destLocation);
+                    if (minPlaceDistance > placeDistance) {
+                        minPlaceDistance = placeDistance;
+                        placeName = KermanPlaces[counter];
+                    }
+                }
+            }
+        }
+        else if(nearestCIty == "Yazd") {
+            for(counter = 0; counter < YazdPlaces.length; counter++) {
+                if (location != null) {
+                    location.setLongitude(location.getLongitude());
+                    location.setLatitude(location.getLatitude());
+                    destLocation.setLatitude(YazdLatitudes[counter]);
+                    destLocation.setLongitude(YazdLongtitudes[counter]);
+                    placeDistance = location.distanceTo(destLocation);
+                    if (minPlaceDistance > placeDistance) {
+                        minPlaceDistance = placeDistance;
+                        placeName = YazdPlaces[counter];
+                    }
+                }
+            }
+        }
+        else if(nearestCIty == "Ardabil") {
+            for(counter = 0; counter < ArdabilPlaces.length; counter++) {
+                if (location != null) {
+                    location.setLongitude(location.getLongitude());
+                    location.setLatitude(location.getLatitude());
+                    destLocation.setLatitude(ArdabilLatitudes[counter]);
+                    destLocation.setLongitude(ArdabilLongtitudes[counter]);
+                    placeDistance = location.distanceTo(destLocation);
+                    if (minPlaceDistance > placeDistance) {
+                        minPlaceDistance = placeDistance;
+                        placeName = ArdabilPlaces[counter];
+                    }
+                }
+            }
+        }
+        else if(nearestCIty == "BandarAbbas") {
+            for(counter = 0; counter < BandarAbbasPlaces.length; counter++) {
+                if (location != null) {
+                    location.setLongitude(location.getLongitude());
+                    location.setLatitude(location.getLatitude());
+                    destLocation.setLatitude(BandarAbbasLatitudes[counter]);
+                    destLocation.setLongitude(BandarAbbasLongtitudes[counter]);
+                    placeDistance = location.distanceTo(destLocation);
+                    if (minPlaceDistance > placeDistance) {
+                        minPlaceDistance = placeDistance;
+                        placeName = BandarAbbasPlaces[counter];
+                    }
+                }
+            }
+        }
+        else if(nearestCIty == "Arak") {
+            for(counter = 0; counter < ArakPlaces.length; counter++) {
+                if (location != null) {
+                    location.setLongitude(location.getLongitude());
+                    location.setLatitude(location.getLatitude());
+                    destLocation.setLatitude(ArakLatitudes[counter]);
+                    destLocation.setLongitude(ArakLongtitudes[counter]);
+                    placeDistance = location.distanceTo(destLocation);
+                    if (minPlaceDistance > placeDistance) {
+                        minPlaceDistance = placeDistance;
+                        placeName = ArakPlaces[counter];
+                    }
+                }
+            }
+        }
+        else if(nearestCIty == "Zanjan") {
+            for(counter = 0; counter < ZanjanPlaces.length; counter++) {
+                if (location != null) {
+                    location.setLongitude(location.getLongitude());
+                    location.setLatitude(location.getLatitude());
+                    destLocation.setLatitude(ZanjanLatitudes[counter]);
+                    destLocation.setLongitude(ZanjanLongtitudes[counter]);
+                    placeDistance = location.distanceTo(destLocation);
+                    if (minPlaceDistance > placeDistance) {
+                        minPlaceDistance = placeDistance;
+                        placeName = ZanjanPlaces[counter];
+                    }
+                }
+            }
+        }
+        else if(nearestCIty == "Sanandaj") {
+            for(counter = 0; counter < SanandajPlaces.length; counter++) {
+                if (location != null) {
+                    location.setLongitude(location.getLongitude());
+                    location.setLatitude(location.getLatitude());
+                    destLocation.setLatitude(SanandajLatitudes[counter]);
+                    destLocation.setLongitude(SanandajLongtitudes[counter]);
+                    placeDistance = location.distanceTo(destLocation);
+                    if (minPlaceDistance > placeDistance) {
+                        minPlaceDistance = placeDistance;
+                        placeName = SanandajPlaces[counter];
+                    }
+                }
+            }
+        }
+        else if(nearestCIty == "Qazvin") {
+            for(counter = 0; counter < QazvinPlaces.length; counter++) {
+                if (location != null) {
+                    location.setLongitude(location.getLongitude());
+                    location.setLatitude(location.getLatitude());
+                    destLocation.setLatitude(QazvinLatitudes[counter]);
+                    destLocation.setLongitude(QazvinLongtitudes[counter]);
+                    placeDistance = location.distanceTo(destLocation);
+                    if (minPlaceDistance > placeDistance) {
+                        minPlaceDistance = placeDistance;
+                        placeName = QazvinPlaces[counter];
+                    }
+                }
+            }
+        }
+        else if(nearestCIty == "Khorramabad") {
+            for(counter = 0; counter < KhorramabadPlaces.length; counter++) {
+                if (location != null) {
+                    location.setLongitude(location.getLongitude());
+                    location.setLatitude(location.getLatitude());
+                    destLocation.setLatitude(KhorramabadLatitudes[counter]);
+                    destLocation.setLongitude(KhorramabadLongtitudes[counter]);
+                    placeDistance = location.distanceTo(destLocation);
+                    if (minPlaceDistance > placeDistance) {
+                        minPlaceDistance = placeDistance;
+                        placeName = KhorramabadPlaces[counter];
+                    }
+                }
+            }
+        }
+        else if(nearestCIty == "Gorgan") {
+            for(counter = 0; counter < GorganPlaces.length; counter++) {
+                if (location != null) {
+                    location.setLongitude(location.getLongitude());
+                    location.setLatitude(location.getLatitude());
+                    destLocation.setLatitude(GorganLatitudes[counter]);
+                    destLocation.setLongitude(GorganLongtitudes[counter]);
+                    placeDistance = location.distanceTo(destLocation);
+                    if (minPlaceDistance > placeDistance) {
+                        minPlaceDistance = placeDistance;
+                        placeName = GorganPlaces[counter];
+                    }
+                }
+            }
+        }
+        else if(nearestCIty == "Sari") {
+            for(counter = 0; counter < SariPlaces.length; counter++) {
+                if (location != null) {
+                    location.setLongitude(location.getLongitude());
+                    location.setLatitude(location.getLatitude());
+                    destLocation.setLatitude(SariLatitudes[counter]);
+                    destLocation.setLongitude(SariLongtitudes[counter]);
+                    placeDistance = location.distanceTo(destLocation);
+                    if (minPlaceDistance > placeDistance) {
+                        minPlaceDistance = placeDistance;
+                        placeName = SariPlaces[counter];
+                    }
+                }
+            }
+        }
+        else if(nearestCIty == "Bojnourd") {
+            for(counter = 0; counter < BojnourdPlaces.length; counter++) {
+                if (location != null) {
+                    location.setLongitude(location.getLongitude());
+                    location.setLatitude(location.getLatitude());
+                    destLocation.setLatitude(BojnourdLatitudes[counter]);
+                    destLocation.setLongitude(BojnourdLongtitudes[counter]);
+                    placeDistance = location.distanceTo(destLocation);
+                    if (minPlaceDistance > placeDistance) {
+                        minPlaceDistance = placeDistance;
+                        placeName = BojnourdPlaces[counter];
+                    }
+                }
+            }
+        }
+        else if(nearestCIty == "Bushehr") {
+            for(counter = 0; counter < BushehrPlaces.length; counter++) {
+                if (location != null) {
+                    location.setLongitude(location.getLongitude());
+                    location.setLatitude(location.getLatitude());
+                    destLocation.setLatitude(BushehrLatitudes[counter]);
+                    destLocation.setLongitude(BushehrLongtitudes[counter]);
+                    placeDistance = location.distanceTo(destLocation);
+                    if (minPlaceDistance > placeDistance) {
+                        minPlaceDistance = placeDistance;
+                        placeName = BushehrPlaces[counter];
+                    }
+                }
+            }
+        }
+        else if(nearestCIty == "Birjand") {
+            for(counter = 0; counter < BirjandPlaces.length; counter++) {
+                if (location != null) {
+                    location.setLongitude(location.getLongitude());
+                    location.setLatitude(location.getLatitude());
+                    destLocation.setLatitude(BirjandLatitudes[counter]);
+                    destLocation.setLongitude(BirjandLongtitudes[counter]);
+                    placeDistance = location.distanceTo(destLocation);
+                    if (minPlaceDistance > placeDistance) {
+                        minPlaceDistance = placeDistance;
+                        placeName = BirjandPlaces[counter];
+                    }
+                }
+            }
+        }
+        else if(nearestCIty == "Ilam") {
+            for(counter = 0; counter < IlamPlaces.length; counter++) {
+                if (location != null) {
+                    location.setLongitude(location.getLongitude());
+                    location.setLatitude(location.getLatitude());
+                    destLocation.setLatitude(IlamLatitudes[counter]);
+                    destLocation.setLongitude(IlamLongtitudes[counter]);
+                    placeDistance = location.distanceTo(destLocation);
+                    if (minPlaceDistance > placeDistance) {
+                        minPlaceDistance = placeDistance;
+                        placeName = IlamPlaces[counter];
+                    }
+                }
+            }
+        }
+        else if(nearestCIty == "Shahrekord") {
+            for(counter = 0; counter < ShahrekordPlaces.length; counter++) {
+                if (location != null) {
+                    location.setLongitude(location.getLongitude());
+                    location.setLatitude(location.getLatitude());
+                    destLocation.setLatitude(ShahrekordLatitudes[counter]);
+                    destLocation.setLongitude(ShahrekordLongtitudes[counter]);
+                    placeDistance = location.distanceTo(destLocation);
+                    if (minPlaceDistance > placeDistance) {
+                        minPlaceDistance = placeDistance;
+                        placeName = ShahrekordPlaces[counter];
+                    }
+                }
+            }
+        }
+        else if(nearestCIty == "Semnan") {
+            for(counter = 0; counter < SemnanPlaces.length; counter++) {
+                if (location != null) {
+                    location.setLongitude(location.getLongitude());
+                    location.setLatitude(location.getLatitude());
+                    destLocation.setLatitude(SemnanLatitudes[counter]);
+                    destLocation.setLongitude(SemnanLongtitudes[counter]);
+                    placeDistance = location.distanceTo(destLocation);
+                    if (minPlaceDistance > placeDistance) {
+                        minPlaceDistance = placeDistance;
+                        placeName = SemnanPlaces[counter];
+                    }
+                }
+            }
+        }
+        else if(nearestCIty == "Yasuj") {
+            for(counter = 0; counter < YasujPlaces.length; counter++) {
+                if (location != null) {
+                    location.setLongitude(location.getLongitude());
+                    location.setLatitude(location.getLatitude());
+                    destLocation.setLatitude(YasujLatitudes[counter]);
+                    destLocation.setLongitude(YasujLongtitudes[counter]);
+                    placeDistance = location.distanceTo(destLocation);
+                    if (minPlaceDistance > placeDistance) {
+                        minPlaceDistance = placeDistance;
+                        placeName = YasujPlaces[counter];
+                    }
+                }
+            }
+        }
+        else if(nearestCIty == "Hamedan") {
+            for(counter = 0; counter < HamedanPlaces.length; counter++) {
+                if (location != null) {
+                    location.setLongitude(location.getLongitude());
+                    location.setLatitude(location.getLatitude());
+                    destLocation.setLatitude(HamedanLatitudes[counter]);
+                    destLocation.setLongitude(HamedanLongtitudes[counter]);
+                    placeDistance = location.distanceTo(destLocation);
+                    if (minPlaceDistance > placeDistance) {
+                        minPlaceDistance = placeDistance;
+                        placeName = HamedanPlaces[counter];
+                    }
+                }
+            }
         }
     }
 
