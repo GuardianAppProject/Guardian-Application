@@ -731,7 +731,7 @@ public class StatusCalculator {
         } else if(highwayTags == RoadInformation.HighwayTags.tertiary_link) {
             roadType_factor = 54;
         } else if(highwayTags == RoadInformation.HighwayTags.road) {
-            roadType_factor = 60;
+            roadType_factor = 68;
         }
 
         if(!oneWay) {
