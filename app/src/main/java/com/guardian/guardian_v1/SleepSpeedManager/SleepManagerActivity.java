@@ -2,13 +2,13 @@ package com.guardian.guardian_v1.SleepSpeedManager;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
+
 
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
+
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -83,6 +83,7 @@ public class SleepManagerActivity extends Activity {
         } else {
             minutes = wakeUpDate.getHours() * 60 + wakeUpDate.getMinutes() + 24 * 60 - sleepDate.getHours() * 60 - sleepDate.getMinutes();
         }
+        if(minutes<0) minutes=minutes*-1;
         if(minutes%60 == 0) {
             return minutes / 60 + " ساعت ";
         }
@@ -232,6 +233,14 @@ public class SleepManagerActivity extends Activity {
             Toast.makeText(this, "اطلاعات کافی موجود نیست!", Toast.LENGTH_SHORT).show();
             return;
         }
+        if(dates.get(0).getDay()==dates.get(1).getDay()){
+            int minute1= dates.get(0).getHours()*60 + dates.get(0).getMinutes();
+            int minute2= dates.get(1).getHours()*60 + dates.get(1).getMinutes();
+            if(Math.abs(minute1-minute2)<=15){
+                Toast.makeText(this, "اطلاعات کافی موجود نیست!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+        }
         setSleepTimeDate(dates.get(0));
         setWakeUpTimeDate(dates.get(1));
         changeTexts();
@@ -242,6 +251,14 @@ public class SleepManagerActivity extends Activity {
         if ((dates==null)||(dates.get(0).equals(dates.get(1)))) {
             Toast.makeText(this, "اطلاعات کافی موجود نیست!", Toast.LENGTH_SHORT).show();
             return;
+        }
+        if(dates.get(0).getDay()==dates.get(1).getDay()){
+            int minute1= dates.get(0).getHours()*60 + dates.get(0).getMinutes();
+            int minute2= dates.get(1).getHours()*60 + dates.get(1).getMinutes();
+            if(Math.abs(minute1-minute2)<=15){
+                Toast.makeText(this, "اطلاعات کافی موجود نیست!", Toast.LENGTH_SHORT).show();
+                return;
+            }
         }
         setSleepTimeDate(dates.get(0));
         setWakeUpTimeDate(dates.get(1));
