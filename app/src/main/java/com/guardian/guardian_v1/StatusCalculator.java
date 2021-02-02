@@ -809,7 +809,7 @@ public class StatusCalculator {
         double speed_factor = speedCalculator(staticUserSpeed, speedLimit, weatherType) * 3;
         double withoutStopDriving_factor = withoutStopDrivingCalculator(nonStop, totalDrive, totalTime, timeObj.getTimeHOUR(), timeObj.getTimeMINUTE()) * 3;
         double nearCities_factor = nearCitiesCalculator(distance) * 2;
-        double vibration_factor = 220;//vibrationCalculator(vibration) * 2.2;
+        double vibration_factor = vibrationCalculator(vibration) * 2.2;
         double acceleration_factor = accelerationCalculator(acceleration, weatherType) * 2.5;
         double month_factor = monthCalculator(solarCalendar.month) * 0.8;
         double traffic_factor = 0; // trafficCalculator() * 1;
