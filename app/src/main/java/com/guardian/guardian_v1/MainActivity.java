@@ -21,11 +21,12 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 
-import com.google.android.gms.maps.model.CameraPosition;
+//import com.google.android.gms.maps.model.CameraPosition;
 import com.guardian.guardian_v1.SleepSpeedManager.SleepSpeedDetectorService;
 import com.guardian.guardian_v1.SleepSpeedManager.UseMeNotification;
 import com.guardian.guardian_v1.Transmission.AverageWorker;
 import com.guardian.guardian_v1.Transmission.TokenChecker;
+import com.onesignal.OneSignal;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -38,6 +39,7 @@ import java.util.Date;
 public class MainActivity extends Activity {
 
     private static int TIME_OUT = 2500; //Time to launch the another activity
+    private static final String ONESIGNAL_APP_ID = "52708f3f-d26f-4739-9b0e-97093714a222";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +49,13 @@ public class MainActivity extends Activity {
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
                     WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         }
+
+        // Enable verbose OneSignal logging to debug issues if needed.
+        OneSignal.setLogLevel(OneSignal.LOG_LEVEL.VERBOSE, OneSignal.LOG_LEVEL.NONE);
+
+        // OneSignal Initialization
+        OneSignal.initWithContext(this);
+        OneSignal.setAppId(ONESIGNAL_APP_ID);
 
         Button retryButton = findViewById(R.id.retryButton);
 

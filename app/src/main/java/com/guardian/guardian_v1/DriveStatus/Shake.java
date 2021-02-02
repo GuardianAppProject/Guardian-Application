@@ -86,34 +86,34 @@ public class Shake {
                 yDifference = Math.abs(lastY - currentY);
                 zDifference = Math.abs(lastZ - currentZ);
 
-                if((xDifference > 6f && yDifference > 6f)
-                        || (xDifference > 6f && zDifference > 6f)
-                        || (yDifference > 6f && zDifference > 6f)) {
-                    Log.d("shake situation", Main.ShakeSituation.veryHighShake.toString());
-                    situation = Shake.ShakeSituation.veryHighShake;
-                }
-                else if ((xDifference > 5f && yDifference > 5f)
-                        || (xDifference > 5f && zDifference > 5f)
-                        || (yDifference > 5f && zDifference > 5f)) {
-                    Log.d("shake situation", Main.ShakeSituation.highShake.toString());
-                    situation = Shake.ShakeSituation.highShake;
-                }
-                else if ((xDifference > 3.9f && yDifference > 3.9f)
-                        || (xDifference > 3.9f && zDifference > 3.9f)
-                        || (yDifference > 3.9f && zDifference > 3.9f)) {
-                    Log.d("shake situation", Main.ShakeSituation.mediumShake.toString());
-                    situation = Shake.ShakeSituation.mediumShake;
-                }
-                else if ((xDifference > 2.8f && yDifference > 2.8f)
-                        || (xDifference > 2.8f && zDifference > 2.8f)
-                        || (yDifference > 2.8f && zDifference > 2.8f)) {
-                    Log.d("shake situation", Main.ShakeSituation.lowShake.toString());
-                    situation = Shake.ShakeSituation.lowShake;
-                }
-                else {
-                    Log.d("shake situation", Main.ShakeSituation.noShake.toString());
-                    situation = Shake.ShakeSituation.noShake;
-                }
+//                if((xDifference > 6f && yDifference > 6f)
+//                        || (xDifference > 6f && zDifference > 6f)
+//                        || (yDifference > 6f && zDifference > 6f)) {
+//                    Log.d("shake situation", Main.ShakeSituation.veryHighShake.toString());
+//                    situation = Shake.ShakeSituation.veryHighShake;
+//                }
+//                else if ((xDifference > 5f && yDifference > 5f)
+//                        || (xDifference > 5f && zDifference > 5f)
+//                        || (yDifference > 5f && zDifference > 5f)) {
+//                    Log.d("shake situation", Main.ShakeSituation.highShake.toString());
+//                    situation = Shake.ShakeSituation.highShake;
+//                }
+//                else if ((xDifference > 3.9f && yDifference > 3.9f)
+//                        || (xDifference > 3.9f && zDifference > 3.9f)
+//                        || (yDifference > 3.9f && zDifference > 3.9f)) {
+//                    Log.d("shake situation", Main.ShakeSituation.mediumShake.toString());
+//                    situation = Shake.ShakeSituation.mediumShake;
+//                }
+//                else if ((xDifference > 2.8f && yDifference > 2.8f)
+//                        || (xDifference > 2.8f && zDifference > 2.8f)
+//                        || (yDifference > 2.8f && zDifference > 2.8f)) {
+//                    Log.d("shake situation", Main.ShakeSituation.lowShake.toString());
+//                    situation = Shake.ShakeSituation.lowShake;
+//                }
+//                else {
+//                    Log.d("shake situation", Main.ShakeSituation.noShake.toString());
+//                    situation = Shake.ShakeSituation.noShake;
+//                }
 //                if((xDifference > 7f && yDifference > 7f)
 //                        || (xDifference > 7f && zDifference > 7f)
 //                        || (yDifference > 7f && zDifference > 7f)) {
