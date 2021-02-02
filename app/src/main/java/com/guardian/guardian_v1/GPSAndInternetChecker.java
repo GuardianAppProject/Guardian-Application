@@ -10,23 +10,25 @@ import android.net.NetworkInfo;
 import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 
 public class GPSAndInternetChecker {
-    public static boolean check(Context context){
+    public static boolean check(Context context, double height, double width){
         if (! isGPSOn(context)){
-            showGPSAlert(context);
+            showGPSAlert(context, height, width);
             return false;
         }
         if(!isInternetConnected(context)) {
-            showInternetAlert(context);
+            showInternetAlert(context, height, width);
             return false;
         }
         return true;
     }
 
 
-    public static void showInternetAlert(final Context context){
+    public static void showInternetAlert(final Context context, Double height, Double width){
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         View view = LayoutInflater.from(context).inflate(R.layout.internet_alert_dialog, null);
 
@@ -45,8 +47,20 @@ public class GPSAndInternetChecker {
             }
         });
 
-        builder.setView(view);
-        builder.show();
+//        builder.setView(view);
+        AlertDialog alertDialog = builder.create();
+        alertDialog.setView(view, 0, 0, 0, 0);
+        alertDialog.setCanceledOnTouchOutside(true);
+        alertDialog.show();
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+
+        lp.copyFrom(alertDialog.getWindow().getAttributes());
+        lp.width = 700;
+        lp.height = 800;
+        lp.x= (int)0;
+        lp.y=(int)(height * 1/7);
+        alertDialog.getWindow().setAttributes(lp);
+
 
 //        builder.setPositiveButton("اینترنت Wi-Fi", new DialogInterface.OnClickListener() {
 //            @Override
@@ -84,7 +98,7 @@ public class GPSAndInternetChecker {
 
     }
 
-    public static void showGPSAlert(final Context context){
+    public static void showGPSAlert(final Context context, Double height, Double width){
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         View view = LayoutInflater.from(context).inflate(R.layout.gps_alert_dialog, null);
@@ -97,8 +111,18 @@ public class GPSAndInternetChecker {
             }
         });
 
-        builder.setView(view);
-        builder.show();
+        //        builder.setView(view);
+        AlertDialog alertDialog = builder.create();
+        alertDialog.setView(view, 0, 0, 0, 0);
+        alertDialog.show();
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+
+        lp.copyFrom(alertDialog.getWindow().getAttributes());
+        lp.width = 700;
+        lp.height = 800;
+        lp.x= (int)0;
+        lp.y=(int)(height * 1/7);
+        alertDialog.getWindow().setAttributes(lp);
 
 
 //        new AlertDialog.Builder(context)

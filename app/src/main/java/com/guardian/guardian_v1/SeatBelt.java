@@ -2,6 +2,7 @@ package com.guardian.guardian_v1;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -9,6 +10,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.guardian.guardian_v1.Transmission.TokenChecker;
@@ -16,7 +18,7 @@ import com.guardian.guardian_v1.Transmission.TokenChecker;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 
-public class SeatBelt extends AppCompatActivity {
+public class SeatBelt extends Activity {
 
     private static int TIME_OUT = 3000; //Time to launch the another activity
 
@@ -25,6 +27,10 @@ public class SeatBelt extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seat_belt);
         TokenChecker.beginCheck(read(),this);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+                    WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        }
 
 
 

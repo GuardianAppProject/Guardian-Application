@@ -5,6 +5,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -13,9 +14,11 @@ import android.os.Build;
 import android.os.Bundle;
 
 
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -43,7 +46,7 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 
-public class SleepManagerActivity extends AppCompatActivity {
+public class SleepManagerActivity extends Activity {
 
     TextView sleepTime;
     TextView wakeUpTime;
@@ -58,6 +61,12 @@ public class SleepManagerActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sleep_manager);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+                    WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        }
+        recordAuto_firstTime();
+
         if(isThereSleepDataFile(this)  == false){
             makeSleepDataFile(this);
         }else{
@@ -74,7 +83,10 @@ public class SleepManagerActivity extends AppCompatActivity {
         } else {
             minutes = wakeUpDate.getHours() * 60 + wakeUpDate.getMinutes() + 24 * 60 - sleepDate.getHours() * 60 - sleepDate.getMinutes();
         }
-        return minutes / 60 + "H:" + minutes % 60 + "M";
+        if(minutes%60 == 0) {
+            return minutes / 60 + " ساعت ";
+        }
+        return minutes / 60 + " ساعت و " + minutes % 60 + " دقیقه ";
     }
 
     public ArrayList<Date> generateToDate(int timeStart, int timeEnd) {
@@ -160,23 +172,52 @@ public class SleepManagerActivity extends AppCompatActivity {
 
         View dialogView = LayoutInflater.from(this).inflate(R.layout.sleep_sureness_alert, null);
 
+        AlertDialog alertDialog = builder.create();
+        alertDialog.setView(dialogView, 0, 0, 0, 0);
+        alertDialog.setCanceledOnTouchOutside(true);
+        alertDialog.show();
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        int height = displayMetrics.heightPixels;
+        int width = displayMetrics.widthPixels;
+
+        lp.copyFrom(alertDialog.getWindow().getAttributes());
+        lp.width = 700;
+        lp.height = 800;
+        lp.x= (int)0;
+        lp.y=(int)(height /7);
+        alertDialog.getWindow().setAttributes(lp);
+
+
         Button yesButton = dialogView.findViewById(R.id.yesButton);
         yesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                writeInfoToFile(SleepManagerActivity.this,sleepTimeDate,wakeUpTimeDate);
+                alertDialog.dismiss();
                Intent intent = new Intent(SleepManagerActivity.this, SelectNavigation.class);
                startActivity(intent);
                finish();
             }
         });
-       builder.setNeutralButton("خروج", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
+        Button noButton = dialogView.findViewById(R.id.noButton);
+        noButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.cancel();
             }
         });
-        builder.setView(dialogView);
-        builder.show();
+//       builder.setNeutralButton("خروج", new DialogInterface.OnClickListener() {
+//            public void onClick(DialogInterface dialog, int which) {
+//                dialog.cancel();
+//            }
+//        });
+//        builder.setView(dialogView);
+//        builder.show();
+
+
     }
 
     public void changeTexts() {
@@ -186,6 +227,17 @@ public class SleepManagerActivity extends AppCompatActivity {
     }
 
     public void recordAuto(View view) {
+        ArrayList<Date> dates = SleepSpeedDetectorService.getSleepTime();
+        if ((dates==null)||(dates.get(0).equals(dates.get(1)))) {
+            Toast.makeText(this, "اطلاعات کافی موجود نیست!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        setSleepTimeDate(dates.get(0));
+        setWakeUpTimeDate(dates.get(1));
+        changeTexts();
+    }
+
+    public void recordAuto_firstTime() {
         ArrayList<Date> dates = SleepSpeedDetectorService.getSleepTime();
         if ((dates==null)||(dates.get(0).equals(dates.get(1)))) {
             Toast.makeText(this, "اطلاعات کافی موجود نیست!", Toast.LENGTH_SHORT).show();

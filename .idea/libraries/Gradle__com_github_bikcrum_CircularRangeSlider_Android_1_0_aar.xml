@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: com.github.bikcrum:CircularRangeSlider-Android:1.0@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/2feb80616469cb4440c03a80c4383ccb/jetified-CircularRangeSlider-Android-1.0/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/2feb80616469cb4440c03a80c4383ccb/jetified-CircularRangeSlider-Android-1.0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/2feb80616469cb4440c03a80c4383ccb/jetified-CircularRangeSlider-Android-1.0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/27762aa4b9fb507ba68e98d3633f21d8/jetified-CircularRangeSlider-Android-1.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/27762aa4b9fb507ba68e98d3633f21d8/jetified-CircularRangeSlider-Android-1.0/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/27762aa4b9fb507ba68e98d3633f21d8/jetified-CircularRangeSlider-Android-1.0/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

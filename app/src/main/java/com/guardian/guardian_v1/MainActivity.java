@@ -1,6 +1,7 @@
 package com.guardian.guardian_v1;
 
 import android.animation.ObjectAnimator;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.os.Handler;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -27,7 +29,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
 
     private static int TIME_OUT = 2500; //Time to launch the another activity
 
@@ -35,13 +37,21 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+                    WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        }
 
         Button retryButton = findViewById(R.id.retryButton);
 
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        int height = displayMetrics.heightPixels;
+        int width = displayMetrics.widthPixels;
+
         retryButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if(!GPSAndInternetChecker.check(MainActivity.this)) {
+                if(!GPSAndInternetChecker.check(MainActivity.this, height, width)) {
                     retryButton.setVisibility(View.VISIBLE);
                 } else {
 
@@ -51,9 +61,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        if(!GPSAndInternetChecker.check(MainActivity.this)) {
+        if(!GPSAndInternetChecker.check(MainActivity.this, height, width)) {
             retryButton.setVisibility(View.VISIBLE);
-
         }
 
         if(retryButton.getVisibility()==View.INVISIBLE) {
@@ -103,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
             Main.set_sound_repetition(sound_notif);
             Log.d("SOUND", "sound" +Main.get_sound_repetition());
         } else {
-            Main.set_sound_repetition(0);
+            Main.set_sound_repetition(20);
         }
 
 

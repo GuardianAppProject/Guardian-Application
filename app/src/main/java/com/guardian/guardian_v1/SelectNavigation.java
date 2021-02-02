@@ -1,10 +1,13 @@
 package com.guardian.guardian_v1;
 
 import android.animation.ValueAnimator;
+import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -75,7 +78,7 @@ import com.guardian.guardian_v1.Transmission.AverageWorker;
 //import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconImage;
 //import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconOffset;
 //
-public class SelectNavigation extends AppCompatActivity {//implements OnMapReadyCallback, MapboxMap.OnMapClickListener, PermissionsListener {
+public class SelectNavigation extends Activity {//implements OnMapReadyCallback, MapboxMap.OnMapClickListener, PermissionsListener {
 
     //
 //    // variables for adding location layer
@@ -113,6 +116,10 @@ public class SelectNavigation extends AppCompatActivity {//implements OnMapReady
         super.onCreate(savedInstanceState);
 //        Mapbox.getInstance(this, getString(R.string.access_token));
         setContentView(R.layout.activity_select_navigation);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+                    WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        }
 
 
 //        mapView = findViewById(R.id.mapView);
@@ -139,7 +146,13 @@ public class SelectNavigation extends AppCompatActivity {//implements OnMapReady
 //
         TextView allTimeAvg = (TextView) findViewById(R.id.tv);
 
-        double x = Double.parseDouble(AverageWorker.getAverage());
+        String s = AverageWorker.getAverage();
+        double x;
+        if(isNumeric(s)) {
+            x = Double.parseDouble(AverageWorker.getAverage());
+        } else {
+            x = 100;
+        }
         counter = (int) Math.floor(x);
 //
 //                            allTimeAvg.setText("" + counter + "%");
@@ -199,6 +212,19 @@ public class SelectNavigation extends AppCompatActivity {//implements OnMapReady
             }
         }, 13000);
     }
+
+    public static boolean isNumeric(String strNum) {
+        if (strNum == null) {
+            return false;
+        }
+        try {
+            double d = Double.parseDouble(strNum);
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        return true;
+    }
+
 }
 //
 //

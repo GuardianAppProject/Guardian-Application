@@ -66,6 +66,7 @@
 
 
                 <TextView
+                    android:textColor="#A1000000"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/signUp_subtitle1"
@@ -104,6 +105,7 @@
 
 
                         <TextView
+                            android:textColor="#A1000000"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/signUp_subtitle2"
@@ -144,6 +146,7 @@
 
 
                 <TextView
+                    android:textColor="#A1000000"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/singUp_subtitle3"

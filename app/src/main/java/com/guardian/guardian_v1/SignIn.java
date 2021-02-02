@@ -2,10 +2,13 @@ package com.guardian.guardian_v1;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,7 +31,7 @@ import java.io.OutputStreamWriter;
 
 import static java.lang.Thread.sleep;
 
-public class SignIn extends AppCompatActivity {
+public class SignIn extends Activity {
 
     LinearLayout signInProgress;
     private boolean hidePassword = true;
@@ -37,6 +40,11 @@ public class SignIn extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+                    WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        }
+
 
         EditText edittext = (EditText)findViewById(R.id.password);
         edittext.setTransformationMethod(new AsteriskPasswordTransformationMethod());

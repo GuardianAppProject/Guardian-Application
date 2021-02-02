@@ -2,10 +2,13 @@ package com.guardian.guardian_v1;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,7 +24,7 @@ import com.guardian.guardian_v1.Transmission.TokenChecker;
 
 import static java.lang.Thread.sleep;
 
-public class SignUp extends AppCompatActivity {
+public class SignUp extends Activity {
 
     private static int TIME_OUT = 2500; //Time to launch the another activity
     private static int TIME_OUT2 = 3000;
@@ -44,6 +47,11 @@ public class SignUp extends AppCompatActivity {
         }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+                    WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        }
+
 
         EditText edittext = (EditText)findViewById(R.id.password);
         edittext.setTransformationMethod(new AsteriskPasswordTransformationMethod());

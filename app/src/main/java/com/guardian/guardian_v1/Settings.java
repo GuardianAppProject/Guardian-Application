@@ -3,27 +3,20 @@ package com.guardian.guardian_v1;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
-import android.widget.ImageButton;
 import android.widget.SeekBar;
-import android.widget.Switch;
 import android.widget.TextView;
 
 //import com.mapbox.mapboxsdk.maps.Style;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
-public class Setting extends AppCompatActivity {
+public class Settings extends AppCompatActivity {
 
     SeekBar seekBar;
     TextView textView;
@@ -32,29 +25,32 @@ public class Setting extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_setting);
+        setContentView(R.layout.activity_settings);
 
-        textView = findViewById(R.id.textView);
+        textView = findViewById(R.id.textView10);
         seekBar = findViewById(R.id.seekBar);
         int rep = Main.get_sound_repetition();
         if(rep <= 1) {
             current = 100;
             textView.setText("همیشه");
         } else if(rep <= 2) {
-            current = 75;
+            current = 85;
             textView.setText("هر دقیقه");
         } else if(rep <= 4) {
-            current = 65;
+            current = 75;
             textView.setText("هر ۲ دقیقه یکبار");
         } else if(rep <= 6) {
-            current = 55;
+            current = 65;
             textView.setText("هر ۳ دقیقه یکبار");
         } else if(rep <= 10) {
-            current = 45;
+            current = 55;
             textView.setText("هر ۵ دقیقه یکبار");
         } else if(rep <= 20) {
-            current = 35;
+            current = 45;
             textView.setText("هر ۱۰ دقیقه یکبار");
+        } else if(rep <= 40) {
+            current = 35;
+            textView.setText("هر ۲۰ دقیقه یکبار");
         } else if(rep <= 60) {
             current = 25;
             textView.setText("هر نیم ساعت یکبار");
@@ -81,18 +77,21 @@ public class Setting extends AppCompatActivity {
                     textView.setText("هر نیم ساعت یکبار");
                     Main.set_sound_repetition(60);
                 } else if(current <= 40) {
+                    textView.setText("هر ۲۰ دقیقه یکبار");
+                    Main.set_sound_repetition(40);
+                } else if(current <= 50) {
                     textView.setText("هر ۱۰ دقیقه یکبار");
                     Main.set_sound_repetition(20);
-                } else if(current <= 50) {
+                } else if(current <= 60) {
                     textView.setText("هر ۵ دقیقه یکبار");
                     Main.set_sound_repetition(10);
-                } else if(current <= 60) {
+                } else if(current <= 70) {
                     textView.setText("هر ۳ دقیقه یکبار");
                     Main.set_sound_repetition(6);
-                } else if(current <= 70) {
+                } else if(current <= 80) {
                     textView.setText("هر ۲ دقیقه یکبار");
                     Main.set_sound_repetition(4);
-                } else if(current <= 80) {
+                } else if(current <= 90) {
                     textView.setText("هر دقیقه");
                     Main.set_sound_repetition(2);
                 } else if(current <= 100) {
@@ -136,7 +135,7 @@ public class Setting extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(Setting.this, Main.class);
+                Intent i = new Intent(Settings.this, Main.class);
                 startActivity(i);
                 finish();
             }
@@ -170,13 +169,13 @@ public class Setting extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent i = new Intent(Setting.this, Main.class);
+        Intent i = new Intent(Settings.this, Main.class);
         startActivity(i);
         finish();
     }
 
     public void clickOnBtn(View v) {
-        Intent i = new Intent(Setting.this, Main.class);
+        Intent i = new Intent(Settings.this, Main.class);
         startActivity(i);
         finish();
     }

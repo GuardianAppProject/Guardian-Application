@@ -1,7 +1,6 @@
 package com.guardian.guardian_v1;
 
 import android.Manifest;
-import android.animation.ObjectAnimator;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
@@ -30,7 +29,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
@@ -38,7 +37,6 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.SeekBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -119,13 +117,14 @@ import android.widget.Toast;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.guardian.guardian_v1.SleepSpeedManager.SleepSpeedDetectorService;
 import com.squareup.picasso.Picasso;
 
 
 //
 
 
-public class Main extends FragmentActivity implements SensorEventListener, OnMapReadyCallback { // LocationListener
+public class Main extends FragmentActivity implements SensorEventListener, OnMapReadyCallback, LocationListener { // LocationListener
 
 //    ///
 //    private final int REQUEST_PERMISSIONS_REQUEST_CODE = 1;
@@ -254,17 +253,17 @@ public class Main extends FragmentActivity implements SensorEventListener, OnMap
 
     private GoogleMap mMap;
 
-//    private GoogleMap.OnMyLocationChangeListener myLocationChangeListener = new GoogleMap.OnMyLocationChangeListener() {
-//        @Override
-//        public void onMyLocationChange(Location location) {
-//            LatLng loc = new LatLng(location.getLatitude(), location.getLongitude());
-////                mMarker = mMap.addMarker(new MarkerOptions().position(loc));
-//            if (mMap != null) {
-//                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(loc, 15.4f));
-//                updateCameraBearing(mMap,location);
-//            }
-//        }
-//    };
+    private GoogleMap.OnMyLocationChangeListener myLocationChangeListener = new GoogleMap.OnMyLocationChangeListener() {
+        @Override
+        public void onMyLocationChange(Location location) {
+            LatLng loc = new LatLng(location.getLatitude(), location.getLongitude());
+//                mMarker = mMap.addMarker(new MarkerOptions().position(loc));
+            if (mMap != null) {
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(loc, 15.4f));
+                updateCameraBearing(mMap,location);
+            }
+        }
+    };
 
     public static void set_sound_repetition(int SOUND_REPETITION) {
         Main.SOUND_REPETITION = SOUND_REPETITION;
@@ -286,11 +285,13 @@ public class Main extends FragmentActivity implements SensorEventListener, OnMap
             googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
         }
 
+     Handler ha;
+    Runnable haR;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 //        setTheme(R.style.NavigationViewLight);
         super.onCreate(savedInstanceState);
-
+//        SleepSpeedDetectorService.cntx = this;
 
         audio = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 
@@ -434,8 +435,9 @@ public class Main extends FragmentActivity implements SensorEventListener, OnMap
         statusCalculator = new StatusCalculator(this);
 
         callAlgorithmLogic();
-        final Handler ha = new Handler();
-        ha.postDelayed(new Runnable() {
+        //final Handler
+        ha = new Handler();
+        ha.postDelayed(haR = new Runnable() {
 
             @Override
             public void run() {
@@ -618,7 +620,7 @@ public class Main extends FragmentActivity implements SensorEventListener, OnMap
 //                finish();
                 break;
             case R.id.settings:
-                Intent i4 = new Intent(Main.this, Setting.class);
+                Intent i4 = new Intent(Main.this, Settings.class);
                 startActivity(i4);
 //                finish();
                 break;
@@ -707,10 +709,7 @@ public class Main extends FragmentActivity implements SensorEventListener, OnMap
             algorithmBackground.setImageResource(R.drawable.circle_gradient_red);
         }
 
-        DriveAlertHandler.passCycle();
-
-
-        if((soundRepetition==0 || percentage<=40) && (!(percentage<=45 && dangerFlag==0)) || !dangerModeOn) {
+        if((soundRepetition==0 || percentage<=40) && ((!(percentage<=45 && dangerFlag==0)) || !dangerModeOn)) {
             int max = audio.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
             if((volume_media - 0.5) >= audio.getStreamVolume(AudioManager.STREAM_MUSIC) && secondSound){
                 if(audio.getStreamVolume(AudioManager.STREAM_MUSIC) < (int)(0.65 * max)) {
@@ -740,6 +739,7 @@ public class Main extends FragmentActivity implements SensorEventListener, OnMap
                 soundRepetition--;
         }
         firstSound = false;
+        DriveAlertHandler.passCycle();
 
         ImageView warningImg = (ImageView) findViewById(R.id.warningImg);
         RelativeLayout dangerLayout = (RelativeLayout) findViewById(R.id.dangerLayout);
@@ -1435,7 +1435,7 @@ public class Main extends FragmentActivity implements SensorEventListener, OnMap
                 }
             }
         }
-//        mMap.setOnMyLocationChangeListener(myLocationChangeListener);
+        mMap.setOnMyLocationChangeListener(myLocationChangeListener);
 
 
         locationButton = ((View) findViewById(Integer.parseInt("1")).getParent()).findViewById(Integer.parseInt("2"));
@@ -1476,26 +1476,46 @@ public class Main extends FragmentActivity implements SensorEventListener, OnMap
         //super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
-//    @Override
-//    public void onLocationChanged(Location location) {
-//        LatLng loc = new LatLng(location.getLatitude(), location.getLongitude());
-//        CameraPosition cameraPosition = new CameraPosition.Builder().target(loc).zoom(15.2f).build();
-//        mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
-//    }
+    @Override
+    public void onLocationChanged(Location location) {
+        LatLng loc = new LatLng(location.getLatitude(), location.getLongitude());
+        CameraPosition cameraPosition = new CameraPosition.Builder().target(loc).zoom(15.2f).build();
+        mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+    }
 
-//    @Override
-//    public void onStatusChanged(String provider, int status, Bundle extras) { }
-//
-//    @Override
-//    public void onProviderEnabled(String provider) { }
-//
-//    @Override
-//    public void onProviderDisabled(String provider) { }
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) { }
+
+    @Override
+    public void onProviderEnabled(String provider) { }
+
+    @Override
+    public void onProviderDisabled(String provider) { }
 
     @Override
     public void onBackPressed() {
         ViewDialog alert = new ViewDialog();
         alert.showDialog(Main.this, "آیا مطمئن هستید می خواهید مسیریابی را لغو کنید؟", Main.this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d("destory", "destroyed");
+//        ha.removeCallbacksAndMessages(null);
+//        ha.removeCallbacksAndMessages(null);
+        Main.this.finish();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            startForegroundService(new Intent(this, SleepSpeedDetectorService.class));
+        }else{
+            startService(new Intent(this, SleepSpeedDetectorService.class));
+        }
+        System.exit(0);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            startForegroundService(new Intent(this, SleepSpeedDetectorService.class));
+        }else{
+            startService(new Intent(this, SleepSpeedDetectorService.class));
+        }
     }
 }
 

@@ -19,8 +19,6 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 
-import com.guardian.guardian_v1.Setting;
-
 public class GPSTracker extends Service implements LocationListener {
 
     private Context context;

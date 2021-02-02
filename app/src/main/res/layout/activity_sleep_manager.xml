@@ -33,15 +33,16 @@
 
 
     <TextView
+        android:textColor="#90000000"
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="34dp"
         android:fontFamily="@font/iran_sans"
         android:gravity="center_horizontal"
         android:lines="2"
         android:paddingLeft="50dp"
         android:paddingRight="50dp"
+        app:layout_constraintVertical_bias="0.75"
         android:text="لطفا برای سلامت خودتان میزان خواب خود را به دقت وارد کنید."
         android:textAlignment="center"
         android:textSize="18sp"
@@ -54,29 +55,29 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="410dp"
-        android:layout_height="300dp"
+        android:layout_width="390dp"
+        android:layout_height="260dp"
         android:src="@drawable/clock_icon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.373" />
+        app:layout_constraintVertical_bias="0.45" />
 
     <com.bikcrum.circularrangeslider.CircularRangeSlider
         android:id="@+id/clock"
-        android:layout_width="227dp"
-        android:layout_height="249dp"
+        android:layout_width="238dp"
+        android:layout_height="204dp"
         app:axisColor="#7E7E7E"
-        app:borderColor="#7E7E7E"
+        app:borderColor="#F6F6F6"
         app:circleColor="#F6F6F6"
         app:labelColor="#000000"
         app:layout_constraintBottom_toBottomOf="@+id/imageView2"
         app:layout_constraintEnd_toEndOf="@+id/imageView2"
         app:layout_constraintStart_toStartOf="@+id/imageView2"
         app:layout_constraintTop_toTopOf="@+id/imageView2"
-        app:layout_constraintVertical_bias="0.313"
-        app:layout_constraintHorizontal_bias="0.75"
+        app:layout_constraintVertical_bias="0.369"
+        app:layout_constraintHorizontal_bias="0.77"
         app:progressColor="#839BF8"
         app:startIndexStepColor="#839BF8" />
 
@@ -92,7 +93,7 @@
         <Button
             android:id="@+id/button2"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="0.4"
             android:background="#F2F2F2"
             android:fontFamily="@font/iran_sans"
@@ -110,7 +111,7 @@
 
         <Button
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="0.6"
             android:background="#F2F2F2"
             android:fontFamily="@font/iran_sans"
@@ -133,20 +134,22 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView2">
 
         <TextView
+            android:textColor="#90000000"
             android:id="@+id/wakeUpTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:layout_marginRight="26dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="13dp"
             android:fontFamily="@font/iran_sans"
             android:text="ساعت بیدارشدن:" />
 
         <TextView
+            android:textColor="#90000000"
             android:id="@+id/sleepTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="26dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginLeft="13dp"
+            android:layout_marginTop="20dp"
             android:fontFamily="@font/iran_sans"
             android:text="ساعت خواب:" />
 
@@ -154,12 +157,14 @@
 
 
     <TextView
+        android:textColor="#0074D9"
         android:id="@+id/totalSleep"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="22dp"
         android:fontFamily="@font/iran_sans"
-        android:text="میزان خواب:"
+        android:text="میزان خواب"
+        android:textSize="17sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayoutContainer" />

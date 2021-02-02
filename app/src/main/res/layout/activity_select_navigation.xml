@@ -153,6 +153,7 @@
                     android:paddingTop="6dp"> <!-- height: 90  -->
 
                     <TextView
+                        android:textColor="#8B000000"
                         android:id="@+id/textView3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -195,6 +196,7 @@
                         android:src="@drawable/circle_gradient_green" />
 
                     <TextView
+                        android:textColor="#8B000000"
                         android:id="@+id/tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -289,6 +291,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:textColor="#99000000"
                     android:id="@+id/tipText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -333,14 +336,14 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    <com.google.android.material.navigation.NavigationView
-        android:id="@+id/nvView2"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:background="@android:color/white"
-        app:menu="@menu/drawer_view"
-        app:headerLayout="@layout/nav_header"/>
+<!--    <com.google.android.material.navigation.NavigationView-->
+<!--        android:id="@+id/nvView2"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_gravity="start"-->
+<!--        android:background="@android:color/white"-->
+<!--        app:menu="@menu/drawer_view"-->
+<!--        app:headerLayout="@layout/nav_header"/>-->
 
 
 

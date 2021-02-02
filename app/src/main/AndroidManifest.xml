@@ -24,17 +24,17 @@
         android:roundIcon="@drawable/blue"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Setting"></activity>
+        <activity android:name=".Settings"></activity>
         <activity android:name=".Info" />
         <activity android:name=".Support" />
         <activity android:name=".MyAccount" />
-        <activity android:name=".SelectNavigation" />
-        <activity android:name=".SignIn" />
-        <activity android:name=".SeatBelt" />
+        <activity android:name=".SelectNavigation" android:theme="@android:style/Theme.NoTitleBar"/>
+        <activity android:name=".SignIn" android:theme="@android:style/Theme.NoTitleBar"/>
+        <activity android:name=".SeatBelt" android:theme="@android:style/Theme.NoTitleBar" />
         <activity android:name=".Main" android:launchMode="singleTask"></activity>
-        <activity android:name=".SignUp" />
-        <activity android:name=".SleepSpeedManager.SleepManagerActivity"/>
-        <activity android:name=".MainActivity">
+        <activity android:name=".SignUp" android:theme="@android:style/Theme.NoTitleBar" />
+        <activity android:name=".SleepSpeedManager.SleepManagerActivity" android:theme="@android:style/Theme.NoTitleBar"/>
+        <activity android:name=".MainActivity" android:theme="@android:style/Theme.NoTitleBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

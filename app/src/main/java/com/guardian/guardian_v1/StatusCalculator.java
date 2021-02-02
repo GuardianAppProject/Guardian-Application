@@ -216,7 +216,7 @@ public class StatusCalculator {
 
     public double accelerationCalculator(double userAcceleration, Weather.WeatherType weatherType) {
 
-        double standardAcceleration = 4.9;
+        double standardAcceleration = 5.8;
 
         if(weatherType==Weather.WeatherType.Thunderstorm) {
             standardAcceleration -= 1.45;
@@ -473,7 +473,8 @@ public class StatusCalculator {
 
     public double weatherCalculator(double userTemperature, double userWindSpeed, Weather.WeatherType weatherType) {
 
-        double weather_factor = 0;
+        Log.d("Weather", "" + weatherType);
+        double weather_factor = 80;
         if(weatherType==Weather.WeatherType.Thunderstorm) {
             weather_factor = 60;
         } else if(weatherType==Weather.WeatherType.Drizzle) {
@@ -504,6 +505,8 @@ public class StatusCalculator {
             weather_factor = 58;
         } else if(weatherType==Weather.WeatherType.Tornado) {
             weather_factor = 58;
+        } else {
+            return 100;
         }
 
         if(userTemperature < -20) {
@@ -540,7 +543,6 @@ public class StatusCalculator {
     }
 
     public double withoutStopDrivingCalculator(double userWithoutStopDriving, double userTotalDriving, double userTotalRest, double userTimeHOUR, double userTimeMINUTE) {
-
 
         Log.d("wstop", "userWithoutStopDriving" + userWithoutStopDriving + "userTotalDriving" + userTotalDriving + "userTotalRest" + userTotalRest
         + "usermin" + userTimeMINUTE + "userho" + userTimeHOUR);
@@ -699,7 +701,8 @@ public class StatusCalculator {
 
     public double roadTypeCalculator(RoadInformation.HighwayTags highwayTags, double userRoadLanes, boolean oneWay) {
 
-        double roadType_factor = 0;
+        Log.d("Road", "" + highwayTags);
+        double roadType_factor = 60;
         if(highwayTags == RoadInformation.HighwayTags.motorway) {
             roadType_factor = 100;
         } else if(highwayTags == RoadInformation.HighwayTags.trunk) {
@@ -723,33 +726,33 @@ public class StatusCalculator {
         } else if(highwayTags == RoadInformation.HighwayTags.secondary_link) {
             roadType_factor = 65;
         } else if(highwayTags == RoadInformation.HighwayTags.tertiary_link) {
-            roadType_factor = 40;
+            roadType_factor = 54;
         } else if(highwayTags == RoadInformation.HighwayTags.road) {
-            roadType_factor = 30;
+            roadType_factor = 60;
         }
 
         if(!oneWay) {
-            roadType_factor *= 0.8;
+            roadType_factor *= 0.95;
         }
 
         double roadTypeCoefficient = 1;
         if(userRoadLanes >= 5) {
            //
         } else if(userRoadLanes >= 4) {
-            roadTypeCoefficient = 0.98;
+            //
         } else if(userRoadLanes >= 3) {
-            roadTypeCoefficient = 0.9;
+            //
         } else if(userRoadLanes >= 2) {
-            roadTypeCoefficient = 0.85;
+            roadTypeCoefficient = 0.97;
         } else {
-            roadTypeCoefficient = 0.75;
+            roadTypeCoefficient = 0.95;
         }
         roadType_factor *= roadTypeCoefficient;
 
         return roadType_factor;
     }
 
-    double weather_factor = 0;
+    double weather_factor = 85 * 2;
     Weather.WeatherType weatherType;
     public void setWeather_factor() {
         this.weather_factor = weather_factor;
@@ -806,7 +809,7 @@ public class StatusCalculator {
         double speed_factor = speedCalculator(staticUserSpeed, speedLimit, weatherType) * 3;
         double withoutStopDriving_factor = withoutStopDrivingCalculator(nonStop, totalDrive, totalTime, timeObj.getTimeHOUR(), timeObj.getTimeMINUTE()) * 3;
         double nearCities_factor = nearCitiesCalculator(distance) * 2;
-        double vibration_factor = vibrationCalculator(vibration) * 2;
+        double vibration_factor = 220;//vibrationCalculator(vibration) * 2.2;
         double acceleration_factor = accelerationCalculator(acceleration, weatherType) * 2.5;
         double month_factor = monthCalculator(solarCalendar.month) * 0.8;
         double traffic_factor = 0; // trafficCalculator() * 1;
@@ -814,16 +817,17 @@ public class StatusCalculator {
         Log.d("drive status", "sleep: " + sleep_factor + " + time: " + time_factor +
         "+ speed: " + speed_factor + "+ wihtoutstop: " + withoutStopDriving_factor + " + nearcity: " + nearCities_factor + "+ vibration: "
                         + vibration_factor +  " + wheather" + weather_factor + " + accelration: " + acceleration_factor + "+ month: " + month_factor + " + roadtype: " + roadType_factor);
+
         sleepAlert(sleep_factor/3);
         speedAlert(speed_factor/3);
         timeAlert(time_factor/3);
         withoutStopAlert(withoutStopDriving_factor/3);
-        weatherAlert(weather_factor);
+        weatherAlert(weather_factor/2);
         nearCitiesAlert(nearCities_factor/2);
-        vibrationAlert(vibration_factor/2);
+        vibrationAlert(vibration_factor/2.2);
         accelerationAlert(acceleration_factor/2.5);
         monthAlert(month_factor/0.8);
-        trafficAlert(traffic_factor);
+//        trafficAlert(traffic_factor);
         roadTypeAlert(roadType_factor);
 
         double average = 0;
@@ -844,7 +848,7 @@ public class StatusCalculator {
                 + speed_factor + withoutStopDriving_factor
                 + weather_factor + nearCities_factor
                 + vibration_factor + acceleration_factor
-                + month_factor + traffic_factor + roadType_factor) / 21.3;
+                + month_factor + traffic_factor + roadType_factor) / 22.5;
 
         if(cycle == 10) {
             double sleep_save = calculateAverage(sleep_data);
@@ -893,6 +897,9 @@ public class StatusCalculator {
         traffic_data.add(traffic_raw);
         roadType_data.add(roadType_raw);
 
+        if(average > 100) {
+            average = 100;
+        }
         return average;
     }
 
@@ -979,6 +986,8 @@ public class StatusCalculator {
         } else if(sleep_factor <= 65) {
             sleep_alert = "بهتر است در اولین فرصت کمی استراحت کنید.";
             DriveAlertHandler.sleep_func(sleep_alert, 1, false, DriveAlertHandler.Type.SLEEP, "sleep_1");
+        } else {
+            DriveAlertHandler.sleep_func("", 0, false, DriveAlertHandler.Type.SLEEP, "");
         }
         return sleep_alert;
     }
@@ -995,6 +1004,8 @@ public class StatusCalculator {
         } else if(speed_factor <= 65) {
             speed_alert = "لطفا کمی از سرعت خود بکاهید.";
             DriveAlertHandler.speed_func(speed_alert, 1, false, DriveAlertHandler.Type.SPEED, "speed_1");
+        } else {
+            DriveAlertHandler.speed_func("", 0, false, DriveAlertHandler.Type.SPEED, "");
         }
         return speed_alert;
     }
@@ -1011,6 +1022,8 @@ public class StatusCalculator {
         } else if(acceleration_factor <= 72) {
             acceleration_alert = "کمی در افزایش و کاهش سرعت دقت کنید.";
             DriveAlertHandler.acceleration_func(acceleration_alert, 1, false, DriveAlertHandler.Type.ACCELERATION, "acceleration_1");
+        } else {
+            DriveAlertHandler.acceleration_func("", 0, false, DriveAlertHandler.Type.ACCELERATION, "");
         }
         return acceleration_alert;
     }
@@ -1027,6 +1040,8 @@ public class StatusCalculator {
         } else if(vibration_factor <= 65) {
             vibration_alert = "لرزش خودروی شما زیاد است؛ کمی دقت کنید.";
             DriveAlertHandler.vibration_func(vibration_alert, 1, false, DriveAlertHandler.Type.VIBRATION, "vibration_1");
+        } else {
+            DriveAlertHandler.vibration_func("", 0, false, DriveAlertHandler.Type.VIBRATION, "");
         }
         return vibration_alert;
     }
@@ -1038,11 +1053,13 @@ public class StatusCalculator {
             time_alert = "ساعت اوج تصادف؛ بسیار مراقب باشید!";
             DriveAlertHandler.time_func(time_alert, 4, true, DriveAlertHandler.Type.TIME, "time_3");
         } else if(time_factor <= 55) {
-            time_alert = "این ساعت خطرناک است؛ با دقت ادامه دهید.";
+            time_alert = "این ساعت پرخطر است؛ با دقت ادامه دهید.";
             DriveAlertHandler.time_func(time_alert, 2, false, DriveAlertHandler.Type.TIME, "time_2");
         } else if(time_factor <= 68) {
             time_alert = "این زمان رانندگی پرخطر است؛ کمی بیشتر دقت کنید.";
             DriveAlertHandler.time_func(time_alert, 1, false, DriveAlertHandler.Type.TIME, "time_1");
+        } else {
+            DriveAlertHandler.time_func("", 0, false, DriveAlertHandler.Type.TIME, "");
         }
         return time_alert;
     }
@@ -1059,6 +1076,8 @@ public class StatusCalculator {
         } else if(nearCities_factor <= 70) {
             nearCities_alert = "منطقه ی حادثه خیز؛ دقت کنید.";
             DriveAlertHandler.nearCities_func(nearCities_alert, 1, false, DriveAlertHandler.Type.NEAR_CITIES, "nearcities_1");
+        } else {
+            DriveAlertHandler.nearCities_func("", 0, false, DriveAlertHandler.Type.NEAR_CITIES, "");
         }
         return nearCities_alert;
     }
@@ -1068,13 +1087,15 @@ public class StatusCalculator {
         String month_alert = "";
         if(month_factor <= 58) {
             month_alert = "زمان اوج تصادف؛ بیشتر مراقب باشید!";
-            DriveAlertHandler.month_func(month_alert, 4, true, DriveAlertHandler.Type.MONTH, "month_3");
+            DriveAlertHandler.month_func(month_alert, 3, true, DriveAlertHandler.Type.MONTH, "month_3");
         } else if(month_factor <= 66) {
             month_alert = "زمان حادثه خیز؛ در رانندگی دقت بیشتری کنید.";
             DriveAlertHandler.month_func(month_alert, 2, false, DriveAlertHandler.Type.MONTH, "month_2");
         } else if(month_factor <= 75) {
             month_alert = "زمان حادثه خیز؛ مراقب باشید.";
             DriveAlertHandler.month_func(month_alert, 1, false, DriveAlertHandler.Type.MONTH, "month_1");
+        } else {
+            DriveAlertHandler.month_func("", 0, false, DriveAlertHandler.Type.MONTH, "");
         }
         return month_alert;
     }
@@ -1088,9 +1109,11 @@ public class StatusCalculator {
         } else if(weather_factor <= 55) {
             weather_alert = "آب و هوا بد است؛ در رانندگی بیشتر دقت کنید.";
             DriveAlertHandler.weather_func(weather_alert, 2, false, DriveAlertHandler.Type.WEATHER, "weather_2");
-        } else if(weather_factor <= 68) {
+        } else if(weather_factor <= 64) {
             weather_alert = "آب و هوا کمی نامناسب است؛ مراقب باشید.";
             DriveAlertHandler.weather_func(weather_alert, 1, false, DriveAlertHandler.Type.WEATHER, "weather_1");
+        } else {
+            DriveAlertHandler.weather_func("", 0, false, DriveAlertHandler.Type.WEATHER, "");
         }
         return weather_alert;
     }
@@ -1107,38 +1130,44 @@ public class StatusCalculator {
         } else if(withoutStop_factor <= 65) {
             withoutStop_alert = "مدت زمان زیادی رانندگی کرده اید؛ کمی استراحت کنید.";
             DriveAlertHandler.withoutStop_func(withoutStop_alert, 1, false, DriveAlertHandler.Type.WITHOUT_STOP, "wstop_1");
+        } else {
+            DriveAlertHandler.withoutStop_func("", 0, false, DriveAlertHandler.Type.WITHOUT_STOP, "");
         }
         return withoutStop_alert;
     }
 
-    public String trafficAlert(double traffic_factor) {
-
-        String traffic_alert = "";
-        if(traffic_factor <= 30) {
-            traffic_alert = "ترافیک خیلی زیاد است؛ با دقت ادامه دهید!";
-            DriveAlertHandler.traffic_func(traffic_alert, 4, true, DriveAlertHandler.Type.TRAFFIC, "");
-        } else if(traffic_factor <= 50) {
-            traffic_alert = "ترافیک مسیر سنگین است؛ بسیار دقت کنید.";
-            DriveAlertHandler.traffic_func(traffic_alert, 2, false, DriveAlertHandler.Type.TRAFFIC, "");
-        } else if(traffic_factor <= 65) {
-            traffic_alert = "مسیر ترافیک کمی دارد؛ لطفا دقت کنید.";
-            DriveAlertHandler.traffic_func(traffic_alert, 1, false, DriveAlertHandler.Type.TRAFFIC, "");
-        }
-        return traffic_alert;
-    }
+//    public String trafficAlert(double traffic_factor) {
+//
+//        String traffic_alert = "";
+//        if(traffic_factor <= 30) {
+//            traffic_alert = "ترافیک خیلی زیاد است؛ با دقت ادامه دهید!";
+//            DriveAlertHandler.traffic_func(traffic_alert, 4, true, DriveAlertHandler.Type.TRAFFIC, "");
+//        } else if(traffic_factor <= 50) {
+//            traffic_alert = "ترافیک مسیر سنگین است؛ بسیار دقت کنید.";
+//            DriveAlertHandler.traffic_func(traffic_alert, 2, false, DriveAlertHandler.Type.TRAFFIC, "");
+//        } else if(traffic_factor <= 65) {
+//            traffic_alert = "مسیر ترافیک کمی دارد؛ لطفا دقت کنید.";
+//            DriveAlertHandler.traffic_func(traffic_alert, 1, false, DriveAlertHandler.Type.TRAFFIC, "");
+//        } else {
+//            DriveAlertHandler.trrafic_func("", 0, false, DriveAlertHandler.Type.TRAFFIC, "");
+//        }
+//        return traffic_alert;
+//    }
 
     public String roadTypeAlert(double roadType_factor) {
 
         String roadType_alert = "";
-        if(roadType_factor <= 40) {
+        if(roadType_factor <= 30) {
             roadType_alert = "جاده بسیار خطرناک است؛ بسیار دقت کنید!";
-            DriveAlertHandler.roadType_func(roadType_alert, 4, true, DriveAlertHandler.Type.ROAD_TYPE, "road_3");
-        } else if(roadType_factor <= 50) {
+            DriveAlertHandler.roadType_func(roadType_alert, 3, true, DriveAlertHandler.Type.ROAD_TYPE, "road_3");
+        } else if(roadType_factor <= 38) {
             roadType_alert = "جاده بسیار نامناسب است؛ با دقت بیشتری ادامه دهید.";
             DriveAlertHandler.roadType_func(roadType_alert, 2, false, DriveAlertHandler.Type.ROAD_TYPE, "road_2");
-        } else if(roadType_factor <= 65) {
+        } else if(roadType_factor <= 46) {
             roadType_alert = "جاده مناسب نیست؛ دقت کنید.";
             DriveAlertHandler.roadType_func(roadType_alert, 1, false, DriveAlertHandler.Type.ROAD_TYPE, "road_1");
+        } else {
+            DriveAlertHandler.roadType_func("", 0, false, DriveAlertHandler.Type.ROAD_TYPE, "");
         }
         return roadType_alert;
     }

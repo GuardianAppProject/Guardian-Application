@@ -387,12 +387,12 @@
         <FrameLayout
             android:id="@+id/alertMessageBox"
             android:layout_width="match_parent"
-            android:layout_marginRight="18dp"
-            android:layout_marginLeft="18dp"
-            android:layout_height="36dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_height="39dp"
             android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="17dp"
+            android:layout_marginBottom="16dp"
             android:gravity="center"
             android:background="@drawable/rectangle_alert_background_red"
             android:alpha="0.93"><!-- width: 280dp; margin bott: 112 -->
@@ -403,7 +403,7 @@
                 android:layout_height="match_parent"
                 android:paddingRight="7.5dp"
                 android:paddingLeft="10dp"
-                android:alpha="0.8"
+                android:alpha="0.9"
                 android:orientation="horizontal">
 
 
@@ -420,12 +420,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="از سرعت خود بکاهید!"
-                    android:textColor="#ffffff"
-                    android:textSize="13sp"
+                    android:textColor="#FFFFFF"
+                    android:textSize="12.88sp"
                     android:layout_gravity="right"
                     android:paddingTop="6.5dp"
                     android:fontFamily="@font/iran_sans"
-                    android:paddingRight="12dp"/>
+                    android:paddingRight="5dp"/>
             </LinearLayout>
 
 

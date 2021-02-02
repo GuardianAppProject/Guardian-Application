@@ -10,7 +10,7 @@
     <LinearLayout
         android:id="@+id/body"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="160dp"
         android:background="#ffffff"
         android:orientation="vertical"
         android:paddingTop="20dp"
@@ -24,7 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
             android:fontFamily="@font/iran_sans"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
@@ -34,9 +34,18 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="horizontal"
-            android:paddingTop="20dp">
+            android:paddingTop="28dp">
+
+            <Button
+                android:fontFamily="@font/iran_sans"
+                android:id="@+id/noButton"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:background="#F2F2F2"
+                android:text="خروج" />
 
             <Button
                 android:fontFamily="@font/iran_sans"
@@ -46,7 +55,6 @@
                 android:layout_weight="0.5"
                 android:background="@color/appThemeColor"
                 android:text="بله" />
-
 
         </LinearLayout>
 
