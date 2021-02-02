@@ -1,6 +1,17 @@
 <component name="libraryTable">
   <library name="Gradle: com.google.firebase:firebase-database-connection:12.0.1@aar">
     <CLASSES>
+      <root url="file://$PROJECT_DIR$/../.gradle/caches/transforms-2/files-2.1/ea918e0ed02ebd724d763c673476d6e4/jetified-firebase-database-connection-12.0.1/AndroidManifest.xml" />
+      <root url="jar://$PROJECT_DIR$/../.gradle/caches/transforms-2/files-2.1/ea918e0ed02ebd724d763c673476d6e4/jetified-firebase-database-connection-12.0.1/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../.gradle/caches/transforms-2/files-2.1/ea918e0ed02ebd724d763c673476d6e4/jetified-firebase-database-connection-12.0.1/res" />
+      <root url="file://$PROJECT_DIR$/../.gradle/caches/transforms-2/files-2.1/d2d6badbd35922d13508cc77b1632181/jetified-firebase-database-connection-12.0.1/res" />
+      <root url="file://$PROJECT_DIR$/../.gradle/caches/transforms-2/files-2.1/32d5a50e3cc84c6eab2e1c9875683ee8/jetified-firebase-database-connection-12.0.1/res" />
+      <root url="file://$PROJECT_DIR$/../.gradle/caches/transforms-2/files-2.1/8d7cb35b578309fcbb4ed54478a6bf5b/jetified-firebase-database-connection-12.0.1/AndroidManifest.xml" />
+      <root url="jar://$PROJECT_DIR$/../.gradle/caches/transforms-2/files-2.1/8d7cb35b578309fcbb4ed54478a6bf5b/jetified-firebase-database-connection-12.0.1/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../.gradle/caches/transforms-2/files-2.1/8d7cb35b578309fcbb4ed54478a6bf5b/jetified-firebase-database-connection-12.0.1/res" />
+      <root url="jar://$PROJECT_DIR$/../.gradle/caches/transforms-2/files-2.1/0a4a5687d7258ae108041659d1e2a8a1/jetified-firebase-database-connection-12.0.1/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../.gradle/caches/transforms-2/files-2.1/0a4a5687d7258ae108041659d1e2a8a1/jetified-firebase-database-connection-12.0.1/AndroidManifest.xml" />
+      <root url="file://$PROJECT_DIR$/../.gradle/caches/transforms-2/files-2.1/0a4a5687d7258ae108041659d1e2a8a1/jetified-firebase-database-connection-12.0.1/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/ea918e0ed02ebd724d763c673476d6e4/jetified-firebase-database-connection-12.0.1/AndroidManifest.xml" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/ea918e0ed02ebd724d763c673476d6e4/jetified-firebase-database-connection-12.0.1/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/ea918e0ed02ebd724d763c673476d6e4/jetified-firebase-database-connection-12.0.1/res" />

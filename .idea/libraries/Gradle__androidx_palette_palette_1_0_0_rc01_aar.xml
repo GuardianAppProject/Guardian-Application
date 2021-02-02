@@ -1,6 +1,14 @@
 <component name="libraryTable">
   <library name="Gradle: androidx.palette:palette:1.0.0-rc01@aar">
     <CLASSES>
+      <root url="file://$PROJECT_DIR$/../.gradle/caches/transforms-2/files-2.1/b2e00c8f30e1fc3ecaf3fbe2f878a3d0/palette-1.0.0-rc01/res" />
+      <root url="file://$PROJECT_DIR$/../.gradle/caches/transforms-2/files-2.1/4fdc026f55c16bef1a16c8ccf54dd376/palette-1.0.0-rc01/res" />
+      <root url="jar://$PROJECT_DIR$/../.gradle/caches/transforms-2/files-2.1/54d1b531cc76803a8faff441a6c348e9/palette-1.0.0-rc01/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../.gradle/caches/transforms-2/files-2.1/54d1b531cc76803a8faff441a6c348e9/palette-1.0.0-rc01/res" />
+      <root url="file://$PROJECT_DIR$/../.gradle/caches/transforms-2/files-2.1/54d1b531cc76803a8faff441a6c348e9/palette-1.0.0-rc01/AndroidManifest.xml" />
+      <root url="jar://$PROJECT_DIR$/../.gradle/caches/transforms-2/files-2.1/bdac36e49909cc1798ea0b34ac74a63f/palette-1.0.0-rc01/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../.gradle/caches/transforms-2/files-2.1/bdac36e49909cc1798ea0b34ac74a63f/palette-1.0.0-rc01/res" />
+      <root url="file://$PROJECT_DIR$/../.gradle/caches/transforms-2/files-2.1/bdac36e49909cc1798ea0b34ac74a63f/palette-1.0.0-rc01/AndroidManifest.xml" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b2e00c8f30e1fc3ecaf3fbe2f878a3d0/palette-1.0.0-rc01/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4fdc026f55c16bef1a16c8ccf54dd376/palette-1.0.0-rc01/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/54d1b531cc76803a8faff441a6c348e9/palette-1.0.0-rc01/res" />
@@ -10,7 +18,7 @@
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.palette/palette/1.0.0-rc01/ac19937d38ce2cd9445fc16379d986fd556a52f6/palette-1.0.0-rc01-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../.gradle/caches/modules-2/files-2.1/androidx.palette/palette/1.0.0-rc01/ac19937d38ce2cd9445fc16379d986fd556a52f6/palette-1.0.0-rc01-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

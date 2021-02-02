@@ -1,6 +1,7 @@
 package com.guardian.guardian_v1.SleepSpeedManager;
 
 import android.app.ActivityManager;
+import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -68,9 +69,9 @@ public class SleepSpeedDetectorService extends Service {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0,notificationIntent, 0);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
+                .setPriority(Notification.PRIORITY_MIN)
                 .setContentTitle("Guardian")
                 .setContentText("Service running")
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setContentIntent(pendingIntent)
                 .setSmallIcon(R.drawable.notification_blue)
                 .setColor(Color.parseColor("#00ff00"))
@@ -122,23 +123,30 @@ public class SleepSpeedDetectorService extends Service {
         }
     }
 
+    private static void deleteOldData(){
+        if(allDates.isEmpty()) return;
+        while((allDates.get(0).getDay()!=allDates.get(allDates.size()-1).getDay()) && (allDates.get(allDates.size()-1).getHours()>allDates.get(0).getHours())){
+            sleepData.remove(allDates.get(0));
+            allDates.remove(0);
+        }
+    }
 
     String detectedActivitiesToJson(ArrayList<DetectedActivity> detectedActivitiesList) {
         Type type = new TypeToken<ArrayList<DetectedActivity>>() {}.getType();
-        System.out.println(detectedActivitiesList.toString()+Calendar.getInstance().getTime());
+        System.out.println(detectedActivitiesList.toString()+Calendar.getInstance().getTime()+" sleep");
         if(detectedActivitiesList!=null){  ///sleep
             lastActivity=detectedActivitiesList.get(0);
             deleteOldData();
             Date date = getDate(Calendar.getInstance().getTime());
             sleepData.put(date,detectedActivitiesList.get(0));
             allDates.add(date);
-            System.out.println(sleepData+"sleepjjojojojo");
+            System.out.println(sleepData+" sleep");
         }
-        if ((detectedActivitiesList.size()>=1)&&(detectedActivitiesList.get(0).getType() == DetectedActivity.IN_VEHICLE) && (detectedActivitiesList.get(0).getConfidence()) >= 60){ //speed
+        if ((detectedActivitiesList.size()>=1)&&(detectedActivitiesList.get(0).getType() == DetectedActivity.STILL) && (detectedActivitiesList.get(0).getConfidence()) >= 60){ //speed
             ActivityManager am = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
-            List<ActivityManager.RunningTaskInfo> allTasks = am.getRunningTasks(2);
+
+            List<ActivityManager.RunningTaskInfo> allTasks = am.getRunningTasks(1);
             for (ActivityManager.RunningTaskInfo aTask : allTasks) {
-                System.out.println(aTask.baseActivity.getClassName());
                 if(aTask.baseActivity.getClassName().contains("guardian"))
                     return null;
             }
@@ -148,7 +156,7 @@ public class SleepSpeedDetectorService extends Service {
                 calendar.add(Calendar.MINUTE,20);
                 Date newDate = calendar.getTime();
                 calendar.clear();
-                if(newDate.after(lastNotification) == false)
+                if(newDate.before(lastNotification) == false)
                     return null;
             }
             makeNotification();
@@ -218,13 +226,7 @@ public class SleepSpeedDetectorService extends Service {
         allDates.clear();
     }
 
-    private static void deleteOldData(){
-        if(allDates.isEmpty()) return;
-        while((allDates.get(0).getDay()!=allDates.get(allDates.size()-1).getDay()) && (allDates.get(allDates.size()-1).getHours()+24-allDates.get(0).getHours()>24)){
-            sleepData.remove(allDates.get(0));
-            allDates.remove(0);
-        }
-    }
+
 
     public static boolean isSleepValid(Date sleepTime, Date awakeTime){
         Date date = getDate(sleepTime);

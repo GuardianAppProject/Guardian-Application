@@ -79,7 +79,9 @@ public class RoadInformation extends AppCompatActivity {
                 String[] parts = lines[counter].split(" ");
                 String[] hold = parts[parts.length - 1].split("=");
                 String[] temp = hold[hold.length - 1].split("\"");
-                lanesResult = Integer.parseInt(temp[1]);
+                if(temp[1] != null) {
+                    lanesResult = Integer.parseInt(temp[1]);
+                }
             }
         }
         return lanesResult;

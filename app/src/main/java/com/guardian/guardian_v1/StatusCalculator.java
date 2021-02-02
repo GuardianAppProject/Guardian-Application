@@ -303,6 +303,7 @@ public class StatusCalculator {
 
     public static void setVibration(Shake.ShakeSituation vibration) {
         StatusCalculator.vibration = vibration;
+        Log.d("vibration in status", "vibration in status claculator is: " + vibration);
     }
 
     public double vibrationCalculator(Shake.ShakeSituation userVibration) {

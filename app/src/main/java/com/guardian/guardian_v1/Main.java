@@ -259,7 +259,7 @@ public class Main extends FragmentActivity implements SensorEventListener, OnMap
             LatLng loc = new LatLng(location.getLatitude(), location.getLongitude());
 //                mMarker = mMap.addMarker(new MarkerOptions().position(loc));
             if (mMap != null) {
-                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(loc, 15.4f));
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(loc, 15.8f));
                 updateCameraBearing(mMap,location);
             }
         }
@@ -278,7 +278,7 @@ public class Main extends FragmentActivity implements SensorEventListener, OnMap
             LatLng latLng = new LatLng(location.getLatitude(),location.getLongitude());
             CameraPosition cameraPosition = new CameraPosition.Builder()
                     .target(latLng)             // Sets the center of the map to current location
-                    .zoom(15.4f)                   // Sets the zoom
+                    .zoom(15.8f)                   // Sets the zoom
                     .bearing(location.getBearing()) // Sets the orientation of the camera to east
                     .tilt(0)                   // Sets the tilt of the camera to 0 degrees
                     .build();                   // Creates a CameraPosition from the builder
@@ -291,7 +291,6 @@ public class Main extends FragmentActivity implements SensorEventListener, OnMap
     protected void onCreate(Bundle savedInstanceState) {
 //        setTheme(R.style.NavigationViewLight);
         super.onCreate(savedInstanceState);
-//        SleepSpeedDetectorService.cntx = this;
 
         audio = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 
@@ -326,6 +325,7 @@ public class Main extends FragmentActivity implements SensorEventListener, OnMap
         if (sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER) != null) {
             accelometerSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
             isAccelometerSensorAvailible = true;
+            Log.d("xAccelometer", "xAccelometer is available");
         } else {
             Log.d("xAccelometer", "Accelometer is not availible");
             isAccelometerSensorAvailible = false;
@@ -514,9 +514,10 @@ public class Main extends FragmentActivity implements SensorEventListener, OnMap
     //Morteza shake
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
-        Log.d("x", sensorEvent.values[0]+ "m/s2");
-        Log.d("y", sensorEvent.values[1]+ "m/s2");
-        Log.d("z", sensorEvent.values[2]+ "m/s2");
+        Log.d("ejra", "hello guardian");
+        Log.d("x", sensorEvent.values[0]+ "  m/s2");
+        Log.d("y", sensorEvent.values[1]+ "  m/s2");
+        Log.d("z", sensorEvent.values[2]+ "  m/s2");
 
         currentX = sensorEvent.values[0];
         currentY = sensorEvent.values[1];
@@ -570,6 +571,24 @@ public class Main extends FragmentActivity implements SensorEventListener, OnMap
     @Override
     public void onAccuracyChanged(Sensor sensor, int i) {
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if(isAccelometerSensorAvailible) {
+            sensorManager.registerListener(this, accelometerSensor, SensorManager.SENSOR_DELAY_NORMAL);
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        if(isAccelometerSensorAvailible) {
+            sensorManager.unregisterListener(this);
+        }
     }
 
     public void openDrawer(){
@@ -1430,7 +1449,7 @@ public class Main extends FragmentActivity implements SensorEventListener, OnMap
                 if (location != null)
                 {
                     LatLng loc = new LatLng(location.getLatitude(), location.getLongitude());
-                    CameraPosition cameraPosition = new CameraPosition.Builder().target(loc).zoom(15.4f).build();
+                    CameraPosition cameraPosition = new CameraPosition.Builder().target(loc).zoom(15.8f).build(); ///15.4f
                     googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
                 }
             }
@@ -1479,7 +1498,7 @@ public class Main extends FragmentActivity implements SensorEventListener, OnMap
     @Override
     public void onLocationChanged(Location location) {
         LatLng loc = new LatLng(location.getLatitude(), location.getLongitude());
-        CameraPosition cameraPosition = new CameraPosition.Builder().target(loc).zoom(15.2f).build();
+        CameraPosition cameraPosition = new CameraPosition.Builder().target(loc).zoom(15.8f).build(); //15.2
         mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
     }
 
