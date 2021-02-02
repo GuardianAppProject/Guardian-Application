@@ -308,7 +308,7 @@ public class StatusCalculator {
 
     public double vibrationCalculator(Shake.ShakeSituation userVibration) {
 
-        double vibration_factor = 0;
+        double vibration_factor = 100;
         if(userVibration== Shake.ShakeSituation.noShake) {
             vibration_factor = 100;
         } else if(userVibration== Shake.ShakeSituation.lowShake) {
@@ -319,6 +319,8 @@ public class StatusCalculator {
             vibration_factor = 45;
         } else if(userVibration== Shake.ShakeSituation.veryHighShake) {
             vibration_factor = 30;
+        } else {
+            return 100;
         }
 
         if(vibration_factor <= 0) {
@@ -1052,7 +1054,7 @@ public class StatusCalculator {
         String time_alert = "";
         if(time_factor <= 40) {
             time_alert = "ساعت اوج تصادف؛ بسیار مراقب باشید!";
-            DriveAlertHandler.time_func(time_alert, 4, true, DriveAlertHandler.Type.TIME, "time_3");
+            DriveAlertHandler.time_func(time_alert, 3, true, DriveAlertHandler.Type.TIME, "time_3");
         } else if(time_factor <= 55) {
             time_alert = "این ساعت پرخطر است؛ با دقت ادامه دهید.";
             DriveAlertHandler.time_func(time_alert, 2, false, DriveAlertHandler.Type.TIME, "time_2");

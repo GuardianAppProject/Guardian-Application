@@ -728,7 +728,8 @@ public class Main extends FragmentActivity implements SensorEventListener, OnMap
             algorithmBackground.setImageResource(R.drawable.circle_gradient_red);
         }
 
-        if((soundRepetition==0 || percentage<=40) && ((!(percentage<=45 && dangerFlag==0)) || !dangerModeOn)) {
+
+        if((soundRepetition==0 || percentage<=40) && ((!(percentage<=45 && dangerFlag==0)) || !dangerModeOn) && !alertMessageText.getText().equals("با دقت به رانندگی ادامه دهید.")) {
             int max = audio.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
             if((volume_media - 0.5) >= audio.getStreamVolume(AudioManager.STREAM_MUSIC) && secondSound){
                 if(audio.getStreamVolume(AudioManager.STREAM_MUSIC) < (int)(0.65 * max)) {

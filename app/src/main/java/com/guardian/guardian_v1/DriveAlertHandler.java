@@ -87,8 +87,6 @@ public class DriveAlertHandler {
             sleep_alert.setTooImportant(tooImportant);
             sleep_alert.setType(type);
             sleep_alert.setSoundURL(soundURL);
-        } else if(tooImportant) {
-
         }
     }
     public static void speed_func(String alertMessage, int repetition, boolean tooImportant, Type type, String soundURL) {
