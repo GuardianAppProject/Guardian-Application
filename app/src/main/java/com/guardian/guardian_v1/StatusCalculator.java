@@ -122,7 +122,7 @@ public class StatusCalculator {
         return sleep_factor;
     }
 
-    public double speedCalculator(double userSpeed, double speedLimit, Weather.WeatherType weatherType) {
+    public static double speedCalculator(double userSpeed, double speedLimit, Weather.WeatherType weatherType) {
 
         if(weatherType==Weather.WeatherType.Thunderstorm) {
             speedLimit -= 10;
@@ -299,7 +299,6 @@ public class StatusCalculator {
 
         return acceleration_factor;
     }
-
 
     public static void setVibration(Shake.ShakeSituation vibration) {
         StatusCalculator.vibration = vibration;
@@ -774,6 +773,21 @@ public class StatusCalculator {
         weatherThread.start();
     }
 
+    ArrayList<Double> singleVibrate = new ArrayList<>();
+    public void singleVibrateCall(Shake.ShakeSituation userVibration) {
+        singleVibrate.add(vibrationCalculator(userVibration));
+    }
+
+    ArrayList<Double> singleSpeed = new ArrayList<>();
+    public void singleSpeedCall(double userSpeed) {
+        singleSpeed.add(speedCalculator(userSpeed, speedLimit, weatherType));
+    }
+
+    ArrayList<Double> singleAcceleration = new ArrayList<>();
+    public void singleAccelerationCall(double userAcceleration) {
+        singleAcceleration.add(accelerationCalculator(userAcceleration, weatherType));
+    }
+
     public double calculatePercentageAlgorithm() {
 
         Log.d("vib", "" + vibration);
@@ -806,17 +820,21 @@ public class StatusCalculator {
         //Morteza calling roadInformation class
 
         setWeather_factor();
-        Log.d("acceleration is", "" + acceleration);
         double sleep_factor = 300; //sleepCalculator() * 3;
         double time_factor = timeCalculator(timeObj.getTimeHOUR(), timeObj.getTimeMINUTE(), 0, 0) * 3;
-        double speed_factor = speedCalculator(staticUserSpeed, speedLimit, weatherType) * 3;
+        double speed_factor = calculateAverage(singleSpeed) * 3; //speedCalculator(staticUserSpeed, speedLimit, weatherType) * 3;
+        Log.d("number", "" + singleSpeed.size());
+        singleSpeed.clear();
         double withoutStopDriving_factor = withoutStopDrivingCalculator(nonStop, totalDrive, totalTime, timeObj.getTimeHOUR(), timeObj.getTimeMINUTE()) * 3;
         double nearCities_factor = nearCitiesCalculator(distance) * 2;
-        double vibration_factor = vibrationCalculator(vibration) * 2.2;
-        double acceleration_factor = accelerationCalculator(acceleration, weatherType) * 2.5;
+        double vibration_factor = calculateAverage(singleVibrate) * 2.2; //vibrationCalculator(vibration) * 2.2;
+        singleVibrate.clear();
+        double acceleration_factor = calculateAverage(singleAcceleration) * 2.5; //accelerationCalculator(acceleration, weatherType) * 2.5;
+        singleAcceleration.clear();
         double month_factor = monthCalculator(solarCalendar.month) * 0.8;
         double traffic_factor = 0; // trafficCalculator() * 1;
         double roadType_factor = roadTypeCalculator(highwayType, lanes, oneway) * 1;
+
         Log.d("drive status", "sleep: " + sleep_factor + " + time: " + time_factor +
         "+ speed: " + speed_factor + "+ wihtoutstop: " + withoutStopDriving_factor + " + nearcity: " + nearCities_factor + "+ vibration: "
                         + vibration_factor +  " + wheather" + weather_factor + " + accelration: " + acceleration_factor + "+ month: " + month_factor + " + roadtype: " + roadType_factor);
@@ -928,7 +946,10 @@ public class StatusCalculator {
         for (Double item : array) {
             ave += item;
         }
-        ave /= array.size();
+        if(array.size() != 0)
+            ave /= array.size();
+        else
+            return 80;
         return ave;
     }
 

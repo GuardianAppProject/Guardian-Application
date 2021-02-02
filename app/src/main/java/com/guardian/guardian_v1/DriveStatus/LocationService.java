@@ -54,6 +54,7 @@ public class LocationService extends Service implements
     boolean firstForSpeed = false;
     long nonStopDrivingShow;
     long totalRest = 0;
+    StatusCalculator statusCalculator;
 
     @Nullable
     @Override
@@ -66,6 +67,10 @@ public class LocationService extends Service implements
                 .build();
         mGoogleApiClient.connect();
         return mBinder;
+    }
+
+    public void setStatusCalculator(StatusCalculator statusCalculator) {
+        this.statusCalculator = statusCalculator;
     }
 
     @SuppressLint("RestrictedApi")
@@ -159,7 +164,8 @@ public class LocationService extends Service implements
             StatusCalculator.nonStop = nonStopDrivingShow;
             if (speed >= 0.0) {
                 Log.d("speed", "Current speed: " + new DecimalFormat("#.##").format(speed) + " km/hr");
-                StatusCalculator.staticUserSpeed = speed;
+//                StatusCalculator.staticUserSpeed = speed;
+                statusCalculator.singleSpeedCall(speed);
                 if(speed >= 4.5) {
                     Main.speedText.setText(new DecimalFormat("#.#").format(speed));
                 } else {
@@ -254,14 +260,16 @@ public class LocationService extends Service implements
         long deltat;
         double acceleration;
         if (speedArray.size() < 10 || timeSaving.size() < 10) {
-            StatusCalculator.acceleration = 0;
+//            StatusCalculator.acceleration = 0;
+            statusCalculator.singleAccelerationCall(0);
             return 0;
         }
         else {
             deltav = speedArray.get(4) - speedArray.get(0);
             deltat = timeSaving.get(4) - timeSaving.get(0);
             acceleration = deltav / deltat;
-            StatusCalculator.acceleration = acceleration;
+//            StatusCalculator.acceleration = acceleration;
+            statusCalculator.singleAccelerationCall(acceleration);
             return acceleration;
         }
 

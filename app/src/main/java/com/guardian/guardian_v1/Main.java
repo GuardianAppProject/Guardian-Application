@@ -224,6 +224,7 @@ public class Main extends FragmentActivity implements SensorEventListener, OnMap
             LocationService.LocalBinder binder = (LocationService.LocalBinder) service;
             myService = binder.getService();
             status = true;
+            myService.setStatusCalculator(statusCalculator);
         }
 
         @Override
@@ -529,27 +530,27 @@ public class Main extends FragmentActivity implements SensorEventListener, OnMap
             yDifference = Math.abs(lastY - currentY);
             zDifference = Math.abs(lastZ - currentZ);
 
-            if((xDifference > 7f && yDifference > 7f)
-                    || (xDifference > 7f && zDifference > 7f)
-                    || (yDifference > 7f && zDifference > 7f)) {
-                Log.d("shake situation", ShakeSituation.veryHighShake.toString());
-                situation = Shake.ShakeSituation.veryHighShake;
-            }
-            else if ((xDifference > 6f && yDifference > 6f)
+            if((xDifference > 6f && yDifference > 6f)
                     || (xDifference > 6f && zDifference > 6f)
                     || (yDifference > 6f && zDifference > 6f)) {
-                Log.d("shake situation", ShakeSituation.highShake.toString());
-                situation = Shake.ShakeSituation.highShake;
+                Log.d("shake situation", ShakeSituation.veryHighShake.toString());
+                situation = Shake.ShakeSituation.veryHighShake;
             }
             else if ((xDifference > 5f && yDifference > 5f)
                     || (xDifference > 5f && zDifference > 5f)
                     || (yDifference > 5f && zDifference > 5f)) {
+                Log.d("shake situation", ShakeSituation.highShake.toString());
+                situation = Shake.ShakeSituation.highShake;
+            }
+            else if ((xDifference > 3.9f && yDifference > 3.9f)
+                    || (xDifference > 3.9f && zDifference > 3.9f)
+                    || (yDifference > 3.9f && zDifference > 3.9f)) {
                 Log.d("shake situation", ShakeSituation.mediumShake.toString());
                 situation = Shake.ShakeSituation.mediumShake;
             }
-            else if ((xDifference > 4f && yDifference > 4f)
-                    || (xDifference > 4f && zDifference > 4f)
-                    || (yDifference > 4f && zDifference > 4f)) {
+            else if ((xDifference > 2.8f && yDifference > 2.8f)
+                    || (xDifference > 2.8f && zDifference > 2.8f)
+                    || (yDifference > 2.8f && zDifference > 2.8f)) {
                 Log.d("shake situation", ShakeSituation.lowShake.toString());
                 situation = Shake.ShakeSituation.lowShake;
             }
@@ -565,7 +566,8 @@ public class Main extends FragmentActivity implements SensorEventListener, OnMap
         lastZ = currentZ;
         several = true;
 
-        statusCalculator.setVibration(situation);
+//        statusCalculator.setVibration(situation);
+        statusCalculator.singleVibrateCall(situation);
     }
 
     @Override
