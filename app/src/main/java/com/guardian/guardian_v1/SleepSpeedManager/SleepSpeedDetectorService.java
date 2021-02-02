@@ -133,7 +133,7 @@ public class SleepSpeedDetectorService extends Service {
 
     String detectedActivitiesToJson(ArrayList<DetectedActivity> detectedActivitiesList) {
         Type type = new TypeToken<ArrayList<DetectedActivity>>() {}.getType();
-        System.out.println(detectedActivitiesList.toString()+Calendar.getInstance().getTime()+" sleep");
+        System.out.println(detectedActivitiesList.toString()+Calendar.getInstance().getTime()+" sleep"+Calendar.getInstance().getTime().getDay());
         if(detectedActivitiesList!=null){  ///sleep
             lastActivity=detectedActivitiesList.get(0);
             deleteOldData();
@@ -234,6 +234,8 @@ public class SleepSpeedDetectorService extends Service {
         while(date.after(awakeTime)  == false){
             if((sleepData.containsKey(date))&&(sleepData.get(date).getType()!=DetectedActivity.STILL)&&(sleepData.get(date).getConfidence()==100)){
                 error++;
+                if(date.getHours()>7)
+                    error++;
             }
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(date);
@@ -241,7 +243,7 @@ public class SleepSpeedDetectorService extends Service {
             date = calendar.getTime();
             calendar.clear();
         }
-        return error <= 2;
+        return error <= 3;
     }
 
 
