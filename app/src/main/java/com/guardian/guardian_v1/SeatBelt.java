@@ -34,6 +34,7 @@ public class SeatBelt extends Activity {
 
 
 
+
 //        // Just Run For The First Time
 //        Boolean isFirstRun = getSharedPreferences("PREFERENCE", MODE_PRIVATE)
 //                .getBoolean("isFirstRun", true);

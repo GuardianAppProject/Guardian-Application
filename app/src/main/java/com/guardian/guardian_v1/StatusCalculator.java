@@ -10,10 +10,15 @@ import com.guardian.guardian_v1.DriveStatus.RoadInformation;
 import com.guardian.guardian_v1.DriveStatus.Shake;
 import com.guardian.guardian_v1.DriveStatus.Time;
 import com.guardian.guardian_v1.DriveStatus.Weather;
+import com.guardian.guardian_v1.SleepSpeedManager.SleepData;
+import com.guardian.guardian_v1.SleepSpeedManager.SleepManagerActivity;
+import com.guardian.guardian_v1.SleepSpeedManager.SleepSpeedDetectorService;
 import com.guardian.guardian_v1.Transmission.DataSender;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 //import static com.mapbox.mapboxsdk.Mapbox.getApplicationContext;
 
@@ -33,6 +38,8 @@ public class StatusCalculator {
     public static long nonStop;
     public static double acceleration;
     public static Shake.ShakeSituation vibration;
+    public static double staticUserSleep;
+    public static double staticUserAwake;
 
     private int cycle = 0;
     private ArrayList<Double> sleep_data = new ArrayList<>();
@@ -65,23 +72,49 @@ public class StatusCalculator {
         setContext(context);
     }
 
+    static double userTotalSleep;
+    public void setSleepData(Context context) {
+        SleepData sleepData = SleepManagerActivity.readDataFromFile(context);
+        int minutes;
+        int awakeMin;
+        Date now = Calendar.getInstance().getTime();
+        if (sleepData.getWakeUp().getDay() == sleepData.getSleep().getDay()) {
+            minutes = sleepData.getWakeUp().getHours() * 60 + sleepData.getWakeUp().getMinutes() - sleepData.getSleep().getHours() * 60 - sleepData.getSleep().getMinutes();
+        } else {
+            minutes = sleepData.getWakeUp().getHours() * 60 + sleepData.getWakeUp().getMinutes() + 24 * 60 - sleepData.getSleep().getHours() * 60 - sleepData.getSleep().getMinutes();
+        }
+
+        if(sleepData.getWakeUp().getDay() == now.getDay()) {
+            awakeMin = now.getHours() * 60 + now.getMinutes() - sleepData.getSleep().getHours() * 60 - sleepData.getSleep().getMinutes();
+        } else {
+            awakeMin = now.getHours() * 60 + now.getMinutes() + 24 * 60 - sleepData.getSleep().getHours() * 60 - sleepData.getSleep().getMinutes();
+        }
+        if(minutes<0) minutes=minutes*-1;
+        if(awakeMin<0) awakeMin=awakeMin*-1;
+        staticUserSleep = minutes;
+        staticUserAwake = awakeMin;
+        Log.d("staticUserSleep", "" + staticUserSleep);
+        Log.d("staticUserAwake", "" + staticUserAwake);
+    }
+
 
     public double sleepCalculator(double userSleep, double userAwake) {
         double sleep_factor = 0;
-        if(userSleep < 180){
+        userTotalSleep = userSleep;
+        if(userSleep < 120){
             sleep_factor = 0;
+        } else if(userSleep < 180) {
+            sleep_factor = (userSleep - 120) * 0.25;
         } else if(userSleep < 240) {
-            sleep_factor = (sleep_factor - 3) * 0.25;
+            sleep_factor = 15 + (userSleep - 180) * 0.25;
         } else if(userSleep < 300) {
-            sleep_factor = 15 + (sleep_factor - 4) * 0.25;
+            sleep_factor = 30 + (userSleep - 240) * 0.33;
         } else if(userSleep < 360) {
-            sleep_factor = 30 + (sleep_factor - 5) * 0.33;
+            sleep_factor = 50 + (userSleep - 300) * 0.33;
         } else if(userSleep < 420) {
-            sleep_factor = 50 + (sleep_factor - 6) * 0.33;
+            sleep_factor = 70 + (userSleep - 360) * 0.25;
         } else if(userSleep < 480) {
-            sleep_factor = 70 + (sleep_factor - 7) * 0.25;
-        } else if(userSleep < 540) {
-            sleep_factor = 85 + (sleep_factor - 8) * 0.25;
+            sleep_factor = 85 + (userSleep - 420) * 0.25;
         } else {
             sleep_factor = 100;
         }
@@ -90,23 +123,35 @@ public class StatusCalculator {
         if(userAwake < 360) {
             //
         } else if(userAwake < 420) {
-            sleepCoefficient = 0.9;
+            sleepCoefficient = 97;
+            userTotalSleep -= 30;
         }else if(userAwake < 480) {
-            sleepCoefficient = 0.85;
+            sleepCoefficient = 0.92;
+            userTotalSleep -= 80;
         } else if(userAwake < 600) {
-            sleepCoefficient = 0.8;
+            sleepCoefficient = 0.85;
+            userTotalSleep -= 150;
         } else if(userAwake < 720) {
             sleepCoefficient = 0.7;
+            userTotalSleep -= 300;
         } else if(userAwake < 840) {
-            sleepCoefficient = 0.6;
+            sleepCoefficient = 0.63;
+            userTotalSleep -= 370;
         } else if(userAwake < 960) {
-            sleepCoefficient = 0.5;
+            sleepCoefficient = 0.55;
+            userTotalSleep -= 450;
         } else if(userAwake < 1080) {
-            sleepCoefficient = 0.4;
+            sleepCoefficient = 0.45;
+            userTotalSleep -= 550;
         } else if(userAwake < 1200) {
-            sleepCoefficient = 0.2;
+            sleepCoefficient = 0.25;
+            userTotalSleep -= 750;
         } else {
             sleepCoefficient = 0;
+            userTotalSleep = 0;
+        }
+        if(userTotalSleep<0) {
+            userTotalSleep = 0;
         }
 
         sleep_factor *= sleepCoefficient;
@@ -820,7 +865,8 @@ public class StatusCalculator {
         //Morteza calling roadInformation class
 
         setWeather_factor();
-        double sleep_factor = 300; //sleepCalculator() * 3;
+
+        double sleep_factor = sleepCalculator(staticUserSleep, staticUserAwake) * 3;
         double time_factor = timeCalculator(timeObj.getTimeHOUR(), timeObj.getTimeMINUTE(), 0, 0) * 3;
         double speed_factor = calculateAverage(singleSpeed) * 3; //speedCalculator(staticUserSpeed, speedLimit, weatherType) * 3;
         Log.d("number", "" + singleSpeed.size());
@@ -853,7 +899,7 @@ public class StatusCalculator {
 
         double average = 0;
         
-        double sleep_raw = 0; //EncodeDecode.sleepEncode();
+        double sleep_raw = EncodeDecode.sleepEncode(staticUserSleep);
         double speed_raw = EncodeDecode.speedEncode(staticUserSpeed);
         double time_raw = EncodeDecode.timeEncode(timeObj.getTimeHOUR(), timeObj.getTimeMINUTE());
         double acceleration_raw = EncodeDecode.accelerationEncode(acceleration);
@@ -949,7 +995,7 @@ public class StatusCalculator {
         if(array.size() != 0)
             ave /= array.size();
         else
-            return 80;
+            return 84;
         return ave;
     }
 

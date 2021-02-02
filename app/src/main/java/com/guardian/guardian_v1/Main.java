@@ -296,6 +296,7 @@ public class Main extends FragmentActivity implements SensorEventListener, OnMap
     protected void onCreate(Bundle savedInstanceState) {
 //        setTheme(R.style.NavigationViewLight);
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main2);
 
         audio = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 
@@ -306,7 +307,7 @@ public class Main extends FragmentActivity implements SensorEventListener, OnMap
         config.locale = locale;
         getBaseContext().getResources().updateConfiguration(config,
                 getBaseContext().getResources().getDisplayMetrics());
-        setContentView(R.layout.activity_main2);
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -438,6 +439,7 @@ public class Main extends FragmentActivity implements SensorEventListener, OnMap
         alertMessageBox = findViewById(R.id.alertMessageBox);
         alertMessageImage = findViewById(R.id.alertMessageImage);
         statusCalculator = new StatusCalculator(this);
+        statusCalculator.setSleepData(this);
 
         callAlgorithmLogic();
         //final Handler
