@@ -278,4 +278,60 @@ public class MainActivity extends Activity {
         return true;
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        System.out.println("resume");
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+                    WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        }
+
+        Button retryButton = findViewById(R.id.retryButton);
+
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        int height = displayMetrics.heightPixels;
+        int width = displayMetrics.widthPixels;
+
+        retryButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if(!GPSAndInternetChecker.check(MainActivity.this, height, width)) {
+                    retryButton.setVisibility(View.VISIBLE);
+                } else {
+
+                    retryButton.setVisibility(View.INVISIBLE);
+                    startApp();
+                }
+            }
+        });
+
+        if(!GPSAndInternetChecker.check(MainActivity.this, height, width)) {
+            retryButton.setVisibility(View.VISIBLE);
+        }
+
+        if(retryButton.getVisibility()==View.INVISIBLE) {
+            startApp();
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            startForegroundService(new Intent(this, SleepSpeedDetectorService.class));
+        }else{
+            startService(new Intent(this, SleepSpeedDetectorService.class));
+        }
+
+        Date date = Calendar.getInstance().getTime();
+        UseMeNotification.writeInfoToFile(this,date);
+        Intent myIntent = new Intent(this ,UseMeNotification.class);
+        AlarmManager alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
+        PendingIntent pendingIntent = PendingIntent.getService(this, 0, myIntent, 0);
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.HOUR, 0);
+        calendar.set(Calendar.AM_PM, Calendar.AM);
+        calendar.add(Calendar.DAY_OF_MONTH, 0);
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 1000*60*60*24*30 , pendingIntent);
+    }
 }
