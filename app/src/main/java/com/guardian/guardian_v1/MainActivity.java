@@ -5,6 +5,8 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -49,6 +51,20 @@ public class MainActivity extends Activity {
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
                     WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            startForegroundService(new Intent(this, SleepSpeedDetectorService.class));
+        } else {
+            startService(new Intent(this, SleepSpeedDetectorService.class));
+        }
+
+        // version of apk --> Arman
+        try {
+            PackageInfo pInfo = this.getPackageManager().getPackageInfo(this.getPackageName(), 0);
+            String version = pInfo.versionName;
+            Log.d("version", version);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
 
         // Enable verbose OneSignal logging to debug issues if needed.
         OneSignal.setLogLevel(OneSignal.LOG_LEVEL.VERBOSE, OneSignal.LOG_LEVEL.NONE);
@@ -69,26 +85,19 @@ public class MainActivity extends Activity {
                 if(!GPSAndInternetChecker.check(MainActivity.this, height, width)) {
                     retryButton.setVisibility(View.VISIBLE);
                 } else {
-
                     retryButton.setVisibility(View.INVISIBLE);
                     startApp();
                 }
             }
         });
 
-        if(!GPSAndInternetChecker.check(MainActivity.this, height, width)) {
-            retryButton.setVisibility(View.VISIBLE);
-        }
-
-        if(retryButton.getVisibility()==View.INVISIBLE) {
-           startApp();
-        }
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            startForegroundService(new Intent(this, SleepSpeedDetectorService.class));
-        }else{
-            startService(new Intent(this, SleepSpeedDetectorService.class));
-        }
+//        if(!GPSAndInternetChecker.check(MainActivity.this, height, width)) {
+//            retryButton.setVisibility(View.VISIBLE);
+//        }
+//
+//        if(retryButton.getVisibility()==View.INVISIBLE) {
+////           startApp();
+//        }
 
         Date date = Calendar.getInstance().getTime();
         UseMeNotification.writeInfoToFile(this,date);

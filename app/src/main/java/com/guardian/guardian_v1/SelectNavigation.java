@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.guardian.guardian_v1.SleepSpeedManager.SleepSpeedDetectorService;
 import com.guardian.guardian_v1.Transmission.AverageWorker;
 
 //package com.guardian.guardian_v1;
@@ -110,6 +111,7 @@ public class SelectNavigation extends Activity {//implements OnMapReadyCallback,
 //
     private  int counter = 0;
     private int total = 0; // the total number
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 //

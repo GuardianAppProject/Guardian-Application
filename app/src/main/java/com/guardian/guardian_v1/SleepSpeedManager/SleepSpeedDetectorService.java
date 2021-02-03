@@ -71,7 +71,7 @@ public class SleepSpeedDetectorService extends Service {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setPriority(Notification.PRIORITY_MIN)
                 .setContentTitle("Guardian")
-                .setContentText("Service running")
+                .setContentText("گاردین به عنوان دستیاری صوتی تا پایان سفر همراه شما خواهد بود.")
                 .setContentIntent(pendingIntent)
                 .setSmallIcon(R.drawable.notification_blue)
                 .setColor(Color.parseColor("#00ff00"))
@@ -284,7 +284,7 @@ public class SleepSpeedDetectorService extends Service {
         return sleepData;
     }
 
-    public static int isDriving(){  //1 for true -1 for false 0 for not sure
+    public static int isDriving(){  // 1 for true -1 for false 0 for not sure
         if(lastActivity==null) return 0;
         if((lastActivity.getType()==DetectedActivity.IN_VEHICLE)&&(lastActivity.getConfidence()>50)) return 1;
         return -1;

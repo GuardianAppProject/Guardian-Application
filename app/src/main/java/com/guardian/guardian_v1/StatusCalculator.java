@@ -865,7 +865,6 @@ public class StatusCalculator {
         //Morteza calling roadInformation class
 
         setWeather_factor();
-
         double sleep_factor = sleepCalculator(staticUserSleep, staticUserAwake) * 3;
         double time_factor = timeCalculator(timeObj.getTimeHOUR(), timeObj.getTimeMINUTE(), 0, 0) * 3;
         double speed_factor = calculateAverage(singleSpeed) * 3; //speedCalculator(staticUserSpeed, speedLimit, weatherType) * 3;
@@ -967,24 +966,36 @@ public class StatusCalculator {
         if(average > 100) {
             average = 100;
         }
+        Log.d("RestComplex", nearestRestComplex(gps, average));
         return average;
     }
 
-    public void restNeeded(double percentage) {
+    public String nearestRestComplex(GPSTracker gpsTracker, double percentage) {
+        double nearestRestComplexDistance = gpsTracker.getMinPlaceDistance();
+        String nearestRestComplexName = gpsTracker.getPlaceName();
+        String restComplex = "";
+        Log.d("distanceRest", "" + nearestRestComplexDistance);
+//        if (percentage < 50) {
+            if(nearestRestComplexDistance <= 5) {
+                restComplex = "مجتمع رفاهی " + nearestRestComplexName + ": " + "کمتر از ۵ کیلومتر با شما فاصله دارد.";
+            } if(nearestRestComplexDistance <= 10) {
+                restComplex = "مجتمع رفاهی " + nearestRestComplexName + ": " + "کمتر از ۱۰ کیلومتر با شما فاصله دارد.";
+            } else if(nearestRestComplexDistance <= 20) {
+                restComplex = "مجتمع رفاهی " + nearestRestComplexName + ": " + "کمتر از ۲۰ کیلومتر با شما فاصله دارد.";
+            } else if(nearestRestComplexDistance <= 30) {
+                restComplex = "مجتمع رفاهی " + nearestRestComplexName + ": " + "کمتر از ۳۰ کیلومتر با شما فاصله دارد.";
+            } else if(nearestRestComplexDistance <= 50) {
+                restComplex = "مجتمع رفاهی " + nearestRestComplexName + ": " + "کمتر از ۵۰ کیلومتر با شما فاصله دارد.";
+            } else if(nearestRestComplexDistance <= 80) {
+                restComplex = "مجتمع رفاهی " + nearestRestComplexName + ": " + "کمتر از ۸۰ کیلومتر با شما فاصله دارد.";
+            } else {
+                restComplex = "مجتمع رفاهی " + nearestRestComplexName + ": " + "نزدیک ترین مجتمع رفاهی به شماست!";
+            }
 
-    }
-
-    public void nearestRestComplex(double dist, String restComplexName) {
-        // Morteza
-    }
-
-    public boolean checkIfStopped() {
-        //Morteza
-        return false;
-    }
-
-    public void theTotalRest(double restTime) {
-        // Morteza
+//        } else {
+//            restComplex
+//        }
+        return restComplex;
     }
 
     private double calculateAverage(ArrayList<Double> array) {
@@ -995,7 +1006,7 @@ public class StatusCalculator {
         if(array.size() != 0)
             ave /= array.size();
         else
-            return 84;
+            return 88;
         return ave;
     }
 

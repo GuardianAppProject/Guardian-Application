@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Guardian_v1</string>
+    <string name="app_name">Guardian</string>
     <string name="signInText"><![CDATA[تا به حال از گاردین استفاده نکرده ام، <i></b/>ثبت نام<b><i>]]></string>
 
     <string name="access_token" translatable="false">pk.eyJ1Ijoic2luYWVsYWhpbWFuZXNoIiwiYSI6ImNrOTVnbzY3eTA0engzbHEybXY4d2lyM3UifQ.CXS09Kz47wHmxhMMp5trWQ</string>
