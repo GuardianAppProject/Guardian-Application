@@ -45,6 +45,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Random;
 
 public class SleepManagerActivity extends Activity {
 
@@ -65,8 +66,6 @@ public class SleepManagerActivity extends Activity {
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
                     WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         }
-        recordAuto_firstTime();
-
         if(isThereSleepDataFile(this)  == false){
             makeSleepDataFile(this);
         }else{
@@ -74,6 +73,7 @@ public class SleepManagerActivity extends Activity {
         }
         initiateViews();
         initiateClock();
+        recordAuto(null);
     }
 
     public String getTotalSleepTime(Date wakeUpDate, Date sleepDate) {
@@ -227,10 +227,29 @@ public class SleepManagerActivity extends Activity {
         totalSleep.setText(getTotalSleepTime(wakeUpTimeDate, sleepTimeDate));
     }
 
+
+
+    public void recordAuto_random(){
+        Random rand = new Random();
+        Date date = Calendar.getInstance().getTime();
+        int wakeUpHour = date.getHours();
+        int sleepHour = rand.nextInt(3)+21;
+        if(date.getHours()>6 && date.getHours() <12)
+            wakeUpHour = rand.nextInt(date.getHours()-6)+6;
+        Date d1 = new Date();
+        d1.setHours(wakeUpHour); d1.setMinutes(rand.nextInt(59));
+        Date d2 = new Date();
+        d2.setHours(sleepHour); d2.setMinutes(rand.nextInt(59));
+        setWakeUpTimeDate(d1);
+        setSleepTimeDate(d2);
+        changeTexts();
+    }
+
     public void recordAuto(View view) {
         ArrayList<Date> dates = SleepSpeedDetectorService.getSleepTime();
         if ((dates==null)||(dates.get(0).equals(dates.get(1)))) {
             Toast.makeText(this, "اطلاعات کافی موجود نیست!", Toast.LENGTH_SHORT).show();
+            recordAuto_random();
             return;
         }
         if(dates.get(0).getDay()==dates.get(1).getDay()){
@@ -238,25 +257,7 @@ public class SleepManagerActivity extends Activity {
             int minute2= dates.get(1).getHours()*60 + dates.get(1).getMinutes();
             if(Math.abs(minute1-minute2)<=15){
                 Toast.makeText(this, "اطلاعات کافی موجود نیست!", Toast.LENGTH_SHORT).show();
-                return;
-            }
-        }
-        setSleepTimeDate(dates.get(0));
-        setWakeUpTimeDate(dates.get(1));
-        changeTexts();
-    }
-
-    public void recordAuto_firstTime() {
-        ArrayList<Date> dates = SleepSpeedDetectorService.getSleepTime();
-        if ((dates==null)||(dates.get(0).equals(dates.get(1)))) {
-            Toast.makeText(this, "اطلاعات کافی موجود نیست!", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        if(dates.get(0).getDay()==dates.get(1).getDay()){
-            int minute1= dates.get(0).getHours()*60 + dates.get(0).getMinutes();
-            int minute2= dates.get(1).getHours()*60 + dates.get(1).getMinutes();
-            if(Math.abs(minute1-minute2)<=15){
-                Toast.makeText(this, "اطلاعات کافی موجود نیست!", Toast.LENGTH_SHORT).show();
+                recordAuto_random();
                 return;
             }
         }

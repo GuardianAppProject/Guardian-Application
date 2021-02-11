@@ -142,7 +142,7 @@ public class SleepSpeedDetectorService extends Service {
             allDates.add(date);
             System.out.println(sleepData+" sleep");
         }
-        if ((detectedActivitiesList.size()>=1)&&(detectedActivitiesList.get(0).getType() == DetectedActivity.STILL) && (detectedActivitiesList.get(0).getConfidence()) >= 60){ //speed
+        if ((detectedActivitiesList.size()>=1)&&(detectedActivitiesList.get(0).getType() == DetectedActivity.IN_VEHICLE) && (detectedActivitiesList.get(0).getConfidence()) >= 60){ //speed
             ActivityManager am = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
 
             List<ActivityManager.RunningTaskInfo> allTasks = am.getRunningTasks(1);
