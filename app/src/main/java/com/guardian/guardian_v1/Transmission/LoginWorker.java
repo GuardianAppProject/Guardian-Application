@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.guardian.guardian_v1.MainActivity;
 import com.guardian.guardian_v1.R;
 import com.guardian.guardian_v1.SignIn;
 
@@ -45,7 +46,8 @@ public class LoginWorker extends AsyncTask<String,Void,String> {
                 OutputStream outputStream = httpURLConnection.getOutputStream();
                 BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream,"UTF-8"));
 
-                String post_data = URLEncoder.encode("username","UTF-8")+"="+URLEncoder.encode(username,"UTF-8")+"&"+URLEncoder.encode("password","UTF-8")+"="+URLEncoder.encode(password,"UTF-8");
+                String post_data = URLEncoder.encode("username","UTF-8")+"="+URLEncoder.encode(username,"UTF-8")+"&"+URLEncoder.encode("password","UTF-8")+"="+URLEncoder.encode(password,"UTF-8")
+                        +"&"+URLEncoder.encode("version","UTF-8")+"="+URLEncoder.encode(MainActivity.appVersion,"UTF-8");
 
                 bufferedWriter.write(post_data);
                 bufferedWriter.flush();

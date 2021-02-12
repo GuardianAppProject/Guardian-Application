@@ -44,6 +44,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class MainActivity extends Activity {
+    public static String appVersion="0";
 
     private static int TIME_OUT = 2500; //Time to launch the another activity
     private static final String ONESIGNAL_APP_ID = "52708f3f-d26f-4739-9b0e-97093714a222";
@@ -64,6 +65,7 @@ public class MainActivity extends Activity {
         try {
             PackageInfo pInfo = this.getPackageManager().getPackageInfo(this.getPackageName(), 0);
             String version = pInfo.versionName;
+            appVersion = version;
             Log.d("version", version);
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
