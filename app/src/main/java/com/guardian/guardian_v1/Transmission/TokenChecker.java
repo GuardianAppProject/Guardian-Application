@@ -5,6 +5,7 @@ import android.media.session.MediaSession;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
+import com.guardian.guardian_v1.MainActivity;
 import com.guardian.guardian_v1.SignIn;
 
 import java.io.BufferedReader;
@@ -32,6 +33,7 @@ public class TokenChecker extends AsyncTask<String,Void,String> {
     protected String doInBackground(String... strings) {
         String type = strings[0];
         String login_url = "https://www.guardianapp.ir/check_token_validity.php";
+
         if (type.equals("check")) {
             try {
                 String token = strings[1];
@@ -45,7 +47,7 @@ public class TokenChecker extends AsyncTask<String,Void,String> {
                 OutputStream outputStream = httpURLConnection.getOutputStream();
                 BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
 
-                String post_data = URLEncoder.encode("token", "UTF-8") + "=" + URLEncoder.encode(token, "UTF-8") ;
+                String post_data = URLEncoder.encode("token", "UTF-8") + "=" + URLEncoder.encode(token, "UTF-8")+"&"+URLEncoder.encode("version","UTF-8")+"="+URLEncoder.encode(MainActivity.appVersion,"UTF-8");
 
                 bufferedWriter.write(post_data);
                 bufferedWriter.flush();
