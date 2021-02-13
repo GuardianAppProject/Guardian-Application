@@ -69,7 +69,9 @@ public class DriveAlertHandler {
         WITHOUT_STOP,
 //        TRAFFIC,
         ROAD_TYPE,
-        NONE
+        NONE,
+
+        REST_COMPLEX
     }
 
     public DriveAlertHandler(String alertMessage, int repetition, boolean tooImportant, Type type, String soundURL) {

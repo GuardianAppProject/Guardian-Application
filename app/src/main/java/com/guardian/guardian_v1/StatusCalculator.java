@@ -971,30 +971,44 @@ public class StatusCalculator {
     }
 
     public String nearestRestComplex(GPSTracker gpsTracker, double percentage) {
-        double nearestRestComplexDistance = gpsTracker.getMinPlaceDistance();
+        double nearestRestComplexDistance = gpsTracker.getMinPlaceDistance()/1000;
         String nearestRestComplexName = gpsTracker.getPlaceName();
         String restComplex = "";
         Log.d("distanceRest", "" + nearestRestComplexDistance);
-//        if (percentage < 50) {
+        if (percentage < 50) {
             if(nearestRestComplexDistance <= 5) {
-                restComplex = "مجتمع رفاهی " + nearestRestComplexName + ": " + "کمتر از ۵ کیلومتر با شما فاصله دارد.";
+                restComplex = nearestRestComplexName + ": " + "کمتر از ۵ کیلومتر با شما فاصله دارد.";
             } if(nearestRestComplexDistance <= 10) {
-                restComplex = "مجتمع رفاهی " + nearestRestComplexName + ": " + "کمتر از ۱۰ کیلومتر با شما فاصله دارد.";
+                restComplex = nearestRestComplexName + ": " + "کمتر از ۱۰ کیلومتر با شما فاصله دارد.";
             } else if(nearestRestComplexDistance <= 20) {
-                restComplex = "مجتمع رفاهی " + nearestRestComplexName + ": " + "کمتر از ۲۰ کیلومتر با شما فاصله دارد.";
+                restComplex = nearestRestComplexName + ": " + "کمتر از ۲۰ کیلومتر با شما فاصله دارد.";
             } else if(nearestRestComplexDistance <= 30) {
-                restComplex = "مجتمع رفاهی " + nearestRestComplexName + ": " + "کمتر از ۳۰ کیلومتر با شما فاصله دارد.";
+                restComplex = nearestRestComplexName + ": " + "کمتر از ۳۰ کیلومتر با شما فاصله دارد.";
             } else if(nearestRestComplexDistance <= 50) {
-                restComplex = "مجتمع رفاهی " + nearestRestComplexName + ": " + "کمتر از ۵۰ کیلومتر با شما فاصله دارد.";
+                restComplex = nearestRestComplexName + ": " + "کمتر از ۵۰ کیلومتر با شما فاصله دارد.";
             } else if(nearestRestComplexDistance <= 80) {
-                restComplex = "مجتمع رفاهی " + nearestRestComplexName + ": " + "کمتر از ۸۰ کیلومتر با شما فاصله دارد.";
+                restComplex = nearestRestComplexName + ": " + "کمتر از ۸۰ کیلومتر با شما فاصله دارد.";
             } else {
-                restComplex = "مجتمع رفاهی " + nearestRestComplexName + ": " + "نزدیک ترین مجتمع رفاهی به شماست!";
+                restComplex = nearestRestComplexName + ": " + "نزدیک ترین مجتمع رفاهی به شماست!";
             }
 
-//        } else {
-//            restComplex
-//        }
+        } else {
+            if(nearestRestComplexDistance <= 5) {
+                restComplex = nearestRestComplexName + ": " + "کمتر از ۵ کیلومتر با شما فاصله دارد.";
+            } if(nearestRestComplexDistance <= 10) {
+                restComplex = nearestRestComplexName + ": " + "کمتر از ۱۰ کیلومتر با شما فاصله دارد.";
+            } else if(nearestRestComplexDistance <= 20) {
+                restComplex = nearestRestComplexName + ": " + "کمتر از ۲۰ کیلومتر با شما فاصله دارد.";
+            } else if(nearestRestComplexDistance <= 30) {
+                restComplex = nearestRestComplexName + ": " + "کمتر از ۳۰ کیلومتر با شما فاصله دارد.";
+            } else if(nearestRestComplexDistance <= 50) {
+                restComplex = nearestRestComplexName + ": " + "کمتر از ۵۰ کیلومتر با شما فاصله دارد.";
+            } else if(nearestRestComplexDistance <= 80) {
+                restComplex = nearestRestComplexName + ": " + "کمتر از ۸۰ کیلومتر با شما فاصله دارد.";
+            } else {
+                restComplex = nearestRestComplexName + ": " + "نزدیک ترین مجتمع رفاهی به شماست!";
+            }
+        }
         return restComplex;
     }
 

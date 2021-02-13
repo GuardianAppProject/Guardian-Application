@@ -89,7 +89,7 @@ public class MainActivity extends Activity {
                     retryButton.setVisibility(View.VISIBLE);
                 } else {
                     retryButton.setVisibility(View.INVISIBLE);
-                    startApp();
+//                    startApp();
                 }
             }
         });

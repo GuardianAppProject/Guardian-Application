@@ -208,6 +208,13 @@ public class LocationService extends Service implements
                 if (speed <= 9.0 && (endingTime - firstTime) >= 5) {
                     Log.d("stop text", "you have been stopped");
                     firstSpeedTime = true;
+                    // non stop
+                    nonStopDrivingTime = endingTime - firstSpeedStart;
+                    nonStopDriving.add(nonStopDrivingTime);
+                    firstForSpeed = true;
+                    nonStopDrivingTime = 0;
+                    nonStopDrivingShow = 0;
+                    firstSpeedStart = Long.valueOf(0);
                 }
                 else {
                     Log.d("stop text", "You are driving now");
