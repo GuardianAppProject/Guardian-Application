@@ -63,14 +63,11 @@ public class SleepManagerActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sleep_manager);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
-                    WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+           // getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+                 //   WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         }
-        if(isThereSleepDataFile(this)  == false){
+        if(isThereSleepDataFile(this)  == false)
             makeSleepDataFile(this);
-        }else{
-            System.out.println("hastesh");
-        }
         initiateViews();
         initiateClock();
         recordAuto(null);
@@ -196,6 +193,8 @@ public class SleepManagerActivity extends Activity {
         yesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                randomSleep = null;
+                randomWake = null;
                writeInfoToFile(SleepManagerActivity.this,sleepTimeDate,wakeUpTimeDate);
                 alertDialog.dismiss();
                Intent intent = new Intent(SleepManagerActivity.this, SelectNavigation.class);
@@ -228,27 +227,35 @@ public class SleepManagerActivity extends Activity {
     }
 
 
-
+    Date randomSleep,randomWake;
     public void recordAuto_random(){
-        Random rand = new Random();
-        Date date = Calendar.getInstance().getTime();
-        int wakeUpHour = date.getHours();
-        int sleepHour = rand.nextInt(3)+21;
-        if(date.getHours()>6 && date.getHours() <12)
-            wakeUpHour = rand.nextInt(date.getHours()-6)+6;
-        Date d1 = new Date();
-        d1.setHours(wakeUpHour); d1.setMinutes(rand.nextInt(59));
-        Date d2 = new Date();
-        d2.setHours(sleepHour); d2.setMinutes(rand.nextInt(59));
-        setWakeUpTimeDate(d1);
-        setSleepTimeDate(d2);
+        if(randomWake==null && randomSleep==null) {
+            randomWake=new Date();
+            randomSleep=new Date();
+            Random rand = new Random();
+            Date date = Calendar.getInstance().getTime();
+            int wakeUpHour = date.getHours();
+            int sleepHour = rand.nextInt(3) + 21;
+            if (date.getHours() > 6 && date.getHours() < 12)
+                wakeUpHour = rand.nextInt(date.getHours() - 6) + 6;
+            randomWake.setHours(wakeUpHour);
+            randomWake.setMinutes(rand.nextInt(date.getMinutes()));
+            randomSleep.setHours(sleepHour);
+            randomSleep.setMinutes(rand.nextInt(59));
+
+            if(randomWake.getHours()-randomSleep.getHours()<0){
+                randomWake.setDate(randomSleep.getDate()+1);
+            }
+        }
+        setSleepTimeDate(randomSleep);
+        setWakeUpTimeDate(randomWake);
         changeTexts();
     }
 
     public void recordAuto(View view) {
         ArrayList<Date> dates = SleepSpeedDetectorService.getSleepTime();
         if ((dates==null)||(dates.get(0).equals(dates.get(1)))) {
-            Toast.makeText(this, "اطلاعات کافی موجود نیست!", Toast.LENGTH_SHORT).show();
+           // Toast.makeText(this, "اطلاعات کافی موجود نیست!", Toast.LENGTH_SHORT).show();
             recordAuto_random();
             return;
         }
@@ -256,7 +263,7 @@ public class SleepManagerActivity extends Activity {
             int minute1= dates.get(0).getHours()*60 + dates.get(0).getMinutes();
             int minute2= dates.get(1).getHours()*60 + dates.get(1).getMinutes();
             if(Math.abs(minute1-minute2)<=15){
-                Toast.makeText(this, "اطلاعات کافی موجود نیست!", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(this, "اطلاعات کافی موجود نیست!", Toast.LENGTH_SHORT).show();
                 recordAuto_random();
                 return;
             }
