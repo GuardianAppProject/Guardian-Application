@@ -2,18 +2,30 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
         <group android:id="@+id/group2">
-        <item
-            android:id="@+id/account"
-            android:icon="@drawable/profile"
-            android:title="حساب کاربری من" />
-        <item
-            android:id="@+id/group"
-            android:icon="@drawable/team"
-            android:title="گروه های من" />
-        <item
-            android:id="@+id/settings"
-            android:icon="@drawable/settings"
-            android:title="تنظیمات" />
+            <item
+                android:id="@+id/account"
+                android:icon="@drawable/profile"
+                android:title="حساب کاربری من" />
+
+            <item
+                android:id="@+id/drive"
+                android:icon="@drawable/driving"
+                android:title="رانندگی من" />
+
+            <item
+                android:id="@+id/group"
+                android:icon="@drawable/team"
+                android:title="گروه های من" />
+
+            <item
+                android:id="@+id/trip"
+                android:icon="@drawable/trip"
+                android:title="سفر های من" />
+
+            <item
+                android:id="@+id/settings"
+                android:icon="@drawable/settings"
+                android:title="تنظیمات" />
     </group>
 <!--        <item android:title="">  &lt;!&ndash; android:title="Title 1" &ndash;&gt;-->
         <group android:id="@+id/group1">

@@ -36,20 +36,20 @@ public class EncodeDecode {
         return String.format("%.2f (m2/s)", input);
     }
 
-    public static double vibrationEncode(Shake.ShakeSituation userShake) {
-        int vibration = 0;
-        if(userShake == Shake.ShakeSituation.noShake) {
-            vibration = 0;
-        } else if(userShake == Shake.ShakeSituation.lowShake) {
-            vibration = 1;
-        } else if(userShake == Shake.ShakeSituation.mediumShake) {
-            vibration = 2;
-        } else if(userShake == Shake.ShakeSituation.highShake) {
-            vibration = 3;
-        } else if(userShake == Shake.ShakeSituation.veryHighShake) {
-            vibration = 4;
-        }
-        return vibration;
+    public static double vibrationEncode(double userShake) {
+//        int vibration = 0;
+//        if(userShake == Shake.ShakeSituation.noShake) {
+//            vibration = 0;
+//        } else if(userShake == Shake.ShakeSituation.lowShake) {
+//            vibration = 1;
+//        } else if(userShake == Shake.ShakeSituation.mediumShake) {
+//            vibration = 2;
+//        } else if(userShake == Shake.ShakeSituation.highShake) {
+//            vibration = 3;
+//        } else if(userShake == Shake.ShakeSituation.veryHighShake) {
+//            vibration = 4;
+//        }
+        return userShake;
     }
 
     public static String vibrationDecode(double input) {
@@ -269,5 +269,29 @@ public class EncodeDecode {
        }
 
         return String.format("%s", roadTypeOutput);
+    }
+
+    public static String calculateStatusAlgorithm(double percentage) {
+        String status = "";
+        if(percentage < 0) {
+            return "اطلاعات ناموجود";
+        }
+        if(percentage >= 90) {
+            status = "بسیار ایمن";
+        } else if(percentage >= 70) {
+            status = "ایمن";
+        } else if(percentage >= 55) {
+            status = "نیازمند دقت";
+        } else if(percentage >= 48) {
+            status = "نیازمند دقت بالا";
+        } else if(percentage >= 40) {
+            status = "ناایمن";
+        } else if(percentage >= 30) {
+            status = "ایمنی بسیار پایین";
+        } else {
+            status = "بسیار خطرناک";
+        }
+
+        return status;
     }
 }

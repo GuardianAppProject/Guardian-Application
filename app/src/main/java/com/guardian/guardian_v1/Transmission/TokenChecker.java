@@ -10,6 +10,8 @@ import com.guardian.guardian_v1.SignIn;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -87,7 +89,21 @@ public class TokenChecker extends AsyncTask<String,Void,String> {
     @Override
     protected void onPostExecute(String result) {
         toast = Toast.makeText(context, result, Toast.LENGTH_LONG);
+        if(result != null)
+            writeFile(result, "version.txt");
         toast.show();
+    }
+
+    public void writeFile(String textToSave, String fileName) {
+        try {
+            FileOutputStream fileOutputStream = context.openFileOutput(fileName, Context.MODE_PRIVATE);
+            fileOutputStream.write(textToSave.getBytes());
+            fileOutputStream.close();
+        } catch (FileNotFoundException exp) {
+            exp.printStackTrace();
+        } catch (IOException exp) {
+            exp.printStackTrace();
+        }
     }
 
     @Override

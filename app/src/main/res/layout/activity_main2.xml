@@ -65,87 +65,18 @@
 <!--                android:src="@drawable/current_location" />-->
 
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="right"
                 android:orientation="vertical">
 
                 <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:alpha="1"
-                    android:layoutDirection="ltr">
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="#7E7E7E"
-                        android:alpha="0.92"/>
-
-                    <!-- This LinearLayout represents the contents of the screen  -->
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <Button
-                            android:layout_width="22.5dp"
-                            android:layout_height="22.5dp"
-                            android:layout_marginTop="9dp"
-                            android:layout_marginStart="12dp"
-                            android:background="@drawable/menu_icon"
-                            style="?android:attr/borderlessButtonStyle"
-                            android:layout_marginLeft="6dp"
-                            android:id="@+id/menuButton"/>
-
-                        <!-- The ActionBar displayed at the top -->
-                        <!--        <include-->
-                        <!--            layout="@layout/toolbar"-->
-                        <!--            android:layout_width="match_parent"-->
-                        <!--            android:layout_height="wrap_content" />-->
-
-                        <!-- The main content view where fragments are loaded -->
-                        <FrameLayout
-                            android:id="@+id/flContent"
-                            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent" />
-                    </LinearLayout>
-
-
-
-                    <FrameLayout
-                        android:layout_width="164dp"
-                        android:layout_height="40dp"
-                        android:layout_gravity="right"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginRight="8dp">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="#FFFFFF"
-                            android:alpha="0.2"
-                            android:elevation="2dp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/main_percentDescription"
-                            android:textColor="#191919"
-                            android:textStyle="bold"
-                            android:layout_gravity="center"
-                            android:textSize="17sp"
-                            android:fontFamily="@font/iran_sans"
-                            android:alpha="1" />
-
-                    </FrameLayout>
-
-                </FrameLayout>
-
-                <FrameLayout
+                    android:id="@+id/percentBox"
                     android:layout_width="172dp"
                     android:layout_height="227dp"
+                    android:layout_marginTop="40dp"
+                    android:layout_alignParentRight="true"
                     android:layout_gravity="right"><!-- height: 250  -->
 
                     <ImageView
@@ -358,6 +289,79 @@
                     </FrameLayout>
                 </FrameLayout>
 
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:alpha="1"
+                    android:layoutDirection="ltr">
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#7E7E7E"
+                        android:alpha="0.92"/>
+
+                    <!-- This LinearLayout represents the contents of the screen  -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <Button
+                            android:layout_width="22.5dp"
+                            android:layout_height="22.5dp"
+                            android:layout_marginTop="9dp"
+                            android:layout_marginStart="12dp"
+                            android:background="@drawable/menu_icon"
+                            style="?android:attr/borderlessButtonStyle"
+                            android:layout_marginLeft="6dp"
+                            android:id="@+id/menuButton"/>
+
+                        <!-- The ActionBar displayed at the top -->
+                        <!--        <include-->
+                        <!--            layout="@layout/toolbar"-->
+                        <!--            android:layout_width="match_parent"-->
+                        <!--            android:layout_height="wrap_content" />-->
+
+                        <!-- The main content view where fragments are loaded -->
+                        <FrameLayout
+                            android:id="@+id/flContent"
+                            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+                    </LinearLayout>
+
+
+
+                    <FrameLayout
+                        android:layout_width="164dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="right"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginRight="8dp">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="#FFFFFF"
+                            android:alpha="0.2"
+                            android:elevation="2dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/main_percentDescription"
+                            android:textColor="#191919"
+                            android:textStyle="bold"
+                            android:layout_gravity="center"
+                            android:textSize="17sp"
+                            android:fontFamily="@font/iran_sans"
+                            android:alpha="1" />
+
+                    </FrameLayout>
+
+                </FrameLayout>
+
 <!--                <LinearLayout-->
 <!--                    android:layout_width="match_parent"-->
 <!--                    android:layout_height="match_parent"-->
@@ -376,7 +380,7 @@
 <!--                </LinearLayout>-->
 
 
-            </LinearLayout>
+            </RelativeLayout>
 
         </FrameLayout>
 
@@ -389,10 +393,10 @@
             android:layout_width="match_parent"
             android:layout_marginRight="15dp"
             android:layout_marginLeft="15dp"
-            android:layout_height="39dp"
+            android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="13dp"
             android:gravity="center"
             android:background="@drawable/rectangle_alert_background_red"
             android:alpha="0.93"><!-- width: 280dp; margin bott: 112 -->
@@ -400,7 +404,9 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:minHeight="39dp"
                 android:paddingRight="7.5dp"
                 android:paddingLeft="10dp"
                 android:alpha="0.9"
@@ -418,7 +424,8 @@
                 <TextView
                     android:id="@+id/alertMessageText"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="39dp"
                     android:text="از سرعت خود بکاهید!"
                     android:textColor="#FFFFFF"
                     android:textSize="12.88sp"
@@ -434,8 +441,8 @@
 
         <ImageView
             android:id="@+id/warningImg"
-            android:layout_width="52.5dp"
-            android:layout_height="52.5dp"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
             android:layout_above="@+id/dangerLayout"
             android:layout_marginRight="15dp"
             android:layout_marginBottom="8dp"
@@ -447,22 +454,37 @@
 
 
         <Button
-            android:id="@+id/restButton"
-            android:layout_width="34.5dp"
-            android:layout_height="34.5dp"
+            android:visibility="invisible"
+            android:id="@+id/backToMap"
+            android:layout_width="41dp"
+            android:layout_height="41dp"
             android:layout_above="@+id/dangerLayout"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_marginEnd="15dp"
-            android:layout_marginRight="15dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:alpha="0.9"
+            android:background="@drawable/map_pointer"
+            android:layout_marginBottom="6dp" />
+
+        <Button
+            android:id="@+id/restButton"
+            android:layout_width="37dp"
+            android:layout_height="37dp"
+            android:layout_above="@+id/dangerLayout"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="13dp"
+            android:layout_marginRight="13dp"
+            android:alpha="0.825"
             android:background="@drawable/rest_area_icon"
-            android:layout_marginBottom="4dp" />
+            android:layout_marginBottom="6dp" />
 
         <RelativeLayout
             android:id="@+id/dangerLayout"
             android:visibility="invisible"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="38dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentEnd="true"

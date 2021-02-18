@@ -7,12 +7,21 @@ import android.content.Intent;
 import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
+
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 
 public class GPSAndInternetChecker {
     public static boolean check(Context context, double height, double width){
@@ -24,7 +33,83 @@ public class GPSAndInternetChecker {
             showInternetAlert(context, height, width);
             return false;
         }
+
+        // check version
+        Log.d("ver", "hello");
+        String result = readFile("version.txt", context).toString();
+        Log.d("versionAlert", result);
+        if(result.length() >= 19 && result.charAt(19)=='*') {
+            String updateLink = result.substring(20);
+            showUpdateAlert(context, updateLink, height, width);
+            return false;
+        }
+
         return true;
+    }
+
+
+    public static void showUpdateAlert(final Context context, String updateLink, double height, double width){
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        View view = LayoutInflater.from(context).inflate(R.layout.update_alert_dialog, null);
+
+        Button updateBtn = view.findViewById(R.id.updateButton);
+        updateBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri uri = Uri.parse(updateLink);
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                context.startActivity(intent);
+            }
+        });
+
+        //        builder.setView(view);
+        AlertDialog alertDialog = builder.create();
+        alertDialog.setView(view, 0, 0, 0, 0);
+        alertDialog.show();
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+
+        lp.copyFrom(alertDialog.getWindow().getAttributes());
+        lp.width = 700;
+        lp.height = 800;
+        lp.x= (int)0;
+        lp.y=(int)(height * 1/7);
+        alertDialog.getWindow().setAttributes(lp);
+
+
+//        new AlertDialog.Builder(context)
+//                .setTitle("عدم فعال بودن GPS                  ")
+//                .setMessage("برای استفاده از گاردین لطفا GPS تلفن همراه خود را روشن نمایید.")
+//                .setPositiveButton("موقعیت مکانی GPS", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface paramDialogInterface, int paramInt) {
+//                        context.startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+//                    }
+//                })
+//                .show();
+
+    }
+
+    public static StringBuilder readFile(String fileName, Context context) {
+        StringBuilder stringBuffer = new StringBuilder("");
+        try {
+            FileInputStream fileInputStream = context.openFileInput(fileName);
+            InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
+
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+            stringBuffer = new StringBuilder();
+
+            String lines;
+            while ((lines = bufferedReader.readLine()) != null) {
+                stringBuffer.append(lines);
+            }
+//            Main.routeStyle = lines;
+        } catch (FileNotFoundException exp) {
+            exp.printStackTrace();
+        } catch (IOException exp) {
+            exp.printStackTrace();
+        }
+        return stringBuffer;
     }
 
 

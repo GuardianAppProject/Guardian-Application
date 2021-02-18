@@ -4,6 +4,7 @@ package com.guardian.guardian_v1;
 import android.content.Context;
 import android.util.Log;
 
+import com.google.android.gms.maps.model.LatLng;
 import com.guardian.guardian_v1.DriveStatus.GPSTracker;
 import com.guardian.guardian_v1.DriveStatus.PersianCalender;
 import com.guardian.guardian_v1.DriveStatus.RoadInformation;
@@ -868,14 +869,10 @@ public class StatusCalculator {
         double sleep_factor = sleepCalculator(staticUserSleep, staticUserAwake) * 3;
         double time_factor = timeCalculator(timeObj.getTimeHOUR(), timeObj.getTimeMINUTE(), 0, 0) * 3;
         double speed_factor = calculateAverage(singleSpeed) * 3; //speedCalculator(staticUserSpeed, speedLimit, weatherType) * 3;
-        Log.d("number", "" + singleSpeed.size());
-        singleSpeed.clear();
         double withoutStopDriving_factor = withoutStopDrivingCalculator(nonStop, totalDrive, totalTime, timeObj.getTimeHOUR(), timeObj.getTimeMINUTE()) * 3;
         double nearCities_factor = nearCitiesCalculator(distance) * 2;
         double vibration_factor = calculateAverage(singleVibrate) * 2.2; //vibrationCalculator(vibration) * 2.2;
-        singleVibrate.clear();
         double acceleration_factor = calculateAverage(singleAcceleration) * 2.5; //accelerationCalculator(acceleration, weatherType) * 2.5;
-        singleAcceleration.clear();
         double month_factor = monthCalculator(solarCalendar.month) * 0.8;
         double traffic_factor = 0; // trafficCalculator() * 1;
         double roadType_factor = roadTypeCalculator(highwayType, lanes, oneway) * 1;
@@ -899,16 +896,20 @@ public class StatusCalculator {
         double average = 0;
         
         double sleep_raw = EncodeDecode.sleepEncode(staticUserSleep);
-        double speed_raw = EncodeDecode.speedEncode(staticUserSpeed);
+        double speed_raw = EncodeDecode.speedEncode(calculateAverage(singleSpeed));
         double time_raw = EncodeDecode.timeEncode(timeObj.getTimeHOUR(), timeObj.getTimeMINUTE());
-        double acceleration_raw = EncodeDecode.accelerationEncode(acceleration);
+        double acceleration_raw = EncodeDecode.accelerationEncode(calculateAverage(singleAcceleration));
         double withoutStop_raw = EncodeDecode.withoutStopEncode(nonStop);
         double weather_raw = EncodeDecode.weatherEncode(weatherType);
         double nearCities_raw = EncodeDecode.nearCitiesEncode(distance);
-        double vibration_raw = EncodeDecode.vibrationEncode(vibration);
+        double vibration_raw = EncodeDecode.vibrationEncode(calculateAverage(singleVibrate));
         double month_raw = EncodeDecode.monthEncode(solarCalendar.month);
         double traffic_raw = 0;
         double roadType_raw = EncodeDecode.roadTypeEncode(highwayType);
+
+        singleSpeed.clear();
+        singleVibrate.clear();
+        singleAcceleration.clear();
 
         average = (sleep_factor + time_factor
                 + speed_factor + withoutStopDriving_factor

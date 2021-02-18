@@ -59,6 +59,8 @@ public class GPSTracker extends Service implements LocationListener {
 
     private double minPlaceDistance;
     private String placeName;
+    private double nearestPlaceLatitude;
+    private double nearestPlaceLangtitude;
 
     String[] cities = {"Tehran", "Mashhad", "Isfahan", "Karaj", "Shiraz", "Tabriz", "Qom", "Ahvaz", "Kermanshah", "Orumiyeh", "Rasht", "Zahedan"
             , "Kerman", "Yazd", "Ardabil", "BandarAbbas", "Arak", "Zanjan", "Sanandaj", "Qazvin", "Khorramabad", "Gorgan", "Sari", "Bojnourd",
@@ -517,6 +519,14 @@ public class GPSTracker extends Service implements LocationListener {
         getLocation();
     }
 
+    public double getNearestPlaceLatitude() {
+        return nearestPlaceLatitude;
+    }
+
+    public double getNearestPlaceLangtitude() {
+        return nearestPlaceLangtitude;
+    }
+
     public Location getLocation() throws SecurityException{
         minPlaceDistance = Double.MAX_VALUE;
         placeName = "";
@@ -625,6 +635,9 @@ public class GPSTracker extends Service implements LocationListener {
                     if (minPlaceDistance > placeDistance) {
                         minPlaceDistance = placeDistance;
                         placeName = TehranPlaces[counter];
+
+                        nearestPlaceLatitude = TehranLatitudes[counter];
+                        nearestPlaceLangtitude = TehranLongtitudes[counter];
                     }
                 }
             }
@@ -640,6 +653,9 @@ public class GPSTracker extends Service implements LocationListener {
                     if (minPlaceDistance > placeDistance) {
                         minPlaceDistance = placeDistance;
                         placeName = MashhadPlaces[counter];
+
+                        nearestPlaceLatitude = MashhadLatitudes[counter];
+                        nearestPlaceLangtitude = MashhadLongtitudes[counter];
                     }
                 }
             }
@@ -655,6 +671,9 @@ public class GPSTracker extends Service implements LocationListener {
                     if (minPlaceDistance > placeDistance) {
                         minPlaceDistance = placeDistance;
                         placeName = IsfahanPlaces[counter];
+
+                        nearestPlaceLatitude = IsfahanLatitudes[counter];
+                        nearestPlaceLangtitude = IsfahanLongtitudes[counter];
                     }
                 }
             }
@@ -670,6 +689,9 @@ public class GPSTracker extends Service implements LocationListener {
                     if (minPlaceDistance > placeDistance) {
                         minPlaceDistance = placeDistance;
                         placeName = KarajPlaces[counter];
+
+                        nearestPlaceLatitude = KarajLatitudes[counter];
+                        nearestPlaceLangtitude = KarajLongtitudes[counter];
                     }
                 }
             }
@@ -685,6 +707,9 @@ public class GPSTracker extends Service implements LocationListener {
                     if (minPlaceDistance > placeDistance) {
                         minPlaceDistance = placeDistance;
                         placeName = ShirazPlaces[counter];
+
+                        nearestPlaceLatitude = ShirazLatitudes[counter];
+                        nearestPlaceLangtitude = ShirazLongtitudes[counter];
                     }
                 }
             }
@@ -700,6 +725,9 @@ public class GPSTracker extends Service implements LocationListener {
                     if (minPlaceDistance > placeDistance) {
                         minPlaceDistance = placeDistance;
                         placeName = TabrizPlaces[counter];
+
+                        nearestPlaceLatitude = TabrizLatitudes[counter];
+                        nearestPlaceLangtitude = TabrizLongtitudes[counter];
                     }
                 }
             }
@@ -715,6 +743,9 @@ public class GPSTracker extends Service implements LocationListener {
                     if (minPlaceDistance > placeDistance) {
                         minPlaceDistance = placeDistance;
                         placeName = QomPlaces[counter];
+
+                        nearestPlaceLatitude = QomLatitudes[counter];
+                        nearestPlaceLangtitude = QomLongtitudes[counter];
                     }
                 }
             }
@@ -730,6 +761,9 @@ public class GPSTracker extends Service implements LocationListener {
                     if (minPlaceDistance > placeDistance) {
                         minPlaceDistance = placeDistance;
                         placeName = AhvazPlaces[counter];
+
+                        nearestPlaceLatitude = AhvazLatitudes[counter];
+                        nearestPlaceLangtitude = AhvazLongtitudes[counter];
                     }
                 }
             }
@@ -745,6 +779,9 @@ public class GPSTracker extends Service implements LocationListener {
                     if (minPlaceDistance > placeDistance) {
                         minPlaceDistance = placeDistance;
                         placeName = KermanshahPlaces[counter];
+
+                        nearestPlaceLatitude = KermanshahLatitudes[counter];
+                        nearestPlaceLangtitude = KermanshahLongtitudes[counter];
                     }
                 }
             }
@@ -760,6 +797,9 @@ public class GPSTracker extends Service implements LocationListener {
                     if (minPlaceDistance > placeDistance) {
                         minPlaceDistance = placeDistance;
                         placeName = OrumiyehPlaces[counter];
+
+                        nearestPlaceLatitude = OrumiyehLatitudes[counter];
+                        nearestPlaceLangtitude = OrumiyehLongtitudes[counter];
                     }
                 }
             }
@@ -775,6 +815,9 @@ public class GPSTracker extends Service implements LocationListener {
                     if (minPlaceDistance > placeDistance) {
                         minPlaceDistance = placeDistance;
                         placeName = RashtPlaces[counter];
+
+                        nearestPlaceLatitude = RashtLatitudes[counter];
+                        nearestPlaceLangtitude = RashtLongtitudes[counter];
                     }
                 }
             }
@@ -790,6 +833,9 @@ public class GPSTracker extends Service implements LocationListener {
                     if (minPlaceDistance > placeDistance) {
                         minPlaceDistance = placeDistance;
                         placeName = ZahedanPlaces[counter];
+
+                        nearestPlaceLatitude = ZahedanLatitudes[counter];
+                        nearestPlaceLangtitude = ZahedanLongtitudes[counter];
                     }
                 }
             }
@@ -805,6 +851,9 @@ public class GPSTracker extends Service implements LocationListener {
                     if (minPlaceDistance > placeDistance) {
                         minPlaceDistance = placeDistance;
                         placeName = KermanPlaces[counter];
+
+                        nearestPlaceLatitude = KermanLatitudes[counter];
+                        nearestPlaceLangtitude = KermanLongtitudes[counter];
                     }
                 }
             }
@@ -820,6 +869,9 @@ public class GPSTracker extends Service implements LocationListener {
                     if (minPlaceDistance > placeDistance) {
                         minPlaceDistance = placeDistance;
                         placeName = YazdPlaces[counter];
+
+                        nearestPlaceLatitude = YazdLatitudes[counter];
+                        nearestPlaceLangtitude = YazdLongtitudes[counter];
                     }
                 }
             }
@@ -835,6 +887,9 @@ public class GPSTracker extends Service implements LocationListener {
                     if (minPlaceDistance > placeDistance) {
                         minPlaceDistance = placeDistance;
                         placeName = ArdabilPlaces[counter];
+
+                        nearestPlaceLatitude = ArdabilLatitudes[counter];
+                        nearestPlaceLangtitude = ArdabilLongtitudes[counter];
                     }
                 }
             }
@@ -850,6 +905,9 @@ public class GPSTracker extends Service implements LocationListener {
                     if (minPlaceDistance > placeDistance) {
                         minPlaceDistance = placeDistance;
                         placeName = BandarAbbasPlaces[counter];
+
+                        nearestPlaceLatitude = BandarAbbasLatitudes[counter];
+                        nearestPlaceLangtitude = BandarAbbasLongtitudes[counter];
                     }
                 }
             }
@@ -865,6 +923,9 @@ public class GPSTracker extends Service implements LocationListener {
                     if (minPlaceDistance > placeDistance) {
                         minPlaceDistance = placeDistance;
                         placeName = ArakPlaces[counter];
+
+                        nearestPlaceLatitude = ArakLatitudes[counter];
+                        nearestPlaceLangtitude = ArakLongtitudes[counter];
                     }
                 }
             }
@@ -880,6 +941,9 @@ public class GPSTracker extends Service implements LocationListener {
                     if (minPlaceDistance > placeDistance) {
                         minPlaceDistance = placeDistance;
                         placeName = ZanjanPlaces[counter];
+
+                        nearestPlaceLatitude = ZanjanLatitudes[counter];
+                        nearestPlaceLangtitude = ZanjanLongtitudes[counter];
                     }
                 }
             }
@@ -895,6 +959,9 @@ public class GPSTracker extends Service implements LocationListener {
                     if (minPlaceDistance > placeDistance) {
                         minPlaceDistance = placeDistance;
                         placeName = SanandajPlaces[counter];
+
+                        nearestPlaceLatitude = SanandajLatitudes[counter];
+                        nearestPlaceLangtitude = SanandajLongtitudes[counter];
                     }
                 }
             }
@@ -910,6 +977,9 @@ public class GPSTracker extends Service implements LocationListener {
                     if (minPlaceDistance > placeDistance) {
                         minPlaceDistance = placeDistance;
                         placeName = QazvinPlaces[counter];
+
+                        nearestPlaceLatitude = QazvinLatitudes[counter];
+                        nearestPlaceLangtitude = QazvinLongtitudes[counter];
                     }
                 }
             }
@@ -925,6 +995,9 @@ public class GPSTracker extends Service implements LocationListener {
                     if (minPlaceDistance > placeDistance) {
                         minPlaceDistance = placeDistance;
                         placeName = KhorramabadPlaces[counter];
+
+                        nearestPlaceLatitude = KhorramabadLatitudes[counter];
+                        nearestPlaceLangtitude = KhorramabadLongtitudes[counter];
                     }
                 }
             }
@@ -940,6 +1013,9 @@ public class GPSTracker extends Service implements LocationListener {
                     if (minPlaceDistance > placeDistance) {
                         minPlaceDistance = placeDistance;
                         placeName = GorganPlaces[counter];
+
+                        nearestPlaceLatitude = GorganLatitudes[counter];
+                        nearestPlaceLangtitude = GorganLongtitudes[counter];
                     }
                 }
             }
@@ -955,6 +1031,9 @@ public class GPSTracker extends Service implements LocationListener {
                     if (minPlaceDistance > placeDistance) {
                         minPlaceDistance = placeDistance;
                         placeName = SariPlaces[counter];
+
+                        nearestPlaceLatitude = SariLatitudes[counter];
+                        nearestPlaceLangtitude = SariLongtitudes[counter];
                     }
                 }
             }
@@ -970,6 +1049,9 @@ public class GPSTracker extends Service implements LocationListener {
                     if (minPlaceDistance > placeDistance) {
                         minPlaceDistance = placeDistance;
                         placeName = BojnourdPlaces[counter];
+
+                        nearestPlaceLatitude = BojnourdLatitudes[counter];
+                        nearestPlaceLangtitude = BojnourdLongtitudes[counter];
                     }
                 }
             }
@@ -985,6 +1067,9 @@ public class GPSTracker extends Service implements LocationListener {
                     if (minPlaceDistance > placeDistance) {
                         minPlaceDistance = placeDistance;
                         placeName = BushehrPlaces[counter];
+
+                        nearestPlaceLatitude = BushehrLatitudes[counter];
+                        nearestPlaceLangtitude = BushehrLongtitudes[counter];
                     }
                 }
             }
@@ -1000,6 +1085,9 @@ public class GPSTracker extends Service implements LocationListener {
                     if (minPlaceDistance > placeDistance) {
                         minPlaceDistance = placeDistance;
                         placeName = BirjandPlaces[counter];
+
+                        nearestPlaceLatitude = BirjandLatitudes[counter];
+                        nearestPlaceLangtitude = BirjandLongtitudes[counter];
                     }
                 }
             }
@@ -1015,6 +1103,9 @@ public class GPSTracker extends Service implements LocationListener {
                     if (minPlaceDistance > placeDistance) {
                         minPlaceDistance = placeDistance;
                         placeName = IlamPlaces[counter];
+
+                        nearestPlaceLatitude = IlamLatitudes[counter];
+                        nearestPlaceLangtitude = IlamLongtitudes[counter];
                     }
                 }
             }
@@ -1030,6 +1121,9 @@ public class GPSTracker extends Service implements LocationListener {
                     if (minPlaceDistance > placeDistance) {
                         minPlaceDistance = placeDistance;
                         placeName = ShahrekordPlaces[counter];
+
+                        nearestPlaceLatitude = ShahrekordLatitudes[counter];
+                        nearestPlaceLangtitude = ShahrekordLongtitudes[counter];
                     }
                 }
             }
@@ -1045,6 +1139,9 @@ public class GPSTracker extends Service implements LocationListener {
                     if (minPlaceDistance > placeDistance) {
                         minPlaceDistance = placeDistance;
                         placeName = SemnanPlaces[counter];
+
+                        nearestPlaceLatitude = SemnanLatitudes[counter];
+                        nearestPlaceLangtitude = SemnanLongtitudes[counter];
                     }
                 }
             }
@@ -1060,6 +1157,9 @@ public class GPSTracker extends Service implements LocationListener {
                     if (minPlaceDistance > placeDistance) {
                         minPlaceDistance = placeDistance;
                         placeName = YasujPlaces[counter];
+
+                        nearestPlaceLatitude = YasujLatitudes[counter];
+                        nearestPlaceLangtitude = YasujLongtitudes[counter];
                     }
                 }
             }
@@ -1075,6 +1175,9 @@ public class GPSTracker extends Service implements LocationListener {
                     if (minPlaceDistance > placeDistance) {
                         minPlaceDistance = placeDistance;
                         placeName = HamedanPlaces[counter];
+
+                        nearestPlaceLatitude = HamedanLatitudes[counter];
+                        nearestPlaceLangtitude = HamedanLongtitudes[counter];
                     }
                 }
             }

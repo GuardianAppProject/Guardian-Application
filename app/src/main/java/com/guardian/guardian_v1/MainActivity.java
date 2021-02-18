@@ -25,13 +25,13 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 
 //import com.google.android.gms.maps.model.CameraPosition;
 import com.guardian.guardian_v1.SleepSpeedManager.SleepSpeedDetectorService;
 import com.guardian.guardian_v1.SleepSpeedManager.UseMeNotification;
 import com.guardian.guardian_v1.Transmission.AverageWorker;
+import com.guardian.guardian_v1.Transmission.SingleUserDetailed;
 import com.guardian.guardian_v1.Transmission.TokenChecker;
 import com.onesignal.OneSignal;
 
@@ -44,8 +44,10 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class MainActivity extends Activity {
+
     public static String appVersion="0";
 
+    public static String token;
     private static int TIME_OUT = 2500; //Time to launch the another activity
     private static final String ONESIGNAL_APP_ID = "52708f3f-d26f-4739-9b0e-97093714a222";
     @Override
@@ -119,6 +121,7 @@ public class MainActivity extends Activity {
     }
 
     private void startApp() {
+        token = read();
         TokenChecker.beginCheck(read(),this);
         AverageWorker.beginCheck(read(),this);
 //        if (android.os.Build.VERSION.SDK_INT > 9) {
@@ -140,7 +143,7 @@ public class MainActivity extends Activity {
         }
 
 
-        String str = readFile2().toString();
+        String str = readFile("dangermode.txt").toString();
         if(str.length()>=1){
             Main.dangerModeOn = Boolean.parseBoolean(str);
         } else {
@@ -148,8 +151,8 @@ public class MainActivity extends Activity {
         }
 
 //        Toast.makeText(this, readFile(), Toast.LENGTH_SHORT).show();
-        if(isNumeric(readFile().toString())) {
-            int sound_notif = Integer.parseInt(readFile().toString());
+        if(isNumeric(readFile("settings.txt").toString())) {
+            int sound_notif = Integer.parseInt(readFile("settings.txt").toString());
             Main.set_sound_repetition(sound_notif);
             Log.d("SOUND", "sound" +Main.get_sound_repetition());
         } else {
@@ -210,20 +213,19 @@ public class MainActivity extends Activity {
                     }
                 }, TIME_OUT);
 
-
                     startActivity(new Intent(MainActivity.this, SignUp.class));
                     overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-
+                    finish();
             }
 
         }.start();
 
     }
 
-    public StringBuilder readFile() {
+    public StringBuilder readFile(String fileName) {
         StringBuilder stringBuffer = new StringBuilder("");
         try {
-            FileInputStream fileInputStream = openFileInput("settings.txt");
+            FileInputStream fileInputStream = openFileInput(fileName);
             InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
 
             BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
@@ -241,29 +243,6 @@ public class MainActivity extends Activity {
         }
         return stringBuffer;
     }
-
-    public StringBuilder readFile2() {
-        StringBuilder stringBuffer = new StringBuilder("");
-        try {
-            FileInputStream fileInputStream = openFileInput("dangermode.txt");
-            InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
-
-            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-            stringBuffer = new StringBuilder();
-
-            String lines;
-            while ((lines = bufferedReader.readLine()) != null) {
-                stringBuffer.append(lines);
-            }
-//            Main.routeStyle = lines;
-        } catch (FileNotFoundException exp) {
-            exp.printStackTrace();
-        } catch (IOException exp) {
-            exp.printStackTrace();
-        }
-        return stringBuffer;
-    }
-
 
     public String read(){
         //reading text from file

@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.guardian.guardian_v1.SleepSpeedManager.SleepSpeedDetectorService;
 import com.guardian.guardian_v1.Transmission.AverageWorker;
+import com.guardian.guardian_v1.Transmission.SingleUserDetailed;
 
 //package com.guardian.guardian_v1;
 //
@@ -123,7 +124,6 @@ public class SelectNavigation extends Activity {//implements OnMapReadyCallback,
                     WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         }
 
-
 //        mapView = findViewById(R.id.mapView);
 //        mapView.onCreate(savedInstanceState);
 //        mapView.getMapAsync(this);
@@ -147,6 +147,8 @@ public class SelectNavigation extends Activity {//implements OnMapReadyCallback,
 //        });
 //
         TextView allTimeAvg = (TextView) findViewById(R.id.tv);
+
+//        SingleUserDetailed.getUserDetailed();
 
         String s = AverageWorker.getAverage();
         double x;

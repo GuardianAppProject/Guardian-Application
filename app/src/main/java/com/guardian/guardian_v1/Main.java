@@ -1,6 +1,7 @@
 package com.guardian.guardian_v1;
 
 import android.Manifest;
+import android.animation.ObjectAnimator;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
@@ -10,6 +11,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -24,6 +27,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.IBinder;
+import android.os.Looper;
 import android.speech.RecognizerIntent;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -50,11 +54,16 @@ import androidx.fragment.app.FragmentActivity;
 //import com.google.android.gms.maps.OnMapReadyCallback;
 //import com.google.android.gms.maps.SupportMapFragment;
 //import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.navigation.NavigationView;
+import com.guardian.guardian_v1.DriveStatus.GPSTracker;
 import com.guardian.guardian_v1.DriveStatus.LocationService;
 import com.guardian.guardian_v1.DriveStatus.Shake;
 import com.guardian.guardian_v1.DriveStatus.Weather;
@@ -257,12 +266,13 @@ public class Main extends FragmentActivity implements SensorEventListener, OnMap
 
 
     private GoogleMap mMap;
-
+    private Location locat;
     private GoogleMap.OnMyLocationChangeListener myLocationChangeListener = new GoogleMap.OnMyLocationChangeListener() {
         @Override
         public void onMyLocationChange(Location location) {
             LatLng loc = new LatLng(location.getLatitude(), location.getLongitude());
 //                mMarker = mMap.addMarker(new MarkerOptions().position(loc));
+            locat = location;
             if (mMap != null) {
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(loc, 15.8f));
                 updateCameraBearing(mMap,location);
@@ -278,8 +288,91 @@ public class Main extends FragmentActivity implements SensorEventListener, OnMap
         return Main.SOUND_REPETITION;
     }
 
+    private boolean restComplex = false;
+
+    private Marker mar;
     private void updateCameraBearing(GoogleMap googleMap, Location location) {
         if ( googleMap == null) return;
+
+        if (restComplex & mMap != null & location != null) {
+
+            LatLng latLng = new LatLng(location.getLatitude(),location.getLongitude());
+            GPSTracker gpsTracker = new GPSTracker(this);
+            LatLng latLng1 = new LatLng(gpsTracker.getNearestPlaceLatitude(), gpsTracker.getNearestPlaceLangtitude());
+
+            // Creating a marker
+            MarkerOptions markerOptions = new MarkerOptions();
+
+            // Setting the position for the marker
+            markerOptions.position(latLng1);
+
+            // Setting the title for the marker.
+            // This will be displayed on taping the marker
+            markerOptions.title(latLng1.latitude + " : " + latLng1.longitude);
+
+            int height = 110;
+            int width = 110;
+            BitmapDrawable bitmapdraw = (BitmapDrawable)getResources().getDrawable(R.drawable.rest_station_marker);
+            Bitmap b = bitmapdraw.getBitmap();
+            Bitmap smallMarker = Bitmap.createScaledBitmap(b, width, height, false);
+
+            markerOptions.title(gpsTracker.getPlaceName())
+//                    .snippet("Population: 4,627,300")
+                    .icon(BitmapDescriptorFactory.fromBitmap(smallMarker));
+            // Clears the previously touched position
+            googleMap.clear();
+
+            // Animating to the touched position
+//        googleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
+
+            // Placing a marker on the touched position
+            mar = googleMap.addMarker(markerOptions);
+            mar.showInfoWindow();
+
+            ArrayList<Marker> markers = new ArrayList<>();
+            markers.add(mar);
+            LatLngBounds.Builder builder = new LatLngBounds.Builder();
+            for (Marker marker : markers) {
+                builder.include(marker.getPosition());
+            }
+            builder.include(latLng);
+
+            LatLngBounds bounds = builder.build();
+
+            int padding = 250; // offset from edges of the map in pixels
+            CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
+
+            googleMap.animateCamera(cu);
+
+            double nearestRestComplexDistance = gpsTracker.getMinPlaceDistance()/1000;
+            String nearestRestComplexName = gpsTracker.getPlaceName();
+            String restComplexDist = "";
+            if(nearestRestComplexDistance <= 5) {
+                restComplexDist = "کمتر از ۵ کیلومتر با شما فاصله دارد.";
+            } if(nearestRestComplexDistance <= 10) {
+                restComplexDist = "کمتر از ۱۰ کیلومتر با شما فاصله دارد.";
+            } else if(nearestRestComplexDistance <= 20) {
+                restComplexDist = "کمتر از ۲۰ کیلومتر با شما فاصله دارد.";
+            } else if(nearestRestComplexDistance <= 30) {
+                restComplexDist = "کمتر از ۳۰ کیلومتر با شما فاصله دارد.";
+            } else if(nearestRestComplexDistance <= 50) {
+                restComplexDist = "کمتر از ۵۰ کیلومتر با شما فاصله دارد.";
+            } else if(nearestRestComplexDistance <= 80) {
+                restComplexDist = "کمتر از ۸۰ کیلومتر با شما فاصله دارد.";
+            } else {
+                restComplexDist = "نزدیک ترین مجتمع رفاهی به شماست!";
+            }
+
+            alertMessageText.setText("«" + nearestRestComplexName + "» " + restComplexDist);
+            alertMessageBox.setBackgroundResource(R.drawable.rectangle_alert_background_orange);
+//            alertMessageText.setTextColor(Color.BLACK);
+            alertMessageImage.setImageResource(R.drawable.coffee_white);
+            alertMessageBox.getLayoutParams().height = WindowManager.LayoutParams.WRAP_CONTENT;
+            alertMessageBox.requestLayout();
+            alertMessageBox.setMinimumHeight(39);
+
+
+        } else {
             LatLng latLng = new LatLng(location.getLatitude(),location.getLongitude());
             CameraPosition cameraPosition = new CameraPosition.Builder()
                     .target(latLng)             // Sets the center of the map to current location
@@ -288,6 +381,8 @@ public class Main extends FragmentActivity implements SensorEventListener, OnMap
                     .tilt(0)                   // Sets the tilt of the camera to 0 degrees
                     .build();                   // Creates a CameraPosition from the builder
             googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+        }
+
         }
 
      Handler ha;
@@ -324,6 +419,69 @@ public class Main extends FragmentActivity implements SensorEventListener, OnMap
             return;
         }
 
+        Button restBtn = (Button) findViewById(R.id.restButton);
+        Button backToMap = (Button) findViewById(R.id.backToMap);
+        backToMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                restComplex = false;
+
+                FrameLayout percentBox = (FrameLayout) findViewById(R.id.percentBox);
+                ObjectAnimator animation = ObjectAnimator.ofFloat(percentBox, "translationY", 0);
+                animation.setDuration(500);
+                animation.start();
+
+                mar.remove();
+
+                if(locat != null && mMap != null)
+                    updateCameraBearing(mMap, locat);
+
+                backToMap.setVisibility(View.INVISIBLE);
+                restBtn.setVisibility(View.VISIBLE);
+
+                showAlertBox();
+            }
+        });
+        restBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                restComplex = true;
+                if(locat != null && mMap != null)
+                    updateCameraBearing(mMap, locat);
+
+                FrameLayout percentBox = (FrameLayout) findViewById(R.id.percentBox);
+                ObjectAnimator animation = ObjectAnimator.ofFloat(percentBox, "translationY", -300);
+                animation.setDuration(750);
+                animation.start();
+
+                backToMap.setVisibility(View.VISIBLE);
+                restBtn.setVisibility(View.INVISIBLE);
+
+                final Handler handler = new Handler(Looper.getMainLooper());
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        restComplex = false;
+
+                        FrameLayout percentBox = (FrameLayout) findViewById(R.id.percentBox);
+                        ObjectAnimator animation = ObjectAnimator.ofFloat(percentBox, "translationY", 0);
+                        animation.setDuration(500);
+                        animation.start();
+
+                        mar.remove();
+
+                        if(locat != null && mMap != null)
+                            updateCameraBearing(mMap, locat);
+
+                        backToMap.setVisibility(View.INVISIBLE);
+                        restBtn.setVisibility(View.VISIBLE);
+
+                        showAlertBox();
+
+                    }
+                }, 10000);
+            }
+        });
 
         //Morteza shake
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
@@ -448,6 +606,7 @@ public class Main extends FragmentActivity implements SensorEventListener, OnMap
 
             @Override
             public void run() {
+                System.gc();
                 //call function
                 callAlgorithmLogic();
                 ha.postDelayed(this, 30000);
@@ -487,6 +646,27 @@ public class Main extends FragmentActivity implements SensorEventListener, OnMap
 //        mapController.setZoom(18);
 
 
+
+    }
+
+
+    private void showAlertBox() {
+        if(!restComplex) {
+            String toShowAlert = DriveAlertHandler.toShowAlert();
+            if(toShowAlert.equalsIgnoreCase("")) {
+                alertMessageText.setText("با دقت به رانندگی ادامه دهید.");
+                alertMessageBox.setBackgroundResource(R.drawable.rectangle_alert_background_green);
+//            alertMessageText.setTextColor(Color.BLACK);
+                alertMessageImage.setImageResource(R.drawable.warning_white);
+            } else {
+                alertMessageText.setText(toShowAlert);
+                alertMessageBox.setBackgroundResource(R.drawable.rectangle_alert_background_red);
+                alertMessageImage.setImageResource(R.drawable.alert_icon);
+            }
+        }
+        alertMessageBox.getLayoutParams().height = WindowManager.LayoutParams.WRAP_CONTENT;
+        alertMessageBox.requestLayout();
+        alertMessageBox.setMinimumHeight(39);
     }
 
 
@@ -651,6 +831,11 @@ public class Main extends FragmentActivity implements SensorEventListener, OnMap
                 startActivity(i4);
 //                finish();
                 break;
+            case R.id.drive:
+                Intent i5 = new Intent(Main.this, MyDrive.class);
+                startActivity(i5);
+//                finish();
+                break;
         }
 
 //        try {
@@ -707,17 +892,7 @@ public class Main extends FragmentActivity implements SensorEventListener, OnMap
             }
         };
         weatherThread.start();
-        String toShowAlert = DriveAlertHandler.toShowAlert();
-        if(toShowAlert.equalsIgnoreCase("")) {
-            alertMessageText.setText("با دقت به رانندگی ادامه دهید.");
-            alertMessageBox.setBackgroundResource(R.drawable.rectangle_alert_background_green);
-//            alertMessageText.setTextColor(Color.BLACK);
-            alertMessageImage.setImageResource(R.drawable.warning_white);
-        } else {
-            alertMessageText.setText(toShowAlert);
-            alertMessageBox.setBackgroundResource(R.drawable.rectangle_alert_background_red);
-            alertMessageImage.setImageResource(R.drawable.alert_icon);
-        }
+        showAlertBox();
 
         int backgroundNumber = statusCalculator.calculateBackgroundAlgorithm(percentage);
         if(backgroundNumber == 1) {
