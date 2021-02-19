@@ -120,8 +120,8 @@ public class SelectNavigation extends Activity {//implements OnMapReadyCallback,
 //        Mapbox.getInstance(this, getString(R.string.access_token));
         setContentView(R.layout.activity_select_navigation);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
-                    WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+         //   getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+           //         WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         }
 
 //        mapView = findViewById(R.id.mapView);
