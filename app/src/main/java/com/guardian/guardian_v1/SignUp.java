@@ -43,12 +43,13 @@ public class SignUp extends Activity {
                 Intent intent = new Intent(SignUp.this, SleepManagerActivity.class);
                 startActivity(intent);
                 finish();
-            }else {
+            } else {
                 Intent i = new Intent(SignUp.this, SelectNavigation.class);
                 startActivity(i);
                 finish();
             }
         }
+        Main.setShowGuide(true);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {

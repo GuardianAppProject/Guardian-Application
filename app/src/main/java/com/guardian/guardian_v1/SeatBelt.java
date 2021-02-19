@@ -1,6 +1,7 @@
 package com.guardian.guardian_v1;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.app.Activity;
 import android.content.Context;
@@ -10,6 +11,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
@@ -32,6 +34,12 @@ public class SeatBelt extends Activity {
                 //    WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         }
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = this.getWindow();
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(ContextCompat.getColor(this, R.color.appTheme2Color));
+        }
 
 
 

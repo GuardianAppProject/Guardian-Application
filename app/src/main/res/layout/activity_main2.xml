@@ -75,7 +75,7 @@
                     android:id="@+id/percentBox"
                     android:layout_width="172dp"
                     android:layout_height="227dp"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="36dp"
                     android:layout_alignParentRight="true"
                     android:layout_gravity="right"><!-- height: 250  -->
 
@@ -90,6 +90,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="68dp"
                         android:layoutDirection="ltr"
+                        android:id="@+id/statistics"
                         android:orientation="vertical"> <!-- height: 90  -->
 
                         <LinearLayout
@@ -292,7 +293,7 @@
 
                 <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="36dp"
                     android:alpha="1"
                     android:layoutDirection="ltr">
                     <ImageView
@@ -310,7 +311,7 @@
                         <Button
                             android:layout_width="22.5dp"
                             android:layout_height="22.5dp"
-                            android:layout_marginTop="9dp"
+                            android:layout_marginTop="8dp"
                             android:layout_marginStart="12dp"
                             android:background="@drawable/menu_icon"
                             style="?android:attr/borderlessButtonStyle"
