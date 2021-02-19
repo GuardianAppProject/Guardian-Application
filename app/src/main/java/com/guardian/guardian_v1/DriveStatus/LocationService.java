@@ -216,8 +216,9 @@ public class LocationService extends Service implements
                     nonStopDrivingShow = 0;
                     firstSpeedStart = Long.valueOf(0);
                 }
-                else {
+                else if(speed > 9.0) {
                     Log.d("stop text", "You are driving now");
+                    firstTime = endingTime;
                 }
 
             } else {
