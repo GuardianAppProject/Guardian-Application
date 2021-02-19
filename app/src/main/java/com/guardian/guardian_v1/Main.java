@@ -143,12 +143,6 @@ public class Main extends FragmentActivity implements SensorEventListener, OnMap
     public static boolean dangerModeOn = true;
     private static boolean firstDanger = true;
 
-    private static boolean showGuide = false;
-
-    public static void setShowGuide(boolean showGuide) {
-        showGuide = showGuide;
-    }
-
     // Map
 //    MapView mapView;
 //    View contentLayout;
@@ -619,7 +613,7 @@ public class Main extends FragmentActivity implements SensorEventListener, OnMap
 //        mapController = map.getController();
 //        mapController.setZoom(18);
 
-        if(showGuide) {
+        if(MainActivity.getShowGuide()) {
             showGuide();
         }
     }
@@ -629,8 +623,8 @@ public class Main extends FragmentActivity implements SensorEventListener, OnMap
         View[] allGuideViews = new View[5];
         String[] allGuideStrings = new String[5];
         allGuideViews[0] = findViewById(R.id.restButton);
-        allGuideViews[1] = findViewById(R.id.alertMessageText);
-        allGuideViews[2] = findViewById(R.id.driving_background);
+        allGuideViews[1] = findViewById(R.id.alertMessageBox);
+        allGuideViews[2] = findViewById(R.id.driving_box);
         allGuideViews[3] = findViewById(R.id.statistics);
         allGuideViews[4] = findViewById(R.id.menuButton);
 

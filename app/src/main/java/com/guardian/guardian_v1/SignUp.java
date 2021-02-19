@@ -48,8 +48,10 @@ public class SignUp extends Activity {
                 startActivity(i);
                 finish();
             }
+        } else {
+            MainActivity.setShowGuide(true);
         }
-        Main.setShowGuide(true);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {

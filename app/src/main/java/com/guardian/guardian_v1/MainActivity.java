@@ -223,7 +223,7 @@ public class MainActivity extends Activity {
                     }
                 }, TIME_OUT);
 
-                    startActivity(new Intent(MainActivity.this, SleepManagerActivity.class));
+                    startActivity(new Intent(MainActivity.this, SignUp.class));
                     overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                     finish();
             }
@@ -345,5 +345,15 @@ public class MainActivity extends Activity {
         calendar.set(Calendar.AM_PM, Calendar.AM);
         calendar.add(Calendar.DAY_OF_MONTH, 0);
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 1000*60*60*24*30 , pendingIntent);
+    }
+
+    private static boolean showGuide = false;
+
+    public static void setShowGuide(boolean sg) {
+        showGuide = sg;
+    }
+
+    public static boolean getShowGuide() {
+        return showGuide;
     }
 }

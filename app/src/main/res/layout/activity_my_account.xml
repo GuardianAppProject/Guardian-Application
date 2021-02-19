@@ -285,7 +285,7 @@
     <Button
         android:id="@+id/logoutButton"
         android:layout_width="match_parent"
-        android:layout_height="32dp"
+        android:layout_height="39dp"
         android:layout_gravity="center"
         android:background="#D2FF4866"
         android:fontFamily="@font/iran_sans"

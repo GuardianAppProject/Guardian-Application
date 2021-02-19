@@ -54,7 +54,7 @@ public class SignIn extends Activity {
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setStatusBarColor(ContextCompat.getColor(this, R.color.appThemeColor));
         }
-
+        MainActivity.setShowGuide(true);
 
         EditText edittext = (EditText)findViewById(R.id.password);
         edittext.setTransformationMethod(new AsteriskPasswordTransformationMethod());

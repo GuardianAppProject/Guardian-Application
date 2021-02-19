@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/appThemeColor"
     android:fitsSystemWindows="true"
+    android:layoutDirection="ltr"
     tools:context=".SleepSpeedManager.SleepManagerActivity">
 
     <!--    <androidx.constraintlayout.widget.ConstraintLayout-->

@@ -33,6 +33,7 @@
            />
         <activity
             android:name=".SignIn"
+            android:windowSoftInputMode="adjustResize"
             android:launchMode="singleTask" />
         <activity
             android:name=".SeatBelt" />
@@ -41,6 +42,7 @@
             android:launchMode="singleTask" />
         <activity
             android:name=".SignUp"
+            android:windowSoftInputMode="adjustResize"
             android:launchMode="singleTask" />
         <activity
             android:name=".SleepSpeedManager.SleepManagerActivity" />
