@@ -2,7 +2,7 @@ package com.guardian.guardian_v1.SleepSpeedManager;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
-
+import androidx.core.content.ContextCompat;
 
 
 import android.app.Activity;
@@ -18,6 +18,7 @@ import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
@@ -66,6 +67,13 @@ public class SleepManagerActivity extends Activity {
            // getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
                  //   WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         }
+
+        Window window = this.getWindow();
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.setStatusBarColor(ContextCompat.getColor(this,R.color.appThemeColor));
+
+
         if(isThereSleepDataFile(this)  == false)
             makeSleepDataFile(this);
         initiateViews();

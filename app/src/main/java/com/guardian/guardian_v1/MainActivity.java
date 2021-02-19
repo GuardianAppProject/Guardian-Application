@@ -28,6 +28,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 
 //import com.google.android.gms.maps.model.CameraPosition;
+import com.guardian.guardian_v1.SleepSpeedManager.SleepManagerActivity;
 import com.guardian.guardian_v1.SleepSpeedManager.SleepSpeedDetectorService;
 import com.guardian.guardian_v1.SleepSpeedManager.UseMeNotification;
 import com.guardian.guardian_v1.Transmission.AverageWorker;
@@ -213,7 +214,7 @@ public class MainActivity extends Activity {
                     }
                 }, TIME_OUT);
 
-                    startActivity(new Intent(MainActivity.this, SignUp.class));
+                    startActivity(new Intent(MainActivity.this, SleepManagerActivity.class));
                     overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                     finish();
             }

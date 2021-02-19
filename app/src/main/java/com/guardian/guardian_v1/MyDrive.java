@@ -5,9 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.guardian.guardian_v1.Models.User;
+import com.guardian.guardian_v1.Transmission.TokenChecker;
 
 public class MyDrive extends AppCompatActivity {
 
@@ -16,6 +18,17 @@ public class MyDrive extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_drive);
 
+        updateData();
+
+        Button date = findViewById(R.id.date);
+        date.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+               updateData();
+            }
+        });
+    }
+
+    private void updateData() {
         TextView usernameText = findViewById(R.id.usernameTextView);
         TextView phoneNumberText = findViewById(R.id.phoneNumberTextView);
         TextView safetyStatus = findViewById(R.id.safetyStatus);
@@ -32,7 +45,7 @@ public class MyDrive extends AppCompatActivity {
         TextView textView11 = findViewById(R.id.text11);
 
         usernameText.setText(User.getInstance().getUsernameText());
-        phoneNumberText.setText(User.getInstance().getPhoneNumberText());
+        phoneNumberText.setText(TokenChecker.getPhoneNum());
         safetyStatus.setText(User.getInstance().getSafety());
         textView1.setText(User.getInstance().getTextView1());
         textView2.setText(User.getInstance().getTextView2());
@@ -45,6 +58,7 @@ public class MyDrive extends AppCompatActivity {
         textView9.setText(User.getInstance().getTextView9());
         textView10.setText(User.getInstance().getTextView10());
         textView11.setText(User.getInstance().getTextView11());
+
     }
 
     @Override

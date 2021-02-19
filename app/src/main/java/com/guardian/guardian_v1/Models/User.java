@@ -1,5 +1,7 @@
 package com.guardian.guardian_v1.Models;
 
+import android.util.Log;
+
 import com.guardian.guardian_v1.EncodeDecode;
 
 import org.json.JSONException;
@@ -41,10 +43,8 @@ public class User {
 
 
         //inja ans.split dare az onvar miad, chizmiz haro tike tike mikonim set mikonim roye textbox haye xml
-        String number = data[2];
-        getInstance().phoneNumberText = number;
-        String username = data[3];
-        getInstance().usernameText = username;
+        getInstance().phoneNumberText = data[2];
+        getInstance().usernameText = data[3];
         String safety = data[4];
         if(isNumeric(safety)) {
             getInstance().textView1 = (Math.round(Double.parseDouble(safety) * 100.0) / 100.0) + "%";
@@ -52,7 +52,7 @@ public class User {
         } else {
             getInstance().textView1 = safety;
         }
-
+        Log.d("safetyy", safety);
         String speed = data[5];
         if(isNumeric(speed)) {
             getInstance().textView2 = EncodeDecode.speedDecode(Double.parseDouble(speed));

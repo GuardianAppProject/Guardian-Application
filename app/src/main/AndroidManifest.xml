@@ -30,10 +30,9 @@
         <activity android:name=".MyAccount" />
         <activity
             android:name=".SelectNavigation"
-            android:theme="@android:style/Theme.NoTitleBar" />
+           />
         <activity
             android:name=".SignIn"
-            android:theme="@android:style/Theme.NoTitleBar"
             android:launchMode="singleTask" />
         <activity
             android:name=".SeatBelt"
@@ -43,11 +42,9 @@
             android:launchMode="singleTask" />
         <activity
             android:name=".SignUp"
-            android:theme="@android:style/Theme.NoTitleBar"
             android:launchMode="singleTask" />
         <activity
-            android:name=".SleepSpeedManager.SleepManagerActivity"
-            android:theme="@android:style/Theme.NoTitleBar" />
+            android:name=".SleepSpeedManager.SleepManagerActivity" />
         <activity
             android:name=".MainActivity"
             android:theme="@android:style/Theme.NoTitleBar">
