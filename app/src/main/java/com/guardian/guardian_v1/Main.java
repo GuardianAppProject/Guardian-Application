@@ -2,6 +2,7 @@ package com.guardian.guardian_v1;
 
 import android.Manifest;
 import android.animation.ObjectAnimator;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
@@ -40,6 +41,7 @@ import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -50,10 +52,11 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentActivity;
 
-//import com.google.android.gms.maps.GoogleMap;
-//import com.google.android.gms.maps.OnMapReadyCallback;
-//import com.google.android.gms.maps.SupportMapFragment;
-//import com.google.android.gms.maps.model.MarkerOptions;
+
+
+
+import com.github.amlcurran.showcaseview.ShowcaseView;
+import com.github.amlcurran.showcaseview.targets.ViewTarget;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -67,61 +70,12 @@ import com.guardian.guardian_v1.DriveStatus.GPSTracker;
 import com.guardian.guardian_v1.DriveStatus.LocationService;
 import com.guardian.guardian_v1.DriveStatus.Shake;
 import com.guardian.guardian_v1.DriveStatus.Weather;
-//import com.mapbox.android.core.location.LocationEngineCallback;
-//import com.mapbox.android.core.location.LocationEngineResult;
-//import com.mapbox.api.directions.v5.models.BannerText;
-//import com.mapbox.api.directions.v5.models.DirectionsResponse;
-//import com.mapbox.api.directions.v5.models.DirectionsRoute;
-//import com.mapbox.core.constants.Constants;
-//import com.mapbox.geojson.LineString;
-//import com.mapbox.geojson.Point;
-//import com.mapbox.mapboxsdk.Mapbox;
-//import com.mapbox.mapboxsdk.annotations.MarkerOptions;
-//import com.mapbox.mapboxsdk.annotations.Polyline;
-//import com.mapbox.mapboxsdk.annotations.PolylineOptions;
-//import com.mapbox.mapboxsdk.camera.CameraPosition;
-//import com.mapbox.mapboxsdk.camera.CameraUpdateFactory;
-//import com.mapbox.mapboxsdk.geometry.LatLng;
-//import com.mapbox.mapboxsdk.location.LocationComponent;
-//import com.mapbox.mapboxsdk.location.modes.RenderMode;
-////import com.mapbox.mapboxsdk.maps.MapView;
-//import com.mapbox.mapboxsdk.maps.MapboxMap;
-//import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
-//import com.mapbox.mapboxsdk.maps.Style;
-//import com.mapbox.services.android.navigation.ui.v5.instruction.InstructionLoader;
-//import com.mapbox.services.android.navigation.ui.v5.instruction.InstructionView;
-//import com.mapbox.services.android.navigation.v5.instruction.Instruction;
-//import com.mapbox.services.android.navigation.v5.location.replay.ReplayRouteLocationEngine;
-//import com.mapbox.services.android.navigation.v5.milestone.BannerInstructionMilestone;
-//import com.mapbox.services.android.navigation.v5.milestone.Milestone;
-//import com.mapbox.services.android.navigation.v5.milestone.MilestoneEventListener;
-//import com.mapbox.services.android.navigation.v5.navigation.MapboxNavigation;
-//import com.mapbox.services.android.navigation.v5.navigation.MapboxNavigationOptions;
-//import com.mapbox.services.android.navigation.v5.navigation.NavigationEventListener;
-//import com.mapbox.services.android.navigation.v5.navigation.NavigationRoute;
-//import com.mapbox.services.android.navigation.v5.offroute.OffRouteListener;
-//import com.mapbox.services.android.navigation.v5.routeprogress.ProgressChangeListener;
-//import com.mapbox.services.android.navigation.v5.routeprogress.RouteProgress;
-//import com.squareup.picasso.Picasso;
-
-//import org.osmdroid.api.IMapController;
-//import org.osmdroid.config.Configuration;
-//import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
-//import org.osmdroid.util.GeoPoint;
-//import org.osmdroid.views.overlay.Marker;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
-//import retrofit2.Call;
-//import retrofit2.Callback;
-//import retrofit2.Response;
-//import timber.log.Timber;
-
-
-//
 
 
 import android.content.res.Configuration;
@@ -132,6 +86,11 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.guardian.guardian_v1.SleepSpeedManager.SleepSpeedDetectorService;
 import com.squareup.picasso.Picasso;
+
+import smartdevelop.ir.eram.showcaseviewlib.GuideView;
+import smartdevelop.ir.eram.showcaseviewlib.config.DismissType;
+import smartdevelop.ir.eram.showcaseviewlib.config.Gravity;
+import smartdevelop.ir.eram.showcaseviewlib.listener.GuideListener;
 
 
 //
@@ -645,10 +604,57 @@ public class Main extends FragmentActivity implements SensorEventListener, OnMap
 //        mapController = map.getController();
 //        mapController.setZoom(18);
 
-
-
+        showGuide();
     }
 
+
+    public void showGuide(){
+        View[] allGuideViews = new View[5];
+        String[] allGuideStrings = new String[5];
+        allGuideViews[0] = findViewById(R.id.restButton);
+        allGuideViews[1] = findViewById(R.id.alertMessageText);
+        allGuideViews[2] = findViewById(R.id.driving_background);
+        allGuideViews[3] = findViewById(R.id.statistics);
+        allGuideViews[4] = findViewById(R.id.menuButton);
+
+        allGuideStrings[0] = getString(R.string.showcase_restbutton);
+        allGuideStrings[1] = getString(R.string.showcase_alertmessagetext);
+        allGuideStrings[2] = getString(R.string.showcase_drivingbackground);
+        allGuideStrings[3] = getString(R.string.showcase_statistics);
+        allGuideStrings[4] = getString(R.string.showcase_menubutton);
+
+        GuideView.Builder guideView1 = getGuideForView(allGuideViews[0],allGuideStrings[0]);
+        GuideView.Builder guideView2 = getGuideForView(allGuideViews[1],allGuideStrings[1]);
+        GuideView.Builder guideView3 = getGuideForView(allGuideViews[2],allGuideStrings[2]);
+        GuideView.Builder guideView4 = getGuideForView(allGuideViews[3],allGuideStrings[3]);
+        GuideView.Builder guideView5 = getGuideForView(allGuideViews[4],allGuideStrings[4]);
+
+        guideView1.setGuideListener(getGuideListener(guideView2));
+        guideView2.setGuideListener(getGuideListener(guideView3));
+        guideView3.setGuideListener(getGuideListener(guideView4));
+        guideView4.setGuideListener(getGuideListener(guideView5));
+
+        guideView1.build().show();
+    }
+
+    public GuideListener getGuideListener(GuideView.Builder builder){
+        return new GuideListener() {
+            @Override
+            public void onDismiss(View view) {
+                builder.build().show();
+            }
+        };
+    }
+
+    public GuideView.Builder getGuideForView(View view,String message){
+        return new GuideView.Builder(this)
+                .setContentText(message)
+                .setGravity(Gravity.auto) //optional
+                .setDismissType(DismissType.anywhere) //optional - default DismissType.targetView
+                .setTargetView(view)
+                .setContentTextSize(12)//optional
+                .setTitleTextSize(14);
+    }
 
     private void showAlertBox() {
         if(!restComplex) {
