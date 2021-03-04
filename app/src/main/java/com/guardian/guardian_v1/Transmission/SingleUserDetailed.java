@@ -1,6 +1,7 @@
 package com.guardian.guardian_v1.Transmission;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.guardian.guardian_v1.MainActivity;
 import com.guardian.guardian_v1.Models.User;
@@ -27,7 +28,8 @@ public class SingleUserDetailed extends AsyncTask<String, Void, String> {
     @Override
     protected String doInBackground(String... strings) {
 
-        String login_url = "https://www.guardianapp.ir/getDriverAverageData.php";
+        Log.d("tokeeeen", strings[0]);
+        String login_url = "https://www.guardianapp.ir/get_user_driving_details.php";
 
         try {
             String token = strings[0];
@@ -64,6 +66,7 @@ public class SingleUserDetailed extends AsyncTask<String, Void, String> {
             System.err.println(result);
             ans = result;
             data = ans.split(" ");
+            Log.d("ansis", ans);
             User.getInstance().updateUserData(ans.split(" "));
             return result;
         } catch (MalformedURLException e) {

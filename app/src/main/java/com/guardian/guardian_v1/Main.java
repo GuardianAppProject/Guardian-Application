@@ -34,6 +34,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -48,6 +49,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentActivity;
@@ -55,6 +57,8 @@ import androidx.fragment.app.FragmentActivity;
 
 
 
+//import com.github.amlcurran.showcaseview.ShowcaseView;
+//import com.github.amlcurran.showcaseview.targets.ViewTarget;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -440,6 +444,13 @@ public class Main extends FragmentActivity implements SensorEventListener, OnMap
             }
         });
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = this.getWindow();
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(ContextCompat.getColor(this, R.color.colorBar));
+        }
+
         //Morteza shake
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 
@@ -602,7 +613,9 @@ public class Main extends FragmentActivity implements SensorEventListener, OnMap
 //        mapController = map.getController();
 //        mapController.setZoom(18);
 
-        showGuide();
+        if(MainActivity.getShowGuide()) {
+            showGuide();
+        }
     }
 
 
@@ -610,8 +623,8 @@ public class Main extends FragmentActivity implements SensorEventListener, OnMap
         View[] allGuideViews = new View[5];
         String[] allGuideStrings = new String[5];
         allGuideViews[0] = findViewById(R.id.restButton);
-        allGuideViews[1] = findViewById(R.id.alertMessageText);
-        allGuideViews[2] = findViewById(R.id.driving_background);
+        allGuideViews[1] = findViewById(R.id.alertMessageBox);
+        allGuideViews[2] = findViewById(R.id.driving_box);
         allGuideViews[3] = findViewById(R.id.statistics);
         allGuideViews[4] = findViewById(R.id.menuButton);
 

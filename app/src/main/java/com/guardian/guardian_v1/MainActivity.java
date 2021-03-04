@@ -17,6 +17,7 @@ import android.os.Handler;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.Button;
@@ -25,9 +26,11 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 
 //import com.google.android.gms.maps.model.CameraPosition;
+import com.guardian.guardian_v1.SleepSpeedManager.SleepManagerActivity;
 import com.guardian.guardian_v1.SleepSpeedManager.SleepSpeedDetectorService;
 import com.guardian.guardian_v1.SleepSpeedManager.UseMeNotification;
 import com.guardian.guardian_v1.Transmission.AverageWorker;
@@ -55,8 +58,8 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-          //  getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
-            //        WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+//            getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+//                    WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             startForegroundService(new Intent(this, SleepSpeedDetectorService.class));
@@ -71,6 +74,13 @@ public class MainActivity extends Activity {
             Log.d("version", version);
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = this.getWindow();
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(ContextCompat.getColor(this, R.color.appThemeColor));
         }
 
         // Enable verbose OneSignal logging to debug issues if needed.
@@ -286,8 +296,8 @@ public class MainActivity extends Activity {
         System.out.println("resume");
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
-                    WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+//            getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+//                    WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         }
 
         Button retryButton = findViewById(R.id.retryButton);
@@ -335,5 +345,15 @@ public class MainActivity extends Activity {
         calendar.set(Calendar.AM_PM, Calendar.AM);
         calendar.add(Calendar.DAY_OF_MONTH, 0);
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 1000*60*60*24*30 , pendingIntent);
+    }
+
+    private static boolean showGuide = false;
+
+    public static void setShowGuide(boolean sg) {
+        showGuide = sg;
+    }
+
+    public static boolean getShowGuide() {
+        return showGuide;
     }
 }

@@ -70,10 +70,12 @@ public class GPSAndInternetChecker {
         WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
 
         lp.copyFrom(alertDialog.getWindow().getAttributes());
-        lp.width = 700;
-        lp.height = 800;
+        lp.width = ViewGroup.LayoutParams.MATCH_PARENT;
+        lp.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+//        lp.width = 700;
+//        lp.height = 800;
         lp.x= (int)0;
-        lp.y=(int)(height * 1/7);
+        lp.y=(int)0;
         alertDialog.getWindow().setAttributes(lp);
 
 
@@ -140,10 +142,10 @@ public class GPSAndInternetChecker {
         WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
 
         lp.copyFrom(alertDialog.getWindow().getAttributes());
-        lp.width = 700;
-        lp.height = 800;
+        lp.width = ViewGroup.LayoutParams.MATCH_PARENT;
+        lp.height = ViewGroup.LayoutParams.WRAP_CONTENT;
         lp.x= (int)0;
-        lp.y=(int)(height * 1/7);
+        lp.y=(int)0;
         alertDialog.getWindow().setAttributes(lp);
 
 
@@ -203,10 +205,10 @@ public class GPSAndInternetChecker {
         WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
 
         lp.copyFrom(alertDialog.getWindow().getAttributes());
-        lp.width = 700;
-        lp.height = 800;
+        lp.width = ViewGroup.LayoutParams.MATCH_PARENT;
+        lp.height = ViewGroup.LayoutParams.WRAP_CONTENT;
         lp.x= (int)0;
-        lp.y=(int)(height * 1/7);
+        lp.y=(int)0;
         alertDialog.getWindow().setAttributes(lp);
 
 

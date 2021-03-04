@@ -30,27 +30,24 @@
         <activity android:name=".MyAccount" />
         <activity
             android:name=".SelectNavigation"
-            android:theme="@android:style/Theme.NoTitleBar" />
+           />
         <activity
             android:name=".SignIn"
-            android:theme="@android:style/Theme.NoTitleBar"
+            android:windowSoftInputMode="adjustResize"
             android:launchMode="singleTask" />
         <activity
-            android:name=".SeatBelt"
-            android:theme="@android:style/Theme.NoTitleBar" />
+            android:name=".SeatBelt" />
         <activity
             android:name=".Main"
             android:launchMode="singleTask" />
         <activity
             android:name=".SignUp"
-            android:theme="@android:style/Theme.NoTitleBar"
+            android:windowSoftInputMode="adjustResize"
             android:launchMode="singleTask" />
         <activity
-            android:name=".SleepSpeedManager.SleepManagerActivity"
-            android:theme="@android:style/Theme.NoTitleBar" />
+            android:name=".SleepSpeedManager.SleepManagerActivity" />
         <activity
-            android:name=".MainActivity"
-            android:theme="@android:style/Theme.NoTitleBar">
+            android:name=".MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

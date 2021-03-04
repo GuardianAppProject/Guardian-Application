@@ -7,12 +7,15 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.guardian.guardian_v1.SleepSpeedManager.SleepSpeedDetectorService;
 import com.guardian.guardian_v1.Transmission.AverageWorker;
@@ -118,10 +121,18 @@ public class SelectNavigation extends Activity {//implements OnMapReadyCallback,
 //
         super.onCreate(savedInstanceState);
 //        Mapbox.getInstance(this, getString(R.string.access_token));
+
         setContentView(R.layout.activity_select_navigation);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-         //   getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
-           //         WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+//            getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+//                    WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = this.getWindow();
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(ContextCompat.getColor(this, R.color.appThemeColor));
         }
 
 //        mapView = findViewById(R.id.mapView);
@@ -148,7 +159,7 @@ public class SelectNavigation extends Activity {//implements OnMapReadyCallback,
 //
         TextView allTimeAvg = (TextView) findViewById(R.id.tv);
 
-//        SingleUserDetailed.getUserDetailed();
+        SingleUserDetailed.getUserDetailed();
 
         String s = AverageWorker.getAverage();
         double x;

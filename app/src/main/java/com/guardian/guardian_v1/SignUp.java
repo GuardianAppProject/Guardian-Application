@@ -1,6 +1,8 @@
 package com.guardian.guardian_v1;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -8,6 +10,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
@@ -32,6 +35,7 @@ public class SignUp extends Activity {
     LinearLayout signUpProgress;
     private boolean hidePassword = true;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         if(TokenChecker.tokenIsValid()){
@@ -39,17 +43,28 @@ public class SignUp extends Activity {
                 Intent intent = new Intent(SignUp.this, SleepManagerActivity.class);
                 startActivity(intent);
                 finish();
-            }else {
+            } else {
                 Intent i = new Intent(SignUp.this, SelectNavigation.class);
                 startActivity(i);
                 finish();
             }
+        } else {
+            MainActivity.setShowGuide(true);
         }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-         //   getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
-           //         WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+//            getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+//                    WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        }
+
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = this.getWindow();
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(ContextCompat.getColor(this, R.color.appThemeColor));
         }
 
 

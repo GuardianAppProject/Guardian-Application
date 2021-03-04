@@ -2,7 +2,7 @@ package com.guardian.guardian_v1.SleepSpeedManager;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
-
+import androidx.core.content.ContextCompat;
 
 
 import android.app.Activity;
@@ -18,6 +18,8 @@ import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 
+import android.view.ViewGroup;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
@@ -57,7 +59,6 @@ public class SleepManagerActivity extends Activity {
     Date sleepTimeDate;
     Date wakeUpTimeDate;
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,6 +67,14 @@ public class SleepManagerActivity extends Activity {
            // getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
                  //   WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = this.getWindow();
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(ContextCompat.getColor(this, R.color.appThemeColor));
+        }
+
         if(isThereSleepDataFile(this)  == false)
             makeSleepDataFile(this);
         initiateViews();
@@ -182,11 +191,14 @@ public class SleepManagerActivity extends Activity {
         int width = displayMetrics.widthPixels;
 
         lp.copyFrom(alertDialog.getWindow().getAttributes());
-        lp.width = 700;
-        lp.height = 800;
+        lp.width = ViewGroup.LayoutParams.MATCH_PARENT;
+        lp.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+//        lp.width = 700;
+//        lp.height = 800;
         lp.x= (int)0;
-        lp.y=(int)(height /7);
+        lp.y=(int)0;
         alertDialog.getWindow().setAttributes(lp);
+
 
 
         Button yesButton = dialogView.findViewById(R.id.yesButton);
