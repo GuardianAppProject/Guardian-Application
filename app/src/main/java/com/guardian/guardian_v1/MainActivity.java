@@ -327,11 +327,11 @@ public class MainActivity extends Activity {
             startApp();
         }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            startForegroundService(new Intent(this, SleepSpeedDetectorService.class));
-        }else{
-            startService(new Intent(this, SleepSpeedDetectorService.class));
-        }
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            startForegroundService(new Intent(this, SleepSpeedDetectorService.class));
+//        }else{
+//            startService(new Intent(this, SleepSpeedDetectorService.class));
+//        }
 
         Date date = Calendar.getInstance().getTime();
         UseMeNotification.writeInfoToFile(this,date);

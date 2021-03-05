@@ -1725,17 +1725,17 @@ public class Main extends FragmentActivity implements SensorEventListener, OnMap
 //        ha.removeCallbacksAndMessages(null);
 //        ha.removeCallbacksAndMessages(null);
         Main.this.finish();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            startForegroundService(new Intent(this, SleepSpeedDetectorService.class));
-        }else{
-            startService(new Intent(this, SleepSpeedDetectorService.class));
-        }
-        System.exit(0);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            startForegroundService(new Intent(this, SleepSpeedDetectorService.class));
-        }else{
-            startService(new Intent(this, SleepSpeedDetectorService.class));
-        }
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            startForegroundService(new Intent(this, SleepSpeedDetectorService.class));
+//        }else{
+//            startService(new Intent(this, SleepSpeedDetectorService.class));
+//        }
+//        System.exit(0);
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            startForegroundService(new Intent(this, SleepSpeedDetectorService.class));
+//        }else{
+//            startService(new Intent(this, SleepSpeedDetectorService.class));
+//        }
     }
 }
 
