@@ -75,81 +75,79 @@
                     android:id="@+id/percentBox"
                     android:layout_width="172dp"
                     android:layout_height="227dp"
-                    android:layout_marginTop="38dp"
+                    android:layout_marginTop="40dp"
                     android:layout_alignParentRight="true"
                     android:layout_gravity="right"><!-- height: 250  -->
 
                     <ImageView
-                        android:layout_width="164dp"
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginRight="8dp"
-                        android:src="@drawable/rectangle_box" />
+                        android:src="@drawable/rectangle_box"/>
 
                     <LinearLayout
-                        android:paddingTop="3dp"
+                        android:id="@+id/statistic"
                         android:layout_width="match_parent"
                         android:layout_height="68dp"
                         android:layoutDirection="ltr"
-                        android:layout_marginRight="8dp"
-                        android:id="@+id/statistics"
-                        android:orientation="vertical"> <!-- height: 90  -->
+                        android:orientation="vertical"
+                        android:paddingTop="3dp"> <!-- height: 90  -->
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="23dp"
-                            android:orientation="horizontal"
                             android:layout_weight="1"
+                            android:orientation="horizontal"
                             android:paddingTop="0dp"
                             android:paddingRight="6dp">
 
-<!--                            <ImageView-->
-<!--                                android:layout_width="0dp"-->
-<!--                                android:layout_height="match_parent"-->
-<!--                                android:layout_weight="0.28"-->
-<!--                                android:src="@drawable/speed"-->
-<!--                                android:padding="2.5dp"-->
-<!--                                android:alpha="0.72"-->
-<!--                                android:paddingLeft="1dp"/>-->
+                            <!--                            <ImageView-->
+                            <!--                                android:layout_width="0dp"-->
+                            <!--                                android:layout_height="match_parent"-->
+                            <!--                                android:layout_weight="0.28"-->
+                            <!--                                android:src="@drawable/speed"-->
+                            <!--                                android:padding="2.5dp"-->
+                            <!--                                android:alpha="0.72"-->
+                            <!--                                android:paddingLeft="1dp"/>-->
 
                             <TextView
                                 android:id="@+id/speedTextView"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.2"
-                                android:textAlignment="textStart"
-                                android:text="105"
-                                android:fontFamily="@font/iran_sans"
-                                android:textSize="13sp"
-                                android:gravity="center_horizontal"
-                                android:textColor="#000000"
                                 android:alpha="0.94"
-                                android:paddingLeft="17dp"/>
+                                android:fontFamily="@font/iran_sans"
+                                android:gravity="center_horizontal"
+                                android:paddingLeft="17dp"
+                                android:text="105"
+                                android:textAlignment="textStart"
+                                android:textColor="#000000"
+                                android:textSize="13sp" />
 
                             <TextView
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.22"
-                                android:textAlignment="center"
-                                android:text="km/h"
-                                android:fontFamily="@font/iran_sans"
-                                android:textSize="9sp"
-                                android:paddingTop="4dp"
-                                android:gravity="center_horizontal"
                                 android:alpha="0.82"
-                                android:textColor="#000000"/>
-
+                                android:fontFamily="@font/iran_sans"
+                                android:gravity="center_horizontal"
+                                android:paddingTop="4dp"
+                                android:text="km/h"
+                                android:textAlignment="center"
+                                android:textColor="#000000"
+                                android:textSize="9sp" />
 
 
                             <TextView
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.2"
-                                android:text="سرعت:"
                                 android:fontFamily="@font/iran_sans"
-                                android:paddingRight="3dp"
-                                android:textAlignment="center"
                                 android:gravity="center"
-                                android:textSize="13sp"/>
+                                android:paddingRight="3dp"
+                                android:text="سرعت:"
+                                android:textAlignment="center"
+                                android:textSize="13sp" />
 
 
                         </LinearLayout>
@@ -157,70 +155,70 @@
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="0.9dp"
-                            android:background="#7E7E7E"
+                            android:layout_marginLeft="12dp"
                             android:layout_marginRight="12dp"
-                            android:layout_marginLeft="12dp"/>
+                            android:background="#7E7E7E" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="22dp"
-                            android:orientation="horizontal"
                             android:layout_weight="1"
-                            android:paddingTop="0dp"
+                            android:orientation="horizontal"
                             android:paddingLeft="14dp"
+                            android:paddingTop="0dp"
                             android:paddingRight="7dp">
 
-<!--                            <ImageView-->
-<!--                                android:layout_width="0dp"-->
-<!--                                android:layout_height="match_parent"-->
-<!--                                android:layout_weight="0.08"-->
-<!--                                android:src="@drawable/clock"/>-->
+                            <!--                            <ImageView-->
+                            <!--                                android:layout_width="0dp"-->
+                            <!--                                android:layout_height="match_parent"-->
+                            <!--                                android:layout_weight="0.08"-->
+                            <!--                                android:src="@drawable/clock"/>-->
 
                             <TextView
                                 android:id="@+id/driveTextView"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.27"
+                                android:alpha="0.94"
+                                android:fontFamily="@font/iran_sans"
+                                android:paddingLeft="4dp"
                                 android:text="2:34"
                                 android:textColor="#000000"
-                                android:alpha="0.94"
-                                android:paddingLeft="4dp"
-                                android:fontFamily="@font/iran_sans"
-                                android:textSize="13sp"/>
+                                android:textSize="13sp" />
 
                             <TextView
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.73"
-                                android:text="رانندگی بدون توقف:"
                                 android:fontFamily="@font/iran_sans"
-                                android:textSize="12sp"
+                                android:gravity="center_horizontal"
                                 android:paddingLeft="0dp"
+                                android:text="رانندگی بدون توقف:"
                                 android:textAlignment="center"
-                                android:gravity="center_horizontal" />
+                                android:textSize="12sp" />
 
                         </LinearLayout>
 
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="0.9dp"
-                            android:background="#7E7E7E"
+                            android:layout_marginLeft="12dp"
                             android:layout_marginRight="12dp"
-                            android:layout_marginLeft="12dp"/>
+                            android:background="#7E7E7E" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="25dp"
-                            android:orientation="horizontal"
-                            android:layout_weight="1">
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
 
                             <ImageView
                                 android:id="@+id/WeatherTypeImage"
                                 android:layout_width="0dp"
                                 android:layout_height="25dp"
-                                android:textAlignment="center"
                                 android:layout_weight="0.3"
-                                android:gravity="center_horizontal" />
+                                android:gravity="center_horizontal"
+                                android:textAlignment="center" />
 
                             <TextView
                                 android:id="@+id/WeatherTypeTextView"
@@ -229,22 +227,22 @@
                                 android:layout_weight="0.3"
                                 android:alpha="0.94"
                                 android:gravity="center_horizontal"
+                                android:paddingBottom="3dp"
                                 android:text="ابری"
                                 android:textAlignment="center"
-                                android:textColor="#000000"
-                                android:paddingBottom="3dp"/>
+                                android:textColor="#000000" />
 
                             <TextView
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.4"
-                                android:text="آب و هوا:"
                                 android:fontFamily="@font/iran_sans"
-                                android:paddingRight="8dp"
-                                android:textAlignment="center"
                                 android:gravity="center"
-                                android:textSize="13sp"
-                                android:paddingBottom="3dp"/>
+                                android:paddingRight="8dp"
+                                android:paddingBottom="3dp"
+                                android:text="آب و هوا:"
+                                android:textAlignment="center"
+                                android:textSize="13sp" />
 
                         </LinearLayout>
 
@@ -252,16 +250,15 @@
 
 
                     <FrameLayout
-                        android:id="@+id/driving_box"
                         android:layout_width="155dp"
                         android:layout_height="160dp"
-                        android:layout_marginRight="4dp"
                         android:layout_gravity="bottom|center">
 
                         <ImageView
                             android:id="@+id/driving_background"
                             android:layout_width="145dp"
                             android:layout_height="142dp"
+                            android:layout_marginRight="4dp"
                             android:layout_gravity="bottom|center"
                             android:layout_marginBottom="10dp"
                             android:src="@drawable/circle_gradient_green" />
@@ -295,7 +292,7 @@
 
                 <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="38dp"
+                    android:layout_height="40dp"
                     android:alpha="1"
                     android:layoutDirection="ltr">
                     <ImageView
@@ -313,7 +310,7 @@
                         <Button
                             android:layout_width="22.5dp"
                             android:layout_height="22.5dp"
-                            android:layout_marginTop="8dp"
+                            android:layout_marginTop="9dp"
                             android:layout_marginStart="12dp"
                             android:background="@drawable/menu_icon"
                             style="?android:attr/borderlessButtonStyle"

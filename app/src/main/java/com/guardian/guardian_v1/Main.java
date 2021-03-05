@@ -624,8 +624,8 @@ public class Main extends FragmentActivity implements SensorEventListener, OnMap
         String[] allGuideStrings = new String[5];
         allGuideViews[0] = findViewById(R.id.restButton);
         allGuideViews[1] = findViewById(R.id.alertMessageBox);
-        allGuideViews[2] = findViewById(R.id.driving_box);
-        allGuideViews[3] = findViewById(R.id.statistics);
+        allGuideViews[2] = findViewById(R.id.driving_background);
+        allGuideViews[3] = findViewById(R.id.statistic);
         allGuideViews[4] = findViewById(R.id.menuButton);
 
         allGuideStrings[0] = getString(R.string.showcase_restbutton);

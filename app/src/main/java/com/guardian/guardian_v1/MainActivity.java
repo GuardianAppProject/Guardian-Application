@@ -61,11 +61,11 @@ public class MainActivity extends Activity {
 //            getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
 //                    WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            startForegroundService(new Intent(this, SleepSpeedDetectorService.class));
-        } else {
-            startService(new Intent(this, SleepSpeedDetectorService.class));
-        }
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            startForegroundService(new Intent(this, SleepSpeedDetectorService.class));
+//        } else {
+//            startService(new Intent(this, SleepSpeedDetectorService.class));
+//        }
         // version of apk --> Arman
         try {
             PackageInfo pInfo = this.getPackageManager().getPackageInfo(this.getPackageName(), 0);
