@@ -29,10 +29,10 @@ public class SeatBelt extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seat_belt);
         TokenChecker.beginCheck(read(),this);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
           //  getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
                 //    WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-        }
+//        }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = this.getWindow();

@@ -69,7 +69,7 @@ public class Settings extends AppCompatActivity {
             current = 15;
             textView.setText("هر یک ساعت یکبار");
         } else {
-            current = 5;
+            current = 0;
             textView.setText("هیچ وقت");
         }
         seekBar.setProgress(current);

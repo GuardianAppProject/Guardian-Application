@@ -60,7 +60,7 @@ public class GLoginWorker extends AsyncTask<String,Void,String> {
     @Override
     protected void onPostExecute(String result) {
         toast = Toast.makeText(context,result,Toast.LENGTH_LONG);
-        toast.show();
+//        toast.show();
 
         TextView messageText = ((Activity)context).findViewById(R.id.messageTextSignIn);
         if(result.contains("login complete")) {

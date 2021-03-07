@@ -149,7 +149,7 @@ public class MainActivity extends Activity {
         if(string.length()>=1){
 
         } else {
-            Toast.makeText(this, "not", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, "not", Toast.LENGTH_SHORT).show();
         }
 
 

@@ -93,7 +93,7 @@ public class SignIn extends Activity {
                 if(!isLoginResultValid()) return;
 //                saveToken(loginResult.substring(25));
                 write(loginResult.substring(37));
-                Toast.makeText(SignIn.this, loginResult.substring(37), Toast.LENGTH_SHORT).show();
+                Toast.makeText(SignIn.this, loginResult.substring(37), Toast.LENGTH_SHORT);//.show();
                 Intent i = new Intent(SignIn.this, SelectNavigation.class);
                 startActivity(i);
                 finish();
@@ -133,7 +133,7 @@ public class SignIn extends Activity {
 
             //display file saved message
             Toast.makeText(getBaseContext(), "File saved successfully!",
-                    Toast.LENGTH_SHORT).show();
+                    Toast.LENGTH_SHORT);//.show();
 
         } catch (Exception e) {
             e.printStackTrace();

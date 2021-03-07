@@ -137,7 +137,7 @@ public class MyAccount extends AppCompatActivity {
         EditText editText = (EditText)findViewById(R.id.newPassword);
         EditWorker editWorker = new EditWorker(this);
         editWorker.execute("edit",getToken(),editText.getText().toString());
-        Toast.makeText(this,getToken() + "   " + editText.getText().toString(),Toast.LENGTH_LONG).show();
+        Toast.makeText(this,getToken() + "   " + editText.getText().toString(),Toast.LENGTH_LONG);//.show();
         TokenChecker.beginCheck(read(),this);
         try {
             sleep(500);

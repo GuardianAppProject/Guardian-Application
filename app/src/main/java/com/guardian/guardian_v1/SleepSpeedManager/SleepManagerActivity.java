@@ -253,7 +253,7 @@ public class SleepManagerActivity extends Activity {
             else
                 wakeUpHour = rand.nextInt(3) + 6;
             randomWake.setHours(wakeUpHour);
-            randomWake.setMinutes(Math.abs(rand.nextInt(date.getMinutes())));
+            randomWake.setMinutes(rand.nextInt(date.getMinutes()));
             randomSleep.setHours(sleepHour);
             randomSleep.setMinutes(Math.abs(rand.nextInt(59)));
 

@@ -941,8 +941,8 @@ public class Main extends FragmentActivity implements SensorEventListener, OnMap
         if((soundRepetition==0 || percentage<=40) && ((!(percentage<=45 && dangerFlag==0)) || !dangerModeOn) && !alertMessageText.getText().equals("با دقت به رانندگی ادامه دهید.")) {
             int max = audio.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
             if((volume_media - 0.5) >= audio.getStreamVolume(AudioManager.STREAM_MUSIC) && secondSound){
-                if(audio.getStreamVolume(AudioManager.STREAM_MUSIC) < (int)(0.28 * max)) {
-                    audio.setStreamVolume(AudioManager.STREAM_MUSIC, (int)(0.28 * max), 0);
+                if(audio.getStreamVolume(AudioManager.STREAM_MUSIC) < (int)(0.3 * max)) {
+                    audio.setStreamVolume(AudioManager.STREAM_MUSIC, (int)(0.3 * max), 0);
                 }
                 secondSound = false;
             }

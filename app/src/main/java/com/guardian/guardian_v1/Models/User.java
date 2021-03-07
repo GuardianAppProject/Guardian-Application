@@ -24,20 +24,20 @@ public class User {
     }
 
 
-    private String phoneNumberText;
-    private String usernameText;
-    private String safety;
-    private String textView1;
-    private String textView2;
-    private String textView3;
-    private String textView4;
-    private String textView5;
-    private String textView6;
-    private String textView7;
-    private String textView8;
-    private String textView9;
-    private String textView10;
-    private String textView11;
+    private String phoneNumberText = "";
+    private String usernameText = "";
+    private String safety = "";
+    private String textView1 = "";
+    private String textView2 = "";
+    private String textView3 = "";
+    private String textView4 = "";
+    private String textView5 = "";
+    private String textView6 = "";
+    private String textView7 = "";
+    private String textView8 = "";
+    private String textView9 = "";
+    private String textView10 = "";
+    private String textView11 = "";
 
     public void updateUserData(String[] data){
 
@@ -45,6 +45,10 @@ public class User {
         //inja ans.split dare az onvar miad, chizmiz haro tike tike mikonim set mikonim roye textbox haye xml
         getInstance().phoneNumberText = data[2];
         getInstance().usernameText = data[3];
+        if(data.length<=4) {
+            return;
+        }
+
         String safety = data[4];
         if(isNumeric(safety)) {
             getInstance().textView1 = (Math.round(Double.parseDouble(safety) * 100.0) / 100.0) + "%";

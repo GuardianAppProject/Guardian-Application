@@ -87,7 +87,7 @@ public class EditWorker extends AsyncTask<String,Void,String> {
     @Override
     protected void onPostExecute(String result) {
         toast = Toast.makeText(context, result, Toast.LENGTH_LONG);
-        toast.show();
+//        toast.show();
 
         TextView messageText = ((Activity)context).findViewById(R.id.messageTextAccount);
         if(result.contains("OK")) {

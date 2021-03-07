@@ -91,7 +91,7 @@ public class TokenChecker extends AsyncTask<String,Void,String> {
         toast = Toast.makeText(context, result, Toast.LENGTH_LONG);
         if(result != null)
             writeFile(result, "version.txt");
-        toast.show();
+//        toast.show();
     }
 
     public void writeFile(String textToSave, String fileName) {
