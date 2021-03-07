@@ -310,7 +310,7 @@ public class Main extends FragmentActivity implements SensorEventListener, OnMap
             String restComplexDist = "";
             if(nearestRestComplexDistance <= 5) {
                 restComplexDist = "کمتر از ۵ کیلومتر با شما فاصله دارد.";
-            } if(nearestRestComplexDistance <= 10) {
+            } else if(nearestRestComplexDistance <= 10) {
                 restComplexDist = "کمتر از ۱۰ کیلومتر با شما فاصله دارد.";
             } else if(nearestRestComplexDistance <= 20) {
                 restComplexDist = "کمتر از ۲۰ کیلومتر با شما فاصله دارد.";
@@ -331,7 +331,6 @@ public class Main extends FragmentActivity implements SensorEventListener, OnMap
             alertMessageBox.getLayoutParams().height = WindowManager.LayoutParams.WRAP_CONTENT;
             alertMessageBox.requestLayout();
             alertMessageBox.setMinimumHeight(39);
-
 
         } else {
             LatLng latLng = new LatLng(location.getLatitude(),location.getLongitude());
@@ -646,6 +645,8 @@ public class Main extends FragmentActivity implements SensorEventListener, OnMap
         guideView4.setGuideListener(getGuideListener(guideView5));
 
         guideView1.build().show();
+
+        MainActivity.setShowGuide(false);
     }
 
     public GuideListener getGuideListener(GuideView.Builder builder){
@@ -675,6 +676,10 @@ public class Main extends FragmentActivity implements SensorEventListener, OnMap
                 alertMessageBox.setBackgroundResource(R.drawable.rectangle_alert_background_green);
 //            alertMessageText.setTextColor(Color.BLACK);
                 alertMessageImage.setImageResource(R.drawable.warning_white);
+            } else if(DriveAlertHandler.getCurrentAlertType() == DriveAlertHandler.Type.REST_AREA){
+                alertMessageText.setText(toShowAlert);
+                alertMessageBox.setBackgroundResource(R.drawable.rectangle_alert_background_orange);
+                alertMessageImage.setImageResource(R.drawable.coffee_white);
             } else {
                 alertMessageText.setText(toShowAlert);
                 alertMessageBox.setBackgroundResource(R.drawable.rectangle_alert_background_red);
@@ -781,6 +786,10 @@ public class Main extends FragmentActivity implements SensorEventListener, OnMap
     @Override
     protected void onResume() {
         super.onResume();
+
+        if(MainActivity.getShowGuide()) {
+            showGuide();
+        }
 
         if(isAccelometerSensorAvailible) {
             sensorManager.registerListener(this, accelometerSensor, SensorManager.SENSOR_DELAY_NORMAL);
@@ -932,19 +941,19 @@ public class Main extends FragmentActivity implements SensorEventListener, OnMap
         if((soundRepetition==0 || percentage<=40) && ((!(percentage<=45 && dangerFlag==0)) || !dangerModeOn) && !alertMessageText.getText().equals("با دقت به رانندگی ادامه دهید.")) {
             int max = audio.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
             if((volume_media - 0.5) >= audio.getStreamVolume(AudioManager.STREAM_MUSIC) && secondSound){
-                if(audio.getStreamVolume(AudioManager.STREAM_MUSIC) < (int)(0.65 * max)) {
-                    audio.setStreamVolume(AudioManager.STREAM_MUSIC, (int)(0.65 * max), 0);
+                if(audio.getStreamVolume(AudioManager.STREAM_MUSIC) < (int)(0.28 * max)) {
+                    audio.setStreamVolume(AudioManager.STREAM_MUSIC, (int)(0.28 * max), 0);
                 }
                 secondSound = false;
             }
 
             if(percentage<=40) {
-                if(audio.getStreamVolume(AudioManager.STREAM_MUSIC) < (int)(0.8 * max)) {
-                    audio.setStreamVolume(AudioManager.STREAM_MUSIC, (int) (0.8 * max), 0);
+                if(audio.getStreamVolume(AudioManager.STREAM_MUSIC) < (int)(0.4 * max)) {
+                    audio.setStreamVolume(AudioManager.STREAM_MUSIC, (int) (0.4 * max), 0);
                 }
             } else if(percentage<=50) {
-                if(audio.getStreamVolume(AudioManager.STREAM_MUSIC) < (int)(0.6 * max)){
-                    audio.setStreamVolume(AudioManager.STREAM_MUSIC, (int)(0.6 * max), 0);
+                if(audio.getStreamVolume(AudioManager.STREAM_MUSIC) < (int)(0.35 * max)){
+                    audio.setStreamVolume(AudioManager.STREAM_MUSIC, (int)(0.35 * max), 0);
                 }
             }
 

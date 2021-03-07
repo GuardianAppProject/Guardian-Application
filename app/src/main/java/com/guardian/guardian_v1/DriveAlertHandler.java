@@ -29,6 +29,7 @@ public class DriveAlertHandler {
     private static final int withoutStop_timeGap = 14;
 //    private static final int traffic_timeGap = 5;
     private static final int roadType_timeGap = 24;
+    private static final int restArea_timeGap = 16;
 
     //
     private static int sleep_restTime = 0;
@@ -42,6 +43,7 @@ public class DriveAlertHandler {
     private static int withoutStop_restTime = 0;
 //    private static int traffic_restTime = 0;
     private static int roadType_restTime = 0;
+    private static int restArea_restTime = 0;
 
     //
     public static DriveAlertHandler sleep_alert = new DriveAlertHandler("", 1, false, Type.NONE, "");
@@ -55,7 +57,8 @@ public class DriveAlertHandler {
     public static DriveAlertHandler withoutStop_alert = new DriveAlertHandler("", 1, false, Type.NONE, "");
 //    public static DriveAlertHandler traffic_alert = new DriveAlertHandler("", 1, false, Type.NONE, "");
     public static DriveAlertHandler roadType_alert = new DriveAlertHandler("", 1, false, Type.NONE,"");
-
+    //
+    public static DriveAlertHandler restArea = new DriveAlertHandler("", 1, false, Type.REST_AREA, "");
 
     public enum Type {
         SLEEP,
@@ -71,7 +74,11 @@ public class DriveAlertHandler {
         ROAD_TYPE,
         NONE,
 
-        REST_COMPLEX
+        REST_AREA
+    }
+
+    public static Type getCurrentAlertType() {
+        return currentAlert.type;
     }
 
     public DriveAlertHandler(String alertMessage, int repetition, boolean tooImportant, Type type, String soundURL) {
@@ -89,6 +96,12 @@ public class DriveAlertHandler {
             sleep_alert.setTooImportant(tooImportant);
             sleep_alert.setType(type);
             sleep_alert.setSoundURL(soundURL);
+        } else if (repetition == 0) {
+            sleep_alert.setAlertMessage("");
+            sleep_alert.setRepetition(1);
+            sleep_alert.setTooImportant(false);
+            sleep_alert.setType(Type.SLEEP);
+            sleep_alert.setSoundURL("");
         }
     }
     public static void speed_func(String alertMessage, int repetition, boolean tooImportant, Type type, String soundURL) {
@@ -98,6 +111,12 @@ public class DriveAlertHandler {
             speed_alert.setTooImportant(tooImportant);
             speed_alert.setType(type);
             speed_alert.setSoundURL(soundURL);
+        } else if (repetition == 0) {
+            speed_alert.setAlertMessage("");
+            speed_alert.setRepetition(1);
+            speed_alert.setTooImportant(false);
+            speed_alert.setType(Type.SPEED);
+            speed_alert.setSoundURL("");
         }
     }
     public static void acceleration_func(String alertMessage, int repetition, boolean tooImportant, Type type, String soundURL) {
@@ -107,6 +126,12 @@ public class DriveAlertHandler {
             acceleration_alert.setTooImportant(tooImportant);
             acceleration_alert.setType(type);
             acceleration_alert.setSoundURL(soundURL);
+        } else if (repetition == 0) {
+            acceleration_alert.setAlertMessage("");
+            acceleration_alert.setRepetition(1);
+            acceleration_alert.setTooImportant(false);
+            acceleration_alert.setType(Type.ACCELERATION);
+            acceleration_alert.setSoundURL("");
         }
     }
     public static void vibration_func(String alertMessage, int repetition, boolean tooImportant, Type type, String soundURL) {
@@ -116,6 +141,12 @@ public class DriveAlertHandler {
             vibration_alert.setTooImportant(tooImportant);
             vibration_alert.setType(type);
             vibration_alert.setSoundURL(soundURL);
+        } else if (repetition == 0) {
+            vibration_alert.setAlertMessage("");
+            vibration_alert.setRepetition(1);
+            vibration_alert.setTooImportant(false);
+            vibration_alert.setType(Type.VIBRATION);
+            vibration_alert.setSoundURL("");
         }
     }
     public static void time_func(String alertMessage, int repetition, boolean tooImportant, Type type, String soundURL) {
@@ -125,6 +156,12 @@ public class DriveAlertHandler {
             time_alert.setTooImportant(tooImportant);
             time_alert.setType(type);
             time_alert.setSoundURL(soundURL);
+        } else if (repetition == 0) {
+            time_alert.setAlertMessage("");
+            time_alert.setRepetition(1);
+            time_alert.setTooImportant(false);
+            time_alert.setType(Type.TIME);
+            time_alert.setSoundURL("");
         }
     }
     public static void nearCities_func(String alertMessage, int repetition, boolean tooImportant, Type type, String soundURL) {
@@ -134,6 +171,12 @@ public class DriveAlertHandler {
             nearCities_alert.setTooImportant(tooImportant);
             nearCities_alert.setType(type);
             nearCities_alert.setSoundURL(soundURL);
+        } else if (repetition == 0) {
+            nearCities_alert.setAlertMessage("");
+            nearCities_alert.setRepetition(1);
+            nearCities_alert.setTooImportant(false);
+            nearCities_alert.setType(Type.NEAR_CITIES);
+            nearCities_alert.setSoundURL("");
         }
     }
     public static void month_func(String alertMessage, int repetition, boolean tooImportant, Type type, String soundURL) {
@@ -143,6 +186,12 @@ public class DriveAlertHandler {
             month_alert.setTooImportant(tooImportant);
             month_alert.setType(type);
             month_alert.setSoundURL(soundURL);
+        } else if (repetition == 0) {
+            month_alert.setAlertMessage("");
+            month_alert.setRepetition(1);
+            month_alert.setTooImportant(false);
+            month_alert.setType(Type.MONTH);
+            month_alert.setSoundURL("");
         }
     }
     public static void weather_func(String alertMessage, int repetition, boolean tooImportant, Type type, String soundURL) {
@@ -152,6 +201,12 @@ public class DriveAlertHandler {
             weather_alert.setTooImportant(tooImportant);
             weather_alert.setType(type);
             weather_alert.setSoundURL(soundURL);
+        } else if (repetition == 0) {
+            weather_alert.setAlertMessage("");
+            weather_alert.setRepetition(1);
+            weather_alert.setTooImportant(false);
+            weather_alert.setType(Type.WEATHER);
+            weather_alert.setSoundURL("");
         }
     }
     public static void withoutStop_func(String alertMessage, int repetition, boolean tooImportant, Type type, String soundURL) {
@@ -161,6 +216,12 @@ public class DriveAlertHandler {
             withoutStop_alert.setTooImportant(tooImportant);
             withoutStop_alert.setType(type);
             withoutStop_alert.setSoundURL(soundURL);
+        } else if (repetition == 0) {
+            withoutStop_alert.setAlertMessage("");
+            withoutStop_alert.setRepetition(1);
+            withoutStop_alert.setTooImportant(false);
+            withoutStop_alert.setType(Type.WITHOUT_STOP);
+            withoutStop_alert.setSoundURL("");
         }
     }
 //    public static void traffic_func(String alertMessage, int repetition, boolean tooImportant, Type type, String soundURL) {
@@ -179,6 +240,28 @@ public class DriveAlertHandler {
             roadType_alert.setTooImportant(tooImportant);
             roadType_alert.setType(type);
             roadType_alert.setSoundURL(soundURL);
+        } else if (repetition == 0) {
+            roadType_alert.setAlertMessage("");
+            roadType_alert.setRepetition(1);
+            roadType_alert.setTooImportant(false);
+            roadType_alert.setType(Type.ROAD_TYPE);
+            roadType_alert.setSoundURL("");
+        }
+    }
+
+    public static void restArea_func(String alertMessage, int repetition, boolean tooImportant, Type type, String soundURL) {
+        if(((repetition > 0) && (restArea_restTime <= 0)) || (tooImportant && (restArea_restTime <= 9))) {
+            restArea.setAlertMessage(alertMessage);
+            restArea.setRepetition(repetition);
+            restArea.setTooImportant(tooImportant);
+            restArea.setType(type);
+            restArea.setSoundURL(soundURL);
+        } else if (repetition == 0) {
+            restArea.setAlertMessage("");
+            restArea.setRepetition(1);
+            restArea.setTooImportant(false);
+            restArea.setType(Type.REST_AREA);
+            restArea.setSoundURL("");
         }
     }
 
@@ -236,6 +319,8 @@ public class DriveAlertHandler {
                withoutStop_func("", 0, false, Type.WITHOUT_STOP, "");
            } else if(currentAlert.type == Type.ROAD_TYPE) {
                roadType_func("", 0, false, Type.ROAD_TYPE, "");
+           } else if(currentAlert.type == Type.REST_AREA) {
+            restArea_func("", 0, false, Type.REST_AREA, "");
            }
        }
 
@@ -269,6 +354,9 @@ public class DriveAlertHandler {
         if(roadType_restTime > 0) {
             roadType_restTime --;
         }
+        if(restArea_restTime > 0) {
+            restArea_restTime --;
+        }
 //        if(traffic_restTime > 0) {
 //            traffic_restTime --;
 //        }
@@ -284,6 +372,14 @@ public class DriveAlertHandler {
             return toShowStr;
         }
 
+
+        if(restArea.isTooImportant && restArea.repetition>0) {
+            toShowStr = speed_alert.getAlertMessage();
+            changed = true;
+            restArea_restTime = restArea_timeGap;
+            currentAlert = restArea;
+            return toShowStr;
+        }
         // zire 30 ha
         if(speed_alert.isTooImportant && speed_alert.repetition>0) {
             toShowStr = speed_alert.getAlertMessage();
@@ -381,6 +477,8 @@ public class DriveAlertHandler {
                 toShowAlertsList.put(roadType_alert, roadType_restTime);
             } else if(!month_alert.getAlertMessage().equalsIgnoreCase("") && month_alert.repetition>0) {
                 toShowAlertsList.put(month_alert, month_restTime);
+            } else if(!restArea.getAlertMessage().equalsIgnoreCase("") && restArea.repetition>0) {
+                toShowAlertsList.put(restArea, restArea_restTime);
             }
 //            else if(!traffic_alert.getAlertMessage().equalsIgnoreCase("")) {
 //                toShowAlertsList.put(traffic_alert, traffic_restTime);
@@ -420,6 +518,8 @@ public class DriveAlertHandler {
                 withoutStop_restTime = withoutStop_timeGap;
             } else if(currentAlert.type == Type.ROAD_TYPE) {
                 roadType_restTime = roadType_timeGap;
+            } else if(currentAlert.type == Type.REST_AREA) {
+                restArea_restTime = restArea_timeGap;
             }
 //            else if(currentAlert.type == Type.TRAFFIC) {
 //                traffic_restTime = traffic_timeGap;

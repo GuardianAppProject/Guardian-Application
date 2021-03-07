@@ -39,6 +39,7 @@ public class SignUp extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         if(TokenChecker.tokenIsValid()){
+            MainActivity.setShowGuide(false);
             if(SleepManagerActivity.isSleepDataRecordedToday(this) == false){
                 Intent intent = new Intent(SignUp.this, SleepManagerActivity.class);
                 startActivity(intent);
@@ -48,8 +49,6 @@ public class SignUp extends Activity {
                 startActivity(i);
                 finish();
             }
-        } else {
-            MainActivity.setShowGuide(true);
         }
 
         super.onCreate(savedInstanceState);

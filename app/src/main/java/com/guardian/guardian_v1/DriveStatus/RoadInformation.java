@@ -56,6 +56,9 @@ public class RoadInformation extends AppCompatActivity {
 
     public int GetSpeedLimit(String xml) {
         int speedResult = 0;
+        if(xml == null) {
+            return 112;
+        }
         String[] lines = xml.split(System.getProperty("line.separator"));
         for (counter = 0; counter < lines.length; counter++) {
 

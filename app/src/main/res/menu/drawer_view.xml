@@ -15,12 +15,12 @@
             <item
                 android:id="@+id/group"
                 android:icon="@drawable/team"
-                android:title="گروه های من" />
+                android:title="گروه های من (به زودی)" />
 
             <item
                 android:id="@+id/trip"
                 android:icon="@drawable/trip"
-                android:title="سفر های من" />
+                android:title="سفر های من (به زودی)" />
 
             <item
                 android:id="@+id/settings"

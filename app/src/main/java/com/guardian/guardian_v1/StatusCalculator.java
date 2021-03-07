@@ -170,55 +170,57 @@ public class StatusCalculator {
 
     public static double speedCalculator(double userSpeed, double speedLimit, Weather.WeatherType weatherType) {
 
-        if(weatherType==Weather.WeatherType.Thunderstorm) {
-            speedLimit -= 10;
-        } else if(weatherType==Weather.WeatherType.Drizzle) {
-            speedLimit -= 4;
-        } else if(weatherType==Weather.WeatherType.Rain) {
-            speedLimit -= 7;
-        } else if(weatherType==Weather.WeatherType.Snow) {
-            speedLimit -= 18;
-        } else if(weatherType==Weather.WeatherType.Clear) {
-            //
-        } else if(weatherType==Weather.WeatherType.Clouds) {
-            //
-        } else if(weatherType==Weather.WeatherType.Mist) {
-            speedLimit -= 12;
-        } else if(weatherType==Weather.WeatherType.Smoke) {
-            speedLimit -= 13;
-        } else if(weatherType==Weather.WeatherType.Haze) {
-            speedLimit -= 4;
-        } else if(weatherType==Weather.WeatherType.Dust) {
-            speedLimit -= 10;
-        } else if(weatherType==Weather.WeatherType.Fog) {
-            speedLimit -= 6;
-        } else if(weatherType==Weather.WeatherType.Sand) {
-            speedLimit -= 8;
-        } else if(weatherType==Weather.WeatherType.Ash) {
-            speedLimit -= 5;
-        } else if(weatherType==Weather.WeatherType.Squall) {
-            speedLimit -= 14;
-        } else if(weatherType==Weather.WeatherType.Tornado) {
-            speedLimit -= 7;
+        if (speedLimit >= 50) {
+            if(weatherType==Weather.WeatherType.Thunderstorm) {
+                speedLimit -= 8;
+            } else if(weatherType==Weather.WeatherType.Drizzle) {
+                speedLimit -= 4;
+            } else if(weatherType==Weather.WeatherType.Rain) {
+                speedLimit -= 7;
+            } else if(weatherType==Weather.WeatherType.Snow) {
+                speedLimit -= 16;
+            } else if(weatherType==Weather.WeatherType.Clear) {
+                //
+            } else if(weatherType==Weather.WeatherType.Clouds) {
+                //
+            } else if(weatherType==Weather.WeatherType.Mist) {
+                speedLimit -= 10;
+            } else if(weatherType==Weather.WeatherType.Smoke) {
+                speedLimit -= 11;
+            } else if(weatherType==Weather.WeatherType.Haze) {
+                speedLimit -= 4;
+            } else if(weatherType==Weather.WeatherType.Dust) {
+                speedLimit -= 9;
+            } else if(weatherType==Weather.WeatherType.Fog) {
+                speedLimit -= 6;
+            } else if(weatherType==Weather.WeatherType.Sand) {
+                speedLimit -= 8;
+            } else if(weatherType==Weather.WeatherType.Ash) {
+                speedLimit -= 5;
+            } else if(weatherType==Weather.WeatherType.Squall) {
+                speedLimit -= 13;
+            } else if(weatherType==Weather.WeatherType.Tornado) {
+                speedLimit -= 7;
+            }
         }
 
         double speed_factor = 0;
 
         double speedCoefficient = 1;
         if(speedLimit <= 30) {
-            speedCoefficient = 1.05;
+            speedCoefficient = 1.01;
         } else if(speedLimit <= 50) {
-            speedCoefficient = 1.1;
+            speedCoefficient = 1.02;
         } else if(speedLimit <= 60) {
-            speedCoefficient = 1.2;
+            speedCoefficient = 1.05;
         } else if(speedLimit <= 80) {
-            speedCoefficient = 1.3;
+            speedCoefficient = 1.1;
         } else if(speedLimit <= 100) {
-            speedCoefficient = 1.4;
+            speedCoefficient = 1.08;
         } else if(speedLimit <= 110) {
-            speedCoefficient = 1.5;
+            speedCoefficient = 1.4;
         } else  {
-            speedCoefficient = 1.85;
+            speedCoefficient = 1.6;
         }
 
         if((userSpeed - speedLimit) < -10) {
@@ -226,18 +228,21 @@ public class StatusCalculator {
         } else if((userSpeed - speedLimit) < -5) {
             speed_factor = 92;
         } else if((userSpeed - speedLimit) <= 0) {
-            speed_factor = 82;
+            speed_factor = 85;
         } else if((userSpeed - speedLimit) < 5) {
-            double s = speedCoefficient * (userSpeed - speedLimit);
+            double s = speedCoefficient * (userSpeed - speedLimit) * 1.15;
             speed_factor = 82 - s;
         } else if((userSpeed - speedLimit) < 10) {
-            double s = speedCoefficient * (userSpeed - speedLimit) * 1.3;
+            double s = speedCoefficient * (userSpeed - speedLimit) * 1.32;
+            speed_factor = 82 - s;
+        } else if((userSpeed - speedLimit) < 15) {
+            double s = speedCoefficient * (userSpeed - speedLimit) * 1.51;
             speed_factor = 82 - s;
         } else if((userSpeed - speedLimit) < 20) {
-            double s = speedCoefficient * (userSpeed - speedLimit) * 1.8;
+            double s = speedCoefficient * (userSpeed - speedLimit) * 1.75;
             speed_factor = 82 - s;
         } else if((userSpeed - speedLimit) < 30) {
-            double s = speedCoefficient * (userSpeed - speedLimit) * 2.5;
+            double s = speedCoefficient * (userSpeed - speedLimit) * 1.9;
             speed_factor = 82 - s;
         }
 
@@ -834,6 +839,9 @@ public class StatusCalculator {
         singleAcceleration.add(accelerationCalculator(userAcceleration, weatherType));
     }
 
+    private double rest_factor = 0;
+    private double rest_factor_copy = 0;
+
     public double calculatePercentageAlgorithm() {
 
         Log.d("vib", "" + vibration);
@@ -877,6 +885,10 @@ public class StatusCalculator {
         double traffic_factor = 0; // trafficCalculator() * 1;
         double roadType_factor = roadTypeCalculator(highwayType, lanes, oneway) * 1;
 
+        if(sleep_factor <= 5) {
+            sleep_factor = 82;
+        }
+
         Log.d("drive status", "sleep: " + sleep_factor + " + time: " + time_factor +
         "+ speed: " + speed_factor + "+ wihtoutstop: " + withoutStopDriving_factor + " + nearcity: " + nearCities_factor + "+ vibration: "
                         + vibration_factor +  " + wheather" + weather_factor + " + accelration: " + acceleration_factor + "+ month: " + month_factor + " + roadtype: " + roadType_factor);
@@ -916,6 +928,48 @@ public class StatusCalculator {
                 + weather_factor + nearCities_factor
                 + vibration_factor + acceleration_factor
                 + month_factor + traffic_factor + roadType_factor) / 22.5;
+
+
+        if(Math.abs(rest_factor_copy - totalTime) > 5) {
+            rest_factor_copy = totalTime;
+            rest_factor = totalTime;
+        }
+        if(rest_factor > 6) {
+            rest_factor *= 0.9915;
+        }
+
+        double rest_factor_data = 0;
+        if(rest_factor <= 6.5) {
+            rest_factor_data = 0;
+        } else if(rest_factor <= 10) {
+            rest_factor_data = 4;
+        } else if(rest_factor <= 15) {
+            rest_factor_data = 6.5;
+        } else if(rest_factor <= 20) {
+            rest_factor_data = 9;
+        } else if(rest_factor <= 30) {
+            rest_factor_data = 12;
+        } else if(rest_factor <= 45) {
+            rest_factor_data = 14;
+        } else if(rest_factor <= 60) {
+            rest_factor_data = 15;
+        } else if(rest_factor <= 90) {
+            rest_factor_data = 16;
+        } else if(rest_factor <= 120) {
+            rest_factor_data = 18;
+        } else {
+            rest_factor_data = 20;
+        }
+
+        average += rest_factor_data;
+
+        if(average < 0) {
+            average = 0;
+        }
+
+        if(average > 100) {
+            average = 100;
+        }
 
         if(cycle == 10) {
             double sleep_save = calculateAverage(sleep_data);
@@ -964,10 +1018,8 @@ public class StatusCalculator {
         traffic_data.add(traffic_raw);
         roadType_data.add(roadType_raw);
 
-        if(average > 100) {
-            average = 100;
-        }
-        Log.d("RestComplex", nearestRestComplex(gps, average));
+        String nrc = nearestRestComplex(gps, average);
+        Log.d("RestComplex", nrc);
         return average;
     }
 
@@ -976,38 +1028,37 @@ public class StatusCalculator {
         String nearestRestComplexName = gpsTracker.getPlaceName();
         String restComplex = "";
         Log.d("distanceRest", "" + nearestRestComplexDistance);
-        if (percentage < 50) {
+        if ((percentage < 50) && (nearestRestComplexDistance <= 30)) {
             if(nearestRestComplexDistance <= 5) {
-                restComplex = nearestRestComplexName + ": " + "کمتر از ۵ کیلومتر با شما فاصله دارد.";
-            } if(nearestRestComplexDistance <= 10) {
-                restComplex = nearestRestComplexName + ": " + "کمتر از ۱۰ کیلومتر با شما فاصله دارد.";
-            } else if(nearestRestComplexDistance <= 20) {
-                restComplex = nearestRestComplexName + ": " + "کمتر از ۲۰ کیلومتر با شما فاصله دارد.";
+                restComplex = "«" + nearestRestComplexName + "» " + "کمتر از ۵ کیلومتر با شما فاصله دارد.";
+                DriveAlertHandler.restArea_func(restComplex, 10, true, DriveAlertHandler.Type.REST_AREA, "danger_rest_1");
+            } else if(nearestRestComplexDistance <= 15) {
+                restComplex = "«" + nearestRestComplexName + "» " + "کمتر از ۱۵ کیلومتر با شما فاصله دارد.";
+                DriveAlertHandler.restArea_func(restComplex, 8, true, DriveAlertHandler.Type.REST_AREA, "danger_rest_2");
             } else if(nearestRestComplexDistance <= 30) {
-                restComplex = nearestRestComplexName + ": " + "کمتر از ۳۰ کیلومتر با شما فاصله دارد.";
-            } else if(nearestRestComplexDistance <= 50) {
-                restComplex = nearestRestComplexName + ": " + "کمتر از ۵۰ کیلومتر با شما فاصله دارد.";
-            } else if(nearestRestComplexDistance <= 80) {
-                restComplex = nearestRestComplexName + ": " + "کمتر از ۸۰ کیلومتر با شما فاصله دارد.";
-            } else {
-                restComplex = nearestRestComplexName + ": " + "نزدیک ترین مجتمع رفاهی به شماست!";
+                restComplex = "«" + nearestRestComplexName + "» " + "کمتر از ۳۰ کیلومتر با شما فاصله دارد.";
+                DriveAlertHandler.restArea_func(restComplex, 6, true, DriveAlertHandler.Type.REST_AREA, "danger_rest_3");
             }
 
         } else {
             if(nearestRestComplexDistance <= 5) {
-                restComplex = nearestRestComplexName + ": " + "کمتر از ۵ کیلومتر با شما فاصله دارد.";
-            } if(nearestRestComplexDistance <= 10) {
-                restComplex = nearestRestComplexName + ": " + "کمتر از ۱۰ کیلومتر با شما فاصله دارد.";
-            } else if(nearestRestComplexDistance <= 20) {
-                restComplex = nearestRestComplexName + ": " + "کمتر از ۲۰ کیلومتر با شما فاصله دارد.";
+                restComplex = "«" + nearestRestComplexName + "» " + "کمتر از ۵ کیلومتر با شما فاصله دارد.";
+                DriveAlertHandler.restArea_func(restComplex, 2, true, DriveAlertHandler.Type.REST_AREA, "rest_5");
+            } else if(nearestRestComplexDistance <= 15) {
+                restComplex = "«" + nearestRestComplexName + "» " + "کمتر از ۱۵ کیلومتر با شما فاصله دارد.";
+                DriveAlertHandler.restArea_func(restComplex, 2, true, DriveAlertHandler.Type.REST_AREA, "rest_15");
             } else if(nearestRestComplexDistance <= 30) {
-                restComplex = nearestRestComplexName + ": " + "کمتر از ۳۰ کیلومتر با شما فاصله دارد.";
+                restComplex = "«" + nearestRestComplexName + "» " + "کمتر از ۳۰ کیلومتر با شما فاصله دارد.";
+                DriveAlertHandler.restArea_func(restComplex, 4, false, DriveAlertHandler.Type.REST_AREA, "rest_30");
             } else if(nearestRestComplexDistance <= 50) {
-                restComplex = nearestRestComplexName + ": " + "کمتر از ۵۰ کیلومتر با شما فاصله دارد.";
+                restComplex = "«" + nearestRestComplexName + "» " + "کمتر از ۵۰ کیلومتر با شما فاصله دارد.";
+                DriveAlertHandler.restArea_func(restComplex, 6, false, DriveAlertHandler.Type.REST_AREA, "rest_50");
             } else if(nearestRestComplexDistance <= 80) {
-                restComplex = nearestRestComplexName + ": " + "کمتر از ۸۰ کیلومتر با شما فاصله دارد.";
+                restComplex = "«" + nearestRestComplexName + "» " + "کمتر از ۸۰ کیلومتر با شما فاصله دارد.";
+                DriveAlertHandler.restArea_func(restComplex, 5, false, DriveAlertHandler.Type.REST_AREA, "rest_80");
             } else {
-                restComplex = nearestRestComplexName + ": " + "نزدیک ترین مجتمع رفاهی به شماست!";
+                restComplex = "«" + nearestRestComplexName + "» " + "نزدیک ترین جایگاه رفاهی به شماست!";
+                DriveAlertHandler.restArea_func(restComplex, 2, false, DriveAlertHandler.Type.REST_AREA, "nothing");
             }
         }
         return restComplex;

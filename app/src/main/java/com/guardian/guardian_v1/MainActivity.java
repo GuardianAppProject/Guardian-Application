@@ -347,7 +347,7 @@ public class MainActivity extends Activity {
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 1000*60*60*24*30 , pendingIntent);
     }
 
-    private static boolean showGuide = false;
+    private static boolean showGuide = true;
 
     public static void setShowGuide(boolean sg) {
         showGuide = sg;
