@@ -250,6 +250,8 @@ public class SleepManagerActivity extends Activity {
             int sleepHour = rand.nextInt(3) + 21;
             if (date.getHours() > 6 && date.getHours() < 12)
                 wakeUpHour = rand.nextInt(date.getHours() - 6) + 6;
+            else
+                wakeUpHour = rand.nextInt(3) + 6;
             randomWake.setHours(wakeUpHour);
             randomWake.setMinutes(Math.abs(rand.nextInt(date.getMinutes())));
             randomSleep.setHours(sleepHour);
