@@ -347,6 +347,7 @@ public class Main extends FragmentActivity implements SensorEventListener, OnMap
 
      Handler ha;
     Runnable haR;
+    private boolean isPaused = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 //        setTheme(R.style.NavigationViewLight);
@@ -787,6 +788,8 @@ public class Main extends FragmentActivity implements SensorEventListener, OnMap
     protected void onResume() {
         super.onResume();
 
+        isPaused = false;
+
         if(MainActivity.getShowGuide()) {
             showGuide();
         }
@@ -799,6 +802,8 @@ public class Main extends FragmentActivity implements SensorEventListener, OnMap
     @Override
     protected void onPause() {
         super.onPause();
+
+        isPaused = true;
 
         if(isAccelometerSensorAvailible) {
             sensorManager.unregisterListener(this);
@@ -938,22 +943,22 @@ public class Main extends FragmentActivity implements SensorEventListener, OnMap
         }
 
 
-        if((soundRepetition==0 || percentage<=40) && ((!(percentage<=45 && dangerFlag==0)) || !dangerModeOn) && !alertMessageText.getText().equals("با دقت به رانندگی ادامه دهید.")) {
+        if(!isPaused && (soundRepetition==0 || percentage<=40) && ((!(percentage<=45 && dangerFlag==0)) || !dangerModeOn) && !alertMessageText.getText().equals("با دقت به رانندگی ادامه دهید.")) {
             int max = audio.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
             if((volume_media - 0.5) >= audio.getStreamVolume(AudioManager.STREAM_MUSIC) && secondSound){
-                if(audio.getStreamVolume(AudioManager.STREAM_MUSIC) < (int)(0.3 * max)) {
-                    audio.setStreamVolume(AudioManager.STREAM_MUSIC, (int)(0.3 * max), 0);
+                if(audio.getStreamVolume(AudioManager.STREAM_MUSIC) < (int)(0.2 * max)) {
+                    audio.setStreamVolume(AudioManager.STREAM_MUSIC, (int)(0.2 * max), 0);
                 }
                 secondSound = false;
             }
 
             if(percentage<=40) {
-                if(audio.getStreamVolume(AudioManager.STREAM_MUSIC) < (int)(0.4 * max)) {
-                    audio.setStreamVolume(AudioManager.STREAM_MUSIC, (int) (0.4 * max), 0);
+                if(audio.getStreamVolume(AudioManager.STREAM_MUSIC) < (int)(0.3 * max)) {
+                    audio.setStreamVolume(AudioManager.STREAM_MUSIC, (int) (0.3 * max), 0);
                 }
             } else if(percentage<=50) {
-                if(audio.getStreamVolume(AudioManager.STREAM_MUSIC) < (int)(0.35 * max)){
-                    audio.setStreamVolume(AudioManager.STREAM_MUSIC, (int)(0.35 * max), 0);
+                if(audio.getStreamVolume(AudioManager.STREAM_MUSIC) < (int)(0.25 * max)){
+                    audio.setStreamVolume(AudioManager.STREAM_MUSIC, (int)(0.25 * max), 0);
                 }
             }
 
@@ -989,7 +994,7 @@ public class Main extends FragmentActivity implements SensorEventListener, OnMap
             animation.setRepeatMode(Animation.REVERSE); //animation will start from end point once ended.
             warningImg.startAnimation(animation); //to start animation
 
-            if(dangerModeOn && !firstDanger && dangerFlag==0) {
+            if(!isPaused && dangerModeOn && !firstDanger && dangerFlag==0) {
                 Sound.playAlertSound(this);
 
                 textView = findViewById(R.id.text);
@@ -1041,7 +1046,7 @@ public class Main extends FragmentActivity implements SensorEventListener, OnMap
                     dangerFlag--;
             }
 
-            if(firstDanger && dangerModeOn) {
+            if(!isPaused && firstDanger && dangerModeOn) {
 
                 Sound.playSound(this, "danger_mode_activation");
 

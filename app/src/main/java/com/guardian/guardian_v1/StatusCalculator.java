@@ -79,6 +79,15 @@ public class StatusCalculator {
         int minutes;
         int awakeMin;
         Date now = Calendar.getInstance().getTime();
+        if(sleepData == null) {
+            Log.d("sleepdata", "NULL --> handled!");
+            minutes = 360;
+            awakeMin = 100;
+            staticUserSleep = minutes;
+            staticUserAwake = awakeMin;
+            return;
+        }
+        Log.d("houris", "" + now.getHours());
         if (sleepData.getWakeUp().getDay() == sleepData.getSleep().getDay()) {
             minutes = sleepData.getWakeUp().getHours() * 60 + sleepData.getWakeUp().getMinutes() - sleepData.getSleep().getHours() * 60 - sleepData.getSleep().getMinutes();
         } else {
@@ -86,9 +95,11 @@ public class StatusCalculator {
         }
 
         if(sleepData.getWakeUp().getDay() == now.getDay()) {
-            awakeMin = now.getHours() * 60 + now.getMinutes() - sleepData.getSleep().getHours() * 60 - sleepData.getSleep().getMinutes();
+            awakeMin = now.getHours() * 60 + now.getMinutes() - sleepData.getWakeUp().getHours() * 60 - sleepData.getWakeUp().getMinutes();
+            Log.d("houris2", "now.getHours()" + now.getHours() +  "now.getMinutes()" +now.getMinutes() + "sleepData.getWakeUp().getHours()" + sleepData.getWakeUp().getHours() + "sleepData.getWakeUp().getMinutes()" + sleepData.getWakeUp().getMinutes());
         } else {
-            awakeMin = now.getHours() * 60 + now.getMinutes() + 24 * 60 - sleepData.getSleep().getHours() * 60 - sleepData.getSleep().getMinutes();
+            awakeMin = now.getHours() * 60 + now.getMinutes() + 24 * 60 - sleepData.getWakeUp().getHours() * 60 - sleepData.getWakeUp().getMinutes();
+            Log.d("houris3", now.getDate() + "  " + sleepData.getWakeUp().getDate() + "  " + "now.getHours()" + now.getHours() +  "now.getMinutes()" +now.getMinutes() + "sleepData.getWakeUp().getHours()" + sleepData.getWakeUp().getHours() + "sleepData.getWakeUp().getMinutes()" + sleepData.getWakeUp().getMinutes());
         }
         if(minutes<0) minutes=minutes*-1;
         if(awakeMin<0) awakeMin=awakeMin*-1;
@@ -102,20 +113,20 @@ public class StatusCalculator {
     public double sleepCalculator(double userSleep, double userAwake) {
         double sleep_factor = 0;
         userTotalSleep = userSleep;
-        if(userSleep < 120){
+        if(userSleep < 60){
             sleep_factor = 0;
+        } else if(userSleep < 120) {
+            sleep_factor = (userSleep - 60) * 0.25;
         } else if(userSleep < 180) {
-            sleep_factor = (userSleep - 120) * 0.25;
+            sleep_factor = 15 + (userSleep - 120) * 0.25;
+        } else if(userSleep < 210) {
+            sleep_factor = 30 + (userSleep - 180) * 0.5;
         } else if(userSleep < 240) {
-            sleep_factor = 15 + (userSleep - 180) * 0.25;
+            sleep_factor = 45 + (userSleep - 210) * 0.5;
         } else if(userSleep < 300) {
-            sleep_factor = 30 + (userSleep - 240) * 0.33;
-        } else if(userSleep < 360) {
-            sleep_factor = 50 + (userSleep - 300) * 0.33;
-        } else if(userSleep < 420) {
-            sleep_factor = 70 + (userSleep - 360) * 0.25;
-        } else if(userSleep < 480) {
-            sleep_factor = 85 + (userSleep - 420) * 0.25;
+            sleep_factor = 60 + (userSleep - 240) * 0.33;
+        } else if(userSleep < 380) {
+            sleep_factor = 80 + (userSleep - 420) * 0.2;
         } else {
             sleep_factor = 100;
         }
@@ -124,30 +135,33 @@ public class StatusCalculator {
         if(userAwake < 360) {
             //
         } else if(userAwake < 420) {
-            sleepCoefficient = 97;
+            sleepCoefficient = 0.95;
             userTotalSleep -= 30;
         }else if(userAwake < 480) {
-            sleepCoefficient = 0.92;
+            sleepCoefficient = 0.915;
             userTotalSleep -= 80;
         } else if(userAwake < 600) {
             sleepCoefficient = 0.85;
             userTotalSleep -= 150;
         } else if(userAwake < 720) {
-            sleepCoefficient = 0.7;
+            sleepCoefficient = 0.73;
             userTotalSleep -= 300;
         } else if(userAwake < 840) {
-            sleepCoefficient = 0.63;
+            sleepCoefficient = 0.62;
             userTotalSleep -= 370;
         } else if(userAwake < 960) {
-            sleepCoefficient = 0.55;
+            sleepCoefficient = 0.5;
             userTotalSleep -= 450;
         } else if(userAwake < 1080) {
-            sleepCoefficient = 0.45;
+            sleepCoefficient = 0.43;
             userTotalSleep -= 550;
         } else if(userAwake < 1200) {
-            sleepCoefficient = 0.25;
+            sleepCoefficient = 0.22;
             userTotalSleep -= 750;
-        } else {
+        } else if(userAwake < 1400) {
+            sleepCoefficient = 0.1;
+            userTotalSleep -= 900;
+        }  else {
             sleepCoefficient = 0;
             userTotalSleep = 0;
         }
@@ -157,11 +171,11 @@ public class StatusCalculator {
 
         sleep_factor *= sleepCoefficient;
 
-        if(sleep_factor <= 0) {
+        if(sleep_factor < 0) {
             sleep_factor = 0;
         }
 
-        if(sleep_factor >= 100) {
+        if(sleep_factor > 100) {
             sleep_factor = 100;
         }
 
