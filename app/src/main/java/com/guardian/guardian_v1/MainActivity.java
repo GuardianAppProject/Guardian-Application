@@ -41,6 +41,7 @@ import com.onesignal.OneSignal;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Calendar;
@@ -166,7 +167,8 @@ public class MainActivity extends Activity {
             Main.set_sound_repetition(sound_notif);
             Log.d("SOUND", "sound" +Main.get_sound_repetition());
         } else {
-            Main.set_sound_repetition(20);
+            writeFile(String.valueOf(8));
+            Main.set_sound_repetition(8);
         }
 
 
@@ -355,5 +357,19 @@ public class MainActivity extends Activity {
 
     public static boolean getShowGuide() {
         return showGuide;
+    }
+
+
+    // sound
+    public void writeFile(String textToSave) {
+        try {
+            FileOutputStream fileOutputStream = openFileOutput("settings.txt", MODE_PRIVATE);
+            fileOutputStream.write(textToSave.getBytes());
+            fileOutputStream.close();
+        } catch (FileNotFoundException exp) {
+            exp.printStackTrace();
+        } catch (IOException exp) {
+            exp.printStackTrace();
+        }
     }
 }

@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
@@ -24,6 +25,7 @@ import com.guardian.guardian_v1.PasswordManager.AsteriskPasswordTransformationMe
 import com.guardian.guardian_v1.PasswordManager.DoNothingTransformationMethod;
 import com.guardian.guardian_v1.Transmission.LoginWorker;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -121,6 +123,10 @@ public class SignIn extends Activity {
                 return false;
             }
         });
+
+        // sound
+        writeFile(String.valueOf(8));
+        Main.set_sound_repetition(8);
     }
 
     public void write(String toWrite) {
@@ -216,4 +222,19 @@ public class SignIn extends Activity {
     public static void setToken(String token) {
         SignIn.token = token;
     }
+
+
+    // sound
+    public void writeFile(String textToSave) {
+        try {
+            FileOutputStream fileOutputStream = openFileOutput("settings.txt", MODE_PRIVATE);
+            fileOutputStream.write(textToSave.getBytes());
+            fileOutputStream.close();
+        } catch (FileNotFoundException exp) {
+            exp.printStackTrace();
+        } catch (IOException exp) {
+            exp.printStackTrace();
+        }
+    }
+
 }
