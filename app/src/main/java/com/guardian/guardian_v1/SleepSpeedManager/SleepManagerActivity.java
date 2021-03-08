@@ -15,6 +15,7 @@ import android.os.Bundle;
 
 
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 
@@ -247,9 +248,12 @@ public class SleepManagerActivity extends Activity {
             Random rand = new Random();
             Date date = Calendar.getInstance().getTime();
             int wakeUpHour = date.getHours();
-            int sleepHour = rand.nextInt(3) + 21;
+            int sleepHour = rand.nextInt(4) + 22;
+            int bound = date.getHours();
+            if(bound>=10)
+                bound = 9;
             if (date.getHours() > 6 && date.getHours() < 12)
-                wakeUpHour = rand.nextInt(date.getHours() - 6) + 6;
+                wakeUpHour = rand.nextInt(bound - 6) + 6;
             else
                 wakeUpHour = rand.nextInt(3) + 6;
             randomWake.setHours(wakeUpHour);
@@ -257,13 +261,22 @@ public class SleepManagerActivity extends Activity {
             randomSleep.setHours(sleepHour);
             randomSleep.setMinutes(Math.abs(rand.nextInt(59)));
 
-            if(randomWake.getHours()-randomSleep.getHours()<0){
-                randomWake.setDate(randomSleep.getDate()+1);
+            Log.d("shigaraki sleep",randomSleep.toString());
+            Log.d("shigaraki wake",randomWake.toString());
+            if(randomWake.getDate()!=randomSleep.getDate()){
+                if(randomSleep.getHours()<=randomWake.getHours())
+                    randomSleep.setDate(randomWake.getDate());
+                else
+                    randomSleep.setDate(randomWake.getDate()-1);
             }
         }
         setSleepTimeDate(randomSleep);
         setWakeUpTimeDate(randomWake);
+        Log.d("shigaraki sleep",randomSleep.toString());
+        Log.d("shigaraki wake",randomWake.toString());
         changeTexts();
+        // 10 to 1
+        // 6 to 8
     }
 
     public void recordAuto(View view) {
@@ -399,6 +412,11 @@ public class SleepManagerActivity extends Activity {
         System.out.println(now.getHours());
         if(sleepData.getCurrentTime().getDate()-now.getDate()>1) return false;
         return !((sleepData.getCurrentTime().getDate()!=now.getDate()) && (now.getHours()>10));
+    }
+
+    public static boolean isItTimeToRecord(){
+        Date date = Calendar.getInstance().getTime();
+        return date.getHours() >= 6 && date.getHours() <= 13;
     }
 
     public static void deleteSleepData(Context context){

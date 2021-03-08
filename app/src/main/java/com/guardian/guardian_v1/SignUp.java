@@ -40,7 +40,7 @@ public class SignUp extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         if(TokenChecker.tokenIsValid()){
             MainActivity.setShowGuide(false);
-            if(SleepManagerActivity.isSleepDataRecordedToday(this) == false){
+            if(SleepManagerActivity.isSleepDataRecordedToday(this) == false  && SleepManagerActivity.isItTimeToRecord()){
                 Intent intent = new Intent(SignUp.this, SleepManagerActivity.class);
                 startActivity(intent);
                 finish();
