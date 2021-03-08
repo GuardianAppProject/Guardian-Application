@@ -136,28 +136,28 @@ public class StatusCalculator {
         if(userAwake < 360) {
             //
         } else if(userAwake < 420) {
-            sleepCoefficient = 0.95;
+            sleepCoefficient = 0.94;
             userTotalSleep -= 30;
         }else if(userAwake < 480) {
-            sleepCoefficient = 0.915;
+            sleepCoefficient = 0.905;
             userTotalSleep -= 80;
         } else if(userAwake < 600) {
-            sleepCoefficient = 0.85;
+            sleepCoefficient = 0.84;
             userTotalSleep -= 150;
         } else if(userAwake < 720) {
-            sleepCoefficient = 0.73;
+            sleepCoefficient = 0.715;
             userTotalSleep -= 300;
         } else if(userAwake < 840) {
-            sleepCoefficient = 0.62;
+            sleepCoefficient = 0.6;
             userTotalSleep -= 370;
         } else if(userAwake < 960) {
-            sleepCoefficient = 0.5;
+            sleepCoefficient = 0.48;
             userTotalSleep -= 450;
         } else if(userAwake < 1080) {
-            sleepCoefficient = 0.43;
+            sleepCoefficient = 0.4;
             userTotalSleep -= 550;
         } else if(userAwake < 1200) {
-            sleepCoefficient = 0.22;
+            sleepCoefficient = 0.2;
             userTotalSleep -= 750;
         } else if(userAwake < 1400) {
             sleepCoefficient = 0.1;
