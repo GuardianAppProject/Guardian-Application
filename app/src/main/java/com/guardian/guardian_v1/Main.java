@@ -946,19 +946,19 @@ public class Main extends FragmentActivity implements SensorEventListener, OnMap
         if(!isPaused && (soundRepetition==0 || percentage<=40) && ((!(percentage<=45 && dangerFlag==0)) || !dangerModeOn) && !alertMessageText.getText().equals("با دقت به رانندگی ادامه دهید.")) {
             int max = audio.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
             if((volume_media - 0.5) >= audio.getStreamVolume(AudioManager.STREAM_MUSIC) && secondSound){
-                if(audio.getStreamVolume(AudioManager.STREAM_MUSIC) < (int)(0.2 * max)) {
-                    audio.setStreamVolume(AudioManager.STREAM_MUSIC, (int)(0.2 * max), 0);
+                if(audio.getStreamVolume(AudioManager.STREAM_MUSIC) < (int)(0.17 * max)) {
+                    audio.setStreamVolume(AudioManager.STREAM_MUSIC, (int)(0.17 * max), 0);
                 }
                 secondSound = false;
             }
 
             if(percentage<=40) {
-                if(audio.getStreamVolume(AudioManager.STREAM_MUSIC) < (int)(0.3 * max)) {
-                    audio.setStreamVolume(AudioManager.STREAM_MUSIC, (int) (0.3 * max), 0);
+                if(audio.getStreamVolume(AudioManager.STREAM_MUSIC) < (int)(0.26 * max)) {
+                    audio.setStreamVolume(AudioManager.STREAM_MUSIC, (int) (0.26 * max), 0);
                 }
             } else if(percentage<=50) {
-                if(audio.getStreamVolume(AudioManager.STREAM_MUSIC) < (int)(0.25 * max)){
-                    audio.setStreamVolume(AudioManager.STREAM_MUSIC, (int)(0.25 * max), 0);
+                if(audio.getStreamVolume(AudioManager.STREAM_MUSIC) < (int)(0.215 * max)){
+                    audio.setStreamVolume(AudioManager.STREAM_MUSIC, (int)(0.215 * max), 0);
                 }
             }
 

@@ -111,6 +111,7 @@ public class StatusCalculator {
 
 
     public double sleepCalculator(double userSleep, double userAwake) {
+        setSleepData(context);
         double sleep_factor = 0;
         userTotalSleep = userSleep;
         if(userSleep < 60){
@@ -119,14 +120,14 @@ public class StatusCalculator {
             sleep_factor = (userSleep - 60) * 0.25;
         } else if(userSleep < 180) {
             sleep_factor = 15 + (userSleep - 120) * 0.25;
-        } else if(userSleep < 210) {
-            sleep_factor = 30 + (userSleep - 180) * 0.5;
         } else if(userSleep < 240) {
-            sleep_factor = 45 + (userSleep - 210) * 0.5;
+            sleep_factor = 30 + (userSleep - 180) * 0.25;
         } else if(userSleep < 300) {
-            sleep_factor = 60 + (userSleep - 240) * 0.33;
-        } else if(userSleep < 380) {
-            sleep_factor = 80 + (userSleep - 420) * 0.2;
+            sleep_factor = 45 + (userSleep - 240) * 0.25;
+        } else if(userSleep < 370) {
+            sleep_factor = 60 + (userSleep - 300) * 0.2857;
+        } else if(userSleep < 440) {
+            sleep_factor = 80 + (userSleep - 370) * 0.2857;
         } else {
             sleep_factor = 100;
         }
@@ -1141,10 +1142,10 @@ public class StatusCalculator {
         if(sleep_factor <= 30) {
             sleep_alert = "شرایط خواب شما برای رانندگی اصلا مناسب نیست!";
             DriveAlertHandler.sleep_func(sleep_alert, 4, true, DriveAlertHandler.Type.SLEEP, "sleep_3");
-        } else if(sleep_factor <= 50) {
+        } else if(sleep_factor <= 45) {
             sleep_alert = "خواب شما به میزان کافی نبوده است.";
             DriveAlertHandler.sleep_func(sleep_alert, 2, false, DriveAlertHandler.Type.SLEEP, "sleep_2");
-        } else if(sleep_factor <= 65) {
+        } else if(sleep_factor <= 58) {
             sleep_alert = "بهتر است در اولین فرصت کمی استراحت کنید.";
             DriveAlertHandler.sleep_func(sleep_alert, 1, false, DriveAlertHandler.Type.SLEEP, "sleep_1");
         } else {
